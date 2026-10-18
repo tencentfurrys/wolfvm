@@ -11,11 +11,10 @@ bool is_plain_or_decrypt(std::vector<uint8_t>& data, std::string& err) {
     uint8_t header[10];
     std::memcpy(header, data.data(), 10);
     std::vector<uint8_t> body(data.begin() + 10, data.end());
-    body.insert(body.begin(), header, header + 10);
     Reader r(std::move(body));
-    try { r.decrypt_entry(header); }
+    try { r.decrypt_entry(header); }   // reference decrypts the body only, header stays raw
     catch (const std::exception& e) { err = std::string("decrypt failed: ") + e.what(); return false; }
-    std::memcpy(data.data(), body.data(), body.size());
+    std::memcpy(data.data() + 10, body.data(), body.size());
     return true;
 }
 

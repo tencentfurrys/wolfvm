@@ -23,9 +23,12 @@ public:
     std::vector<std::string> strings();
     std::vector<uint8_t> raw(size_t n);
 
-    // Applies the standard Wolf dat-entry obfuscation:
-    // three LCG-XOR streams interleaved at steps 1/2/5, seeds derived from the
-    // 10-byte crypt header at indices {0, 8, 6}. Consumes the header first.
+    // Reference-exact crypt: three LCG-XOR streams interleaved at steps 1/2/5.
+    // Each stream starts at byte 0 and advances the LCG *before* each XOR:
+    //   seed = seed*0x343FD + 0x269EC3 (mod 2^32); byte ^= (seed >> 28) & 7.
+    void crypt_body(const uint32_t seeds[3]);
+
+    // Applies Wolf game-dat-entry obfuscation using seeds {header[0], header[8], header[6]}.
     void decrypt_entry(const uint8_t header[10]);
 
 private:

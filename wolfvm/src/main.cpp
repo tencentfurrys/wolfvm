@@ -8,10 +8,12 @@
 #include <algorithm>
 
 #include "common_event.h"
+#include "database.h"
 #include "filecoder.h"
 #include "game_dat.h"
 #include "map_tree.h"
 #include "map_tree_open_status.h"
+#include "sys_db_basic.h"
 
 static std::vector<uint8_t> read_file(const char* path) {
     FILE* f = std::fopen(path, "rb");
@@ -190,6 +192,87 @@ static int cmd_openstatus(const char* path) {
     return 0;
 }
 
+static int cmd_dbinfo(const char* project_path, const char* dat_path) {
+    auto pdata = read_file(project_path);
+    auto ddata = read_file(dat_path);
+    wolf::DatabasePair db;
+    std::string err;
+    if (!wolf::DatabasePair::parse_pair(pdata, ddata, db, err)) {
+        std::fprintf(stderr, "ERROR: %s\n", err.c_str());
+        return 1;
+    }
+
+    size_t n_fields = 0, n_rows = 0, n_int_cells = 0, n_str_cells = 0, ftsz_sum = 0;
+    for (const auto& t : db.types) {
+        n_fields += t.fields.size();
+        n_rows += t.data.size();
+        for (const auto& d : t.data) {
+            n_int_cells += d.int_values.size();
+            n_str_cells += d.string_values.size();
+        }
+        ftsz_sum += static_cast<size_t>(t.field_type_list_size);
+    }
+    std::printf("%s + %s\n", project_path, dat_path);
+    std::printf("  types          : %zu (project %zu B + dat %zu B fully consumed)\n",
+                db.types.size(), pdata.size(), ddata.size());
+    std::printf("  fields         : %zu\n", n_fields);
+    std::printf("  data rows      : %zu\n", n_rows);
+    std::printf("  cells          : %zu int + %zu string\n", n_int_cells, n_str_cells);
+    std::printf("  ftsz sum       : %zu (field-type list bytes)\n", ftsz_sum);
+    std::printf("  per type:\n");
+    unsigned i = 0;
+    for (const auto& t : db.types) {
+        size_t fi = 0, fs = 0;
+        for (const auto& f : t.fields) f.is_int() ? ++fi : ++fs;
+        std::printf("    type %3u: len(name)=%2zu fields %3zu (int %3zu / str %3zu) rows %4zu\n",
+                    i, t.name.size(), t.fields.size(), fi, fs, t.data.size());
+        ++i;
+    }
+    return 0;
+}
+
+static int cmd_sysbasic(const char* path) {
+    // SysDataBaseBasic.dat is a plain custom record (lead = 10 zero bytes), so the
+    // game-dat plaintext probe is not applied here.
+    auto data = read_file(path);
+    const size_t total = data.size();
+    wolf::Reader r(std::move(data));
+    wolf::SysDbBasicDat s;
+    std::string err;
+    wolf::SysDbBasicDat::parse(r, s, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    size_t n_int_cells = 0, n_str_cells = 0, n_nonempty_str = 0, max_str = 0;
+    for (const auto& t : s.types)
+        for (size_t row = 0; row < t.int_rows.size(); ++row) {
+            n_int_cells += t.int_rows[row].size();
+            for (const auto& sv : t.str_rows[row]) {
+                ++n_str_cells;
+                if (!sv.empty()) {
+                    ++n_nonempty_str;
+                    if (sv.size() > max_str) max_str = sv.size();
+                }
+            }
+        }
+    std::printf("%s\n", path);
+    std::printf("  head      : 10 bytes, all-zero + marker 0xC0 (verified)\n");
+    std::printf("  types     : %d (file %zu B fully consumed)\n", s.type_count, total);
+    std::printf("  cells     : %zu int + %zu string\n", n_int_cells, n_str_cells);
+    std::printf("  terminator: 0x%02X\n", s.terminator);
+    std::printf("  per type:\n");
+    unsigned i = 0;
+    for (const auto& t : s.types) {
+        size_t fi = 0, fs = 0;
+        for (const int32_t ix : t.indexinfos) (ix >= 0x07D0 ? ++fs : ++fi);
+        std::printf("    type %2u: fields %2zu (int %2zu / str %2zu) rows %3d (capacity)\n",
+                    i, t.indexinfos.size(), fi, fs, t.row_capacity);
+        ++i;
+    }
+    std::printf("  strings   : %zu cells, %zu non-empty (values withheld), max len %zu\n",
+                n_str_cells, n_nonempty_str, max_str);
+    return 0;
+}
+
 int main(int argc, char** argv) {
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
     if (argc >= 3 && std::strcmp(argv[1], "gameinfo") == 0)   return cmd_gameinfo(argv[2]);
@@ -203,8 +286,13 @@ int main(int argc, char** argv) {
     }
     if (argc >= 3 && std::strcmp(argv[1], "openstatus") == 0)
         return cmd_openstatus(argv[2]);
+    if (argc >= 4 && std::strcmp(argv[1], "dbinfo") == 0)
+        return cmd_dbinfo(argv[2], argv[3]);
+    if (argc >= 3 && std::strcmp(argv[1], "sysbasic") == 0)
+        return cmd_sysbasic(argv[2]);
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | maptree <MapTree.dat> [-t] | "
-                         "openstatus <MapTreeOpenStatus.dat>\n");
+                         "openstatus <MapTreeOpenStatus.dat> | dbinfo <X.project> <X.dat> | "
+                         "sysbasic <SysDataBaseBasic.dat>\n");
     return 1;
 }
