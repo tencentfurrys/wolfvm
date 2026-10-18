@@ -9,7 +9,8 @@ add_executable(wolfvm
   src/route.cpp
   src/command.cpp
   src/common_event.cpp
-  src/map_tree.cpp)
+  src/map_tree.cpp
+  src/map_tree_open_status.cpp)
 if(NOT MSVC)
   target_compile_options(wolfvm PRIVATE -Wall -Wextra)
 endif()

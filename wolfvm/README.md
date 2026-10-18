@@ -14,7 +14,7 @@ Eris Dysnomia on Android. Built from the engine analysis in `../ENGINE_ANALYSIS.
   - [x] `Game.dat` ('M' config) — full-consumption verified on shipped file
   - [x] `CommonEvent.dat` ('C') — 584 events, command streams (cid/args/strings/indent, Move+route tails), tagged tails; full consumption (1,826,518 B)
   - [x] `MapTree.dat` — 56-node (parent,id) adjacency tree, no strings; zero-head + 0x90 marker + 0xBC terminator; full consumption
-  - [ ] `MapTreeOpenStatus.dat` — per-map open flags (count-coupled to MapTree)
+  - [x] `MapTreeOpenStatus.dat` — 56 × u8 expanded/opening flags, full consumption; open set == folder-bearing tree nodes
   - [ ] `DataBase.dat` / `CDataBase.dat` / `SysDatabase*` — typed value grids
   - [ ] `TileSetData.dat`, `MapXXX.dat` event pages (per-map records)
 - [ ] Stage 2 — event VM: variable banks, editor command dispatch (messages, picture ops, jump/call/condition), MapX object loop.

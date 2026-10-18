@@ -11,6 +11,7 @@
 #include "filecoder.h"
 #include "game_dat.h"
 #include "map_tree.h"
+#include "map_tree_open_status.h"
 
 static std::vector<uint8_t> read_file(const char* path) {
     FILE* f = std::fopen(path, "rb");
@@ -162,6 +163,33 @@ static int cmd_maptree(const char* path, bool tree) {
     return 0;
 }
 
+static int cmd_openstatus(const char* path) {
+    auto data = read_file(path);
+    std::string err;
+    if (!wolf::is_plain_or_decrypt(data, err)) {
+        std::fprintf(stderr, "ERROR: %s\n", err.c_str());
+        return 1;
+    }
+    const size_t total = data.size();
+    wolf::Reader r(std::move(data));
+    wolf::MapTreeOpenStatusDat s;
+    wolf::MapTreeOpenStatusDat::parse(r, s, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    unsigned open = 0;
+    for (const uint8_t f : s.flags) open += f;
+    std::printf("%s\n", path);
+    std::printf("  head      : 20 bytes, all-zero (verified)\n");
+    std::printf("  flags     : %d (file %zu bytes fully consumed)\n", s.count, total);
+    std::printf("  open=1    : %u / %u\n", open, static_cast<unsigned>(s.flags.size()));
+    std::printf("  terminate : 0x%02X\n", s.terminator);
+    std::printf("  open map ids:");
+    for (size_t i = 0; i < s.flags.size(); ++i)
+        if (s.flags[i]) std::printf(" %zu", i);
+    std::printf("\n");
+    return 0;
+}
+
 int main(int argc, char** argv) {
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
     if (argc >= 3 && std::strcmp(argv[1], "gameinfo") == 0)   return cmd_gameinfo(argv[2]);
@@ -173,7 +201,10 @@ int main(int argc, char** argv) {
         const bool tree = (argc >= 4 && !std::strcmp(argv[3], "-t"));
         return cmd_maptree(argv[2], tree);
     }
+    if (argc >= 3 && std::strcmp(argv[1], "openstatus") == 0)
+        return cmd_openstatus(argv[2]);
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
-                         "commoninfo <CommonEvent.dat> [-n N] | maptree <MapTree.dat> [-t]\n");
+                         "commoninfo <CommonEvent.dat> [-n N] | maptree <MapTree.dat> [-t] | "
+                         "openstatus <MapTreeOpenStatus.dat>\n");
     return 1;
 }
