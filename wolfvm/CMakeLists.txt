@@ -8,7 +8,8 @@ add_executable(wolfvm
   src/game_dat.cpp
   src/route.cpp
   src/command.cpp
-  src/common_event.cpp)
+  src/common_event.cpp
+  src/map_tree.cpp)
 if(NOT MSVC)
   target_compile_options(wolfvm PRIVATE -Wall -Wextra)
 endif()
