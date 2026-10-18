@@ -1,0 +1,13 @@
+# Third-party game package (copyrighted content) — never commit
+Eris Dysnomia/
+*.wolf
+*.7z
+
+# Build artifacts / local binaries
+build/
+*.o
+*.obj
+*.exe
+
+# Editor/harness state
+.opencode/
