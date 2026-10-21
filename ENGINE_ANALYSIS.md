@@ -156,3 +156,106 @@ tag `0xD1`, count 6, terminator `0xCF` at 0x13B8):
 
 Clean-room decoder: wolfvm `src/tile_set_data.cpp` (`tileset` CLI command); verified
 full consumption of the real 5,049-byte file with all tag/count/terminator checks.
+
+---
+
+## 9. VM Stage-2 engine findings (decoded CommonEvent semantics, run-backed)
+
+All findings below are displaced from live `commonrun` behavior against
+`Eris Dysnomia` data + Rizin disasm of `Game.exe` (VA = paddr + 0x400000).
+
+### 9.1 Packed DB-ref bases — RESOLVED, previous map was rotated
+
+`fcn.0043a240` (generic operand resolver) decodes the 1e9-band refs directly:
+
+| band | engine object at 0x480130 call | pair |
+|---|---|---|
+| `[1.0e9, 1.1e9)` | `mov ecx, 0xaa75f0` | **DataBase** |
+| `[1.1e9, 1.2e9)` | `mov ecx, 0xaa9498` | **CData** |
+| `[1.3e9, 1.4e9)` | `mov ecx, 0xaa7670` | **Sys** |
+
+Decode: `rem = packed % base; type = rem/1e6; row = (rem%1e6)/100; field = rem%100`.
+The earlier "1.0e9=Sys, 1.1e9=DataBase, 1.3e9=CData" mapping was wrong and
+caused an entire class of state divergence (status flags written to one pair,
+read from another → infinite gacha re-roll loop in ev9).
+
+Companion proof — cid 250 select nibble (aligned disasm 0x43bdc4-0x43bdf9):
+`(flags>>8)&0xF`: **0 → 0xaa9498 (CData), 1 → 0xaa7670 (Sys), 2 → 0xaa75f0
+(DataBase)**; default/unknown → skip command (0x43be0a check).
+
+### 9.2 cid 250 (Database) prep block — row/field/value all resolve
+
+Shared prep before the read/write split (0x43c077/0x43c0f7/0x43c177):
+- row operand (record elem 2): `cmp 0xf4240; jl raw` → when ≥ 1,000,000 resolve
+  via `0x43a240(0xffffffff, frame-ctx, operand)` — i.e. eval-if-≥1e6.
+- value operand (record elem 5): same ≥1e6 rule, same resolver.
+- field operand (record elem 3): pushed through the type's name/marker path
+  (0x4dc500). vm models this as "eval-if-≥1e6 else raw", which fixed
+  `ev9#36 type 43 field 1600033` (field was a cself ref).
+
+`(flags>>4)&0xF` = value-marshall flavor (expr vs literal) — non-semantic.
+
+### 9.3 cid 121 — 7-arg matrix form, db row growth on write
+
+- 7-arg form (12 uses in data, all `target = 1100000000` bare CData[0] ref):
+  `[DB-pack, value, ?, flags, mode{1=plain,4=rand}, 0, ROW]` — **row = args[6]**
+  (pack's row-part overridden), type/field from the pack. mode 4 correlates
+  with flags 0x6000 rand (`[pack, 0, 1, 0x6000, 4, 0, 44]` = rand(0..1)).
+- Engine write path bounds-checks **type count (0x480100) and field count
+  (0x480250) only — no row check**; rows grow on write (ev7/ev29 clear matrix
+  rows 63/78 of CData[0]-f0 whose file has 1 row). vm db_set now grows rows +
+  int/string value arrays sized by field max-index.
+- 5-arg form (`flags|0x10000-family`, 47 uses: {65536, 65792, 69632}):
+  `[dst, value, 0, flags, n]` — suspected gradual/step write; semantics
+  semantics unmodeled — TODO.
+
+### 9.4 111/401 — cond sets result register; 401[n] matches register
+
+Data-proven (ev6 add/remove split `#38[1]`/`#199[2]`, chains `#54[1]`→`#57[2]`):
+cid 111 evaluates its (lhs,rhs,op) triples (OR'ed) and sets a **result
+register**: 1 = true, 2 = false. `401 [n]` enters iff register == n; the
+non-matching selectors skim to the next 401/420/499 at the same indent, and
+`420` = unconditional else. vm previously collapsed false → 0 ("skim all"),
+so else-branch bodies never executed.
+
+### 9.5 213 JumpLabel — backward jumps required
+
+Labels are collected from 212 into a per-frame map; 213 must consult the map
+first (backward/retry loops) then forward-scan for not-yet-executed 212s.
+Forward-only scanning broke every "collect-item-then-retry" flow
+(ev11 `213 label '…' not found`; after the map fix ev11 runs 417 cmds, 19 writes).
+
+### 9.6 Variant cell passing for 210 callee args
+
+`210 [500000+id, opts, args...]` passes trailing args as **cells, not ints** —
+string refs (3000066 family) must arrive as the referenced string cell.
+`Vm::fetch_cell` mirrors the engine's generic getter (DB ref → db_get cell,
+cself/sys bands → cell copy, else literal int); case 250's write value fetch
+uses the same helper.
+
+### 9.7 Stateless run limits (documented divergences, fail-loud)
+
+- **Poll-wait loops** (ev510 shape: label top → read CData[10]-r37-f{cself12} →
+  cond(`< 1`) → 401 → 213 jump-back): live engine waits for an *external*
+  system common to flip the polled cell. Headless stateless runs have no
+  external writer → step cap (2,000,000) aborts with a clear message. ev8/ev214
+  both end inside ev510 this way.
+- **ev9 gacha**: sys-var 2000070 (gacha-limit flag, set only deep in an
+  indent-15 branch of some common, reset in another) + lever counters never
+  materialize statelessly; 6⇄360 mutual recursion capped at kMaxDepth=256.
+- Recursion cap raised 64 → 256: legitimate deep call chains exist (ev9 reached
+  13,350 executed commands before the cap).
+
+### 9.8 Previously decoded (kept from earlier sessions)
+
+- Deferred-command executor `fcn.0043a5c0` (queue at 0xaa76fc): dispatch 498 →
+  0x43c3eb, 213 → 0x43b2b6, cids 106..109 jump table (0x43c510, 4 entries),
+  250 → 0x43b9e1, 401 → 0x43ad6d, 420 → 0x43ae0a, pseudo-ranges
+  210000-210023 & 111000-111005 → 0x43aeb7.
+- `fcn.00454380` = message-window renderer (width/font plumbing), NOT the
+  cid-122 semantic executor. "122 flags 1025/513" notes = noise; flags&0xF
+  op still executes as append.
+- 210 opts values {0, 16, 3, 4, 2, 1, 4112, 0x1000001, 0x1000002}: unmodeled
+  meaning; noted only outside {0, 16}.
+- Packed eval_cmp op map: 1 '<', 2 '==', 3 '<=', 4 '>=', 5 '!=',
+  6 bitAND-nonzero, 7 bit-superset (data-supported).

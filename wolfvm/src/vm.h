@@ -133,6 +133,7 @@ private:
 
     long long eval_int(long long addr);
     std::string eval_str(long long addr);
+    Cell fetch_cell(long long addr);             // variant-preserving operand resolve
     DbOp eval_db(long long packed);             // >=1e9 ref -> cells
     bool db_get(const DbOp& o, Cell& out);
     bool db_set(const DbOp& o, const Cell& v);

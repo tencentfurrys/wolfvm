@@ -84,9 +84,12 @@ Cell& Vm::cell_for(long long addr) {
 DbOp Vm::eval_db(long long packed) {
     DbOp o{};
     long long base = 0, which = 0;
-    if (packed >= 1000000000LL && packed < 1100000000LL)      { which = 2; base = 1000000000LL; }
-    else if (packed >= 1100000000LL && packed < 1200000000LL) { which = 1; base = 1100000000LL; }
-    else if (packed >= 1300000000LL && packed < 1400000000LL) { which = 3; base = 1300000000LL; }
+    // Engine-verified (resolver 0x43a240 disasm): 1.0e9 -> 0xaa75f0 DataBase,
+    // 1.1e9 -> 0xaa9498 CData, 1.3e9 -> 0xaa7670 Sys. Decoded bands:
+    // [1e9,1.1e9) [1.1e9,1.2e9) [1.3e9,1.4e9); rem: type*1e6 + row*100 + field.
+    if (packed >= 1000000000LL && packed < 1100000000LL)      { which = 1; base = 1000000000LL; }
+    else if (packed >= 1100000000LL && packed < 1200000000LL) { which = 3; base = 1100000000LL; }
+    else if (packed >= 1300000000LL && packed < 1400000000LL) { which = 2; base = 1300000000LL; }
     else {
         note("db ref outside known bases: " + std::to_string(packed));
         return o;   // which == 0
@@ -139,7 +142,23 @@ bool Vm::db_set(const DbOp& o, const Cell& v) {
     DbType& t = const_cast<DbType&>(p->types[(size_t)o.type]);
     if (o.field < 0 || o.field >= (int32_t)t.fields.size()) { note("db_set: bad field"); return false; }
     const DbField& f = t.fields[(size_t)o.field];
-    if (o.row < 0 || o.row >= (int32_t)t.data.size()) { note("db_set: bad row"); return false; }
+    if (o.row < 0) { note("db_set: negative row " + std::to_string(o.row)); return false; }
+    // The engine checks type-count (0x480100) and field-count (0x480250) only —
+    // rows grow on write (runtime row expansion; see ev7 row 63/78 clears).
+    if (o.row >= (int32_t)t.data.size()) {
+        int32_t nints = 0, nstrs = 0;
+        for (const DbField& fl : t.fields) {
+            int32_t ix = fl.index();
+            if (ix < 0) continue;
+            if (fl.is_string()) nstrs = std::max(nstrs, ix + 1);
+            else nints = std::max(nints, ix + 1);
+        }
+        t.data.resize((size_t)o.row + 1);
+        for (size_t k = 0; k < t.data.size(); ++k) {
+            if ((int32_t)t.data[k].int_values.size() < nints) t.data[k].int_values.resize((size_t)nints, 0);
+            if ((int32_t)t.data[k].string_values.size() < nstrs) t.data[k].string_values.resize((size_t)nstrs);
+        }
+    }
     DbData& d = t.data[(size_t)o.row];
     if (f.is_string()) {
         int32_t idx = f.index();
@@ -185,6 +204,23 @@ long long Vm::eval_int(long long addr) {
         return 0;
     }
     return addr;   // plain literal (this data writes no normal vars in 121/124)
+}
+
+Cell Vm::fetch_cell(long long addr) {
+    // Variant-preserving operand resolve (engine 0x43a240 generic getter):
+    // DB ref -> db_get cell; cself/sys bands -> cell copy; plain literal -> int.
+    Cell out;
+    if (addr >= 1000000000LL) {
+        DbOp o = eval_db(addr);
+        if (o.which != 0) db_get(o, out);
+    } else if (is_cself(addr)) {
+        out = ccell((size_t)(addr - 1600000));
+    } else if (addr >= 2000000 && addr < 4000000) {
+        out = gcell(addr);
+    } else {
+        out.set_i((int32_t)addr);
+    }
+    return out;
 }
 
 std::string Vm::eval_str(long long addr) {
@@ -255,7 +291,9 @@ bool Vm::cond_true_int(const Command& c, long long& case_target) {
         any = any || (r == 1);
         k += 3;
     }
-    case_target = any ? 1 : 0;
+    // Engine model (ev6 add/remove split, ev6#54/#57 chains): the cond sets a
+    // result register — 1 = true, 2 = false — and 401[n] matches register == n.
+    case_target = any ? 1 : 2;
     return any;
 }
 
@@ -358,11 +396,15 @@ bool Vm::exec_setvar(const Command& c) {
         DbOp o = eval_db(target);
         if (o.which == 0) { note("121 bad dbref target " + std::to_string(target)); return false; }
         if (c.args.size() >= 7) {
-            // 7-arg form: [packed, op1, op2, flags, row, field, x] (layout guess logged)
-            o.row = (int32_t)eval_int(c.args[4]);
-            o.field = (int32_t)eval_int(c.args[5]);
-            note("121 db 7-arg row " + std::to_string(o.row) + " field " + std::to_string(o.field) +
-                 " extra " + std::to_string(c.args[6]));
+            // 7-arg matrix form (data-proven, 12 uses): [DB-pack, value, ?, flags,
+            //   mode (1=plain, 4=rand pairs with flags 0x6000), 0, ROW].
+            // Pack's row-part is overridden by args[6]; type/field stay from the pack
+            // (all observed packs are bare DataBase bases, so field ambiguity is moot).
+            o.row = (int32_t)eval_int(c.args[6]);
+            uint32_t m7 = (uint32_t)c.args[4];
+            if (m7 != 1 && m7 != 4)
+                note("121 7-arg mode " + std::to_string(m7) + " unmodeled (row " +
+                     std::to_string(o.row) + ")");
         }
         if (!db_set(o, result)) return false;
         if (dbops_) { DbOp rec = o; rec.write = true; rec.written = result.i; rec.written_s = result.as_str(); dbops_->push_back(rec); }
@@ -428,7 +470,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
     stack_.back().common_id = common_id;
     labels_stack_.emplace_back();
 
-    const size_t kMaxDepth = 64;
+    const size_t kMaxDepth = 256;
     while (!stack_.empty()) {
         if (++steps_ > step_cap_) {
             out.err = "step cap exceeded (" + std::to_string(step_cap_) + ") — runaway loop";
@@ -653,9 +695,10 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 ++f.pc;
                 break;
             }
-            case 213: { // JumpLabel (forward in this event)
+            case 213: { // JumpLabel — backward via the 212-collected map, forward via scan
                 const std::string& nm = c.string_args.empty() ? std::string() : c.string_args[0];
-                auto l = fwd_label(f.pc + 1, nm);
+                auto it = labels_stack_.back().find(nm);
+                size_t l = (it != labels_stack_.back().end()) ? it->second : fwd_label(f.pc + 1, nm);
                 if (l == (size_t)-1) { out.err = "213 label '" + nm + "' not found"; return false; }
                 f.pc = l;
                 break;
@@ -678,7 +721,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 stack_.push_back(nf);
                 labels_stack_.emplace_back();
                 for (size_t k = 2; k < c.args.size(); ++k) {
-                    stack_.back().cself[std::min(k - 2, (size_t)99)].set_i(eval_int(c.args[k]));
+                    stack_.back().cself[std::min(k - 2, (size_t)99)] = fetch_cell(c.args[k]);
                 }
                 // Caller pc advance AFTER the push (f reference died in realloc)
                 stack_[stack_.size() - 2].pc += 1;
@@ -706,7 +749,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 o.flags = (uint32_t)flags;
                 if (sel >= 3) { note("250: db-select nibble " + std::to_string(sel) + " unmodeled — skipped"); ++f.pc; break; }
                 o.row   = (int32_t)eval_int(c.args[1]);
-                o.field = (int32_t)c.args[2];
+                o.field = (int32_t)eval_int(c.args[2]);   // engine 0x43c177: field resolves through the shared prep too
                 if (flags & 0xF0000 || flags & 0xF) {
                     note("250: flags 0x" + [](uint32_t v){ std::string s; const char* h = "0123456789ABCDEF"; for (int i = 0; i < 8; ++i) { s = h[v & 0xF] + s; v >>= 4; } return s; }(flags) +
                          " name/variant bits — skipped");
@@ -738,12 +781,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 } else {
                     // WRITE: value operand -> cell. Variants resolve as cells (kind-preserving),
                     // plain literals become ints — matches engine's eval-if->=1e6 + variant marshal.
-                    Cell src;
-                    long long a = target;
-                    if (a >= 1000000000LL) { DbOp oo = eval_db(a); if (oo.which != 0) db_get(oo, src); }
-                    else if (is_cself(a)) src = ccell((size_t)(a - 1600000));
-                    else if (a >= 2000000 && a < 4000000) src = gcell(a);
-                    else src.set_i((int32_t)a);
+                    Cell src = fetch_cell(target);
                     if (!db_set(o, src)) {
                         note("250: write skipped out-of-bounds (type " + std::to_string(o.type) +
                              " row " + std::to_string(o.row) + " field " + std::to_string(o.field) + ")");
