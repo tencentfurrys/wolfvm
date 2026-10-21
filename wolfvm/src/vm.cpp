@@ -358,46 +358,114 @@ bool Vm::exec_setvar(const Command& c) {
     const long long target = c.args[0];
     const long long op1raw = (c.args.size() > 1) ? c.args[1] : 0;
     const long long op2raw = (c.args.size() > 2) ? c.args[2] : 0;
-    const long long opcode = flags & 0x7000;
-    if (flags & 0x10000) {
-        // 5-arg gradual family (47 uses, flags {65536, 65792, 69632}): the
-        // engine's 121 handler SKIPS these at the immediate site and defers
-        // them to a second execution site (still unfound; ENGINE_ANALYSIS
-        // §10.3 gate 3). Instant end-state apply is an approximation.
-        note("121 0x10000-family (engine-deferred; approximated instant) dst " +
-             std::to_string(target) +
-             " flags " + std::to_string(flags) +
-             (c.args.size() > 4 ? " extra " + std::to_string(c.args[4]) : ""));
+    // -- ENGINE-VERIFIED gates (ENGINE_ANALYSIS §10.3/§10.5, all from disasm):
+    // low byte set -> skip; reserved target 1100000000 -> skip; the 0x10000
+    // family is skipped by the immediate handler and runs at a still-unfound
+    // deferral site (wolfvm approximates by applying the same pseudo-matrix
+    // op as the least-wrong model). Nibble digits: tens f00 = (flags>>8)&0xF
+    // selects the accumulate mode {0:assign,1:+=,2:-=,3:*=,4:/=}; ones f000
+    // = (flags>>12)&0xF selects the base op {0:+,1:-,2:x}. The handler
+    // rewrites elem0 to pseudo = 210000 + f00*10 + f000 (vec1*0xa + vec2 +
+    // 0x33450, imul/lea verified) and the paired second interpreter
+    // dispatches 210000 directly (dst=v1+v2), then via byte selector map
+    // 0x4575f7 + jump table 0x4575c7: 210001=-, 210002=x, 210008=+=v1+v2,
+    // 210009=+=v1-v2, 210010=+=v1*x, 210020=-=v1+v2, 210021=-=v1-v2,
+    // 210022=-=v1*x, 210030=x=v1+v2, 210031=x=v1-v2, 210032=x=v1*x;
+    // 210003..7/210011..17/210023..29 map to selector 0x0b = skip arm
+    // (0x45730b); 210040=(dst/(v1+v2)) and 210041=(dst/(v1-v2)) dispatch
+    // directly; 210042+ is rejected in the handler before a pseudo exists.
+    if (flags & 0xFF) {
+        note("121 skip (engine gate: low byte) target " + std::to_string(target) +
+             " flags " + std::to_string(flags));
+        return true;
     }
-
+    if (target == 1100000000LL) {
+        note("121 skip (engine gate: reserved target) flags " + std::to_string(flags));
+        return true;
+    }
+    const int f00 = (int)((flags >> 8) & 0xF);   // tens: accumulate mode
+    const int f000 = (int)((flags >> 12) & 0xF); // ones: base op {0:+,1:-,2:x}
+    const long long v1 = eval_int(op1raw);
+    const long long v2 = eval_int(op2raw);
+    // Engine no-arm cases (byte selector 0x0b -> skip arm): pseudo 210011,
+    // 210012 (and the 210003..7 / 210023..29 bands that the handler never
+    // emits from cid-121). The deferred 0x10000 family reuses the same
+    // mapping as its approximation.
+    if (f00 == 1 && f000 >= 1) {
+        // pseudo 210011/210012: handler accepts, second interpreter skips.
+        note("121 skip (engine: pseudo " + std::to_string(210000LL + f00 * 10LL + f000) +
+             " no arm) flags " + std::to_string(flags));
+        return true;
+    }
     Cell result;
-    if (opcode == 0x6000) {
-        // Random-range assign: [target, lo, hi, 0x6000] — wobble animations (data).
-        long long lo = eval_int(op1raw);
-        long long hi = eval_int(op2raw);
-        result.set_i(rand_ll(std::min(lo, hi), std::max(lo, hi)));
-        if (flags & ~0x7FFF) note("121 rand flags " + std::to_string(flags));
+    if (f00 == 4) {
+        // Handler rejects raw >= 1e6 operands outright, cancels f000=0 when
+        // the raw sum is 0 and f000=1 when the raw difference is 0, and never
+        // emits a pseudo for f000 >= 2. Only then the second interpreter's
+        // verified arms divide the CURRENT dst cell by (v1+v2) or (v1-v2).
+        if (op1raw >= 1000000LL || op2raw >= 1000000LL) {
+            note("121 skip (engine f00=4: raw >= 1e6) target " + std::to_string(target) +
+                 " flags " + std::to_string(flags));
+            return true;
+        }
+        if (f000 >= 2) {
+            note("121 skip (engine f00=4: no pseudo for f000 " + std::to_string(f000) +
+                 ") flags " + std::to_string(flags));
+            return true;
+        }
+        if (f000 == 0 && op1raw + op2raw == 0) {
+            note("121 skip (engine f00=4: raw v1+v2 == 0) target " + std::to_string(target));
+            return true;
+        }
+        if (f000 == 1 && op1raw - op2raw == 0) {
+            note("121 skip (engine f00=4: raw v1-v2 == 0) target " + std::to_string(target));
+            return true;
+        }
+        Cell cur = fetch_cell(target);
+        if (cur.touched_s)
+            note("121 divide over string cell " + std::to_string(target));
+        const long long den = (f000 == 0) ? (v1 + v2) : (v1 - v2);
+        if (den == 0) {
+            note("121 divide by zero (dst " + std::to_string(target) + ")");
+            return false;
+        }
+        result.set_i(cur.i / den);
+    } else if (f00 >= 5 || f000 >= 3) {
+        // Legacy/dropped opcodes: the engine performs NOTHING for these
+        // records (census skips: tens 0x0500-0x0800 x340, 0x6000 x414 — the
+        // old "rand-loop wobble" model was a misread — and ones-digit
+        // f000>=3 incl. 0x3000 x234, 0x8000 x285, 0x3200 ...).
+        note("121 skip (engine: dropped family f00 " + std::to_string(f00) +
+             " f000 " + std::to_string(f000) + ") target " + std::to_string(target) +
+             " flags " + std::to_string(flags) +
+             (flags & 0x10000 ? " deferred-family" : ""));
+        return true;
     } else {
-        long long v1 = eval_int(op1raw);
-        long long v2 = eval_int(op2raw);
-        long long out = v1;
-        switch (opcode) {
-            case 0x0000: break;                                  // assign
-            case 0x1000: out = v1 + v2; break;
-            case 0x2000: out = v1 - v2; break;
-            case 0x3000: out = v1 * v2; break;
-            case 0x4000:
-                if (v2 == 0) { note("121 div by zero (target " + std::to_string(target) + ")"); return false; }
-                out = v1 / v2; break;
-            case 0x5000:
-                if (v2 == 0) { note("121 mod by zero"); return false; }
-                out = v1 % v2; break;
-            default:
-                if (flags & 0x10000) out = v1 & v2;                    // 0x10000
-                else if (opcode == 0x10000) out = v1 & v2;
-                else if (opcode == 0x11000 || opcode == 0x11000) out = v1 | v2;
-                else { note("121 unknown opcode " + std::to_string(opcode) + " flags " + std::to_string(flags)); return false; }
+        long long out;
+        switch (210000LL + f00 * 10LL + f000) {
+            case 210000: out = v1 + v2; break;                    // assign
+            case 210001: out = v1 - v2; break;
+            case 210002: out = v1 * v2; break;
+            case 210010: case 210020: case 210021: case 210022:
+            case 210030: case 210031: case 210032: {
+                const long long box =
+                    (f000 == 0) ? (v1 + v2) : (f000 == 1) ? (v1 - v2) : (v1 * v2);
+                Cell cur = fetch_cell(target);
+                if (cur.touched_s)
+                    note("121 accumulate over string cell " + std::to_string(target));
+                switch (f00) {
+                    case 1: out = cur.i + box; break;             // dst +=
+                    case 2: out = cur.i - box; break;             // dst -=
+                    case 3: out = cur.i * box; break;             // dst *=
+                    default: out = cur.i; break;
+                }
                 break;
+            }
+            default:
+                note("121 unreachable pseudo " +
+                     std::to_string(210000LL + f00 * 10LL + f000) + " flags " +
+                     std::to_string(flags));
+                return false;
         }
         result.set_i(out);
     }

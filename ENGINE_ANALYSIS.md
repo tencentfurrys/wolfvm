@@ -396,3 +396,75 @@ sweep; keep, but track divergence risk on cond-heavy events.
 - Pending decodes: arms 210030-210042; where the 0x10000 family really
   executes; cid-122 string executes; confirm ev457/ev510 loop-advance
   mechanism.
+
+## 11. Session checkpoint (thumb-drive safe)
+
+### 11.1 First-interpreter loop mechanics (verbatim, rz_interp.txt 0x43a5c0)
+- Outer loop `[ebp-0x18]` = task index over global list `0xaa76fc`
+  (count via `0x4db750`); exit at `jnl 0x43c48f` (epilogue, `add esp
+  0x184` ... `ret`). Every 40th task (`idiv 40; test edx; jnz` skips)
+  calls `0x5470a0` = UI pump.
+- Inner loop `[ebp-0x1c]` = command index reset to 0 **per task per
+  sweep**; container = `0x4db810(0xaa76fc, task)+0x30`; count =
+  `0x4da3d0(container)`, fetch record = `0x4da490(container, idx)`
+  into `[ebp-0x20]`. cid = `*record` into `[ebp-0x138]`.
+- Continues: `0x43c485 jmp 0x43a63d` (inner idx+1, same task) /
+  `0x43c48a jmp 0x43a604` (outer idx+1, next task). Head cracks hide
+  cmp-chains: visible `cmp 0xd5 (213) jz 0x43b2b6` = cid 213 IS a
+  first-interp handler.
+- Small-cid JT (key = cid-106, `cmp 0x0f jnbe skip`; byte map
+  `0x43c520`, dword JT `0x43c510`): 106/107->`0x43a821`, 111->
+  `0x43a87e`, **121 -> `0x43aec7` directly (handler head, works)**,
+  108-110 + 112-120 -> skip. Then cmp 250 -> `0x43b9e1`, 401 ->
+  `0x43ad6d`, 420 -> `0x43ae0a`.
+- Pseudo-band acceptance verified as exact range cmps: bands
+  {210000-3, 210010-13, 210020-23, 210030-33} -> `0x43aeb7`
+  (restore elem0 = 121, fall into handler); 111000-111005 ->
+  `0x43a86e`; 497488/497489 -> `0x43c3eb`.
+- `0x43c9b0` = arg-kind validator; getter `0x4d95b0` = `&elem_k`
+  (1847 e8 sites); `0x4d92c0` = clear-if-nonempty (wraps `0x4e5fa0`);
+  `0x4d9490`/`0x4e5ef0` = resize. +0x34 = metadata array cleared +
+  refilled every handler pass (NOT persistent); +0x44 = bind array
+  (resize-only, persists until next prep).
+
+### 11.2 "fcn.004556e0" never existed as an entry
+- VA `0x4556e0` is a `call 0x4da420` instruction **mid-function**; that
+  explains every failed caller search. True entry of the second-stage
+  executor = `0x455650` (prologue, e8/e9 byte-scan: exactly **1 direct
+  caller at `0x45413e`**). Its dispatch chain holds the verified arms
+  (210000..210041) and bands 498/499/421/10001/111000/250000/497488.
+- Caller context (`0x454132-0x45413e`): publishes thread-state to
+  globals then `call 0x455650(state)` -> **bool in al**. Tick gates:
+  `[0xaa6a80] == 0 -> exit`; `state->0x80c == 0 -> (if state->0x00
+  byte != 0 && state->0x04 == 0 then call 0x453705 cleanup) exit`.
+- Thread-state members named via global mirrors + format string
+  `"Ev%d Common%d Line%d DB..."` (`0x8151f8`): **+0x08 = Line** (mirror
+  `[0xaa1774]`), **+0x14 = Ev id** (`[0xaa1778]`), **+0x18 = Common id**
+  (`[0xaa36f4]`), +0x80c = task/container pointer, +0x89c = cached
+  active record (`0x4da420(state->0x80c, Line)`).
+
+### 11.3 Two-stage pipeline conclusion (replaces "requeue mystery")
+- cid-121 pass = PREP ONLY in the first interp: writes idempotent
+  binds (+0x44 = [target,v1,v2] cells from unchanged elems), nibble
+  metadata (+0x34), rewrites elem0 to pseudo, **inner index advances
+  past the record** (continue 0x43a63d). The ARM MATH executes in the
+  0x455650 per-line executor, which walks the same container and reads
+  the +0x44 cells at that moment.
+- Prep idempotence (elems never mutated; binds/nibbles refilled
+  identically) => wolfvm's flat single-pass inline exec_setvar is
+  semantically equivalent; retry/queue mechanics are engine overhead.
+
+### 11.4 Uncommitted vm.cpp + ev11 regression
+- `wolfvm/src/vm.cpp` holds the engine-truth exec_setvar (all 10.3
+  gates + full 210x matrix, division guard). Builds clean.
+- Focused batch post-rewrite: ev1 now completes; ev11 NEW step-cap
+  (ev11<->ev19 bounce, 512 warns). Artifacts: `$env:TEMP\cd11.txt`
+  (full dump, cmds=383), `cd19.txt` via commondump.
+- OPEN (was being arbitrated when session cut): flags 0x3000 family
+  (f000 = 3, e.g. ev11#20 `[1600042,1600040,1600041,12288]`):
+  dispatch bands *accept* 210003/13/23/33 but handler skips f000>=3
+  and tick selector = 0x0b skip => RHS-div third digit appears to run
+  NOWHERE in this pipeline; semantically "0x3000 = violation" like the
+  other true skips, but re-verify arm/table bytes before trusting.
+- Next: finish f000=3 verdict; rerun focused batch; then ask user for
+  full-601 sweep go-ahead.
