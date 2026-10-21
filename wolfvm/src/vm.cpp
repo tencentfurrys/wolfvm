@@ -442,7 +442,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
             stack_.pop_back();
             labels_stack_.pop_back();
             if (stack_.empty()) break;
-            stack_.back().pc += 1;      // after the 210 in the caller
+            // caller pc was advanced by the 210 pusher already — return must not bump again
             tlog("<= common " + std::to_string(id) + " returned");
             continue;
         }
@@ -669,7 +669,9 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 }
                 int32_t callee = (int32_t)(raw - 500000);
                 if (!ev(callee)) { out.err = "210 callee missing: " + std::to_string(callee); return false; }
-                if ((uint32_t)c.args[1] != 16) note("210 opts " + std::to_string(c.args[1]));
+                uint32_t opts = (uint32_t)c.args[1];
+                if (opts != 0 && opts != 16)
+                    note("210 opts 0x" + [](uint32_t v){ std::string s; const char* h = "0123456789ABCDEF"; for (int i = 0; i < 8; ++i) { s = h[v & 0xF] + s; v >>= 4; } return s; }(opts));
                 if (stack_.size() >= kMaxDepth) { out.err = "210 recursion cap"; return false; }
                 Frame nf{};
                 nf.common_id = callee;
@@ -710,7 +712,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                          " name/variant bits — skipped");
                     ++f.pc; break;
                 }
-                if ((flags >> 4) & 0xF) note("250: mode A nibble " + std::to_string((flags >> 4) & 0xF));
+                // (flags>>4)&0xF = value-marshall flavor (0=expr, 2/6=litteral variants) — non-semantic here.
                 const long long target = (c.args.size() > 4) ? c.args[4] : 0;
                 const int32_t modeB = (flags >> 12) & 0xF;
                 if (modeB >= 2) {
