@@ -14,6 +14,7 @@
 #include "map_tree.h"
 #include "map_tree_open_status.h"
 #include "sys_db_basic.h"
+#include "tile_set_data.h"
 
 static std::vector<uint8_t> read_file(const char* path) {
     FILE* f = std::fopen(path, "rb");
@@ -273,6 +274,43 @@ static int cmd_sysbasic(const char* path) {
     return 0;
 }
 
+static int cmd_tileset(const char* path, bool verbose) {
+    auto data = read_file(path);
+    std::string err;
+    if (!wolf::is_plain_or_decrypt(data, err)) {
+        std::fprintf(stderr, "ERROR: %s\n", err.c_str());
+        return 1;
+    }
+    const size_t total = data.size();
+    wolf::Reader r(std::move(data));
+    wolf::TileSetDataDat tsd;
+    wolf::TileSetDataDat::parse(r, tsd, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    std::printf("%s\n", path);
+    std::printf("  head      : 10 bytes magic (WOLF / class 'M') verified\n");
+    std::printf("  tag       : 0x%02X (mode %d)\n", tsd.tag, tsd.mode());
+    std::printf("  records   : %d (file %zu bytes fully consumed)\n",
+                static_cast<int>(tsd.records.size()), total);
+    std::printf("  terminate : 0x%02X\n", tsd.terminator);
+    unsigned i = 0;
+    for (const auto& rec : tsd.records) {
+        size_t str_bytes = 0;
+        for (const auto& s : rec.strings) str_bytes += s.size();
+        std::printf("    record %u (mode %d): strings %zu (+m0 %zu B), string bytes %zu, "
+                    "flag bytes %4zu, flag ints %4zu / %zu B\n",
+                    i, tsd.mode(), rec.strings.size(), rec.name.size(), str_bytes,
+                    rec.flag_bytes.size(), rec.flag_ints.size(), rec.flag_ints.size() * 4);
+        if (verbose) {
+            std::printf("      m0 len %zu (incl NUL)\n", rec.name.size() + 1);
+            for (size_t k = 0; k < rec.strings.size(); ++k)
+                std::printf("      m%zu len %zu\n", k + 1, rec.strings[k].size() + 1);
+        }
+        ++i;
+    }
+    return 0;
+}
+
 int main(int argc, char** argv) {
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
     if (argc >= 3 && std::strcmp(argv[1], "gameinfo") == 0)   return cmd_gameinfo(argv[2]);
@@ -290,9 +328,13 @@ int main(int argc, char** argv) {
         return cmd_dbinfo(argv[2], argv[3]);
     if (argc >= 3 && std::strcmp(argv[1], "sysbasic") == 0)
         return cmd_sysbasic(argv[2]);
+    if (argc >= 3 && std::strcmp(argv[1], "tileset") == 0) {
+        const bool verbose = (argc >= 4 && !std::strcmp(argv[3], "-v"));
+        return cmd_tileset(argv[2], verbose);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | maptree <MapTree.dat> [-t] | "
                          "openstatus <MapTreeOpenStatus.dat> | dbinfo <X.project> <X.dat> | "
-                         "sysbasic <SysDataBaseBasic.dat>\n");
+                         "sysbasic <SysDataBaseBasic.dat> | tileset <TileSetData.dat> [-v]\n");
     return 1;
 }

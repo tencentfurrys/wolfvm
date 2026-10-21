@@ -103,3 +103,56 @@ Artifact digests observed (Rizin Evidence): `Game.exe` sha256 `20fe3e82…4e9e32
 - WININET is imported but no URL string is visible → endpoint string likely assembled/obfuscated at runtime (candidate for decompilation task #2).
 - A handful of very long base64-looking blobs in `.rdata` besides the shaders (candidates: pre-baked Cubism model / font assets) — not decoded in this pass.
 - Config.exe was identified by role and size but not exhaustively parsed (standard Wolf config tool; same font/media plumbing).
+
+---
+
+## 8. TileSetData.dat loader chain (verified, wolfvm parser basis)
+
+Call sites (each string is referenced exactly once in `.text` — byte-scan for the
+`db 80 50 81 00` pointer):
+- `Game.exe` VA `0x45001E`: `push "BasicData/TileSetData.dat"` (`.rdata` 0x815080) →
+  `mov ecx, [local obj]` → `call 0x48a5d0` → `mov ecx, 0xaab0f8` → `call 0x486740`
+- `Game.exe` VA `0x472272`: `push 0x816c14` (same filename) → `mov ecx, 0xaab08c` → `call 0x48a5d0`
+
+Key instruction mapping — Rizin `iz` on this build prints **(paddr, vaddr)**,
+so string addresses below are VAs (= paddr + 0x400000).
+
+`0x48a5d0` = archive-entry reader + record-stream validator:
+- reads filename (arg), opens/decrypts entry into a heap buffer saved in `[0xaa1790]`
+- **parse cursor `[0xaa36f0]` starts at 0**; first loop copies 10 header bytes into
+  stack scratch (this seeds the reserved-byte validators later)
+- header check compares raw buffer bytes against `W O L F M` at indices 1/4/5/7/8
+  (indices 0/2/3/6/9 stay zero), else "not a game data file" dialog path
+- reads 1 u8 at cursor: must be `0xCF` / `0xD0` / `0xD1` → mode 1/2/3 stored in
+  global `[0x89728c]` (0xD1 = TileSetData, mode 3)
+- reads i32 (memcpy n=4) = record count → vector resize, then loops
+  `0x48ac20` once per record
+- then one u8 that must equal **0xCF** (terminator; the file's last byte)
+- reserved bytes 0/3/9 of the header must be zero at exit
+
+`0x48ac20` = per-record parser (this-call, record object ptr in ecx):
+| offset | read | engine action |
+|---|---|---|
+| +0x00 | `[i32 len][len bytes]` | string m0 → `0x4d5d70(record+0, str)` |
+| loop i=0..7 | `[i32 len][len bytes]` | string m1..m8 → `record+28*i+0x1c` (std::string stride 0x1c) |
+| `cmp [0x89728c],3; jl` skip | — | only when mode ≥ 3 |
+| loop i=8..15 | `[i32 len][len bytes]` | strings m9..m16; **mode<3 skips file reads and stores constant** from `.rdata` 0x816c79 |
+| — | u8 | **must be 0xFF** (else MessageBoxA error, literal 0x817528) |
+| — | i32 | flag-block count → `resize(member+0x1dc)` |
+| loop n | 1 byte each | into member +0x1dc (vector of 1-byte elems) |
+| — | u8 (unchecked by engine) | second FF tag — our file always carries 0xFF |
+| — | i32 | int-block count → `resize(member+0x1ec)` |
+| loop n | 4 bytes each (mode ≥ 2) or 1 bytes (mode == 1) | into member +0x1ec |
+
+Observed file facts under this schema (TileSetData.dat of Eris Dysnomia, 5,049 B,
+tag `0xD1`, count 6, terminator `0xCF` at 0x13B8):
+- record 0: m0 = SJIS `8B F3` = 「空」("empty" group), m1 = `MapChip/Image2.png`,
+  m2..m16 = one-byte empty strings; flag blocks = 272 u8 + 272 i32
+- record 3: m0 = `83 66 83 74 83 48` = 「デフォ」("default" group), m1..m16 = the 16
+  standard map-chip PNG paths; flag blocks = 456 u8 + 456 i32
+- records 1/2/4/5: all-empty strings, 24/24 flag sizes
+- the `FF` blocks therefore carry per-chip tile data (e.g. 272 = `Image2.png`
+  chunk rows, 456 = auto-tile chunk set), not free-form padding.
+
+Clean-room decoder: wolfvm `src/tile_set_data.cpp` (`tileset` CLI command); verified
+full consumption of the real 5,049-byte file with all tag/count/terminator checks.
