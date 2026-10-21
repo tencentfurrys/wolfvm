@@ -259,3 +259,140 @@ uses the same helper.
   meaning; noted only outside {0, 16}.
 - Packed eval_cmp op map: 1 '<', 2 '==', 3 '<=', 4 '>=', 5 '!=',
   6 bitAND-nonzero, 7 bit-superset (data-supported).
+
+## 10. Stage-3 decode session (fcn.0043a5c0 full structure)
+
+### 10.1 The cell-address model (the big correction)
+
+**Everything in the engine's variable system is `int*` home-cell addresses,
+not resolved values.** The generic resolver `0x43a240(mode, ctx, operand)`
+maps an operand-encoded int to the address of its home cell and returns 0
+for "no cell" (out-of-range DB ref etc.). Literals `< 1e6` are bound by
+address too: the cid-121 prep stores `&record_elem` (the const cell) into
+the work vector. The `skip if resolved == 0` checks are therefore
+"skip whole command when any operand has no cell" — NOT "skip when value
+is zero". wolfvm's `fetch_cell` (value-copy semantics) approximates this;
+the true shape is reference binding.
+
+### 10.2 fcn.0043a5c0 skeleton (decoded 2026-10-21)
+
+- Outer task loop `[ebp-0x18]` over queue `0xaa76fc` (`0x4db750` = size,
+  `0x4db810` = at(i); task+0x30 = its command vector, `0x4da3d0` = size,
+  `0x4da490` = at(i)). Inner loop `[ebp-0x1c]` over commands; record =
+  `[ebp-0x20]`; cid = record.elem0 → `[ebp-0x138]`. Record byte +0x10 =
+  indent. Tail loop-continue = 0x43c485, task-continue = 0x43c48a.
+- Every 40 tasks: `call 0x5470a0` (UI yield only — NOT a drain).
+- Dispatch: cid == 0x1f2(498) → 0x43c3eb; cid band ≥ 213 → 250 ==
+  0x43b9e1, 401(0x191) == 0x43ad6d, 420(0x1a4) == 0x43ae0a; cids 106..121
+  byte table @0x43c520 → jump table @0x43c510, 4 cases:
+  0 → 0x43a821 (cids 106/107: string compare vs const, rewrites elem0 =
+  0x67(103) when matched, else skip); 1 → 0x43a87e (**cid 111**); 2 →
+  0x43aec7 (**cid 121 + all 210000-band pseudo**); 3 → 0x43c485 skip
+  (cids 108..110, 112..120 = no-ops).
+- Pseudo-band acceptance (all → 0x43aeb7 = `elem0 = 0x79(121)` restore +
+  fall into 121 handler, or → 0x43a86e = `elem0 = 0x6f(111)` + fall into
+  111 handler): 210000-210003 (f00=0·f000=0..3), 210010-210013 (f00=1),
+  210020-210023 (f00=2), 210030-210033 (f00=3), 210040+ ALL, and
+  111000-111005 → 111. Skipped pseudo: 210004-210009, 210014-210019,
+  210024-210029, 210034-210039. cid 497488/497489 → the 498 arm.
+
+### 10.3 cid-121 handler (0x43aec7) — verbatim gates
+
+1. `target == 1100000000` → skip whole record.
+2. `flags & 0xFF != 0` → skip (observed low-byte uses: {4, 32, 0x3302}).
+3. `flags & 0x10000` → skip **in this handler** (47 census uses; executed
+   elsewhere — deferred site still unfound; wolfvm's instant-apply stays
+   an approximation, note text revised).
+4. `0x43c9b0(ctx, v1)` / `0x43c9b0(ctx, v2)` kind-check == 0 → skip.
+5. `v1 ≥ 1e9` or `v2 ≥ 1e9` → skip (a DB-ref operand cannot be a source of
+   the immediate path).
+6. Prep: resize +0x34 vec(8) and +0x44 vec(3). **+0x44 = [dstCell*, v1*,
+   v2*]** — target resolved first (skip if no cell), then each source:
+   raw < 1e6 → bound to `&record_elem` (literal const cell); ≥1e6 →
+   resolver address (0 → skip record).
+7. Flags copy into +0x34: vec1 = (flags>>8)&0xF (`imul esi,0xa` confirmed
+   at the 0x43b1b5 hidden crack), vec2 = (flags>>12)&0xF, vec0 = 1 (→ 2
+   when f000 ∈ {0,1} and raw v2 == 0; marker meaning still unmodeled).
+8. Dispatch on (f00, f000):
+   - f00 ≥ 4 → only **f00 == 4** continues at 0x43b1df (requires raw
+     v1 < 1e6, v2 < 1e6; f000==0 → skip if v1raw+v2raw == 0; f000==1 →
+     skip if v1raw−v2raw == 0; else) → pseudo = 210000+40+f000. f00 ∈
+     {5..15} → **skip**.
+   - f00 ≤ 3 ∧ f000 ≤ 2 → pseudo = 210000 + f00*10 + f000, elem0 =
+     pseudo, continue (requeue path).
+   - f00 ≤ 3 ∧ f000 ≥ 3 → **skip**.
+   - Census impact of **true skips**: flags 0x6000 (414), 0x8000 (285),
+     0x0500-0x0800 (340) ≈ 1,040 uses — plausibly 2.25-dropped legacy
+     opcodes; wolfvm currently EXECUTES them (0x6000 as rand-assign!),
+     a divergence class to arbitrate via sweep. Flags 0x3000 (234 →
+     pseudo 210030) and 0x4000 (65 → pseudo 210040; skipped only when
+     the raw v1⊙v2 cancels to 0) do NOT fall in the skip arms — they
+     continue into the still-undumped f00=3/f00=4 second-interpreter
+     arms.
+
+### 10.4 The second interpreter ≈ 0x4556e0 — the TRUE arithmetic
+
+A second dispatcher (state object `[ebp-0x10]+0x89c`) processes the
+pseudo-cids with the same [dst*, v1*, v2*] +0x44 vec. Arms (JT
+0x4575c7, byte map 0x4575f7 for cids 210001-210032; idx = cid−210001):
+
+| pseudo | flags (f00,f000) | arm addr | semantics (decoded) |
+|--------|------------------|----------|---------------------|
+| 210000 | 0x0000 (0,0) | 0x455c3e | dst = v1 + v2 (assign when v2 const 0) |
+| 210001 | 0x1000 (0,1) | 0x455c88 | dst = v1 − v2 (SUB!) |
+| 210002 | 0x2000 (0,2) | 0x455cd2 | dst = v1 × v2 |
+| 210008 | 0x8000 (0,8) | 0x455d1d | dst += v1 + v2 |
+| 210009 | 0x8100 (0,9) | 0x455d74 | dst += v1 − v2 |
+| 210010 | 0x0100 (1,0) | 0x455dcb | dst += v1 × v2 |
+| 210020 | 0x0200 (2,0) | 0x455e23 | dst −= v1 + v2 |
+| 210021 | 0x1200 (2,1) | 0x455e7c | dst −= v1 − v2 |
+| 210022 | 0x2200 (2,2) | 0x455ed5 | dst −= v1 × v2 (probable, verify) |
+| 210030 | 0x0300 (3,0) | 0x455f2f | (dump pending) |
+| 210031 | 0x1300 (3,1) | 0x455f87 | (dump pending) |
+| 210032 | 0x2300 (3,2) | 0x455fdf | (dump pending) |
+| 210040 | f00=4 · f000=0 | 0x456038 | (dump pending) |
+| 210041 | f00=4 · f000=1 | 0x456092 | (dump pending) |
+
+Working hypothesis (matches all decoded arms): *f000* digit selects the
+base op {0: +, 1: −, 2: ×} and *f00* digit the accumulate mode {0: dst =
+v1⊙v2, 1: dst += …, 2: dst −= …, 3: ?, 4: ?}. Conflicts with wolfvm's
+current model (0x7000-bit opcodes, 0x6000 = rand) — sweep will arbitrate
+before any rewrite. The ev457/ev510 increment-loop evidence now points
+at the 250 DB-read instead of a 121 op (row/field cursor advance inside
+the read?) — re-examine before encoding "+=" semantics anywhere.
+
+### 10.5 cid-111 handler (0x43a87e) — real record layout decoded
+
+Record = `[cid, count|hi, (A, B, terms)×N]`: elem1&0xF = triple count;
+per triple i: elem[3i+2] resolved int (≥1.1e9 or resolver-0 → whole cond
+aborts, +0x34 cleared, continue); elem[3i+3] normally bound (raw <1e6,
+else resolver); if elem[3i+4] & 0x10 → **raw pointer bind** of elem[3i+3]
+(no evaluate); each triple's flags&0xF appended to +0x34[2+i] (= per-term
+op codes). The handler then **scans ahead in the task chain at the same
+indent** (records +0x10 == this +0x10, `[ebp-0x44]`步行, bounded by 5
+slots `[ebp-3c..]`), collecting the PCs of matching-indent 401(0x191) /
+420(0x1a4) commands, **stopping at 499(0x1f3)/498(0x1f2)**; binds into
+each found 401/420's +0x34 vec {resize 2; vec0 = 2; vec1 = pos}; a
+second walk binds +0x34 vec8 = pos at a 420/499/498 terminator; finally
++0x34 vec0 = 1 and when vec1 == 1 the record's elem0 is rewritten to
+111000 + vec2 (the 111000-band re-queue)
+→ the deferred cond-binding machinery. wolfvm's 111-as-[op,A,B,flags]
+register model is a different-shaped approximation that passes the
+sweep; keep, but track divergence risk on cond-heavy events.
+
+### 10.6 wolfvm fixes queued from this session
+
+- **Applied this commit**: revert of the wrong "flags 0x100 = additive"
+  `exec_setvar` edit (the engine routes flags 0x100 → pseudo 210010 in the
+  second interpreter — arm decoding pending; do not model 0x100 additively),
+  + reworded the 0x10000-family note to "engine-deferred; approximated
+  instant" (§10.3 gate 3). Focused batch reproduces baseline classes:
+  1/2/4/5/6/7/11/13/17/29/86/200/216/227/371/523 green-or-note,
+  8/214/456/457/479/510 step-caps (456/457/479 stall in the row-name −3
+  scan), 9 recursion-cap.
+- 121 execute-skips exactly as §10.3 items 1/2/8 (biggest correctness
+  win: target==1100000000 write-through bug + legacy-opcode true skips).
+- 250 field −3 row-name read (still pending from earlier plan).
+- Pending decodes: arms 210030-210042; where the 0x10000 family really
+  executes; cid-122 string executes; confirm ev457/ev510 loop-advance
+  mechanism.

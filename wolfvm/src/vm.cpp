@@ -360,10 +360,12 @@ bool Vm::exec_setvar(const Command& c) {
     const long long op2raw = (c.args.size() > 2) ? c.args[2] : 0;
     const long long opcode = flags & 0x7000;
     if (flags & 0x10000) {
-        // 5-arg gradual family (47 uses, flags {65536, 65792, 69632}): suspected
-        // animated/step write; the opcode bits still decode as the 4-arg ops.
-        // Applied instantly (end-state after the animation) — noted loudly.
-        note("121 0x10000-family (slow-change?) instant-applied: dst " + std::to_string(target) +
+        // 5-arg gradual family (47 uses, flags {65536, 65792, 69632}): the
+        // engine's 121 handler SKIPS these at the immediate site and defers
+        // them to a second execution site (still unfound; ENGINE_ANALYSIS
+        // §10.3 gate 3). Instant end-state apply is an approximation.
+        note("121 0x10000-family (engine-deferred; approximated instant) dst " +
+             std::to_string(target) +
              " flags " + std::to_string(flags) +
              (c.args.size() > 4 ? " extra " + std::to_string(c.args[4]) : ""));
     }
