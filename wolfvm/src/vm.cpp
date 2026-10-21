@@ -359,6 +359,14 @@ bool Vm::exec_setvar(const Command& c) {
     const long long op1raw = (c.args.size() > 1) ? c.args[1] : 0;
     const long long op2raw = (c.args.size() > 2) ? c.args[2] : 0;
     const long long opcode = flags & 0x7000;
+    if (flags & 0x10000) {
+        // 5-arg gradual family (47 uses, flags {65536, 65792, 69632}): suspected
+        // animated/step write; the opcode bits still decode as the 4-arg ops.
+        // Applied instantly (end-state after the animation) — noted loudly.
+        note("121 0x10000-family (slow-change?) instant-applied: dst " + std::to_string(target) +
+             " flags " + std::to_string(flags) +
+             (c.args.size() > 4 ? " extra " + std::to_string(c.args[4]) : ""));
+    }
 
     Cell result;
     if (opcode == 0x6000) {
@@ -630,13 +638,18 @@ bool Vm::run(int32_t common_id, RunResult& out) {
             }
 
             case 401: { // ChoiceCase: [case#]
-                if (f.branch.empty() || f.branch.back().kind != CtxKind::Cond ||
-                    f.branch.back().indent != indent) {
+                // The cond ctx may sit BELOW loop ctxs pushed inside a case body
+                // (401 chains without 499 separators: selector bodies flow into
+                // the next selector through open-ended loop bodies).
+                long long k401 = (long long)f.branch.size() - 1;
+                while (k401 >= 0 && !(f.branch[k401].kind == CtxKind::Cond &&
+                                      f.branch[k401].indent == indent)) --k401;
+                if (k401 < 0) {
                     out.err = "401 without open cond (ev" + std::to_string(f.common_id) +
                               " cmd " + std::to_string(f.pc) + ")";
                     return false;
                 }
-                Ctx& ctx = f.branch.back();
+                Ctx& ctx = f.branch[k401];
                 int32_t case_no = c.args.empty() ? 1 : c.args[0];
                 if (ctx.body_done) {
                     // A body ran: skim to the next chain token (the 499 itself
@@ -657,13 +670,17 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 break;
             }
             case 420: { // ElseCase
-                if (f.branch.empty() || f.branch.back().kind != CtxKind::Cond ||
-                    f.branch.back().indent != indent) {
+                // Mirror the 401 search: the cond ctx may sit below loop ctxs
+                // pushed inside open-ended case bodies (499-less chains).
+                long long k420 = (long long)f.branch.size() - 1;
+                while (k420 >= 0 && !(f.branch[k420].kind == CtxKind::Cond &&
+                                      f.branch[k420].indent == indent)) --k420;
+                if (k420 < 0) {
                     out.err = "420 without open cond (ev" + std::to_string(f.common_id) +
                               " cmd " + std::to_string(f.pc) + ")";
                     return false;
                 }
-                Ctx& ctx = f.branch.back();
+                Ctx& ctx = f.branch[k420];
                 if (ctx.body_done) {
                     size_t tok = find_next_token(f.pc + 1, indent);
                     if (tok >= cur->commands.size()) { out.err = "420 chain unterminated"; return false; }
