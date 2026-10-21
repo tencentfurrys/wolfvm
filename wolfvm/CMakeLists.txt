@@ -13,7 +13,8 @@ add_executable(wolfvm
   src/map_tree_open_status.cpp
   src/database.cpp
   src/sys_db_basic.cpp
-  src/tile_set_data.cpp)
+  src/tile_set_data.cpp
+  src/vm.cpp)
 if(NOT MSVC)
   target_compile_options(wolfvm PRIVATE -Wall -Wextra)
 endif()

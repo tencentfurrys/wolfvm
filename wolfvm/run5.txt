@@ -1,0 +1,3 @@
+[load db pair]
+[loaded 124395 774134 bytes]
+[db pair ok types=100]

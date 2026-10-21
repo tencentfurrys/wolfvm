@@ -1,0 +1,5 @@
+event 200  name "BF\x8C`\x90\xAC"  cmds=4  desc ""
+    #0     ind 0 cid   250 (Database) args [15, 0, 30, 0, 1] str0 [] str1 [] str2 [] str3 []
+    #1     ind 0 cid   124 (SetVariableEx) args [1600010, 4096, -1, 0]
+    #2     ind 0 cid   250 (Database) args [15, 0, 32, 0, 1600010] str0 [] str1 [] str2 [] str3 []
+    #3     ind 0 cid     0 (Blank) args []
