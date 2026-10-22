@@ -144,7 +144,9 @@ private:
     Cell& gcell(long long addr) { return st_.gvar[addr]; }
     Cell& ccell(size_t n);
     Cell& cell_for(long long addr);             // bank resolution incl. cself
-    bool is_cself(long long addr) const { return addr >= 1600000 && addr < 1600000 + kCselfCap; }
+    bool is_cself(long long addr) const {
+        return addr >= 1600000 && addr < 1600000LL + (long long)kCselfCap;
+    }
 
     long long eval_int(long long addr);
     std::string eval_str(long long addr);

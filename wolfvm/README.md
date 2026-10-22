@@ -32,8 +32,45 @@ Backup: private GitHub repo `tencentfurrys/wolfvm` — pushed at each verified p
 ```powershell
 cmake -S . -B build -G "MinGW Makefiles"
 cmake --build build
+build\wolfvm.exe selftest
 build\wolfvm.exe datinfo "..\Eris Dysnomia\Data\BasicData\Game.dat"
 ```
+
+`selftest` runs the in-memory VM regression net (24 checks; no game data needed):
+121 gates, select/else/498/499 structure, loops + 171 break, 210 calls with
+locals/strings/ret-bind, forward label scan, and both harness fault classes
+(stepcap / reccap). It also PINS the current 600xxx early-terminate behavior
+(the v5-sweep-measured binary) until the engine-true continue-past question is
+settled by a data-driven sweep re-run.
+
+### sweep — the harness, inside wolfvm
+
+The per-id sweep + classifier (ENGINE_ANALYSIS 12.5 method) is now native:
+
+```powershell
+build\wolfvm.exe sweep "..\Eris Dysnomia\Data\BasicData\CommonEvent.dat" `
+  --db "..\Eris Dysnomia\Data\BasicData\DataBase" `
+  --cdb "..\Eris Dysnomia\Data\BasicData\CDataBase" --cap 2000000
+```
+
+Fresh GameState per id (= one process per id in the old external harness), same
+2e6 step-cap default, classes OK / STEPCAP / RECCAP / OTHER, `.mps`-side gap
+reporting, and `--from/--to` windows for re-running single ids (e.g. the ev581
+600xxx window after any behavior change). DB pairs are parsed once and restored
+to pristine on writes, preserving the harness's per-id isolation.
+
+### 2026-10-22 session changes
+
+- vm: 171 BreakLoop double-pc-advance fixed (jump lands on e498+1, then an old
+  `++f.pc` skipped the first statement after the loop — same family as the
+  earlier 210 callee-return double-advance fix). Sweep v6 re-baseline needed
+  when data returns (step counts near 171 uses may shift).
+- vm: 600xxx comment corrected to match verified behavior (note + early
+  terminate = the v5-measured binary; engine continue-past documented as TODO
+  pending re-verification). Behavior unchanged.
+- tools: `selftest` (in-memory VM net, data-free) + `sweep` (native harness +
+  classifier) so the verification loop no longer depends on one machine's
+  PowerShell harness.
 
 ## Data layout expected by the VM
 

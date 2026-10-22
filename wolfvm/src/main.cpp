@@ -716,6 +716,337 @@ static int cmd_mpsinfo(const char* path, bool verbose) {
     return 0;
 }
 
+// ---------------------------------------------------------------------------
+// selftest — in-memory VM regression net (no game data needed).
+// Synthesizes CommonEventDat records and pins the semantics the sweep harness
+// relies on, plus both classifier fault classes (step cap / recursion cap).
+// Also PINS the current 600xxx early-terminate behavior (the v5-sweep-measured
+// binary) — flip that test together with the vm.cpp TODO(verify) note.
+// ---------------------------------------------------------------------------
+static unsigned g_st_pass = 0, g_st_fail = 0;
+
+static void st_expect(bool ok, const char* what) {
+    if (ok) {
+        ++g_st_pass;
+        std::printf("  ok   %s\n", what);
+    } else {
+        ++g_st_fail;
+        std::printf("  FAIL %s\n", what);
+    }
+}
+
+static wolf::Command mk(uint32_t cid, std::vector<int32_t> args, uint8_t ind = 0) {
+    wolf::Command c;
+    c.cid = cid;
+    c.args = std::move(args);
+    c.indent = ind;
+    return c;
+}
+
+static void adde(wolf::CommonEventDat& ce, int32_t id,
+                 std::vector<wolf::Command> cmds, int32_t tail92 = 0) {
+    wolf::CommonEventRecord rec;
+    rec.id = id;
+    rec.commands = std::move(cmds);
+    rec.tail_int_92 = tail92;
+    ce.events.push_back(std::move(rec));
+}
+
+static bool st_run(wolf::CommonEventDat& ce, int32_t id, wolf::GameState& st,
+                   wolf::RunResult& out, size_t cap = 0) {
+    wolf::Vm vm(st);
+    vm.load(ce);
+    if (cap) vm.set_step_cap(cap);
+    return vm.run(id, out);
+}
+
+static const wolf::Cell& gc(const wolf::GameState& st, long long addr) {
+    static const wolf::Cell zero;
+    auto it = st.gvar.find(addr);
+    return it == st.gvar.end() ? zero : it->second;
+}
+
+static int cmd_selftest() {
+    std::printf("wolfvm selftest\n");
+
+    {   // 121 assign: g(10) = v1 + v2
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {mk(121, {10, 3, 5, 0})});
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "121 assign runs ok");
+        st_expect(gc(st, 10).i == 8, "121 assign value 3+5=8");
+    }
+
+    {   // 121 accumulate — sys-band cell (2M..4M is the fully modeled read/write band;
+        // plain <1.6M reads are literal-mode in the census'd semantics, so avoid). 
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {mk(121, {2000005, 3, 5, 0}), mk(121, {2000005, 0, 7, 0x100})});
+        wolf::GameState st;
+        wolf::RunResult res;
+        const bool ok = st_run(ce, 0, st, res);
+        st_expect(ok, "121 assign+accum runs ok");
+        st_expect(gc(st, 2000005).i == 15, "121 accumulate 8+(0+7)=15 (sys-band)");
+    }
+
+    {   // select TRUE: case1 body runs, else (420) body skipped
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(111, {0x11, 5, 5, 2}),        // 5 == 5 -> case_target 1
+            mk(401, {1}),
+            mk(121, {30, 7, 0, 0}, 1),       // case1 body: g30=7
+            mk(420, {0}),
+            mk(121, {30, 9, 0, 0}, 1),       // else body: g30=9 (must not run)
+            mk(499, {}),
+        });
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "select true runs ok");
+        st_expect(gc(st, 30).i == 7, "select true takes case1 body only (g30=7)");
+    }
+
+    {   // select FALSE: register=2 matches the 420 else arm only
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(111, {0x11, 4, 5, 2}),        // 4 == 5 false -> case_target 2
+            mk(401, {1}),
+            mk(121, {30, 7, 0, 0}, 1),       // case1 body (must not run)
+            mk(420, {0}),
+            mk(121, {30, 9, 0, 0}, 1),       // else body: g30=9
+            mk(499, {}),
+        });
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "select false runs ok");
+        st_expect(gc(st, 30).i == 9, "select false takes 420 else body only (g30=9)");
+    }
+
+    {   // 179 LoopTimes x3 — body accumulates cself[0] (census-faithful target),
+        // then an assign copies it into a sys-band cell for post-run assertion.
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(121, {2000005, 0, 0, 0}),              // sys cell = 0
+            mk(179, {3}),
+            mk(121, {1600000, 0, 1, 0x100}, 1),       // cself[0] += 1
+            mk(498, {}),
+            mk(121, {2000005, 1600000, 0, 0}),        // sys = cself[0]
+        });
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "179 loop runs ok");
+        st_expect(gc(st, 2000005).i == 3, "179 loop runs body 3 times (cself[0]=3)");
+    }
+
+    {   // 179 loop with conditional 171 BreakLoop on iteration 3
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(179, {10}),
+            mk(121, {1600000, 0, 1, 0x100}, 1),       // cself[0] += 1
+            mk(111, {0x11, 1600000, 3, 4}, 1),        // cself[0] >= 3 -> case_target 1
+            mk(401, {1}, 1),
+            mk(171, {}, 2),                           // break
+            mk(420, {0}, 1),
+            mk(499, {}, 1),
+            mk(498, {}),
+            mk(121, {2000005, 1600000, 0, 0}),        // sys = cself[0]
+        });
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "179+171 break runs ok");
+        st_expect(gc(st, 2000005).i == 3, "171 breaks on 3rd iteration (cself[0]=3, not 10)");
+    }
+
+    {   // 210 call with 2 int locals
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {mk(210, {500002, 2, 3, 6})});
+        adde(ce, 2, {mk(121, {50, 1600000, 1600001, 0})});   // g50 = cself0+cself1
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "210 int-call runs ok");
+        st_expect(gc(st, 50).i == 9, "210 passes int locals (3+6=9)");
+    }
+
+    {   // 210 call with string-arg slotted to cself[5] (sys-band strings — the
+        // fully modeled bank)
+        wolf::CommonEventDat ce;
+        std::vector<wolf::Command> driver = {
+            mk(122, {3000080, 0}),            // sys string cell = "hello"
+            mk(210, {500002, 0x12, 70, 71, 3000080}),
+        };
+        driver[0].string_args = {"hello"};
+        adde(ce, 0, std::move(driver));
+        adde(ce, 2, {mk(122, {3000051, 0, 1600005})});   // sys1 = cself[5] text
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "210 string-call runs ok");
+        st_expect(gc(st, 3000051).as_str() == "hello", "210 binds string arg into cself[5]");
+    }
+
+    {   // 210 bit24 ret-bind chain: callee1 returns cself[5] -> driver cself[0];
+        // callee2 then reads driver cself[0] as an int-valued string cell.
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(210, {500001, 0x1000000, 1600000}),          // ref-bind cself[0]
+            mk(210, {500002, 1, 1600000}),                  // pass cself[0] back
+        });
+        adde(ce, 1, {mk(121, {1600005, 77, 0, 0})}, 5);     // cself[5]=77; tail_92=5
+        adde(ce, 2, {mk(121, {60, 1600000, 0, 0})});        // g60 = cself[0]
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "210 ret-bind chain runs ok");
+        st_expect(gc(st, 60).i == 77, "210 ret-bind round-trips (77)");
+    }
+
+    {   // PIN: 600xxx band terminates the run early (v5-measured semantics;
+        // the marker at pc1 must stay untouched to prove no continue-past).
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(210, {600101, 2, 3, 6}),
+            mk(121, {70, 1, 0, 0}),          // must NOT execute
+        });
+        wolf::GameState st;
+        wolf::RunResult res;
+        const bool ok = st_run(ce, 0, st, res);
+        st_expect(ok && !res.ok && res.err.empty() && !res.warnings.empty() &&
+                  res.warnings[0].find("600xxx") != std::string::npos,
+                  "600xxx pins: note + early terminate (v5-measured)");
+        st_expect(gc(st, 70).touched_i == false && gc(st, 70).touched_s == false,
+                  "600xxx pins: nothing executes after the early return");
+    }
+
+    {   // 213 JumpLabel forward-scan to a 212 defined later
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {
+            mk(121, {10, 0, 1, 0}),          // g10 = 1
+            mk(213, {}),                     // jump "fwd" (label below)
+            mk(121, {20, 9, 9, 0}),          // skipped
+            mk(212, {}),                     // "fwd" -> pc4
+        });
+        ce.events[0].commands[1].string_args = {"fwd"};
+        ce.events[0].commands[3].string_args = {"fwd"};
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(st_run(ce, 0, st, res), "213 fwd-label run ok");
+        st_expect(gc(st, 10).i == 1 && gc(st, 20).touched_i == false,
+                  "213 jumps forward past pc2 (g10=1, g20 unset)");
+    }
+
+    {   // RE-CAP classifier class: self-recursive 210 hits kMaxDepth
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {mk(210, {500000, 0})});   // calls itself
+        wolf::GameState st;
+        wolf::RunResult res;
+        st_expect(!st_run(ce, 0, st, res) && res.err == "210 recursion cap",
+                  "reccap: 210 self-recursion stops at depth cap");
+    }
+
+    {   // STEP-CAP classifier class: 212/213 self-loop spins out
+        wolf::CommonEventDat ce;
+        adde(ce, 0, {mk(212, {}), mk(213, {})});
+        ce.events[0].commands[0].string_args = {"top"};
+        ce.events[0].commands[1].string_args = {"top"};
+        wolf::GameState st;
+        wolf::RunResult res;
+        const bool ran = st_run(ce, 0, st, res, 10);
+        st_expect(!ran && res.err.find("step cap") != std::string::npos,
+                  "stepcap: runaway 212/213 loop hits step cap");
+    }
+
+    std::printf("selftest %s  (pass %u, fail %u)\n",
+                g_st_fail ? "FAILED" : "PASS", g_st_pass, g_st_fail);
+    return g_st_fail ? 1 : 0;
+}
+
+// ---------------------------------------------------------------------------
+// sweep — native per-id CommonEvent sweep, mirroring the external PowerShell
+// harness + classifier (ENGINE_ANALYSIS §12.5): fresh GameState per id, same
+// step-cap default (2e6), classes OK / stePCAP / reccap / other. This replaces
+// the machine-local harness so a sweep can run from wolfvm alone once the
+// game data directory is present.
+//   wolfvm sweep <CommonEvent.dat> [--db P D] [--cdb P D] [--from A] [--to B] [--cap N]
+// Classifier: run() true -> OK (includes the 600xxx early-terminate, which the
+// external harness also scored OK on process exit); false -> step cap =>
+// stepcap, "210 recursion cap" => reccap, anything else => other.
+// ---------------------------------------------------------------------------
+static int cmd_sweep(const char* cepath, const char* dbproj, const char* dbdat,
+                     const char* cdbproj, const char* cdbdat,
+                     int32_t from, int32_t to, size_t cap) {
+    auto cedata = read_file(cepath);
+    std::string err;
+    if (!wolf::is_plain_or_decrypt(cedata, err)) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+    wolf::Reader r(std::move(cedata));
+    wolf::CommonEventDat ce;
+    wolf::CommonEventDat::parse(r, ce, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    // Pristine DB templates; restored whenever a sweep step wrote DB cells
+    // (the external harness ran one process per id = fresh DB per id).
+    wolf::DatabasePair ldb_pris, cdb_pris;
+    bool have_ldb = false, have_cdb = false;
+    if (dbproj && *dbproj) {
+        std::string e2;
+        have_ldb = wolf::DatabasePair::parse_pair(read_file(dbproj), read_file(dbdat), ldb_pris, e2);
+        if (!have_ldb) { std::fprintf(stderr, "ERROR: db pair: %s\n", e2.c_str()); return 1; }
+    }
+    if (cdbproj && *cdbproj) {
+        std::string e2;
+        have_cdb = wolf::DatabasePair::parse_pair(read_file(cdbproj), read_file(cdbdat), cdb_pris, e2);
+        if (!have_cdb) { std::fprintf(stderr, "ERROR: cdb pair: %s\n", e2.c_str()); return 1; }
+    }
+
+    int32_t max_id = 0;
+    for (const auto& e : ce.events) if (e.id > max_id) max_id = e.id;
+    if (to < 0) to = max_id;
+    std::fprintf(stderr, "[sweep] %s ids [%d..%d] db=%d cdb=%d cap=%zu\n",
+                 cepath, from, to, (int)have_ldb, (int)have_cdb, cap ? cap : (size_t)2000000);
+
+    size_t n_ok = 0, n_stepcap = 0, n_reccap = 0, n_other = 0, n_gap = 0;
+    std::string l_other, l_stepcap, l_reccap;
+    wolf::DatabasePair ldb_val, cdb_val;
+    bool dirty = true;
+
+    for (int32_t id = from; id <= to; ++id) {
+        const wolf::CommonEventRecord* found = nullptr;
+        for (const auto& e : ce.events) if (e.id == id) { found = &e; break; }
+        if (!found) { ++n_gap; std::printf("%5d GAP (id not in file)\n", id); continue; }
+        if (dirty) {
+            if (have_ldb) ldb_val = ldb_pris;
+            if (have_cdb) cdb_val = cdb_pris;
+            dirty = false;
+        }
+        wolf::GameState st;
+        if (have_ldb) st.ldb = &ldb_val;
+        if (have_cdb) st.cdb = &cdb_val;
+        wolf::Vm vm(st);
+        vm.load(ce);
+        if (cap) vm.set_step_cap(cap);
+        wolf::RunResult res;
+        const bool ok = vm.run(id, res);
+        const char* cls = "OK";
+        if (ok) {
+            // run() true = exit-code-0 equivalence with the external harness.
+            // (res.ok stays false on the 600xxx early-terminate; still OK.)
+            ++n_ok;
+        } else if (res.err.find("step cap") != std::string::npos) {
+            cls = "STEPCAP"; ++n_stepcap; l_stepcap += std::to_string(id) + " ";
+        } else if (res.err.find("recursion cap") != std::string::npos) {
+            cls = "RECCAP"; ++n_reccap; l_reccap += std::to_string(id) + " ";
+        } else {
+            cls = "OTHER"; ++n_other; l_other += std::to_string(id) + " ";
+        }
+        std::printf("%5d %-7s exec=%-6zu warns=%-4zu%s\n", id, cls, res.executed,
+                    res.warnings.size(), ok ? "" : res.err.c_str());
+        if (res.db_writes) dirty = true;
+    }
+
+    std::printf("[sweep] ids %d..%d  OK=%zu  stepcap=%zu  reccap=%zu  other=%zu  gap=%zu\n",
+                from, to, n_ok, n_stepcap, n_reccap, n_other, n_gap);
+    std::printf("[sweep] other   : %s\n", l_other.c_str());
+    std::printf("[sweep] stepcap : %s\n", l_stepcap.c_str());
+    std::printf("[sweep] reccap  : %s\n", l_reccap.c_str());
+    return 0;
+}
+
 int main(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
@@ -786,10 +1117,44 @@ int main(int argc, char** argv) {
         const bool verbose = (argc >= 4 && !std::strcmp(argv[3], "-v"));
         return cmd_mpsinfo(argv[2], verbose);
     }
+    if (argc >= 2 && std::strcmp(argv[1], "selftest") == 0)
+        return cmd_selftest();
+    if (argc >= 3 && std::strcmp(argv[1], "sweep") == 0) {
+        const char* dbproj = nullptr;
+        const char* dbdat = nullptr;
+        const char* cdbproj = nullptr;
+        const char* cdbdat = nullptr;
+        int32_t from = 0, to = -1;
+        size_t cap = 0;
+        for (int k = 3; k < argc; ++k) {
+            if (!std::strcmp(argv[k], "--db")) {
+                if (k + 2 >= argc) { std::fprintf(stderr, "--db needs project dat\n"); return 1; }
+                dbproj = argv[k + 1]; dbdat = argv[k + 2]; k += 2;
+            } else if (!std::strcmp(argv[k], "--cdb")) {
+                if (k + 2 >= argc) { std::fprintf(stderr, "--cdb needs project dat\n"); return 1; }
+                cdbproj = argv[k + 1]; cdbdat = argv[k + 2]; k += 2;
+            } else if (!std::strcmp(argv[k], "--from")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--from needs a number\n"); return 1; }
+                from = (int32_t)std::atoi(argv[k + 1]); ++k;
+            } else if (!std::strcmp(argv[k], "--to")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--to needs a number\n"); return 1; }
+                to = (int32_t)std::atoi(argv[k + 1]); ++k;
+            } else if (!std::strcmp(argv[k], "--cap")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--cap needs a number\n"); return 1; }
+                cap = (size_t)std::strtoull(argv[k + 1], nullptr, 10); ++k;
+            } else {
+                std::fprintf(stderr, "unknown option %s\n", argv[k]);
+                return 1;
+            }
+        }
+        return cmd_sweep(argv[2], dbproj, dbdat, cdbproj, cdbdat, from, to, cap);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
                          "commonrun <CommonEvent.dat> <id> [-t] [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] | "
+                         "selftest | "
+                         "sweep <CommonEvent.dat> [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] [--from A] [--to B] [--cap N] | "
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
                          "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v]\n");

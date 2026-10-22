@@ -830,7 +830,11 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                     }
                 }
                 if (!found) { out.err = "171 BreakLoop without loop"; return false; }
-                ++f.pc;
+                // pc = e498+1 = the statement AFTER the loop's 498 — no further
+                // bump (a previous ++f.pc here double-advanced and silently
+                // skipped that statement; same family as the fixed 210
+                // callee-return double advance). SWEEP NOTE: evolution of per-id
+                // step counts/classes near 171 uses → sweep v6 re-baseline.
                 break;
             }
             case 498: { // LoopEnd
@@ -977,8 +981,16 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                     // 600xxx callee band (census: 4 uses, all 600101 in ev581,
                     // opts=2 ints, no ret-bind). Not a common-event id — the
                     // engine hands this family to the map/event runtime, which
-                    // a headless CommonEvent run cannot spin up. Note and
-                    // continue (aborting the run made ev581 fail wholesale).
+                    // a headless CommonEvent run cannot spin up.
+                    // BEHAVIOR NOTE (2026-10-22): "note + early-terminate" is
+                    // what the code does and IS the binary the v5 sweep was
+                    // measured on (484/584 OK, OTHER=0; ev581 counts OK via
+                    // the graceful exit). The earlier hard-abort version made
+                    // ev581 fail wholesale. Engine-true semantics would be
+                    // note + continue-past — TODO(verify): with the game data
+                    // back, sweep both variants (ev581 window) and keep the
+                    // engine-true continue unless its tail needs the map
+                    // runtime badly enough to abort (sweep will decide).
                     note("210 callee " + std::to_string(raw) +
                          " = map-event call band 600xxx (headless no-op, opts " +
                          std::to_string(opts) + ")");
