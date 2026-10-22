@@ -798,6 +798,13 @@ which means the SWEEP's 210 model (common-id lookup only) is missing
 a whole branch family. The engine ALSO has the page-entry keying
 (Ev,page) numeric — TODO verify full branch decode (next session).
 
+DATA-SIDE CLOSURE (same day): extended `mpsinfo -c` with a 210 arg[0]
+band tally; aggregate over all 105 map files = **all 1879 map-side
+210 calls carry arg[0] < 1e6** — the target game never uses the
+map-Ev-call form, so the sweep's 210 model stays valid for THIS
+data (no re-baseline needed) and the 600xxx band (< 1e6) remains the
+"non-existent common id" behavior question (TODO verify).
+
 ## 13. MapData/*.mps decoded (machine-verified 2026-10-22)
 
 Scope: 105 files in `Data\MapData\` (7 eventless). All 105 consumed

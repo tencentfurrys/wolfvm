@@ -704,15 +704,41 @@ static int cmd_mpsinfo(const char* path, bool verbose, bool census) {
                 mp.events.size(), n_pages, n_cmds);
     if (census) {
         // Stage-2 decode-priorities input: per-cid totals across every page.
+        // Stage-3 addition: cid 210 arg[0] band tally — the Game.exe decode
+        // (ENGINE_ANALYSIS §12.7) implies >=1e6 args are MAP-EV PAGE CALLS
+        // (self-indexed keys), not common-event ids; this counts them.
         std::map<uint32_t, unsigned> h;
+        unsigned n210 = 0;
+        std::map<int, unsigned> band210;   // key = arg[0] band edge, see names[]
         for (const auto& e : mp.events)
             for (const auto& p : e.pages)
-                for (const auto& c : p.commands) ++h[c.cid];
+                for (const auto& c : p.commands) {
+                    ++h[c.cid];
+                    if (c.cid == 210 && !c.args.empty()) {
+                        ++n210;
+                        const int32_t v = c.args[0];
+                        const int band =
+                            v < 0 ? -1 :
+                            v < 1000000 ? 0 :
+                            v < 1100000 ? 1000000 :
+                            v < 1200000 ? 1100000 :
+                            v < 1600000 ? 1200000 : 1600000;
+                        ++band210[band];
+                    }
+                }
         for (const auto& p : h) {
             wolf::Command probe;
             probe.cid = p.first;
             std::printf("  cid %6u x %6u  (%s)\n", p.first, p.second,
                         probe.name() ? probe.name() : "?");
+        }
+        if (n210) {
+            std::printf("  cid 210 arg0 bands:");
+            const int keys[] = { -1, 0, 1000000, 1100000, 1200000, 1600000 };
+            const char* names[] = { "neg", "<1e6", "1e6-1.1e6", "1.1e6-1.2e6", "1.2e6-1.6e6", ">=1.6e6" };
+            for (int i = 0; i < 6; ++i)
+                if (band210.count(keys[i])) std::printf(" %s:%u", names[i], band210[keys[i]]);
+            std::printf("\n");
         }
         return 0;
     }
