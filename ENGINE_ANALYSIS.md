@@ -653,6 +653,30 @@ inverted, temp tree), SAME harness + classifier, loop 0..583.
   the map/tick runtime, Stage 3). Whole Android port ~35-45%:
   MapEvent VM, tick/picture/NDK shells all 0%.
 
+**Current sweep (v6, 2026-10-22): 171 double-pc-advance fix + native sweep**
+- Native `wolfvm sweep` re-baseline (full 584 ids, DataBase+CDataBase
+  loaded): OK=485, stepcap=86, reccap=13, other=0, gap=0.
+- Per-id class diff vs the archived v4 baseline: EXACTLY ONE id —
+  ev168 STEPCAP->OK (171 BreakLoop double-pc-advance fix, same
+  double-advance family as the 210 callee fix). ev581 (600xxx
+  early-terminate) stayed OK; OTHER stayed 0; zero regressions.
+- Confirmations: sweep v7 (db_set grow fix applied) =
+  OK=485/86/13/other0/gap0 IDENTICAL to v6 (0 per-id diffs,
+  compare_sweep.ps1) — the grow-rescan removal is semantics-neutral
+  as designed. Runtime 2429 s -> 198.6 s end-to-end. Artifact:
+  analysis/temp/full_sweep_v7.txt.
+- Perf records made while re-running: the sweep initially took >40 min
+  end-to-end. Two hot-loop fixes came first (flat per-cid census array
+  with RAII flush + note-cap guards; ~10x), then single-id timing
+  exposed the real dominator: `db_set`'s write-grow rescanned every row
+  of the target type on each grow, so row-append loops were quadratic —
+  ev66 alone spent 430 s under the 2e6 step cap (210 callee loop,
+  db-write operands over thousands of grown rows). Grow is now O(1) per
+  write (allocate-on-write; holes still read 0, so observable semantics
+  unchanged) — confirmed by the v7 zero-diff re-run above.
+- Baseline artifacts: analysis/temp/full_sweep_v6.txt,
+  analysis/temp/full_sweep_v7.txt.
+
 Previous sweep (v3, same-session archive; superseded by v4):
 OK=480/584 (82.2%), stepcap=84, reccap=13, other=7; per-id diff vs
 its baseline = exactly ONE id (ev581 OTHER->OK - the 210-callee
@@ -693,6 +717,29 @@ Scope: 105 files in `Data\MapData\` (7 eventless). All 105 consumed
 byte-exactly by the sweep AND by the native `wolfvm mpsinfo` parser
 (`src/map_project.{h,cpp}`; CLI: `mpsinfo <file.mps> [-v]`); totals agree across the two independent implementations: 676 event records,
 1028 pages, 8931 commands.
+
+### 13.0 Map-side command census (aggregate of all 105 files)
+
+Per-cid totals across every page (native `mpsinfo -c` loop; the input
+for Stage-2 decode prioritization). Map pages are dominated by calls
+into common events — the map-object kernel itself is thin here:
+
+- 210 CommonEvent x1879, 0 Blank x1849, 121 SetVariable x1078,
+  250 Database x890, 401 ChoiceCase x785, 499 BranchEnd x670,
+  111 VariableCondition x668, 106 DebugMessage x270, 103 Comment x252,
+  124 SetVariableEx x248, 173 EraseEvent x106, 140 Sound x92,
+  122 SetString x38, 420 ElseCase x36, 180 Wait x27,
+  213 JumpLabel x16, 212 SetLabel x10, 150 Picture x6, 201 Move x3,
+  242 ChipOverwrite x3, 126 BanInput x2, 112 StringCondition x2,
+  125 AutoInput x1. (sum ~7214 commands)
+
+Cids beyond the CE-executed/decoded set: **173 EraseEvent x106**
+(approx semantics: turn the owning map-event/page activation off;
+needs the MapX object runtime to be modeled — Stage 3), plus
+**126 BanInput x2 / 125 AutoInput x1** (input-mask toggles; presentation
+band for a headless census run). Everything else already runs through
+the CommonEvent kernel.
+
 
 ### 13.1 Layout (facts)
 

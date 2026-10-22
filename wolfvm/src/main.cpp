@@ -1061,6 +1061,125 @@ static int cmd_sweep(const char* cepath, const char* dbproj, const char* dbdat,
     return 0;
 }
 
+// ---------------------------------------------------------------------------
+// mpssweep — run every map-event page of one .mps through the CommonEvent VM
+// kernel (Stage-2 headless runner). Synthesizes a CommonEventDat with one
+// record per page (synthetic id = record_index*1000 + page_index; the shipped
+// rec id is printed alongside). (approx) semantics documented here:
+//   * page activation conditions are NOT modeled — the engine's MapX object
+//     decides which page is active (traits/flags/graphics/state), Stage 3.
+//   * fresh GameState per page; DB pairs restored to pristine on writes
+//     (mirrors `sweep` isolation); cself = the same 100-slot template.
+// Purpose: classification over map-shaped command data + decode backlog
+// (map-side census: 173 EraseEvent x106, 126 BanInput x2, 125 AutoInput x1).
+//   wolfvm mpssweep <X.mps> [--db P D] [--cdb P D] [--from A] [--to B] [--cap N]
+// ---------------------------------------------------------------------------
+static int cmd_mpssweep(const char* mpspath, const char* cepath, const char* dbproj, const char* dbdat,
+                        const char* cdbproj, const char* cdbdat,
+                        int32_t from, int32_t to, size_t cap) {
+    auto mpsdata = read_file(mpspath);
+    std::string err;
+    wolf::Reader r(std::move(mpsdata));
+    wolf::MapProjectDat mp;
+    wolf::MapProjectDat::parse(r, mp, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    // Synthesize one CommonEventDat record per map page. Synthetic ids live in
+    // their own band (1000000 + sequential index) so real common-event ids can
+    // coexist in the same table (map pages 210-call real common ids — engine
+    // resolves callees from the game's loaded common table).
+    const int32_t base_id = 1000000;   // first synthetic id
+    wolf::CommonEventDat ce;
+    std::vector<std::pair<int32_t, int32_t>> synth_meta;   // (rec id, page idx)
+    if (cepath && *cepath) {
+        wolf::Reader rc(std::move(read_file(cepath)));
+        wolf::CommonEventDat::parse(rc, ce, err);
+        if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+        std::fprintf(stderr, "[mpssweep] merged %zu common events\n", ce.events.size());
+    }
+    for (size_t ri = 0; ri < mp.events.size(); ++ri) {
+        const auto& e = mp.events[ri];
+        for (size_t pi = 0; pi < e.pages.size(); ++pi) {
+            wolf::CommonEventRecord ev;
+            ev.id = base_id + (int32_t)synth_meta.size();
+            ev.name = "map rec " + std::to_string(e.id) + " page " + std::to_string(pi);
+            ev.commands = e.pages[pi].commands;
+            ev.tail_strings_100.resize(100);   // cself template parity with real records
+            synth_meta.push_back({ e.id, (int32_t)pi });
+            ce.events.push_back(std::move(ev));
+        }
+    }
+    const int32_t n_pages = (int32_t)synth_meta.size();
+
+    wolf::DatabasePair ldb_pris, cdb_pris;
+    bool have_ldb = false, have_cdb = false;
+    if (dbproj && *dbproj) {
+        std::string e2;
+        have_ldb = wolf::DatabasePair::parse_pair(read_file(dbproj), read_file(dbdat), ldb_pris, e2);
+        if (!have_ldb) { std::fprintf(stderr, "ERROR: db pair: %s\n", e2.c_str()); return 1; }
+    }
+    if (cdbproj && *cdbproj) {
+        std::string e2;
+        have_cdb = wolf::DatabasePair::parse_pair(read_file(cdbproj), read_file(cdbdat), cdb_pris, e2);
+        if (!have_cdb) { std::fprintf(stderr, "ERROR: cdb pair: %s\n", e2.c_str()); return 1; }
+    }
+
+    const int32_t max_id = base_id + n_pages - 1;
+    if (to < 0) to = max_id;
+    if (to > max_id) to = max_id;
+    if (from < base_id) from = base_id;
+    std::fprintf(stderr, "[mpssweep] %s IDs %d..%d db=%d cdb=%d cap=%zu\n",
+                 mpspath, from, to, (int)have_ldb, (int)have_cdb, cap ? cap : (size_t)2000000);
+
+    size_t n_ok = 0, n_stepcap = 0, n_reccap = 0, n_other = 0, n_gap = 0;
+    std::map<uint32_t, size_t> total_cids;
+    wolf::DatabasePair ldb_val, cdb_val;
+    bool dirty = true;
+
+    for (int32_t u = from; u <= to; ++u) {
+        if (u - base_id >= n_pages) { ++n_gap; continue; }
+        if (dirty) {
+            if (have_ldb) ldb_val = ldb_pris;
+            if (have_cdb) cdb_val = cdb_pris;
+            dirty = false;
+        }
+        wolf::GameState st;
+        if (have_ldb) st.ldb = &ldb_val;
+        if (have_cdb) st.cdb = &cdb_val;
+        wolf::Vm vm(st);
+        vm.load(ce);
+        if (cap) vm.set_step_cap(cap);
+        wolf::RunResult res;
+        const bool ok = vm.run(u, res);
+        const char* cls = "OK";
+        if (ok) {
+            ++n_ok;
+        } else if (res.err.find("step cap") != std::string::npos) {
+            cls = "STEPCAP"; ++n_stepcap;
+        } else if (res.err.find("recursion cap") != std::string::npos) {
+            cls = "RECCAP"; ++n_reccap;
+        } else {
+            cls = "OTHER"; ++n_other;
+        }
+        for (const auto& p : res.cid_counts) total_cids[p.first] += p.second;
+        std::printf("id=%7d rec=%3d p%2d %-7s exec=%-6zu warns=%-4zu%s\n",
+                    u, synth_meta[(size_t)(u - base_id)].first, synth_meta[(size_t)(u - base_id)].second, cls,
+                    res.executed, res.warnings.size(), ok ? "" : res.err.c_str());
+        if (res.db_writes) dirty = true;
+    }
+
+    std::printf("[mpssweep] IDs %d..%d  OK=%zu  stepcap=%zu  reccap=%zu  other=%zu  gap=%zu\n",
+                from, to, n_ok, n_stepcap, n_reccap, n_other, n_gap);
+    std::printf("[mpssweep] pages census (cid x count):\n");
+    for (const auto& p : total_cids) {
+        wolf::Command probe;
+        probe.cid = p.first;
+        std::printf("  cid %6u x %6u  (%s)\n", p.first, p.second,
+                    probe.name() ? probe.name() : "?");
+    }
+    return 0;
+}
+
 int main(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
@@ -1164,12 +1283,47 @@ int main(int argc, char** argv) {
         }
         return cmd_sweep(argv[2], dbproj, dbdat, cdbproj, cdbdat, from, to, cap);
     }
+    if (argc >= 3 && std::strcmp(argv[1], "mpssweep") == 0) {
+        const char* cepath = nullptr;
+        const char* dbproj = nullptr;
+        const char* dbdat = nullptr;
+        const char* cdbproj = nullptr;
+        const char* cdbdat = nullptr;
+        int32_t from = 0, to = -1;
+        size_t cap = 0;
+        for (int k = 3; k < argc; ++k) {
+            if (!std::strcmp(argv[k], "--ce")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--ce needs CommonEvent.dat\n"); return 1; }
+                cepath = argv[k + 1]; ++k;
+            } else if (!std::strcmp(argv[k], "--db")) {
+                if (k + 2 >= argc) { std::fprintf(stderr, "--db needs project dat\n"); return 1; }
+                dbproj = argv[k + 1]; dbdat = argv[k + 2]; k += 2;
+            } else if (!std::strcmp(argv[k], "--cdb")) {
+                if (k + 2 >= argc) { std::fprintf(stderr, "--cdb needs project dat\n"); return 1; }
+                cdbproj = argv[k + 1]; cdbdat = argv[k + 2]; k += 2;
+            } else if (!std::strcmp(argv[k], "--from")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--from needs a number\n"); return 1; }
+                from = (int32_t)std::atoi(argv[k + 1]); ++k;
+            } else if (!std::strcmp(argv[k], "--to")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--to needs a number\n"); return 1; }
+                to = (int32_t)std::atoi(argv[k + 1]); ++k;
+            } else if (!std::strcmp(argv[k], "--cap")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--cap needs a number\n"); return 1; }
+                cap = (size_t)std::strtoull(argv[k + 1], nullptr, 10); ++k;
+            } else {
+                std::fprintf(stderr, "unknown option %s\n", argv[k]);
+                return 1;
+            }
+        }
+        return cmd_mpssweep(argv[2], cepath, dbproj, dbdat, cdbproj, cdbdat, from, to, cap);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
                          "commonrun <CommonEvent.dat> <id> [-t] [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] | "
                          "selftest | "
                          "sweep <CommonEvent.dat> [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] [--from A] [--to B] [--cap N] | "
+                         "mpssweep <X.mps> [--ce CommonEvent.dat] [--db P D] [--cdb P D] [--from A] [--to B] [--cap N] | "
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
                          "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v]\n");

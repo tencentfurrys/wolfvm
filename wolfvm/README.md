@@ -59,6 +59,12 @@ reporting, and `--from/--to` windows for re-running single ids (e.g. the ev581
 600xxx window after any behavior change). DB pairs are parsed once and restored
 to pristine on writes, preserving the harness's per-id isolation.
 
+Sweep v6 baseline (2026-10-22, full 584 ids): **OK=485, stepcap=86, reccap=13,
+other=0, gap=0** — per-id diff vs the archived v4 baseline is exactly one id
+(168 STEPCAP→OK via the 171 fix). Artifact:
+`analysis/temp/full_sweep_v6.txt`; per-id diffing with `tools/compare_sweep.ps1
+<baseline.txt> <candidate.txt>` (kept outside the repo, tools are not committed).
+
 ### 2026-10-22 session changes
 
 - tools: `restore-data.ps1` — one-command re-materialization of the game data
@@ -73,9 +79,29 @@ to pristine on writes, preserving the harness's per-id isolation.
 - vm: 600xxx comment corrected to match verified behavior (note + early
   terminate = the v5-measured binary; engine continue-past documented as TODO
   pending re-verification). Behavior unchanged.
+- vm: hot-loop speedups (flat per-cid census array flushed RAII-style + note-cap
+  guards at per-step note sites) — step-cap windows went ~10x faster. Then a
+  deeper sweep pathology surfaced via single-id timing: `db_set` rescanned every
+  row of a type on each write-driven grow, so row-append loops were quadratic —
+  ev66 alone spent 430 s under the 2e6 step cap. Grow is now O(1) per write
+  (per-row allocation-on-write; holes still read 0, so observable semantics are
+  unchanged) — sweep v7 re-run: classes IDENTICAL to v6 (0 per-id diffs),
+  runtime 2429 s → 198.6 s.
+- tools: `mpssweep <X.mps> [--ce CommonEvent.dat] [--db/--cdb/--from/--to/--cap]`
+  — Stage-2 headless map-page runner: synthesizes one common-event record per
+  page (artificial ids 1000000+, real CommonEvent.dat optionally merged so the
+  pages' 210 callees resolve as the engine's loaded table), runs every page
+  through the same VM kernel with sweep-style classes. (approx) semantics:
+  page activation conditions are NOT modeled (engine MapX object side, Stage 3);
+  fresh GameState per page, DB restore-on-write isolation like `sweep`.
+  1-1.mps: 15 OK + 1 RECCAP (rec 9 page 1, 210 recursion cap) in 0.5 s.
 - tools: `selftest` (in-memory VM net, data-free) + `sweep` (native harness +
   classifier) so the verification loop no longer depends on one machine's
   PowerShell harness.
+- map census: `mpsinfo -c` aggregates the cid histogram of a `.mps` (and across
+  all 105 files via a caller loop). Map-side total ≈ 7.2k commands; cids beyond
+  the CE-decoded set that map pages use: 173 EraseEvent ×106, 126 BanInput ×2,
+  125 AutoInput ×1 — the Stage-2 MapEvent-runner decode backlog.
 
 ## Data layout expected by the VM
 
