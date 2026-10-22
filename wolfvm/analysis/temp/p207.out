@@ -1,0 +1,86 @@
+common 207 executed=3568 steps=3593 db_reads=517 db_writes=24 warnings=84
+per-cid: 0:541 103:360 106:12 111:408 121:517 124:36 150:36 179:13 210:24 212:12 213:12 250:553 290:12 401:444 420:12 498:156 499:420
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#27 124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0
+  warn: ev86#42 121 skip (engine: dropped family f00 1 f000 3) target 1600020 flags 12544
+  warn: ev86#42 121 skip (engine: dropped family f00 2 f000 3) target 1600021 flags 12800
+  warn: ev86#232 250: negative field -2 (row-name?) unmodeled — skipped
+  warn: ev86#232 499 stray tolerated (ev86 cmd 280)
