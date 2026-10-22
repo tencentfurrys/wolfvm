@@ -61,6 +61,11 @@ to pristine on writes, preserving the harness's per-id isolation.
 
 ### 2026-10-22 session changes
 
+- tools: `restore-data.ps1` — one-command re-materialization of the game data
+  on a fresh session (extract → locate → Bonus decrypt hook → dat-layer verify
+  → sweep probe id 0). The per-session download/decrypt cost is now scripted;
+  the only knowledge that ever decays is regenerable artifacts.
+
 - vm: 171 BreakLoop double-pc-advance fixed (jump lands on e498+1, then an old
   `++f.pc` skipped the first statement after the loop — same family as the
   earlier 210 callee-return double-advance fix). Sweep v6 re-baseline needed
