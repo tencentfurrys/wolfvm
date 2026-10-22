@@ -145,26 +145,22 @@ bool Vm::db_set(const DbOp& o, const Cell& v) {
     if (o.row < 0) { note("db_set: negative row " + std::to_string(o.row)); return false; }
     // The engine checks type-count (0x480100) and field-count (0x480250) only —
     // rows grow on write (runtime row expansion; see ev7 row 63/78 clears).
-    if (o.row >= (int32_t)t.data.size()) {
-        int32_t nints = 0, nstrs = 0;
-        for (const DbField& fl : t.fields) {
-            int32_t ix = fl.index();
-            if (ix < 0) continue;
-            if (fl.is_string()) nstrs = std::max(nstrs, ix + 1);
-            else nints = std::max(nints, ix + 1);
-        }
-        t.data.resize((size_t)o.row + 1);
-        for (size_t k = 0; k < t.data.size(); ++k) {
-            if ((int32_t)t.data[k].int_values.size() < nints) t.data[k].int_values.resize((size_t)nints, 0);
-            if ((int32_t)t.data[k].string_values.size() < nstrs) t.data[k].string_values.resize((size_t)nstrs);
-        }
-    }
+    // Grow without rescanning pre-existing rows: every row then read as 0 for
+    // holes regardless of stored size, so per-row allocation-on-write keeps
+    // observable semantics identical while making appends O(1) per write
+    // (the old whole-type rescan made row-append loops quadratic — ev66 spent
+    // 430 s under the 2e6 step cap).
+    if (o.row >= (int32_t)t.data.size()) t.data.resize((size_t)o.row + 1);
     DbData& d = t.data[(size_t)o.row];
     if (f.is_string()) {
         int32_t idx = f.index();
+        if (idx >= 0 && (size_t)idx >= d.string_values.size())
+            d.string_values.resize((size_t)idx + 1);
         if (idx >= 0 && idx < (int32_t)d.string_values.size()) d.string_values[(size_t)idx] = v.as_str();
     } else {
         int32_t idx = f.index();
+        if (idx >= 0 && (size_t)idx >= d.int_values.size())
+            d.int_values.resize((size_t)idx + 1, 0);
         if (idx >= 0 && idx < (int32_t)d.int_values.size()) d.int_values[(size_t)idx] = (int32_t)v.as_int();
     }
     ++res_->db_writes;
