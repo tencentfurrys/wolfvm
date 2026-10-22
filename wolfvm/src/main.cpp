@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <filesystem>
 #include <map>
 #include <string>
 #include <vector>
@@ -724,6 +725,18 @@ static int cmd_mpsinfo(const char* path, bool verbose, bool census) {
                             k, pg.condition, escape_bytes(pg.graphic_file).c_str(),
                             pg.commands.size(), pg.chips[0], pg.chips[1],
                             pg.chips[2], pg.chips[3]);
+                // Stage-3 condition-location hunt: dump the still-open raw page
+                // fields so a data census can diff anomalous (-0/52) conditions.
+                auto hexes = [](const std::vector<uint8_t>& b) {
+                    std::string s;
+                    char buf[4];
+                    for (uint8_t v : b) { std::snprintf(buf, sizeof(buf), "%02X ", v); s += buf; }
+                    if (!s.empty()) s.pop_back();
+                    return s;
+                };
+                std::printf("      head %s | flags %s | v16 %s | b10 %s\n",
+                            hexes(pg.graphic_head).c_str(), hexes(pg.graphic_flags).c_str(),
+                            hexes(pg.unknown16).c_str(), hexes(pg.block10).c_str());
             }
         }
     }
@@ -1180,6 +1193,81 @@ static int cmd_mpssweep(const char* mpspath, const char* cepath, const char* dbp
     return 0;
 }
 
+// mpspagewalk — Stage-3 page-field census over every .mps in a directory.
+// One machine-parseable line per page + aggregates, printed from native code
+// (a shell-side census was noisy to the point of unusable). Purpose: pin the
+// still-open per-page fields (v16 / block10 / graphic flags / head) against
+// page position and condition value as data facts for the MapX object work
+// (their ENGINE reading stays open — TODO verify against Game.exe loader).
+static int cmd_mpspagewalk(const char* dirpath) {
+    namespace fs = std::filesystem;
+    std::vector<fs::path> files;
+    for (const auto& it : fs::directory_iterator(dirpath))
+        if (it.is_regular_file() && it.path().extension() == ".mps") files.push_back(it.path());
+    std::sort(files.begin(), files.end());
+    if (files.empty()) { std::fprintf(stderr, "no .mps under %s\n", dirpath); return 1; }
+
+    size_t n_rec = 0, n_pg = 0, n_idx_match = 0, n_idx_mismatch = 0;
+    std::map<int32_t, size_t> h_cond, h_v0, h_b4, h_f0, h_h0, h_h1, h_pgc;
+    std::map<std::string, size_t> h_combo;                    // b4:idx:i0 triple
+
+    for (const auto& f : files) {
+        auto data = read_file(f.string().c_str());
+        std::string err;
+        wolf::Reader r(std::move(data));
+        wolf::MapProjectDat mp;
+        wolf::MapProjectDat::parse(r, mp, err);
+        if (!err.empty()) { std::fprintf(stderr, "ERROR %s: %s\n", f.filename().string().c_str(), err.c_str()); continue; }
+        const std::string base = f.stem().string();
+        for (const auto& e : mp.events) {
+            ++n_rec;
+            ++h_pgc[e.pages.size()];
+            for (size_t k = 0; k < e.pages.size(); ++k) {
+                const auto& pg = e.pages[k];
+                ++n_pg;
+                const int32_t i0 = pg.unknown16.size() >= 4
+                    ? (int32_t)((uint32_t)pg.unknown16[0] | ((uint32_t)pg.unknown16[1] << 8) |
+                                ((uint32_t)pg.unknown16[2] << 16) | ((uint32_t)pg.unknown16[3] << 24))
+                    : -999;
+                const int32_t b4 = pg.block10.size() >= 5 ? pg.block10[4] : -999;
+                const int32_t f0 = pg.graphic_flags.size() >= 1 ? pg.graphic_flags[0] : -999;
+                const int32_t h0 = pg.graphic_head.size() >= 1 ? pg.graphic_head[0] : -999;
+                const int32_t h1 = pg.graphic_head.size() >= 2 ? pg.graphic_head[1] : -999;
+                std::printf("pg file=%s rec=%d x=%d y=%d n=%d k=%zu cond=%d i0=%d b4=%02X f0=%02X h0=%02X h1=%02X\n",
+                            base.c_str(), e.id, e.x, e.y, e.page_count, k,
+                            pg.condition, i0, b4 & 0xFF, f0 & 0xFF, h0 & 0xFF, h1 & 0xFF);
+                ++h_cond[pg.condition]; ++h_v0[i0]; ++h_b4[b4]; ++h_f0[f0]; ++h_h0[h0]; ++h_h1[h1];
+                if (i0 == (int32_t)k) ++n_idx_match; else ++n_idx_mismatch;
+                char b4hex[8]; std::snprintf(b4hex, sizeof(b4hex), "%02X", (unsigned)(b4 & 0xFF));
+                char i0hex[16]; std::snprintf(i0hex, sizeof(i0hex), "%08X", (unsigned)i0);
+                std::string tri = std::string("b4") + b4hex + " idx" + std::to_string(k) + " i0" + i0hex;
+                ++h_combo[tri];
+            }
+        }
+    }
+    std::printf("== mpspagewalk: %zu files, %zu records, %zu pages\n", files.size(), n_rec, n_pg);
+    auto dump = [](const char* nm, const auto& m) {
+        std::printf("  %s:", nm);
+        for (const auto& p : m) std::printf(" %d/%zu", p.first, p.second);
+        std::printf("\n");
+    };
+    dump("cond", h_cond);
+    dump("v0", h_v0);
+    dump("b4", h_b4);
+    dump("f0", h_f0);
+    dump("h0", h_h0);
+    dump("h1", h_h1);
+    dump("pagesPerRecord", h_pgc);
+    std::printf("  i0==idx: %zu   i0!=idx: %zu\n", n_idx_match, n_idx_mismatch);
+    std::printf("  (b4, idx, i0) top combos:\n");
+    size_t shown = 0;
+    for (const auto& p : h_combo) {
+        if (++shown > 16) break;
+        std::printf("    %-14s x %zu\n", p.first.c_str(), p.second);
+    }
+    return 0;
+}
+
 int main(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
@@ -1317,6 +1405,9 @@ int main(int argc, char** argv) {
         }
         return cmd_mpssweep(argv[2], cepath, dbproj, dbdat, cdbproj, cdbdat, from, to, cap);
     }
+    if (argc >= 3 && std::strcmp(argv[1], "mpspagewalk") == 0) {
+        return cmd_mpspagewalk(argv[2]);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
@@ -1326,6 +1417,7 @@ int main(int argc, char** argv) {
                          "mpssweep <X.mps> [--ce CommonEvent.dat] [--db P D] [--cdb P D] [--from A] [--to B] [--cap N] | "
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
-                         "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v]\n");
+                         "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v] [-c] | "
+                         "mpspagewalk <Data/MapData-dir>\n");
     return 1;
 }

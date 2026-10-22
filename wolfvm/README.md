@@ -105,6 +105,15 @@ other=0, gap=0** — per-id diff vs the archived v4 baseline is exactly one id
   all 105 files via a caller loop). Map-side total ≈ 7.2k commands; cids beyond
   the CE-decoded set that map pages use: 173 EraseEvent ×106, 126 BanInput ×2,
   125 AutoInput ×1 — the Stage-2 MapEvent-runner decode backlog.
+- tools: `mpspagewalk <Data/MapData-dir>` — Stage-3 page-field census over all
+  `.mps` in a directory (native; one machine-clean line per page + aggregate
+  histograms; a shell-side census of this kept corrupting rows). Result on the
+  target: 676 records / 1028 pages (byte-baseline match). Facts: `unknown16[0..3]`
+  LE i32 equals the page position on 863/1028 pages; the last page of a
+  multi-page record always carries the `{i0=30, b4=0x23, flags[0]=0x31}` tuple;
+  block10[4] classes {0x20 x282, 0x23 x687, 0x25 x39, ...}. Engine reading of
+  these fields stays open (TODO verify vs Game.exe loader) — recorded in
+  ENGINE_ANALYSIS §14; artifact `analysis/temp/mps_pagewalk_1.txt`.
 
 ## Data layout expected by the VM
 

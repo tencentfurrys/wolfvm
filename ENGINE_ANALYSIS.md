@@ -798,11 +798,71 @@ analysis/temp/mpssweep_all.txt. Runtime ~132 s end-to-end.
   appear as chip[0] on event pages (2,000,000 band).
 - `graphic_file`: "" on invisible events; real paths on visible ones
   ("BasicData/光.png", "SystemGraphic/door.png").
-- 5-byte page head: 02/08, 00..02, FF, 00, 00..02; 4 flag bytes
-  0x20/0x21; 10-byte block mostly `03 03 03 00 XX 02 00 00 00 00`
-  (XX in {20,21,23,24,25}).
+- 5-byte page head byte0: 0x02 x868 / 0x08 x158 / 0x04 x2 (868 pages
+  carry 02); byte1 {00 x465, 01 x451, 02 x111, FF x1}; bytes 2..4
+  constant FF/00 bytes. graphic_flags[0]: 0x20 x455, 0x21 x473,
+  0x31 x48, 0x51 x34, 0x11 x18. 10-byte block is mostly
+  `03 03 03 00 XX 02 00 00 00 00` with XX = 0x23 x687, 0x20 x282,
+  0x25 x39, 0x21 x11, 0x24 x8, 0x27 x1.
+- unknown16[0..3] as LE i32 ("i0"): 0 x654, 1 x191, 2 x51, 3 x48,
+  4 x18, 30 x50, others rare ({5,6,10,20,40,120,999999} x1..8);
+  singleton pages: head[1]=0xFF on 1-2 rec=0, i0=999999 on
+  Map000 rec=1 (see §14 for the position correlation).
 - Map004 cross-check: 6 events ("地図", 演出 x4, 演出消滅) at
   (0,0)..(0,5), 11 pages, 68 commands — matches the hexdump rows.
 
 NOTE: the old "MapXXX.dat" idea is dead — all per-map data lives in
 the .mps files; no separate per-map .dat events exist anywhere.
+
+## 14. Stage-3 map runtime: data surface + open engine semantics (2026-10-22)
+
+### 14.0 Instrument: `mpspagewalk <Data/MapData-dir>` (committed)
+
+One machine-clean line per page plus aggregate histograms, native code
+(a shell-side census of this data kept corrupting rows — the native
+CLI is the sanctioned instrument). Run over all 105 files:
+**676 records / 1028 pages** — matches the §12 byte-level baseline
+exactly (decoder fully consumed). Full artifact:
+`wolfvm/analysis/temp/mps_pagewalk_1.txt`.
+
+### 14.1 Page-field facts (data-side, verified by census)
+
+Per page the decoder exposes scalar `condition` plus 5B head, 4+5B
+flags, 16B unknown16, 10B block10. Aggregates:
+
+- `condition`: -1 x1015 / 0 x12 / 52 x1 — no rich condition
+  structures exist in this data.
+- unknown16[0..3] LE i32 ("i0") == page position k for **863/1028
+  pages**. Mismatches concentrate in two shapes:
+  - `(k=0, i0 in {1,2,3,4,5,6,10,20,...})` — first page of a record
+    carrying a "step/counter" value instead of its index, and
+  - `(k = n-1, i0 = 30)` — the last page of multi-page records.
+- **Last-page tuple signature**: on every inspected multi-page
+  record the final page is `{i0=30 (0x1E), b4(bytes)=0x23,
+  graphic_flags[0]=0x31}` (seen in 1-1 rec7 k5, 1-1_1 rec5/rec7 k4,
+  1-2 rec5 k5, rec6 k4, ...). 30 recurs across files; it is NOT the
+  page index and NOT the command count of that page.
+- `b4` (block10[4]) classes correlate with position: 0x20 pages are
+  near-perfect i0==idx (internal pages incl. first); 0x23 x687
+  mostly single-page records' page 0 plus all "last pages"; 0x21
+  x11 all first pages; 0x24/0x25/0x27 minor classes.
+- Singletons: 1-2 rec=0 has head[1]=0xFF; Map000 rec=1 carries
+  i0=999999 (a Wolf-typical max constant). Two distinct pages,
+  both flagged for targeted Game.exe-loader review.
+
+### 14.2 Engine reading (OPEN — TODO verify)
+
+None of the above values has an engine interpretation yet:
+
+- (TODO verify) Game.exe map-event loader: which bytes feed the
+  page-activation condition evaluator, and what the scalar
+  `condition` (-1/0/52) means at runtime (e.g. -1 = "no condition",
+  0/52 = variable/state references?).
+- (TODO verify) page-selection order: classic Wolf picks the
+  highest-numbered page whose conditions all hold; this dataset's
+  all-(-1) pages make that model suspect (a door would render its
+  last page), so the selection state must live elsewhere — likely in
+  the EraseEvent (cid 173, x106 uses in map pages) lifecycle and/or
+  the v16/b10 fields above.
+- Until verified, any page-choice model in wolfvm must be marked
+  (approx) and MUST NOT be pinned by selftest as engine truth.
