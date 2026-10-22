@@ -1,0 +1,4090 @@
+
+==== 1-1_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-1_1.mps IDs 1000000..1000027 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  5 p 0 OK      exec=34     warns=12  
+id=1000006 rec=  5 p 1 OK      exec=244    warns=7   
+id=1000007 rec=  5 p 2 OK      exec=13     warns=2   
+id=1000008 rec=  5 p 3 OK      exec=5      warns=4   
+id=1000009 rec=  5 p 4 OK      exec=2      warns=0   
+id=1000010 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=33     warns=10  
+id=1000012 rec=  7 p 1 OK      exec=197    warns=8   
+id=1000013 rec=  7 p 2 OK      exec=12     warns=4   
+id=1000014 rec=  7 p 3 OK      exec=5      warns=4   
+id=1000015 rec=  7 p 4 OK      exec=2      warns=0   
+id=1000016 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000017 rec=  9 p 0 OK      exec=65     warns=2   
+id=1000018 rec=  9 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000019 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000020 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000021 rec= 12 p 0 OK      exec=29     warns=6   
+id=1000022 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000023 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 15 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 16 p 0 OK      exec=29     warns=6   
+id=1000026 rec= 17 p 0 OK      exec=66     warns=14  
+id=1000027 rec= 18 p 0 OK      exec=66     warns=14  
+[mpssweep] IDs 1000000..1000027  OK=27  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1298  (Blank)
+  cid    103 x    220  (Comment)
+  cid    106 x    134  (DebugMessage)
+  cid    111 x   2553  (VariableCondition)
+  cid    121 x   3025  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     64  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    422  (CommonEvent)
+  cid    212 x    148  (SetLabel)
+  cid    213 x     10  (JumpLabel)
+  cid    250 x   1227  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2835  (ChoiceCase)
+  cid    420 x     14  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2163  (BranchEnd)
+==== 1-1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-1.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=35     warns=12  
+id=1000002 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  6 p 0 OK      exec=35     warns=12  
+id=1000006 rec=  7 p 0 OK      exec=33     warns=10  
+id=1000007 rec=  7 p 1 OK      exec=197    warns=8   
+id=1000008 rec=  7 p 2 OK      exec=197    warns=8   
+id=1000009 rec=  7 p 3 OK      exec=12     warns=4   
+id=1000010 rec=  7 p 4 OK      exec=5      warns=4   
+id=1000011 rec=  7 p 5 OK      exec=2      warns=0   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=65     warns=2   
+id=1000014 rec=  9 p 1 RECCAP  exec=13243  warns=512 210 recursion cap
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1252  (Blank)
+  cid    103 x    159  (Comment)
+  cid    106 x    133  (DebugMessage)
+  cid    111 x   2509  (VariableCondition)
+  cid    121 x   2950  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     34  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      2  (Move)
+  cid    210 x    411  (CommonEvent)
+  cid    212 x    144  (SetLabel)
+  cid    213 x      9  (JumpLabel)
+  cid    250 x   1200  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2790  (ChoiceCase)
+  cid    420 x     13  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2120  (BranchEnd)
+==== 1-2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-2.mps IDs 1000000..1000024 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  4 p 0 OK      exec=35     warns=12  
+id=1000004 rec=  5 p 0 OK      exec=34     warns=12  
+id=1000005 rec=  5 p 1 OK      exec=291    warns=8   
+id=1000006 rec=  5 p 2 OK      exec=197    warns=6   
+id=1000007 rec=  5 p 3 OK      exec=13     warns=2   
+id=1000008 rec=  5 p 4 OK      exec=5      warns=4   
+id=1000009 rec=  5 p 5 OK      exec=2      warns=0   
+id=1000010 rec=  6 p 0 OK      exec=33     warns=10  
+id=1000011 rec=  6 p 1 OK      exec=197    warns=6   
+id=1000012 rec=  6 p 2 OK      exec=12     warns=2   
+id=1000013 rec=  6 p 3 OK      exec=5      warns=4   
+id=1000014 rec=  6 p 4 OK      exec=2      warns=0   
+id=1000015 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000016 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000017 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000018 rec= 10 p 0 OK      exec=35     warns=12  
+id=1000019 rec= 11 p 0 OK      exec=35     warns=12  
+id=1000020 rec= 12 p 0 OK      exec=35     warns=12  
+id=1000021 rec= 13 p 0 OK      exec=65     warns=2   
+id=1000022 rec= 13 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000023 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 15 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000024  OK=24  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1301  (Blank)
+  cid    103 x    259  (Comment)
+  cid    106 x    135  (DebugMessage)
+  cid    111 x   2557  (VariableCondition)
+  cid    121 x   3022  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     51  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    256  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    428  (CommonEvent)
+  cid    212 x    156  (SetLabel)
+  cid    213 x     15  (JumpLabel)
+  cid    250 x   1232  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2850  (ChoiceCase)
+  cid    420 x     19  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2162  (BranchEnd)
+==== 1-9_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_1.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=82     warns=9   
+id=1000001 rec=  2 p 0 OK      exec=352    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  3 p 1 OK      exec=74     warns=2   
+id=1000004 rec=  3 p 2 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000004  OK=5  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     77  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     66  (Comment)
+  cid    106 x     10  (DebugMessage)
+  cid    111 x     34  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    121  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     12  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     14  (CommonEvent)
+  cid    212 x      5  (SetLabel)
+  cid    250 x     44  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x     71  (ChoiceCase)
+  cid    420 x     11  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     45  (BranchEnd)
+==== 1-9_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_2.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=82     warns=9   
+id=1000001 rec=  2 p 0 OK      exec=325    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  3 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 2 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000004  OK=4  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1218  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     76  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2455  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2926  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    264  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     16  (Wait)
+  cid    210 x    391  (CommonEvent)
+  cid    212 x    132  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1191  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x   2749  (ChoiceCase)
+  cid    420 x     13  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2082  (BranchEnd)
+==== 1-9_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_3.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=123    warns=10  
+id=1000001 rec=  1 p 0 OK      exec=34     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=359    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 OK      exec=75     warns=3   
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+[mpssweep] IDs 1000000..1000005  OK=6  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     83  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     80  (Comment)
+  cid    106 x     10  (DebugMessage)
+  cid    111 x     38  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    151  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     14  (CommonEvent)
+  cid    212 x      5  (SetLabel)
+  cid    250 x     53  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x     77  (ChoiceCase)
+  cid    420 x     15  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     49  (BranchEnd)
+==== 1-9_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_4.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=123    warns=10  
+id=1000001 rec=  1 p 0 OK      exec=6      warns=4   
+id=1000002 rec=  2 p 0 OK      exec=356    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=9      warns=0   
+id=1000004 rec=  5 p 0 OK      exec=150    warns=8   
+id=1000005 rec=  6 p 0 OK      exec=36     warns=6   
+id=1000006 rec=  8 p 0 OK      exec=47     warns=2   
+id=1000007 rec=  9 p 0 OK      exec=65     warns=2   
+id=1000008 rec=  9 p 1 OK      exec=75     warns=3   
+id=1000009 rec=  9 p 2 OK      exec=9      warns=0   
+[mpssweep] IDs 1000000..1000009  OK=10  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    109  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     81  (Comment)
+  cid    106 x     14  (DebugMessage)
+  cid    111 x     58  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    213  (SetVariable)
+  cid    122 x      9  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     17  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     21  (CommonEvent)
+  cid    212 x      8  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x     77  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x    107  (ChoiceCase)
+  cid    420 x     20  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     69  (BranchEnd)
+==== 1-9_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=1      warns=0   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=371    warns=56  
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 OK      exec=75     warns=3   
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=123    warns=10  
+[mpssweep] IDs 1000000..1000006  OK=7  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     86  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     79  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x     38  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    151  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     15  (CommonEvent)
+  cid    212 x      5  (SetLabel)
+  cid    250 x     55  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x     77  (ChoiceCase)
+  cid    420 x     16  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     49  (BranchEnd)
+==== 1-9_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9_6.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=6      warns=1   
+id=1000003 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  5 p 0 OK      exec=128    warns=14  
+id=1000006 rec=  5 p 1 RECCAP  exec=46240  warns=512 210 recursion cap
+id=1000007 rec=  6 p 0 RECCAP  exec=46239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   9272  (Blank)
+  cid     99 x    504  (Checkpoint)
+  cid    103 x   2609  (Comment)
+  cid    106 x   1011  (DebugMessage)
+  cid    111 x  11825  (VariableCondition)
+  cid    112 x    504  (StringCondition)
+  cid    121 x  17326  (SetVariable)
+  cid    122 x    504  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x    523  (SetVariableEx)
+  cid    150 x   2021  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    210 x   2099  (CommonEvent)
+  cid    212 x    514  (SetLabel)
+  cid    250 x  11221  (Database)
+  cid    290 x   1011  (Effect)
+  cid    401 x  18451  (ChoiceCase)
+  cid    420 x   3535  (ElseCase)
+  cid    499 x   9797  (BranchEnd)
+==== 1-9.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\1-9.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=31     warns=6   
+id=1000001 rec=  2 p 0 OK      exec=332    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  3 p 1 OK      exec=75     warns=3   
+id=1000004 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=123    warns=10  
+[mpssweep] IDs 1000000..1000005  OK=6  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     79  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     76  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x     33  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    150  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     13  (CommonEvent)
+  cid    212 x      4  (SetLabel)
+  cid    250 x     52  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x     69  (ChoiceCase)
+  cid    420 x     15  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     44  (BranchEnd)
+==== Map000_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map000_2.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  7 p 0 OK      exec=65     warns=2   
+id=1000001 rec=  7 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000002 rec= 14 p 0 OK      exec=655    warns=39  
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1235  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     97  (Comment)
+  cid    106 x    139  (DebugMessage)
+  cid    111 x   2509  (VariableCondition)
+  cid    112 x      1  (StringCondition)
+  cid    121 x   2933  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      2  (Sound)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    399  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   1282  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   2798  (ChoiceCase)
+  cid    420 x     21  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2127  (BranchEnd)
+==== Map000.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map000.mps IDs 1000000..1000017 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=112    warns=9   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=1   
+id=1000002 rec=  2 p 0 OK      exec=108    warns=9   
+id=1000003 rec=  3 p 0 OK      exec=18     warns=0   
+id=1000004 rec=  4 p 0 OK      exec=382    warns=62  
+id=1000005 rec=  5 p 0 OK      exec=3      warns=2   
+id=1000006 rec=  6 p 0 OK      exec=3      warns=2   
+id=1000007 rec=  7 p 0 OK      exec=104    warns=7   
+id=1000008 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000009 rec=  9 p 0 OK      exec=7      warns=1   
+id=1000010 rec= 10 p 0 OK      exec=292    warns=55  
+id=1000011 rec= 11 p 0 OK      exec=387    warns=62  
+id=1000012 rec= 12 p 0 OK      exec=51     warns=2   
+id=1000013 rec= 12 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000014 rec= 13 p 0 RECCAP  exec=13132  warns=506 210 recursion cap
+id=1000015 rec= 15 p 0 OK      exec=7      warns=1   
+id=1000016 rec= 23 p 0 OK      exec=107    warns=10  
+id=1000017 rec= 23 p 1 RECCAP  exec=13242  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000017  OK=15  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3689  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x    200  (Comment)
+  cid    106 x    401  (DebugMessage)
+  cid    111 x   7411  (VariableCondition)
+  cid    112 x     27  (StringCondition)
+  cid    121 x   8745  (SetVariable)
+  cid    122 x     12  (SetString)
+  cid    123 x      8  (InputKey)
+  cid    124 x     38  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    776  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      3  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x     11  (LoopTimes)
+  cid    180 x     35  (Wait)
+  cid    210 x   1177  (CommonEvent)
+  cid    212 x    391  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3598  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x   8325  (ChoiceCase)
+  cid    420 x     46  (ElseCase)
+  cid    498 x     78  (LoopEnd)
+  cid    499 x   6296  (BranchEnd)
+==== Map001.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map001.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=434    warns=71  
+id=1000001 rec=  1 p 0 OK      exec=6      warns=2   
+id=1000002 rec=  1 p 1 OK      exec=266    warns=55  
+id=1000003 rec=  2 p 0 OK      exec=6      warns=2   
+id=1000004 rec=  2 p 1 OK      exec=268    warns=55  
+id=1000005 rec=  3 p 0 OK      exec=9      warns=2   
+id=1000006 rec=  3 p 1 OK      exec=289    warns=58  
+id=1000007 rec=  4 p 0 OK      exec=5      warns=0   
+id=1000008 rec=  4 p 1 OK      exec=1061   warns=217 
+id=1000009 rec=  5 p 0 OK      exec=17     warns=5   
+id=1000010 rec=  5 p 1 RECCAP  exec=13499  warns=512 210 recursion cap
+id=1000011 rec=  6 p 0 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000011  OK=11  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1471  (Blank)
+  cid     99 x      9  (Checkpoint)
+  cid    103 x    397  (Comment)
+  cid    106 x    161  (DebugMessage)
+  cid    111 x   2445  (VariableCondition)
+  cid    112 x     85  (StringCondition)
+  cid    121 x   3513  (SetVariable)
+  cid    122 x     20  (SetString)
+  cid    124 x      3  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    288  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      5  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x     28  (LoopTimes)
+  cid    180 x    100  (Wait)
+  cid    210 x    405  (CommonEvent)
+  cid    212 x    151  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    221 x      1  (LoadGame)
+  cid    222 x      9  (SaveGame)
+  cid    242 x      2  (ChipOverwrite)
+  cid    250 x   1377  (Database)
+  cid    281 x      1  (ScrollScreen)
+  cid    290 x      1  (Effect)
+  cid    401 x   2955  (ChoiceCase)
+  cid    420 x     78  (ElseCase)
+  cid    498 x    204  (LoopEnd)
+  cid    499 x   2149  (BranchEnd)
+==== Map002.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map002.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=267    warns=55  
+id=1000001 rec=  1 p 0 OK      exec=6      warns=4   
+id=1000002 rec=  1 p 1 RECCAP  exec=13243  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1194  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     53  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x   2428  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2897  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    124 x      4  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    256  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x    386  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1180  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2721  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2056  (BranchEnd)
+==== Map003_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map003_A.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=142    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=142    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=37     warns=7   
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  4 p 0 OK      exec=15     warns=0   
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1218  (Blank)
+  cid    103 x     39  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x   2487  (VariableCondition)
+  cid    121 x   2878  (SetVariable)
+  cid    123 x      3  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    394  (CommonEvent)
+  cid    212 x    128  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1185  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   2766  (ChoiceCase)
+  cid    420 x      7  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2106  (BranchEnd)
+==== Map003.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map003.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map004_A_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map004_A_1.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map004_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map004_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map004.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map004.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=293    warns=6   
+id=1000001 rec=  1 p 0 OK      exec=7      warns=0   
+id=1000002 rec=  1 p 1 OK      exec=235    warns=6   
+id=1000003 rec=  2 p 0 OK      exec=7      warns=0   
+id=1000004 rec=  2 p 1 OK      exec=235    warns=6   
+id=1000005 rec=  3 p 0 OK      exec=7      warns=0   
+id=1000006 rec=  3 p 1 OK      exec=235    warns=6   
+id=1000007 rec=  4 p 0 OK      exec=7      warns=0   
+id=1000008 rec=  4 p 1 OK      exec=235    warns=6   
+id=1000009 rec=  5 p 0 OK      exec=7      warns=0   
+id=1000010 rec=  5 p 1 RECCAP  exec=13750  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000010  OK=10  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1329  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    407  (Comment)
+  cid    106 x    152  (DebugMessage)
+  cid    111 x   2569  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   3170  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x     16  (Sound)
+  cid    150 x    295  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      5  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x     12  (LoopTimes)
+  cid    180 x     19  (Wait)
+  cid    210 x    419  (CommonEvent)
+  cid    212 x    181  (SetLabel)
+  cid    213 x     26  (JumpLabel)
+  cid    250 x   1218  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x   2893  (ChoiceCase)
+  cid    420 x     39  (ElseCase)
+  cid    498 x     63  (LoopEnd)
+  cid    499 x   2172  (BranchEnd)
+==== Map005_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map005_A.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=8      warns=0   
+id=1000005 rec=  5 p 0 OK      exec=7      warns=1   
+id=1000006 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000009 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000010 rec= 10 p 0 OK      exec=104    warns=8   
+[mpssweep] IDs 1000000..1000010  OK=11  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     60  (Blank)
+  cid    103 x     38  (Comment)
+  cid    106 x      2  (DebugMessage)
+  cid    111 x     55  (VariableCondition)
+  cid    121 x     75  (SetVariable)
+  cid    123 x      2  (InputKey)
+  cid    124 x     29  (SetVariableEx)
+  cid    150 x      2  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    210 x     11  (CommonEvent)
+  cid    250 x     28  (Database)
+  cid    290 x      2  (Effect)
+  cid    401 x     63  (ChoiceCase)
+  cid    420 x      3  (ElseCase)
+  cid    499 x     55  (BranchEnd)
+==== Map005.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map005.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=274    warns=54  
+id=1000001 rec=  0 p 1 RECCAP  exec=13235  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=102    warns=8   
+id=1000003 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000004 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  3 p 0 OK      exec=1      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=1      warns=0   
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2380  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     75  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4888  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5736  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x    510  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    773  (CommonEvent)
+  cid    212 x    258  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2355  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   5456  (ChoiceCase)
+  cid    420 x     20  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4135  (BranchEnd)
+==== Map006.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map006.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=11     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=1      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=9      warns=0   
+id=1000003 rec=  3 p 0 OK      exec=1      warns=0   
+id=1000004 rec=  4 p 0 OK      exec=277    warns=54  
+id=1000005 rec=  5 p 0 OK      exec=4      warns=0   
+id=1000006 rec=  6 p 0 OK      exec=12     warns=0   
+id=1000007 rec=  7 p 0 OK      exec=1      warns=0   
+id=1000008 rec=  8 p 0 OK      exec=12     warns=2   
+id=1000009 rec=  9 p 0 OK      exec=12     warns=2   
+id=1000010 rec= 11 p 0 OK      exec=11     warns=1   
+id=1000011 rec= 12 p 0 OK      exec=10     warns=0   
+id=1000012 rec= 13 p 0 OK      exec=4      warns=0   
+id=1000013 rec= 14 p 0 OK      exec=34     warns=6   
+id=1000014 rec= 15 p 0 OK      exec=28     warns=2   
+[mpssweep] IDs 1000000..1000014  OK=15  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     65  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     53  (Comment)
+  cid    106 x      7  (DebugMessage)
+  cid    111 x     24  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x     88  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    124 x      3  (SetVariableEx)
+  cid    150 x      4  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x     11  (Wait)
+  cid    210 x      5  (CommonEvent)
+  cid    212 x      2  (SetLabel)
+  cid    242 x      2  (ChipOverwrite)
+  cid    250 x     27  (Database)
+  cid    401 x     55  (ChoiceCase)
+  cid    420 x      9  (ElseCase)
+  cid    498 x     22  (LoopEnd)
+  cid    499 x     33  (BranchEnd)
+==== Map007.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map007.mps IDs 1000000..1000003 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=1      warns=0   
+id=1000001 rec=  0 p 1 OK      exec=1      warns=0   
+id=1000002 rec=  1 p 0 OK      exec=66     warns=4   
+id=1000003 rec=  1 p 1 RECCAP  exec=13240  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000003  OK=3  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1173  (Blank)
+  cid    103 x     17  (Comment)
+  cid    106 x    130  (DebugMessage)
+  cid    111 x   2439  (VariableCondition)
+  cid    121 x   2828  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x      5  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    386  (CommonEvent)
+  cid    212 x    128  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1162  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2706  (ChoiceCase)
+  cid    420 x      6  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2057  (BranchEnd)
+==== Map008.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map008.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=6      warns=4   
+id=1000001 rec=  0 p 1 RECCAP  exec=13501  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1190  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     53  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x   2428  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2894  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    124 x      4  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    256  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x    386  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1179  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2721  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2056  (BranchEnd)
+==== Map009_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_1.mps IDs 1000000..1000013 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=150    warns=7   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000010 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000013 rec= 12 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000013  OK=12  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88164  (Blank)
+  cid    103 x  87042  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350289  (VariableCondition)
+  cid    121 x 524654  (SetVariable)
+  cid    124 x     35  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    401  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x  86957  (JumpLabel)
+  cid    250 x 175090  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437512  (ChoiceCase)
+  cid    420 x  86963  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175997  (BranchEnd)
+==== Map009_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_2.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=140    warns=16  
+id=1000001 rec=  0 p 1 RECCAP  exec=13242  warns=512 210 recursion cap
+id=1000002 rec=  0 p 2 OK      exec=99     warns=10  
+id=1000003 rec=  1 p 0 OK      exec=52     warns=6   
+id=1000004 rec=  2 p 0 OK      exec=135    warns=16  
+id=1000005 rec=  3 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 0 OK      exec=51     warns=2   
+id=1000007 rec=  4 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000008 rec=  7 p 0 OK      exec=31     warns=1   
+id=1000009 rec=  9 p 0 OK      exec=4      warns=0   
+[mpssweep] IDs 1000000..1000009  OK=8  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2403  (Blank)
+  cid    103 x     62  (Comment)
+  cid    106 x    266  (DebugMessage)
+  cid    111 x   4946  (VariableCondition)
+  cid    121 x   5718  (SetVariable)
+  cid    123 x      5  (InputKey)
+  cid    124 x     35  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    512  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    782  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2370  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   5500  (ChoiceCase)
+  cid    420 x     15  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4183  (BranchEnd)
+==== Map009_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=51     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=147    warns=18  
+id=1000003 rec=  2 p 0 OK      exec=132    warns=14  
+id=1000004 rec=  3 p 0 OK      exec=385    warns=62  
+id=1000005 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000006 rec=  6 p 0 OK      exec=135    warns=14  
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2426  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    104  (Comment)
+  cid    106 x    266  (DebugMessage)
+  cid    111 x   4942  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5789  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     32  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x    512  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    784  (CommonEvent)
+  cid    212 x    259  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2386  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x   5520  (ChoiceCase)
+  cid    420 x     21  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4189  (BranchEnd)
+==== Map009_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_4.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=197    warns=6   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000013 rec=  8 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000014 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 12 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000015  OK=14  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88176  (Blank)
+  cid    103 x  87063  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350300  (VariableCondition)
+  cid    121 x 524676  (SetVariable)
+  cid    124 x     41  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    405  (CommonEvent)
+  cid    212 x    137  (SetLabel)
+  cid    213 x  86958  (JumpLabel)
+  cid    250 x 175095  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437524  (ChoiceCase)
+  cid    420 x  86964  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176007  (BranchEnd)
+==== Map009_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_5.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=197    warns=6   
+id=1000002 rec=  1 p 2 OK      exec=197    warns=6   
+id=1000003 rec=  1 p 3 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 4 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 5 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88158  (Blank)
+  cid    103 x  87079  (Comment)
+  cid    106 x    133  (DebugMessage)
+  cid    111 x 350294  (VariableCondition)
+  cid    121 x 524645  (SetVariable)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    404  (CommonEvent)
+  cid    212 x    145  (SetLabel)
+  cid    213 x  86962  (JumpLabel)
+  cid    250 x 175092  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437522  (ChoiceCase)
+  cid    420 x  86968  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175997  (BranchEnd)
+==== Map009_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_6.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=150    warns=5   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88140  (Blank)
+  cid    103 x  87018  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350271  (VariableCondition)
+  cid    121 x 524612  (SetVariable)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    395  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x  86957  (JumpLabel)
+  cid    250 x 175086  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437494  (ChoiceCase)
+  cid    420 x  86963  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175979  (BranchEnd)
+==== Map009_7.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_7.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=197    warns=6   
+id=1000002 rec=  1 p 2 OK      exec=197    warns=6   
+id=1000003 rec=  1 p 3 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 4 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 5 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88158  (Blank)
+  cid    103 x  87079  (Comment)
+  cid    106 x    133  (DebugMessage)
+  cid    111 x 350294  (VariableCondition)
+  cid    121 x 524645  (SetVariable)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    404  (CommonEvent)
+  cid    212 x    145  (SetLabel)
+  cid    213 x  86962  (JumpLabel)
+  cid    250 x 175092  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437522  (ChoiceCase)
+  cid    420 x  86968  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175997  (BranchEnd)
+==== Map009_8.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_8.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000001 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000001  OK=0  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88114  (Blank)
+  cid    103 x  86969  (Comment)
+  cid    106 x    130  (DebugMessage)
+  cid    111 x 350247  (VariableCondition)
+  cid    121 x 524574  (SetVariable)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    387  (CommonEvent)
+  cid    212 x    129  (SetLabel)
+  cid    213 x  86954  (JumpLabel)
+  cid    250 x 175070  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437467  (ChoiceCase)
+  cid    420 x  86960  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175958  (BranchEnd)
+==== Map009_9.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_9.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=31     warns=1   
+id=1000001 rec=  1 p 0 OK      exec=32     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=32     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=107    warns=8   
+id=1000004 rec=  4 p 0 OK      exec=32     warns=6   
+id=1000005 rec=  5 p 0 OK      exec=107    warns=8   
+id=1000006 rec=  6 p 0 OK      exec=109    warns=2   
+id=1000007 rec=  7 p 0 OK      exec=51     warns=2   
+id=1000008 rec=  7 p 1 RECCAP  exec=13238  warns=512 210 recursion cap
+id=1000009 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000010 rec=  9 p 0 OK      exec=32     warns=6   
+id=1000011 rec= 10 p 0 OK      exec=14     warns=0   
+[mpssweep] IDs 1000000..1000011  OK=11  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1250  (Blank)
+  cid    103 x     61  (Comment)
+  cid    106 x    137  (DebugMessage)
+  cid    111 x   2523  (VariableCondition)
+  cid    121 x   2911  (SetVariable)
+  cid    123 x      4  (InputKey)
+  cid    124 x     29  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    259  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    400  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   1207  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x   2804  (ChoiceCase)
+  cid    420 x      9  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2140  (BranchEnd)
+==== Map009_A_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_1.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=244    warns=7   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88148  (Blank)
+  cid    103 x  87044  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350281  (VariableCondition)
+  cid    121 x 524628  (SetVariable)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    399  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175088  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437506  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175987  (BranchEnd)
+==== Map009_A_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_2.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=150    warns=7   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000010 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 12 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000014  OK=13  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88168  (Blank)
+  cid    103 x  87046  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350292  (VariableCondition)
+  cid    121 x 524661  (SetVariable)
+  cid    124 x     38  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x  86957  (JumpLabel)
+  cid    250 x 175091  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86963  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176000  (BranchEnd)
+==== Map009_A_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_3.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=338    warns=11  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 12 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000015  OK=14  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88188  (Blank)
+  cid    103 x  87102  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350315  (VariableCondition)
+  cid    121 x 524700  (SetVariable)
+  cid    124 x     41  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    411  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175096  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437542  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176019  (BranchEnd)
+==== Map009_A_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_4.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=197    warns=6   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88140  (Blank)
+  cid    103 x  87027  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350273  (VariableCondition)
+  cid    121 x 524613  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    396  (CommonEvent)
+  cid    212 x    137  (SetLabel)
+  cid    213 x  86958  (JumpLabel)
+  cid    250 x 175086  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437497  (ChoiceCase)
+  cid    420 x  86964  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175980  (BranchEnd)
+==== Map009_A_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=338    warns=9   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88152  (Blank)
+  cid    103 x  87066  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350288  (VariableCondition)
+  cid    121 x 524637  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175089  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175992  (BranchEnd)
+==== Map009_A_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_6.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 STEPCAP exec=1999999 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 2 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 3 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=4  stepcap=2  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88123  (Blank)
+  cid    103 x  86975  (Comment)
+  cid    106 x    131  (DebugMessage)
+  cid    111 x 750251  (VariableCondition)
+  cid    121 x 924580  (SetVariable)
+  cid    124 x     13  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    391  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x 486951  (JumpLabel)
+  cid    250 x 575079  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 837471  (ChoiceCase)
+  cid    420 x  86960  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175963  (BranchEnd)
+==== Map009_A_7.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_7.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  0 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000003 rec=  1 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000004 rec=  2 p 0 OK      exec=132    warns=14  
+id=1000005 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000006 rec=  3 p 0 OK      exec=132    warns=14  
+id=1000007 rec=  4 p 0 OK      exec=132    warns=14  
+id=1000008 rec=  4 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000009 rec=  4 p 2 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000010 rec=  5 p 0 OK      exec=484    warns=63  
+id=1000011 rec=  6 p 0 OK      exec=5      warns=2   
+[mpssweep] IDs 1000000..1000011  OK=7  stepcap=0  reccap=5  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   5927  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    158  (Comment)
+  cid    106 x    658  (DebugMessage)
+  cid    111 x  12250  (VariableCondition)
+  cid    112 x     10  (StringCondition)
+  cid    121 x  14284  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     41  (SetVariableEx)
+  cid    130 x      5  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x   1273  (Picture)
+  cid    151 x      5  (ChangeColor)
+  cid    160 x     10  (SetTransition)
+  cid    161 x     10  (PrepareTransition)
+  cid    162 x      5  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    171 x      1  (BreakLoop)
+  cid    177 x      5  (StopNonPic)
+  cid    179 x      8  (LoopTimes)
+  cid    180 x     16  (Wait)
+  cid    210 x   1949  (CommonEvent)
+  cid    212 x    643  (SetLabel)
+  cid    213 x      5  (JumpLabel)
+  cid    250 x   5901  (Database)
+  cid    290 x     11  (Effect)
+  cid    401 x  13641  (ChoiceCase)
+  cid    420 x     37  (ElseCase)
+  cid    498 x     52  (LoopEnd)
+  cid    499 x  10354  (BranchEnd)
+==== Map009_A_8.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_8.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=135    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  1 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1188  (Blank)
+  cid    103 x     26  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x   2463  (VariableCondition)
+  cid    121 x   2852  (SetVariable)
+  cid    123 x      2  (InputKey)
+  cid    124 x     13  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    389  (CommonEvent)
+  cid    212 x    128  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1179  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   2738  (ChoiceCase)
+  cid    420 x      6  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2082  (BranchEnd)
+==== Map009_A_9.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_9.mps IDs 1000000..1000003 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=135    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  1 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=110    warns=8   
+[mpssweep] IDs 1000000..1000003  OK=3  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1203  (Blank)
+  cid    103 x     31  (Comment)
+  cid    106 x    133  (DebugMessage)
+  cid    111 x   2480  (VariableCondition)
+  cid    121 x   2864  (SetVariable)
+  cid    123 x      3  (InputKey)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    255  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    391  (CommonEvent)
+  cid    212 x    128  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1190  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   2759  (ChoiceCase)
+  cid    420 x      8  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2099  (BranchEnd)
+==== Map009_A_A_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_1.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=280    warns=54  
+id=1000001 rec=  0 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1192  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     55  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x   2428  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2897  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    124 x      2  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    256  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x    387  (CommonEvent)
+  cid    212 x    130  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1180  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2723  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2056  (BranchEnd)
+==== Map009_A_A_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_2.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=32     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=923    warns=167 
+id=1000002 rec=  1 p 1 RECCAP  exec=13238  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000004 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000004  OK=3  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2444  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x    165  (Comment)
+  cid    106 x    267  (DebugMessage)
+  cid    111 x   4893  (VariableCondition)
+  cid    112 x     27  (StringCondition)
+  cid    121 x   5893  (SetVariable)
+  cid    122 x      9  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     11  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x    518  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x     11  (LoopTimes)
+  cid    180 x     35  (Wait)
+  cid    210 x    781  (CommonEvent)
+  cid    212 x    264  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2392  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5523  (ChoiceCase)
+  cid    420 x     35  (ElseCase)
+  cid    498 x     78  (LoopEnd)
+  cid    499 x   4158  (BranchEnd)
+==== Map009_A_A_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_3.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=103    warns=6   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000015  OK=14  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88168  (Blank)
+  cid    103 x  87037  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350290  (VariableCondition)
+  cid    121 x 524660  (SetVariable)
+  cid    124 x     41  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    401  (CommonEvent)
+  cid    212 x    133  (SetLabel)
+  cid    213 x  86956  (JumpLabel)
+  cid    250 x 175091  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437512  (ChoiceCase)
+  cid    420 x  86962  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175999  (BranchEnd)
+==== Map009_A_A_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_4.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=150    warns=7   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000010 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 11 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000015  OK=14  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88172  (Blank)
+  cid    103 x  87050  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350295  (VariableCondition)
+  cid    121 x 524668  (SetVariable)
+  cid    124 x     41  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    403  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x  86957  (JumpLabel)
+  cid    250 x 175092  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437518  (ChoiceCase)
+  cid    420 x  86963  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176003  (BranchEnd)
+==== Map009_A_A_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=244    warns=7   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88144  (Blank)
+  cid    103 x  87040  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350278  (VariableCondition)
+  cid    121 x 524621  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    398  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175087  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437503  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175984  (BranchEnd)
+==== Map009_A_A_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_6.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=244    warns=7   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88144  (Blank)
+  cid    103 x  87040  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350278  (VariableCondition)
+  cid    121 x 524621  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    398  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175087  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437503  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175984  (BranchEnd)
+==== Map009_A_A_7.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_7.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=338    warns=9   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88152  (Blank)
+  cid    103 x  87066  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350288  (VariableCondition)
+  cid    121 x 524637  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175089  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175992  (BranchEnd)
+==== Map009_A_A_8.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_8.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=338    warns=9   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88156  (Blank)
+  cid    103 x  87070  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350291  (VariableCondition)
+  cid    121 x 524644  (SetVariable)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    403  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175090  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437518  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175995  (BranchEnd)
+==== Map009_A_A_9.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_9.mps IDs 1000000..1000020 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=197    warns=8   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000016 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000017 rec= 12 p 0 OK      exec=29     warns=6   
+id=1000018 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000019 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000020 rec= 15 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000020  OK=19  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88196  (Blank)
+  cid    103 x  87083  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350315  (VariableCondition)
+  cid    121 x 524711  (SetVariable)
+  cid    124 x     56  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    410  (CommonEvent)
+  cid    212 x    137  (SetLabel)
+  cid    213 x  86958  (JumpLabel)
+  cid    250 x 175098  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437539  (ChoiceCase)
+  cid    420 x  86964  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176022  (BranchEnd)
+==== Map009_A_A_A_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=244    warns=7   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88144  (Blank)
+  cid    103 x  87040  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350278  (VariableCondition)
+  cid    121 x 524621  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    398  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175087  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437503  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175984  (BranchEnd)
+==== Map009_A_A_A_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=244    warns=7   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88144  (Blank)
+  cid    103 x  87040  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350278  (VariableCondition)
+  cid    121 x 524621  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    398  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175087  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437503  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175984  (BranchEnd)
+==== Map009_A_A_A_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=338    warns=9   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88152  (Blank)
+  cid    103 x  87066  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350288  (VariableCondition)
+  cid    121 x 524637  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175089  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175992  (BranchEnd)
+==== Map009_A_A_A_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_4.mps IDs 1000000..1000016 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=150    warns=7   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000016 rec= 11 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000016  OK=15  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88176  (Blank)
+  cid    103 x  87054  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350298  (VariableCondition)
+  cid    121 x 524675  (SetVariable)
+  cid    124 x     44  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    404  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x  86957  (JumpLabel)
+  cid    250 x 175093  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437521  (ChoiceCase)
+  cid    420 x  86963  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176006  (BranchEnd)
+==== Map009_A_A_A_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_5.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=291    warns=8   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88152  (Blank)
+  cid    103 x  87057  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350286  (VariableCondition)
+  cid    121 x 524636  (SetVariable)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    401  (CommonEvent)
+  cid    212 x    141  (SetLabel)
+  cid    213 x  86960  (JumpLabel)
+  cid    250 x 175089  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437512  (ChoiceCase)
+  cid    420 x  86966  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175991  (BranchEnd)
+==== Map009_A_A_A_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_6.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=52     warns=20  
+id=1000001 rec=  1 p 0 OK      exec=52     warns=20  
+id=1000002 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000003 rec=  3 p 0 OK      exec=123    warns=10  
+id=1000004 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000005 rec=  5 p 0 OK      exec=18     warns=2   
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338052  (Blank)
+  cid    103 x 281708  (Comment)
+  cid    106 x      1  (DebugMessage)
+  cid    111 x     33  (VariableCondition)
+  cid    112 x  28168  (StringCondition)
+  cid    121 x 338083  (SetVariable)
+  cid    124 x      8  (SetVariableEx)
+  cid    150 x      4  (Picture)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x  28169  (LoopTimes)
+  cid    210 x     10  (CommonEvent)
+  cid    212 x      1  (SetLabel)
+  cid    250 x 591579  (Database)
+  cid    290 x      2  (Effect)
+  cid    401 x  28210  (ChoiceCase)
+  cid    420 x  28173  (ElseCase)
+  cid    498 x 309852  (LoopEnd)
+  cid    499 x  28196  (BranchEnd)
+==== Map009_A_A_A_7.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_7.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 RECCAP  exec=13132  warns=506 210 recursion cap
+id=1000001 rec=  1 p 0 OK      exec=51     warns=2   
+id=1000002 rec=  1 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=135    warns=14  
+id=1000004 rec=  3 p 0 OK      exec=65     warns=6   
+id=1000005 rec=  4 p 0 OK      exec=138    warns=16  
+id=1000006 rec=  5 p 0 OK      exec=284    warns=55  
+id=1000007 rec=  6 p 0 OK      exec=9      warns=2   
+id=1000008 rec=  7 p 0 OK      exec=31     warns=1   
+id=1000009 rec=  8 p 0 OK      exec=132    warns=14  
+[mpssweep] IDs 1000000..1000009  OK=8  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2424  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     95  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4934  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5751  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      4  (InputKey)
+  cid    124 x     30  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    515  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    201 x      1  (Move)
+  cid    210 x    784  (CommonEvent)
+  cid    212 x    259  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   2362  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x   5510  (ChoiceCase)
+  cid    420 x     23  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   4183  (BranchEnd)
+==== Map009_A_A_A_8.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_8.mps IDs 1000000..1000019 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=103    warns=6   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000016 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000017 rec= 12 p 0 OK      exec=29     warns=6   
+id=1000018 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000019 rec= 14 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000019  OK=18  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88184  (Blank)
+  cid    103 x  87053  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350302  (VariableCondition)
+  cid    121 x 524688  (SetVariable)
+  cid    124 x     53  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    405  (CommonEvent)
+  cid    212 x    133  (SetLabel)
+  cid    213 x  86956  (JumpLabel)
+  cid    250 x 175095  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437524  (ChoiceCase)
+  cid    420 x  86962  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176011  (BranchEnd)
+==== Map009_A_A_A_9.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_9.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=197    warns=6   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88140  (Blank)
+  cid    103 x  87027  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350273  (VariableCondition)
+  cid    121 x 524613  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    396  (CommonEvent)
+  cid    212 x    137  (SetLabel)
+  cid    213 x  86958  (JumpLabel)
+  cid    250 x 175086  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437497  (ChoiceCase)
+  cid    420 x  86964  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175980  (BranchEnd)
+==== Map009_A_A_A_A_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_A_1.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000002 rec=  1 p 1 OK      exec=291    warns=8   
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000007 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000008 rec=  3 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000008  OK=7  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88156  (Blank)
+  cid    103 x  87061  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350289  (VariableCondition)
+  cid    121 x 524643  (SetVariable)
+  cid    124 x     20  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    141  (SetLabel)
+  cid    213 x  86960  (JumpLabel)
+  cid    250 x 175090  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86966  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175994  (BranchEnd)
+==== Map009_A_A_A_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A_A.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=34     warns=12  
+id=1000001 rec=  1 p 1 OK      exec=338    warns=9   
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000006 rec=  2 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88152  (Blank)
+  cid    103 x  87066  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350288  (VariableCondition)
+  cid    121 x 524637  (SetVariable)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    402  (CommonEvent)
+  cid    212 x    143  (SetLabel)
+  cid    213 x  86961  (JumpLabel)
+  cid    250 x 175089  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437515  (ChoiceCase)
+  cid    420 x  86967  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 175992  (BranchEnd)
+==== Map009_A_A_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A_A.mps IDs 1000000..1000019 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=33     warns=10  
+id=1000002 rec=  1 p 1 OK      exec=244    warns=9   
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000011 rec=  6 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000016 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000017 rec= 12 p 0 OK      exec=29     warns=6   
+id=1000018 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000019 rec= 14 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000019  OK=18  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88196  (Blank)
+  cid    103 x  87092  (Comment)
+  cid    106 x    132  (DebugMessage)
+  cid    111 x 350317  (VariableCondition)
+  cid    121 x 524712  (SetVariable)
+  cid    124 x     53  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    411  (CommonEvent)
+  cid    212 x    139  (SetLabel)
+  cid    213 x  86959  (JumpLabel)
+  cid    250 x 175098  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x 437542  (ChoiceCase)
+  cid    420 x  86965  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x 176023  (BranchEnd)
+==== Map009_A_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A_A.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=561    warns=108 
+id=1000001 rec=  0 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1226  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x     98  (Comment)
+  cid    106 x    134  (DebugMessage)
+  cid    111 x   2430  (VariableCondition)
+  cid    112 x     18  (StringCondition)
+  cid    121 x   2970  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    124 x      2  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    260  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      7  (LoopTimes)
+  cid    180 x     23  (Wait)
+  cid    210 x    389  (CommonEvent)
+  cid    212 x    132  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1200  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2753  (ChoiceCase)
+  cid    420 x     21  (ElseCase)
+  cid    498 x     50  (LoopEnd)
+  cid    499 x   2067  (BranchEnd)
+==== Map009_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map009.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map009.mps IDs 1000000..1000016 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=155    warns=16  
+id=1000001 rec=  0 p 1 RECCAP  exec=13242  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=56     warns=6   
+id=1000003 rec=  2 p 0 OK      exec=6      warns=0   
+id=1000004 rec=  3 p 0 OK      exec=104    warns=7   
+id=1000005 rec=  4 p 0 OK      exec=105    warns=10  
+id=1000006 rec=  5 p 0 RECCAP  exec=13132  warns=506 210 recursion cap
+id=1000007 rec=  6 p 0 OK      exec=16     warns=2   
+id=1000008 rec=  7 p 0 OK      exec=31     warns=1   
+id=1000009 rec=  8 p 0 OK      exec=28741  warns=512 
+id=1000010 rec=  9 p 0 OK      exec=284    warns=55  
+id=1000011 rec= 10 p 0 OK      exec=385    warns=62  
+id=1000012 rec= 10 p 1 OK      exec=7      warns=0   
+id=1000013 rec= 11 p 0 OK      exec=9      warns=5   
+id=1000014 rec= 12 p 0 OK      exec=187    warns=7   
+id=1000015 rec= 12 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000016 rec= 13 p 0 OK      exec=110    warns=8   
+[mpssweep] IDs 1000000..1000016  OK=14  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   6860  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x   2435  (Comment)
+  cid    106 x   1396  (DebugMessage)
+  cid    111 x  10134  (VariableCondition)
+  cid    112 x    214  (StringCondition)
+  cid    121 x  14515  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x    238  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x    101  (Sound)
+  cid    150 x   1168  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x    254  (LoopTimes)
+  cid    180 x     24  (Wait)
+  cid    210 x   2027  (CommonEvent)
+  cid    212 x    764  (SetLabel)
+  cid    213 x     32  (JumpLabel)
+  cid    242 x      1  (ChipOverwrite)
+  cid    250 x   7817  (Database)
+  cid    290 x    106  (Effect)
+  cid    401 x  11448  (ChoiceCase)
+  cid    420 x    140  (ElseCase)
+  cid    498 x    927  (LoopEnd)
+  cid    499 x   9173  (BranchEnd)
+==== Map010.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map010.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=135    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=132    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=104    warns=8   
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  4 p 0 OK      exec=11     warns=0   
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1220  (Blank)
+  cid    103 x     40  (Comment)
+  cid    106 x    133  (DebugMessage)
+  cid    111 x   2496  (VariableCondition)
+  cid    121 x   2878  (SetVariable)
+  cid    123 x      4  (InputKey)
+  cid    124 x     22  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    255  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    394  (CommonEvent)
+  cid    212 x    128  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1195  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   2775  (ChoiceCase)
+  cid    420 x      8  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2115  (BranchEnd)
+==== Map011_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_1.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=335    warns=55  
+id=1000003 rec=  3 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  4 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=1  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x  88169  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x  87046  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x 350266  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x 524710  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    124 x     13  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      6  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    393  (CommonEvent)
+  cid    212 x    132  (SetLabel)
+  cid    213 x  86954  (JumpLabel)
+  cid    250 x 175111  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x 437517  (ChoiceCase)
+  cid    420 x  86972  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x 175986  (BranchEnd)
+==== Map011_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=363    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=57     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1228  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     88  (Comment)
+  cid    106 x    138  (DebugMessage)
+  cid    111 x   2459  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2958  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    393  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1207  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2761  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2087  (BranchEnd)
+==== Map011_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_3.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=32     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=375    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=57     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000007 rec=  5 p 0 OK      exec=32     warns=6   
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1234  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     94  (Comment)
+  cid    106 x    137  (DebugMessage)
+  cid    111 x   2466  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2968  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    394  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1208  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2768  (ChoiceCase)
+  cid    420 x     19  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2094  (BranchEnd)
+==== Map011_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_4.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=32     warns=6   
+id=1000001 rec=  1 p 0 RECCAP  exec=13794  warns=512 210 recursion cap
+id=1000002 rec=  2 p 0 OK      exec=32     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=4      warns=0   
+id=1000004 rec=  5 p 0 OK      exec=32     warns=6   
+[mpssweep] IDs 1000000..1000004  OK=4  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1237  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x    110  (Comment)
+  cid    106 x    134  (DebugMessage)
+  cid    111 x   2442  (VariableCondition)
+  cid    112 x     18  (StringCondition)
+  cid    121 x   2990  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    124 x     11  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    260  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      7  (LoopTimes)
+  cid    180 x     24  (Wait)
+  cid    210 x    392  (CommonEvent)
+  cid    212 x    132  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1205  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2765  (ChoiceCase)
+  cid    420 x     20  (ElseCase)
+  cid    498 x     50  (LoopEnd)
+  cid    499 x   2079  (BranchEnd)
+==== Map011_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=362    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=69     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000005 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000006 rec=  4 p 0 OK      exec=28     warns=1   
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1232  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     92  (Comment)
+  cid    106 x    140  (DebugMessage)
+  cid    111 x   2463  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2962  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      4  (Sound)
+  cid    150 x    269  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    393  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1213  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2767  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2091  (BranchEnd)
+==== Map011_6.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_6.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=32     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=357    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=57     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000007 rec=  5 p 0 OK      exec=4      warns=0   
+id=1000008 rec=  6 p 0 OK      exec=4      warns=0   
+id=1000009 rec=  7 p 0 OK      exec=32     warns=6   
+id=1000010 rec=  8 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000010  OK=10  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1235  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     93  (Comment)
+  cid    106 x    137  (DebugMessage)
+  cid    111 x   2466  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2966  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    395  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1206  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2767  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2094  (BranchEnd)
+==== Map011_7.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011_7.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000001 rec=  2 p 0 OK      exec=344    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=71     warns=2   
+id=1000003 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000004 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000005 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000006 rec=  5 p 0 OK      exec=32     warns=6   
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1228  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     90  (Comment)
+  cid    106 x    137  (DebugMessage)
+  cid    111 x   2460  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2959  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    392  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1206  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2759  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2088  (BranchEnd)
+==== Map011.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map011.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=123    warns=10  
+id=1000002 rec=  2 p 0 OK      exec=363    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=57     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  5 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1232  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     93  (Comment)
+  cid    106 x    137  (DebugMessage)
+  cid    111 x   2462  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   2965  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    268  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x    394  (CommonEvent)
+  cid    212 x    131  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   1208  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x   2764  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     28  (LoopEnd)
+  cid    499 x   2090  (BranchEnd)
+==== Map013.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map013.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map020_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020_1.mps IDs 1000000..1000025 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=197    warns=8   
+id=1000004 rec=  2 p 2 OK      exec=197    warns=8   
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000014 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000016 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000017 rec= 11 p 1 OK      exec=244    warns=7   
+id=1000018 rec= 11 p 2 OK      exec=291    warns=8   
+id=1000019 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000020 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000021 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000022 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000023 rec= 12 p 1 RECCAP  exec=13243  warns=512 210 recursion cap
+id=1000024 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 14 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000025  OK=25  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1322  (Blank)
+  cid    103 x    324  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2583  (VariableCondition)
+  cid    121 x   3081  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     56  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    438  (CommonEvent)
+  cid    212 x    166  (SetLabel)
+  cid    213 x     20  (JumpLabel)
+  cid    250 x   1219  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2869  (ChoiceCase)
+  cid    420 x     24  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2183  (BranchEnd)
+==== Map020_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020_2.mps IDs 1000000..1000026 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=150    warns=7   
+id=1000004 rec=  2 p 2 OK      exec=197    warns=8   
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000016 rec= 11 p 1 OK      exec=244    warns=7   
+id=1000017 rec= 11 p 2 OK      exec=291    warns=8   
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000022 rec= 12 p 1 RECCAP  exec=13243  warns=512 210 recursion cap
+id=1000023 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 15 p 0 OK      exec=71     warns=16  
+id=1000026 rec= 16 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000026  OK=26  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1325  (Blank)
+  cid    103 x    320  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2587  (VariableCondition)
+  cid    121 x   3078  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     59  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    253  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      2  (Move)
+  cid    210 x    437  (CommonEvent)
+  cid    212 x    165  (SetLabel)
+  cid    213 x     19  (JumpLabel)
+  cid    250 x   1230  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2875  (ChoiceCase)
+  cid    420 x     23  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2188  (BranchEnd)
+==== Map020_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020_3.mps IDs 1000000..1000027 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=197    warns=8   
+id=1000004 rec=  2 p 2 OK      exec=244    warns=9   
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000016 rec= 11 p 1 OK      exec=291    warns=8   
+id=1000017 rec= 11 p 2 OK      exec=291    warns=8   
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000022 rec= 12 p 1 RECCAP  exec=13243  warns=512 210 recursion cap
+id=1000023 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 15 p 0 OK      exec=71     warns=16  
+id=1000026 rec= 16 p 0 OK      exec=29     warns=6   
+id=1000027 rec= 17 p 0 OK      exec=71     warns=16  
+[mpssweep] IDs 1000000..1000027  OK=27  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1344  (Blank)
+  cid    103 x    368  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2611  (VariableCondition)
+  cid    121 x   3107  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     62  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    254  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    444  (CommonEvent)
+  cid    212 x    172  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x   1245  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2905  (ChoiceCase)
+  cid    420 x     26  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2209  (BranchEnd)
+==== Map020_4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020_4.mps IDs 1000000..1000032 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=244    warns=9   
+id=1000004 rec=  2 p 2 OK      exec=12     warns=4   
+id=1000005 rec=  2 p 3 OK      exec=5      warns=4   
+id=1000006 rec=  2 p 4 OK      exec=2      warns=0   
+id=1000007 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000016 rec= 11 p 1 OK      exec=244    warns=7   
+id=1000017 rec= 11 p 2 OK      exec=291    warns=8   
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000022 rec= 12 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000023 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 15 p 0 OK      exec=29     warns=6   
+id=1000026 rec= 16 p 0 OK      exec=29     warns=6   
+id=1000027 rec= 17 p 0 OK      exec=29     warns=6   
+id=1000028 rec= 18 p 0 OK      exec=29     warns=6   
+id=1000029 rec= 19 p 0 OK      exec=29     warns=6   
+id=1000030 rec= 20 p 0 OK      exec=29     warns=6   
+id=1000031 rec= 21 p 0 OK      exec=29     warns=6   
+id=1000032 rec= 22 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000032  OK=32  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1337  (Blank)
+  cid    103 x    317  (Comment)
+  cid    106 x    135  (DebugMessage)
+  cid    111 x   2591  (VariableCondition)
+  cid    121 x   3110  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     79  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    440  (CommonEvent)
+  cid    212 x    160  (SetLabel)
+  cid    213 x     17  (JumpLabel)
+  cid    250 x   1222  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2874  (ChoiceCase)
+  cid    420 x     21  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2194  (BranchEnd)
+==== Map020_5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020_5.mps IDs 1000000..1000034 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000006 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000007 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000009 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000010 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000011 rec= 11 p 1 OK      exec=291    warns=8   
+id=1000012 rec= 11 p 2 OK      exec=13     warns=2   
+id=1000013 rec= 11 p 3 OK      exec=5      warns=4   
+id=1000014 rec= 11 p 4 OK      exec=2      warns=0   
+id=1000015 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000016 rec= 12 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000017 rec= 13 p 0 OK      exec=34     warns=12  
+id=1000018 rec= 13 p 1 OK      exec=385    warns=10  
+id=1000019 rec= 13 p 2 OK      exec=13     warns=2   
+id=1000020 rec= 13 p 3 OK      exec=5      warns=4   
+id=1000021 rec= 13 p 4 OK      exec=2      warns=0   
+id=1000022 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000023 rec= 15 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 16 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 17 p 0 OK      exec=29     warns=6   
+id=1000026 rec= 18 p 0 OK      exec=29     warns=6   
+id=1000027 rec= 19 p 0 OK      exec=29     warns=6   
+id=1000028 rec= 20 p 0 OK      exec=34     warns=12  
+id=1000029 rec= 20 p 1 OK      exec=13     warns=2   
+id=1000030 rec= 20 p 2 OK      exec=5      warns=4   
+id=1000031 rec= 20 p 3 OK      exec=2      warns=0   
+id=1000032 rec= 22 p 0 OK      exec=29     warns=6   
+id=1000033 rec= 23 p 0 OK      exec=29     warns=6   
+id=1000034 rec= 24 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000034  OK=34  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1331  (Blank)
+  cid    103 x    293  (Comment)
+  cid    106 x    135  (DebugMessage)
+  cid    111 x   2582  (VariableCondition)
+  cid    121 x   3094  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     81  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    436  (CommonEvent)
+  cid    212 x    156  (SetLabel)
+  cid    213 x     15  (JumpLabel)
+  cid    250 x   1229  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2863  (ChoiceCase)
+  cid    420 x     19  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2187  (BranchEnd)
+==== Map020.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map020.mps IDs 1000000..1000026 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=197    warns=8   
+id=1000004 rec=  2 p 2 OK      exec=197    warns=8   
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  7 p 0 OK      exec=29     warns=6   
+id=1000012 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000013 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000014 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000015 rec= 11 p 0 OK      exec=34     warns=12  
+id=1000016 rec= 11 p 1 OK      exec=244    warns=7   
+id=1000017 rec= 11 p 2 OK      exec=291    warns=8   
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=65     warns=2   
+id=1000022 rec= 12 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000023 rec= 13 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 14 p 0 OK      exec=29     warns=6   
+id=1000025 rec= 15 p 0 OK      exec=29     warns=6   
+id=1000026 rec= 16 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000026  OK=26  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1323  (Blank)
+  cid    103 x    328  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2586  (VariableCondition)
+  cid    121 x   3085  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     59  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    439  (CommonEvent)
+  cid    212 x    166  (SetLabel)
+  cid    213 x     20  (JumpLabel)
+  cid    250 x   1220  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2872  (ChoiceCase)
+  cid    420 x     24  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2186  (BranchEnd)
+==== Map021.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map021.mps IDs 1000000..1000024 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=29     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=33     warns=10  
+id=1000003 rec=  2 p 1 OK      exec=197    warns=6   
+id=1000004 rec=  2 p 2 OK      exec=197    warns=6   
+id=1000005 rec=  2 p 3 OK      exec=12     warns=2   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000009 rec=  4 p 0 OK      exec=29     warns=6   
+id=1000010 rec=  5 p 0 OK      exec=29     warns=6   
+id=1000011 rec=  6 p 0 OK      exec=34     warns=12  
+id=1000012 rec=  6 p 1 OK      exec=291    warns=8   
+id=1000013 rec=  6 p 2 OK      exec=197    warns=6   
+id=1000014 rec=  6 p 3 OK      exec=13     warns=2   
+id=1000015 rec=  6 p 4 OK      exec=5      warns=4   
+id=1000016 rec=  6 p 5 OK      exec=2      warns=0   
+id=1000017 rec=  7 p 0 OK      exec=65     warns=2   
+id=1000018 rec=  7 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000019 rec=  8 p 0 OK      exec=29     warns=6   
+id=1000020 rec=  9 p 0 OK      exec=29     warns=6   
+id=1000021 rec= 10 p 0 OK      exec=29     warns=6   
+id=1000022 rec= 11 p 0 OK      exec=29     warns=6   
+id=1000023 rec= 12 p 0 OK      exec=29     warns=6   
+id=1000024 rec= 13 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000024  OK=24  stepcap=0  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   1311  (Blank)
+  cid    103 x    307  (Comment)
+  cid    106 x    136  (DebugMessage)
+  cid    111 x   2575  (VariableCondition)
+  cid    121 x   3063  (SetVariable)
+  cid    123 x      1  (InputKey)
+  cid    124 x     53  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x    252  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    435  (CommonEvent)
+  cid    212 x    164  (SetLabel)
+  cid    213 x     19  (JumpLabel)
+  cid    250 x   1217  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x   2860  (ChoiceCase)
+  cid    420 x     23  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   2176  (BranchEnd)
+==== Map023.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map023.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=65     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000002 rec=  2 p 0 OK      exec=132    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=11     warns=0   
+id=1000004 rec=  4 p 0 OK      exec=65     warns=2   
+id=1000005 rec=  4 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2360  (Blank)
+  cid    103 x     43  (Comment)
+  cid    106 x    261  (DebugMessage)
+  cid    111 x   4898  (VariableCondition)
+  cid    121 x   5675  (SetVariable)
+  cid    123 x      3  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x    505  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    775  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2336  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5436  (ChoiceCase)
+  cid    420 x     11  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4136  (BranchEnd)
+==== Map024.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map024.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 RECCAP  exec=13154  warns=506 210 recursion cap
+id=1000001 rec=  1 p 0 OK      exec=104    warns=8   
+id=1000002 rec=  1 p 1 RECCAP  exec=13237  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=136    warns=16  
+id=1000004 rec=  3 p 0 OK      exec=136    warns=16  
+id=1000005 rec=  4 p 0 OK      exec=136    warns=16  
+id=1000006 rec=  5 p 0 OK      exec=136    warns=16  
+id=1000007 rec=  6 p 0 OK      exec=53     warns=3   
+id=1000008 rec=  7 p 0 OK      exec=8      warns=2   
+id=1000009 rec=  8 p 0 OK      exec=8      warns=2   
+[mpssweep] IDs 1000000..1000009  OK=8  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2401  (Blank)
+  cid    103 x     59  (Comment)
+  cid    106 x    262  (DebugMessage)
+  cid    111 x   4956  (VariableCondition)
+  cid    121 x   5706  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     40  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      4  (Sound)
+  cid    150 x    512  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    173 x      3  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x      1  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    785  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x   2376  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x   5510  (ChoiceCase)
+  cid    420 x     15  (ElseCase)
+  cid    498 x      6  (LoopEnd)
+  cid    499 x   4192  (BranchEnd)
+==== Map025_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map025_1.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=137    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000003 rec=  3 p 0 OK      exec=36     warns=2   
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+[mpssweep] IDs 1000000..1000004  OK=5  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     62  (Blank)
+  cid    103 x     26  (Comment)
+  cid    106 x      4  (DebugMessage)
+  cid    111 x     75  (VariableCondition)
+  cid    121 x     60  (SetVariable)
+  cid    123 x      4  (InputKey)
+  cid    124 x     19  (SetVariableEx)
+  cid    150 x      4  (Picture)
+  cid    210 x      8  (CommonEvent)
+  cid    212 x      1  (SetLabel)
+  cid    250 x     38  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x     93  (ChoiceCase)
+  cid    420 x      4  (ElseCase)
+  cid    499 x     75  (BranchEnd)
+==== Map025.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map025.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=100    warns=8   
+[mpssweep] IDs 1000000..1000002  OK=3  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     39  (Blank)
+  cid    103 x     15  (Comment)
+  cid    106 x      3  (DebugMessage)
+  cid    111 x     48  (VariableCondition)
+  cid    121 x     36  (SetVariable)
+  cid    123 x      3  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    150 x      3  (Picture)
+  cid    210 x      3  (CommonEvent)
+  cid    250 x     24  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x     60  (ChoiceCase)
+  cid    420 x      3  (ElseCase)
+  cid    499 x     48  (BranchEnd)
+==== Map037_A.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map037_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== Map037.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\Map037.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+==== title.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\title.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 STEPCAP exec=1999982 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000001 rec=  1 p 0 OK      exec=32     warns=6   
+id=1000002 rec=  2 p 0 OK      exec=32     warns=6   
+id=1000003 rec=  3 p 0 STEPCAP exec=1999991 warns=23  step cap exceeded (2000000) ΓÇö runaway loop
+id=1000004 rec=  4 p 0 STEPCAP exec=1968257 warns=512 step cap exceeded (2000000) ΓÇö runaway loop
+id=1000005 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000006 rec=  5 p 0 OK      exec=15     warns=0   
+id=1000007 rec=  6 p 0 OK      exec=3      warns=0   
+id=1000008 rec=  7 p 0 OK      exec=2      warns=1   
+id=1000009 rec=  8 p 0 OK      exec=7      warns=0   
+id=1000010 rec=  9 p 0 OK      exec=12     warns=2   
+id=1000011 rec= 10 p 0 OK      exec=12     warns=2   
+id=1000012 rec= 11 p 0 OK      exec=108    warns=9   
+id=1000013 rec= 12 p 0 OK      exec=1      warns=0   
+id=1000014 rec= 13 p 0 OK      exec=1      warns=0   
+[mpssweep] IDs 1000000..1000014  OK=11  stepcap=3  reccap=1  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 545554  (Blank)
+  cid    103 x 333654  (Comment)
+  cid    106 x  36441  (DebugMessage)
+  cid    111 x 612439  (VariableCondition)
+  cid    112 x  13297  (StringCondition)
+  cid    121 x 1275998  (SetVariable)
+  cid    122 x  83442  (SetString)
+  cid    123 x 115036  (InputKey)
+  cid    124 x  63508  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x 115035  (Sound)
+  cid    150 x 110704  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x    101  (StartLoop)
+  cid    171 x     99  (BreakLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x   7088  (LoopTimes)
+  cid    180 x      4  (Wait)
+  cid    210 x  32164  (CommonEvent)
+  cid    212 x    135  (SetLabel)
+  cid    213 x 115035  (JumpLabel)
+  cid    221 x     19  (LoadGame)
+  cid    250 x 621930  (Database)
+  cid    290 x 230074  (Effect)
+  cid    401 x 1016601  (ChoiceCase)
+  cid    420 x  51975  (ElseCase)
+  cid    498 x  91140  (LoopEnd)
+  cid    499 x 510214  (BranchEnd)
+==== tuto_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto_1.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=65     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13242  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000005 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2390  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     86  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4890  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5764  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      4  (Sound)
+  cid    150 x    516  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    779  (CommonEvent)
+  cid    212 x    258  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2361  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   5458  (ChoiceCase)
+  cid    420 x     22  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4137  (BranchEnd)
+==== tuto_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=51     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=17     warns=0   
+id=1000004 rec=  3 p 0 OK      exec=37     warns=6   
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2390  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     87  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4893  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5763  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    516  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    779  (CommonEvent)
+  cid    212 x    258  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2361  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   5461  (ChoiceCase)
+  cid    420 x     22  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4140  (BranchEnd)
+==== tuto_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=65     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=358    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=17     warns=0   
+id=1000004 rec=  3 p 0 OK      exec=37     warns=6   
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2393  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     89  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4895  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5764  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    516  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    779  (CommonEvent)
+  cid    212 x    258  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2362  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   5463  (ChoiceCase)
+  cid    420 x     22  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4142  (BranchEnd)
+==== tuto.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=51     warns=2   
+id=1000001 rec=  0 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=14     warns=2   
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000005 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2384  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x     83  (Comment)
+  cid    106 x    264  (DebugMessage)
+  cid    111 x   4887  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x   5755  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    516  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x    778  (CommonEvent)
+  cid    212 x    258  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2360  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   5455  (ChoiceCase)
+  cid    420 x     22  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x   4134  (BranchEnd)
+==== tuto2_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto2_1.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=16     warns=0   
+id=1000005 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000007 rec=  6 p 0 OK      exec=29     warns=6   
+id=1000008 rec=  7 p 0 OK      exec=29     warns=6   
+[mpssweep] IDs 1000000..1000008  OK=7  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2364  (Blank)
+  cid    103 x     51  (Comment)
+  cid    106 x    261  (DebugMessage)
+  cid    111 x   4895  (VariableCondition)
+  cid    121 x   5701  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    508  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    778  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2342  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5435  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4133  (BranchEnd)
+==== tuto2_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto2_2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=34     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=64     warns=7   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3520  (Blank)
+  cid    103 x     60  (Comment)
+  cid    106 x    391  (DebugMessage)
+  cid    111 x   7320  (VariableCondition)
+  cid    121 x   8525  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    763  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1163  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3506  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8129  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6177  (BranchEnd)
+==== tuto2_3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto2_3.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=36     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=62     warns=5   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3520  (Blank)
+  cid    103 x     60  (Comment)
+  cid    106 x    391  (DebugMessage)
+  cid    111 x   7320  (VariableCondition)
+  cid    121 x   8525  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    764  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1163  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3505  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8129  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6177  (BranchEnd)
+==== tuto2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=29     warns=6   
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=51     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=65     warns=9   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3516  (Blank)
+  cid    103 x     58  (Comment)
+  cid    106 x    391  (DebugMessage)
+  cid    111 x   7317  (VariableCondition)
+  cid    121 x   8523  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    763  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1163  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3506  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8126  (ChoiceCase)
+  cid    420 x     17  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6174  (BranchEnd)
+==== tuto3_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto3_1.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=65     warns=2   
+id=1000002 rec=  1 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  3 p 0 OK      exec=3      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=9      warns=2   
+id=1000006 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000007 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2356  (Blank)
+  cid    103 x     43  (Comment)
+  cid    106 x    262  (DebugMessage)
+  cid    111 x   4888  (VariableCondition)
+  cid    121 x   5686  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x    508  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    776  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2339  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5428  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4126  (BranchEnd)
+==== tuto3_2.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto3_2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=65     warns=2   
+id=1000002 rec=  1 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=36     warns=6   
+id=1000004 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000005 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000006 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000007 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000008 rec=  6 p 0 OK      exec=62     warns=5   
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3520  (Blank)
+  cid    103 x     60  (Comment)
+  cid    106 x    391  (DebugMessage)
+  cid    111 x   7320  (VariableCondition)
+  cid    121 x   8525  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    764  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1163  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3505  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8129  (ChoiceCase)
+  cid    420 x     18  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6177  (BranchEnd)
+==== tuto3.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto3.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=51     warns=2   
+id=1000002 rec=  1 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000003 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000004 rec=  3 p 0 OK      exec=65     warns=9   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000007 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3517  (Blank)
+  cid    103 x     55  (Comment)
+  cid    106 x    393  (DebugMessage)
+  cid    111 x   7318  (VariableCondition)
+  cid    121 x   8520  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     21  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    763  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1163  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3506  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8127  (ChoiceCase)
+  cid    420 x     17  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6175  (BranchEnd)
+==== tuto4_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto4_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=26     warns=5   
+id=1000002 rec=  2 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2356  (Blank)
+  cid    103 x     43  (Comment)
+  cid    106 x    261  (DebugMessage)
+  cid    111 x   4890  (VariableCondition)
+  cid    121 x   5690  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      2  (Sound)
+  cid    150 x    508  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    776  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2340  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5430  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4128  (BranchEnd)
+==== tuto4.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto4.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=69     warns=9   
+id=1000002 rec=  2 p 0 OK      exec=65     warns=2   
+id=1000003 rec=  2 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000004 rec=  3 p 0 OK      exec=29     warns=6   
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2360  (Blank)
+  cid    103 x     45  (Comment)
+  cid    106 x    261  (DebugMessage)
+  cid    111 x   4892  (VariableCondition)
+  cid    121 x   5701  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     19  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x    511  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    778  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2344  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5434  (ChoiceCase)
+  cid    420 x     13  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4130  (BranchEnd)
+==== tuto5_1.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto5_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=9      warns=1   
+id=1000002 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13245  warns=512 210 recursion cap
+id=1000005 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=0  reccap=2  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   2356  (Blank)
+  cid    103 x     40  (Comment)
+  cid    106 x    261  (DebugMessage)
+  cid    111 x   4889  (VariableCondition)
+  cid    121 x   5688  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      2  (Sound)
+  cid    150 x    508  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x      2  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    776  (CommonEvent)
+  cid    212 x    256  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x   2337  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x   5429  (ChoiceCase)
+  cid    420 x     12  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x   4127  (BranchEnd)
+==== tuto5.mps
+[mpssweep] merged 584 common events
+[mpssweep] C:\Users\RDP\Documents\Default Project\Eris Dysnomia\Data\MapData\tuto5.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=9      warns=1   
+id=1000002 rec=  2 p 0 OK      exec=29     warns=6   
+id=1000003 rec=  3 p 0 OK      exec=65     warns=2   
+id=1000004 rec=  3 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 RECCAP  exec=13241  warns=512 210 recursion cap
+id=1000007 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  5 p 1 RECCAP  exec=13239  warns=512 210 recursion cap
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=0  reccap=3  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x   3514  (Blank)
+  cid    103 x     55  (Comment)
+  cid    106 x    391  (DebugMessage)
+  cid    111 x   7316  (VariableCondition)
+  cid    121 x   8511  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     17  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      2  (Sound)
+  cid    150 x    760  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x      3  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x   1161  (CommonEvent)
+  cid    212 x    384  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x   3500  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x   8123  (ChoiceCase)
+  cid    420 x     16  (ElseCase)
+  cid    498 x     18  (LoopEnd)
+  cid    499 x   6173  (BranchEnd)

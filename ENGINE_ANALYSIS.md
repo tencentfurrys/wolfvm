@@ -740,6 +740,29 @@ needs the MapX object runtime to be modeled — Stage 3), plus
 band for a headless census run). Everything else already runs through
 the CommonEvent kernel.
 
+### 13.0.1 mpssweep — all-maps headless page sweep (2026-10-22)
+
+Every page of all 105 maps run through the CommonEvent VM kernel by the
+new `mpssweep` CLI (synthetic page records, real CommonEvent.dat merged
+so page 210-callees resolve; DB pairs loaded; fresh state per page;
+DB restore-on-write isolation like `sweep`). Log:
+analysis/temp/mpssweep_all.txt. Runtime ~132 s end-to-end.
+
+- **1028/1028 pages classified: OK=868 (84.4%), stepcap=35,
+  reccap=125, other=0, gap=0.**
+- Reading (approx-runner caveat: page activation conditions are NOT
+  modeled — every page is run unconditionally, so wait-spin pages the
+  engine might never activate show up as stepcap, and deep 210 call
+  chains as reccap; both are the SAME fault families the CE sweep's
+  87 stepcap / 13 reccap ids match — pages inherit them through their
+  210 callees. The results are a coverage report, not engine-failures).
+- no OTHER anywhere: every page terminates in a defined state — the
+  kernel pipeline is closed over the whole map data side as well.
+- Stage-2 milestone: the map data side now flows through the same
+  verified VM kernel; the next increment is the MapX object model
+  (page conditions + EraseEvent 173 + tick/picture runtime, Stage 3).
+
+
 
 ### 13.1 Layout (facts)
 

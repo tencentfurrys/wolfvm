@@ -95,6 +95,9 @@ other=0, gap=0** — per-id diff vs the archived v4 baseline is exactly one id
   page activation conditions are NOT modeled (engine MapX object side, Stage 3);
   fresh GameState per page, DB restore-on-write isolation like `sweep`.
   1-1.mps: 15 OK + 1 RECCAP (rec 9 page 1, 210 recursion cap) in 0.5 s.
+  All-maps run (105 files / 1028 pages, ~132 s): **OK=868, stepcap=35,
+  reccap=125, other=0, gap=0** — every page terminates in a defined
+  state; log at `analysis/temp/mpssweep_all.txt`.
 - tools: `selftest` (in-memory VM net, data-free) + `sweep` (native harness +
   classifier) so the verification loop no longer depends on one machine's
   PowerShell harness.
