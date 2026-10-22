@@ -685,7 +685,6 @@ its baseline = exactly ONE id (ev581 OTHER->OK - the 210-callee
 (id-not-found harness artifact) = 479/84/13/8 exactly. Stable.
 
 ### 12.6 ev86 "499 without cond" - root cause + engine-true tolerance (2026-10-22)
-
 The four OTHER fails (203/207/253/542) all inherit ONE common: ev86
 "the death" (285 cmds). Structure: #2 opens an ind-0 select
 ([cself 1 == 1]); its case-1 body sets cself[54]=1 then does
@@ -710,6 +709,94 @@ no match -> note("499 stray tolerated") + continue (was a hard error).
 "Pop the topmost Cond regardless of indent" was REJECTED: it would
 kill selects that still own active code (no-op is the honest empty
 close). 4 close-inherit fails -> OK.
+
+### 12.7 Game.exe decode session 2: cid 173 EraseEvent + erase lifecycle +
+                 the 210 map-event page-call branch (byte-verified 2026-10-22)
+
+Method: REA was absent on this box this session; used GNU objdump
+(C:\mingw64\bin) directly on `Game.exe` (pei-i386, VA = fileoff +
+0x400000 for .text/.rdata; .text VMA 0x401000 file 0x1000).
+Ground-truth check first: `0x4559aa: call 0x45dd40` (cid 123 arm) and
+`JT[46]=0x45730b` reproduce §12.1 exactly. Full .text disasm
+(39.6 MB text, 1,271,535 lines) at workspace `win_text.txt` —
+regenerable artifact, NOT committed (objdump -d Game.exe).
+
+#### dispatch arms (second interpreter), byte-verified
+
+Arm blocks are `mov ecx,[ebp-0x10]; call HANDLER; jmp 0x455698|0x457317`
+(stride 0x0D): 111→0x455973(0x45dd40), 112→0x455980, 121→0x45598D,
+122→0x45599A(0x45b670), 123→0x4559A7(0x45dd40), 124→0x4559B4(0x45de60),
+125→0x4559C1(0x45fb00), 126→0x4559CE(0x45fe40), 171→0x455A50(0x462c00),
+172→0x455A5D(0x462d70), **173→0x455A6A(0x462da0)**, 174→0x455A77(0x462fa0),
+175→0x455A84(0x462fe0), 176→0x455A91(0x462c30), 177→0x455A9E(0x463010),
+178→0x455AAB(0x463060), 179→0x455AB8(0x462960), **180→0x455AC5(0x463080)**,
+201→0x463100, 202→0x4631D0 ([this+0xD]=1; ret true), 210→0x4631F0,
+211→0x463EF0 (0x455AF9 arm), 213→0x464DD0 (jmp-home variant 0x455698).
+
+#### cid 173 = EraseEvent, handler 0x462DA0 (fully traced)
+
+1. arg1 = elem-getter 0x4d95b0([this+0x89c], idx 1) cell value v.
+2. Conversion 0x490b90(this, v) -> [ebp-0x14]:
+   **chip-band normalizer** — identity for v < 0xF4240 (1e6); for
+   0x10c8e0 <= v < 0x124f80 (1.1e6..1.2e6 band): result =
+   `[this+0x14]*10 + (v % 10) + 0xF4240`; higher bands branch
+   further (0x186a00 = 1.6e6 ...). So 1e6-band args are
+   SELF-INDEXED keys, not literal values.
+3. Context gate: `cmp [this+0x14],0 / [this+0x18],0`:
+   - slotA = [this+0x14] >= 0 -> SELF-ERASE path 0x462eab;
+   - slotB = [this+0x18] < 0 -> plain `return false`;
+   - else -> throw user-visible string 【コモンイベントの一時消し。
+     コモンイベントを一時消しすることはできません】 (VA 0x8159b8,
+     pushed via string ctor 0x4d5cb0 at 0x462e29) — **engine
+     FORBIDS EraseEvent in common-event context**.
+4. SELF-ERASE path (0x462eab): checks `[this+0x10] == ds:0xaaaae08`
+   (scene tag global) — mismatch -> 0x457660(this) + return false.
+   Then slot=[this+0x14]; arg2 cell value v2 via elem-getter idx 2
+   (**EraseEvent carries TWO args**); lookup 0x4770b0(container
+   0xaa99ac, key=slot — stdcall ret 4, linear loop over int array at
+   container+0x143c via size 0x4dae60/at 0x4daeb0, returns idx or -1);
+   resolve 0x4df440(0xaab020, idx) -> object; mutate 0x4adb70(obj, v2)
+   -> **fade-erase setup**: obj[0x250] = obj[0x254] = v2;
+   obj[0x258] = old WORD[obj+0x44]; WORD[obj+0x44] = (v2*old)/max(v2,1)
+   (= old when v2 != 0, 0 when v2 == 0). Then 0x457660(this) refresh;
+   optional 0x453700 depending on this->[byte 0]!=0 && [this+4]==0;
+   all paths return false.
+5. by-id path (v > -1, 0x462f2b): find1 = 0x4770b0(0xaa99ac, [ebp-0x14]);
+   find1 < 0 -> skip; else arg2-consumption chain (stack discipline:
+   each find is ret 4, the pushed v2 lands as the mutation arg for the
+   SAME 0x4adb70 fade setup), then interpreter advance `[this+8] += 1`.
+6. Return value: false from every path (epilogue 0x462f81 plain).
+
+#### erased-object tick = 0x44baf0 (fade evaluator)
+
+Called once per sprite from the map-scene loop (see below). Semantics:
+if [0x254] != -1 and !BYTE[0xBE] and [0xFA0] <= 0: subtract global
+ds:0x897264 from [0xFA0]; when countdown <= 0 → BYTE[0xBE] = 1 +
+vtable[0] call (erase complete). Alpha blend: WORD[0x44] =
+([0x258] * [0x250]) / max([0x254],1) each pass. Also handles
+movement kind dispatch (WORD[0x58] = 1->0x450920, 2->0x450660,
+3->0x4506d0), wrap-around clamps vs 0xaa97b0 size getters and global
+0x897284, and sub-object chains at +0x14c/+0x1f4/+0x240.
+
+#### map-scene manager facts
+
+Sprite container lives at manager+0x1870, iterated by
+size=0x4df3c0 / at=0x4df440 with per-item tick 0x44baf0 (0x4505ea..0x45062a);
+manager+0x1890 = frame counter wrapped mod 0x249f00 (2,400,000).
+
+#### THE BIG ONE: 210 has a MAP-EVENT PAGE-CALL branch (TODO verify decode)
+
+The error string 【存在しないマップEv%d,ページ%dを呼び出そうとしました】
+("attempted to call non-existent map Ev%d, page%d") appears in 4 .rdata
+copies (VA 0x7fff18/0x7fff4c/0x80bccc/0x815b20) — all 4 have xrefs:
+0x40731f, 0x407336, 0x4124a7, and **0x463d67 which lies inside cid 210's
+handler span (0x4631f0..0x463ef0)**. Site 0x463d67 reads arg cells,
+runs BOTH through the same chip-band normalizer 0x490b90 (+1 on arg1),
+then formats the message. Implication: **cid 210's >=1e6 band arg =
+"call map event Ev's page P"**, distinct from common-event calls —
+which means the SWEEP's 210 model (common-id lookup only) is missing
+a whole branch family. The engine ALSO has the page-entry keying
+(Ev,page) numeric — TODO verify full branch decode (next session).
 
 ## 13. MapData/*.mps decoded (machine-verified 2026-10-22)
 

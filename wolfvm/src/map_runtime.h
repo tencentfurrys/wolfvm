@@ -10,7 +10,9 @@
 // Data-verified inputs this stands on (see map_project.h / ENGINE_ANALYSIS):
 //   - page scalar `condition`: -1 x1015 / 0 x12 / 52 x1 in the target data;
 //   - per-page raw fields (v16 / block10 / head / flags) are structured but
-//     engine-open (TODO verify Game.exe map-event loader).
+//     engine-open (TODO verify Game.exe map-event loader) — NOTE (§12.7):
+//     the >=1e6 argument band in cids 173/210 is a SELF-INDEXED event key
+//     (evSlot*10 + sub), so 1e6-band values are IDs, never scalar options.
 #pragma once
 
 #include <cstdint>
@@ -79,8 +81,14 @@ public:
         }
     }
 
-    // cid 173 EraseEvent hook (approx): engine truth — "erase the running
-    // event" and its persistence/re-arm semantics — is TODO verify.
+    // cid 173 EraseEvent hook. Engine truth (ENGINE_ANALYSIS §12.7,
+    // byte-verified): handler 0x462DA0 = self-slot erase carrying TWO args
+    // (slot key + fade param); sets the fade triple obj{0x250,0x254,0x258}
+    // and the display word 0x44; the erased object fades per-tick
+    // (0x44BAF0) until BYTE[0xBE]=1 + vtable callback; common-event
+    // context is FORBIDDEN (user-visible message, no erase executed).
+    // This MODEL: sticky erase with no fade phase (approx), (TODO verify
+    // full persistence/re-arm window in the map loader session).
     void erase(int32_t id) {
         for (auto& o : objs_)
             if (o.rec->id == id) { o.erased = true; o.active_page = -1; }
