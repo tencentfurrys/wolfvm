@@ -10,20 +10,22 @@
 # layer via wolfvm -> sweep sanity probe id 0. Safe to re-run (idempotent steps).
 
 param(
-    [string]$Archive  = "$HOME\Downloads\Eris_Dysnomia_v1.02.7z",
+    [string]$Archive  = "",
     [string]$UberWolf = "",
     [string]$SevenZip = "7z"
 )
 $ErrorActionPreference = "Stop"
 $project = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)   # .../Default Project
 $extractInto = $project
+if (-not $Archive)  { $Archive  = "$HOME\Downloads\Eris_Dysnomia_v1.02.7z" }
+if (-not $UberWolf) { $UberWolf = Join-Path $project "tools\UberWolfCli.exe" }
 
 Write-Host "== restore-data =="
 if (-not (Test-Path $Archive)) {
     Write-Error "archive not found: $Archive  (re-download Eris_Dysnomia_v1.02.7z)"
 }
 Write-Host "[1/5] extract $($Archive)"
-& $SevenZip e -y "-o$extractInto" $Archive | Out-Null
+& $SevenZip x -y "-o$extractInto" $Archive | Out-Null
 if ($LASTEXITCODE -ne 0) { Write-Error "extraction failed (7z exit $LASTEXITCODE)" }
 
 # Locate the game root (archive layout may or may not carry a top folder).
@@ -40,16 +42,14 @@ if (-not (Test-Path (Join-Path $data "BasicData\Game.dat"))) {
 
 if ($UberWolf -and (Test-Path $UberWolf)) {
     Write-Host "[3/5] decrypt .wolf archives (UberWolfCli; keys auto-detect from Game.exe)"
-    # NOTE: confirm the decrypt flag against `UberWolfCli.exe -h` (v0.6.4) on first
-    # session use — the verified 2026-10-22 pipeline decrypted all 13 archives to
-    # PLAIN per-file data (plaintext Game.dat directly readable).
-    Get-ChildItem $data -Recurse -Filter "*.wolf" | ForEach-Object {
-        Write-Host "      $($_.Name)"
-        & $UberWolf "process", $_.FullName
-        if ($LASTEXITCODE -ne 0) { Write-Error "decrypt failed: $($_.Name)" }
-    }
+    # Verified usage (v0.6.4 release asset, CLI11): positional FILEs =
+    # <Game[Pro].exe> <data_folder> — unpacks every .wolf in the data folder;
+    # -o makes re-runs idempotent against already-unpacked folders.
+    & $UberWolf -o (Join-Path $gameroot "Game.exe") $data
+    if ($LASTEXITCODE -ne 0) { Write-Error "decrypt failed (exit $LASTEXITCODE)" }
 } else {
-    Write-Host "[3/5] SKIP decrypt (pass -UberWolf <path\UberWolfCli.exe>)"
+    Write-Host "[3/5] SKIP decrypt (no shiny tool: run with -UberWolf path\UberWolfCli.exe;"
+    Write-Host "      official asset: github.com/Sinflower/UberWolf/releases, tag v0.6.4)"
 }
 
 Write-Host "[4/5] dat-layer verification via wolfvm"
