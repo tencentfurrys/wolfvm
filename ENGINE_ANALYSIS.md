@@ -686,3 +686,53 @@ no match -> note("499 stray tolerated") + continue (was a hard error).
 "Pop the topmost Cond regardless of indent" was REJECTED: it would
 kill selects that still own active code (no-op is the honest empty
 close). 4 close-inherit fails -> OK.
+
+## 13. MapData/*.mps decoded (machine-verified 2026-10-22)
+
+Scope: 105 files in `Data\MapData\` (7 eventless). All 105 consumed
+byte-exactly by the sweep AND by the native `wolfvm mpsinfo` parser
+(`src/map_project.{h,cpp}`; CLI: `mpsinfo <file.mps> [-v]`); totals agree across the two independent implementations: 676 event records,
+1028 pages, 8931 commands.
+
+### 13.1 Layout (facts)
+
+- Header: `[10 zero bytes]["WOLFM"]` plain record (no dat crypt),
+  `[i32 0][u8 0][u32 100][u32 1381][u8 0]`, a NUL-terminated SJIS
+  string (copyright, "なし" everywhere), then
+  `[i32 layers][i32 width][i32 height][i32 extra]`
+  (layers in {0,2,3,4}; extra 0..23).
+- Chip planes: 3 planes x W x H x u32 tokens, stacked right after the
+  header (plane count 3 is NOT gated by `layers`).
+- Strings inside records: `[i32 len incl NUL][bytes]` (CE string form).
+- Event tail after the planes: either single byte 0x66 (7 eventless
+  maps) or record list terminated by 0x66:
+  - record := `"6F 39 30 00 00"` marker
+    + `[i32 id][str name][i32 x][i32 y][i32 n_pages][i32 unk4]`
+    + n_pages pages + `[0x70]` end tag.
+  - page := `[0x79][i32 condition][str graphic_file][5B head]
+    [4B flags][4 x i32 chips][16B][10B][i32 n_cmds]
+    [n_cmds commands][`03 00 x6` trailer][0x7A]`.
+  - commands = the shared CE command grammar (`[u8 argc-1][i32 cid]
+    [args][indent][n_str][strings][optional move/route tail]`).
+- Count invariants proven on every record/page: head `n_pages` ==
+  structurally parsed pages (676/676); `n_cmds` guards its stream;
+  zero unaccounted bytes in any file.
+
+### 13.2 Value observations (semantics still open)
+
+- Record (x,y) = map-chip position (e.g. 1-9 door event at (11,17)).
+- `condition` field: -1 x1015 / 0 x12 / 52 x1; the non-(-1) pages are
+  graphic-bearing door-like pages (Map011_*, Map020_1, Map000).
+- chips form `pngIndex*100000 + chipPos`: PNG10 = 1,000,000,
+  SystemGraphic door = PNG11 (1,100,000 band), 2,000,008-type ids
+  appear as chip[0] on event pages (2,000,000 band).
+- `graphic_file`: "" on invisible events; real paths on visible ones
+  ("BasicData/光.png", "SystemGraphic/door.png").
+- 5-byte page head: 02/08, 00..02, FF, 00, 00..02; 4 flag bytes
+  0x20/0x21; 10-byte block mostly `03 03 03 00 XX 02 00 00 00 00`
+  (XX in {20,21,23,24,25}).
+- Map004 cross-check: 6 events ("地図", 演出 x4, 演出消滅) at
+  (0,0)..(0,5), 11 pages, 68 commands — matches the hexdump rows.
+
+NOTE: the old "MapXXX.dat" idea is dead — all per-map data lives in
+the .mps files; no separate per-map .dat events exist anywhere.

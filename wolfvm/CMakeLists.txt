@@ -14,6 +14,7 @@ add_executable(wolfvm
   src/database.cpp
   src/sys_db_basic.cpp
   src/tile_set_data.cpp
+  src/map_project.cpp
   src/vm.cpp)
 if(NOT MSVC)
   target_compile_options(wolfvm PRIVATE -Wall -Wextra)

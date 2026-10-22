@@ -11,6 +11,7 @@
 #include "database.h"
 #include "filecoder.h"
 #include "game_dat.h"
+#include "map_project.h"
 #include "map_tree.h"
 #include "vm.h"
 #include "map_tree_open_status.h"
@@ -674,6 +675,47 @@ static int cmd_tileset(const char* path, bool verbose) {
     return 0;
 }
 
+static int cmd_mpsinfo(const char* path, bool verbose) {
+    // .mps maps are plain records (10 zero bytes lead), so the game-dat crypt
+    // probe is not applied — verified against all 105 map files of the target.
+    auto data = read_file(path);
+    const size_t total = data.size();
+    wolf::Reader r(std::move(data));
+    wolf::MapProjectDat mp;
+    std::string err;
+    wolf::MapProjectDat::parse(r, mp, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    size_t n_pages = 0, n_cmds = 0;
+    for (const auto& e : mp.events) {
+        n_pages += e.pages.size();
+        for (const auto& p : e.pages) n_cmds += p.commands.size();
+    }
+    std::printf("%s\n", path);
+    std::printf("  size      : %zu bytes fully consumed\n", total);
+    std::printf("  magic     : WOLFM (fields 100 / 1381 verified)\n");
+    std::printf("  copyright : \"%s\"\n", escape_bytes(mp.copyright).c_str());
+    std::printf("  map       : %u x %u chips, layer-field %u, extra %u\n",
+                mp.width, mp.height, mp.layer_count, mp.extra);
+    std::printf("  planes    : 3 x %zu B\n", mp.planes.empty() ? 0 : mp.planes[0].size());
+    std::printf("  events    : %zu records, %zu pages, %zu commands\n",
+                mp.events.size(), n_pages, n_cmds);
+    if (verbose) {
+        for (const auto& e : mp.events) {
+            std::printf("  event %d @(%d,%d) pages=%d name \"%s\"\n",
+                        e.id, e.x, e.y, e.page_count, escape_bytes(e.name).c_str());
+            for (size_t k = 0; k < e.pages.size(); ++k) {
+                const auto& pg = e.pages[k];
+                std::printf("    page %zu: cond %d gfx \"%s\" cmds %zu chips [%d %d %d %d]\n",
+                            k, pg.condition, escape_bytes(pg.graphic_file).c_str(),
+                            pg.commands.size(), pg.chips[0], pg.chips[1],
+                            pg.chips[2], pg.chips[3]);
+            }
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
@@ -740,12 +782,16 @@ int main(int argc, char** argv) {
         const bool verbose = (argc >= 4 && !std::strcmp(argv[3], "-v"));
         return cmd_tileset(argv[2], verbose);
     }
+    if (argc >= 3 && std::strcmp(argv[1], "mpsinfo") == 0) {
+        const bool verbose = (argc >= 4 && !std::strcmp(argv[3], "-v"));
+        return cmd_mpsinfo(argv[2], verbose);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
                          "commonrun <CommonEvent.dat> <id> [-t] [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] | "
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
-                         "tileset <TileSetData.dat> [-v]\n");
+                         "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v]\n");
     return 1;
 }
