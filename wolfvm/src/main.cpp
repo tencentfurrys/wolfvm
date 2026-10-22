@@ -675,7 +675,7 @@ static int cmd_tileset(const char* path, bool verbose) {
     return 0;
 }
 
-static int cmd_mpsinfo(const char* path, bool verbose) {
+static int cmd_mpsinfo(const char* path, bool verbose, bool census) {
     // .mps maps are plain records (10 zero bytes lead), so the game-dat crypt
     // probe is not applied — verified against all 105 map files of the target.
     auto data = read_file(path);
@@ -700,6 +700,20 @@ static int cmd_mpsinfo(const char* path, bool verbose) {
     std::printf("  planes    : 3 x %zu B\n", mp.planes.empty() ? 0 : mp.planes[0].size());
     std::printf("  events    : %zu records, %zu pages, %zu commands\n",
                 mp.events.size(), n_pages, n_cmds);
+    if (census) {
+        // Stage-2 decode-priorities input: per-cid totals across every page.
+        std::map<uint32_t, unsigned> h;
+        for (const auto& e : mp.events)
+            for (const auto& p : e.pages)
+                for (const auto& c : p.commands) ++h[c.cid];
+        for (const auto& p : h) {
+            wolf::Command probe;
+            probe.cid = p.first;
+            std::printf("  cid %6u x %6u  (%s)\n", p.first, p.second,
+                        probe.name() ? probe.name() : "?");
+        }
+        return 0;
+    }
     if (verbose) {
         for (const auto& e : mp.events) {
             std::printf("  event %d @(%d,%d) pages=%d name \"%s\"\n",
@@ -1115,7 +1129,8 @@ int main(int argc, char** argv) {
     }
     if (argc >= 3 && std::strcmp(argv[1], "mpsinfo") == 0) {
         const bool verbose = (argc >= 4 && !std::strcmp(argv[3], "-v"));
-        return cmd_mpsinfo(argv[2], verbose);
+        const bool census  = (argc >= 4 &&  std::strcmp(argv[3], "-c") == 0);
+        return cmd_mpsinfo(argv[2], verbose, census);
     }
     if (argc >= 2 && std::strcmp(argv[1], "selftest") == 0)
         return cmd_selftest();

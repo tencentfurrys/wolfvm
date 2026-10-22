@@ -172,6 +172,7 @@ private:
     bool db_cell_target(const DbOp& o) const;                   // type/row sanity
 
     void note(const std::string& s);
+    bool note_ok() const { return !res_ || res_->warnings.size() < 512; }   // hot-site guard: skip string-building when the cap is full
     void tlog(const std::string& s);
     long long rand_ll(long long lo, long long hi);
 };

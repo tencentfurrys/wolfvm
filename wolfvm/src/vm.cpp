@@ -384,12 +384,14 @@ bool Vm::exec_setvar(const Command& c) {
     // comment misaligned the JT by 8 pseudo labels ("210008=+=v1+v2"); the
     // digits themselves were right, census 0x1100 x145 + 0x2100 x162 execute.
     if (flags & 0xFF) {
-        note("121 skip (engine gate: low byte) target " + std::to_string(target) +
-             " flags " + std::to_string(flags));
+        if (note_ok())
+            note("121 skip (engine gate: low byte) target " + std::to_string(target) +
+                 " flags " + std::to_string(flags));
         return true;
     }
     if (target == 1100000000LL) {
-        note("121 skip (engine gate: reserved target) flags " + std::to_string(flags));
+        if (note_ok())
+            note("121 skip (engine gate: reserved target) flags " + std::to_string(flags));
         return true;
     }
     const int f00 = (int)((flags >> 8) & 0xF);   // tens: accumulate mode
@@ -438,10 +440,11 @@ bool Vm::exec_setvar(const Command& c) {
         // records (census skips: tens 0x0500-0x0800 x340, 0x6000 x414 — the
         // old "rand-loop wobble" model was a misread — and ones-digit
         // f000>=3 incl. 0x3000 x234, 0x8000 x285, 0x3200 ...).
-        note("121 skip (engine: dropped family f00 " + std::to_string(f00) +
-             " f000 " + std::to_string(f000) + ") target " + std::to_string(target) +
-             " flags " + std::to_string(flags) +
-             (flags & 0x10000 ? " deferred-family" : ""));
+        if (note_ok())
+            note("121 skip (engine: dropped family f00 " + std::to_string(f00) +
+                 " f000 " + std::to_string(f000) + ") target " + std::to_string(target) +
+                 " flags " + std::to_string(flags) +
+                 (flags & 0x10000 ? " deferred-family" : ""));
         return true;
     } else {
         long long out;
@@ -640,6 +643,21 @@ bool Vm::exec_setstr(const Command& c) {
 // ---------------------------------------------------------------------------
 // Main loop
 // ---------------------------------------------------------------------------
+// RAII per-cid counter flush: the hot loop increments a flat array (O(1) per
+// step); the std::map<uint32_t,size_t> in RunResult is filled once on ANY exit
+// path (early returns included) via this destructor. Same output, no tree
+// ops in the 2e6-step hot path.
+namespace {
+struct CidFlushRAII {
+    size_t* arr;
+    RunResult* out;
+    ~CidFlushRAII() {
+        for (int i = 0; i < 700; ++i)
+            if (arr[i]) out->cid_counts[static_cast<uint32_t>(i)] += arr[i];
+    }
+};
+} // namespace
+
 bool Vm::run(int32_t common_id, RunResult& out) {
     res_ = &out;
     steps_ = 0;
@@ -654,6 +672,9 @@ bool Vm::run(int32_t common_id, RunResult& out) {
     stack_.push_back(Frame{});
     stack_.back().common_id = common_id;
     labels_stack_.emplace_back();
+
+    size_t cid_hot[700] = {};                       // O(1) hot-path census
+    CidFlushRAII cid_flush{cid_hot, &out};
 
     const size_t kMaxDepth = 256;
     while (!stack_.empty()) {
@@ -720,7 +741,7 @@ bool Vm::run(int32_t common_id, RunResult& out) {
         const Command& c = cur->commands[f.pc];
         const size_t indent = c.indent;
         const uint32_t cid = c.cid;
-        ++out.cid_counts[cid];
+        if (cid < 700) ++cid_hot[cid]; else ++out.cid_counts[cid];
         ++out.executed;
         if (tr_ && tr_->enabled) {
             char b[160];
@@ -1112,8 +1133,9 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                         // presentation / environment — trace-no-op for now
                         break;
                     default:
-                        note("unhandled cid " + std::to_string(cid) + " (ev" +
-                             std::to_string(f.common_id) + " cmd " + std::to_string(f.pc) + ")");
+                        if (note_ok())
+                            note("unhandled cid " + std::to_string(cid) + " (ev" +
+                                 std::to_string(f.common_id) + " cmd " + std::to_string(f.pc) + ")");
                         break;
                 }
                 ++f.pc;
