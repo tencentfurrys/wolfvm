@@ -321,16 +321,32 @@ the true shape is reference binding.
    - f00 ≤ 3 ∧ f000 ≤ 2 → pseudo = 210000 + f00*10 + f000, elem0 =
      pseudo, continue (requeue path).
    - f00 ≤ 3 ∧ f000 ≥ 3 → **skip**.
-   - Census impact of **true skips**: flags 0x6000 (414), 0x8000 (285),
-     0x0500-0x0800 (340) ≈ 1,040 uses — plausibly 2.25-dropped legacy
-     opcodes; wolfvm currently EXECUTES them (0x6000 as rand-assign!),
-     a divergence class to arbitrate via sweep. Flags 0x3000 (234 →
-     pseudo 210030) and 0x4000 (65 → pseudo 210040; skipped only when
-     the raw v1⊙v2 cancels to 0) do NOT fall in the skip arms — they
-     continue into the still-undumped f00=3/f00=4 second-interpreter
-     arms.
+     - Census impact (recomputed 2026-10-22 from all_dump.txt, 11,174
+       cid-121 records, 10,772 regex-matched; f00 = (flags>>8)&0xF the
+       tens/accumulate digit, f000 = (flags>>12)&0xF the ones/base digit
+       -- supersedes the older per-gate counts, which mislabeled the x285
+       band as "flags 0x8000", a value that occurs **0** times):
+       - EXECUTED (gate 8 continue arms): 0x0000->210000 x5105;
+         0x0100->210010 x1741; 0x1000->210001 x1094; 0x0200->210020 x568;
+         0x2000->210002 x241; 0x0400->210040 x215 (f00=4, zero-cancel
+         gated); 0x0300->210030 x165; 0x2100->210012 x162; 0x1100->210011
+         x145; 0x1200->210021 x61; 0x1400->210041 x17; 0x2200->210022
+         x19; 0x1300->210031 x15; 0x2300->210032 x1 -- about 9,550
+         uses (85%).
+       - SKIP, ones f000 >= 3: 0x6000 x377, 0x3000 x234, 0x4000 x65,
+         0x3100/0x3200/0x3300/0x3302 x44, 0x6100 x25, 0x6200 x10 ~ 753 --
+         plausibly 2.25-dropped legacy opcodes (closes 11.4's f000=3 OPEN
+         item: the dispatch band accepts 210003/13/23/33 but the tick
+         selector maps them to the 0x0b skip arm; nothing executes).
+       - SKIP, tens f00 >= 5: 0x0500-0x0800 x333, 0x1500-0x1800 x105,
+         0x0A00/0x0B00 x4, 0x2600 x1, 0x6700 x2, 0xF900 x4 ~ 449.
+       - SKIP, low byte <> 0: {0x0004, 0x0104, 0x0704, 0x0101, 0x0020,
+         0x1020, 0x3302} = 21. fam16 (0x10000): 0 occurrences.
+       wolfvm's implemented matrix + note-based skips match the engine
+       gates; the old "wolfvm executes 0x6000 as rand-assign" concern is
+       resolved (0x6000 -> skip; its x377 are noted, not executed).
 
-### 10.4 The second interpreter ≈ 0x4556e0 — the TRUE arithmetic
+### 10.4 The second interpreter (true entry 0x455650, see §11.2) — the TRUE arithmetic
 
 A second dispatcher (state object `[ebp-0x10]+0x89c`) processes the
 pseudo-cids with the same [dst*, v1*, v2*] +0x44 vec. Arms (JT
@@ -338,28 +354,31 @@ pseudo-cids with the same [dst*, v1*, v2*] +0x44 vec. Arms (JT
 
 | pseudo | flags (f00,f000) | arm addr | semantics (decoded) |
 |--------|------------------|----------|---------------------|
-| 210000 | 0x0000 (0,0) | 0x455c3e | dst = v1 + v2 (assign when v2 const 0) |
-| 210001 | 0x1000 (0,1) | 0x455c88 | dst = v1 − v2 (SUB!) |
-| 210002 | 0x2000 (0,2) | 0x455cd2 | dst = v1 × v2 |
-| 210008 | 0x8000 (0,8) | 0x455d1d | dst += v1 + v2 |
-| 210009 | 0x8100 (0,9) | 0x455d74 | dst += v1 − v2 |
-| 210010 | 0x0100 (1,0) | 0x455dcb | dst += v1 × v2 |
-| 210020 | 0x0200 (2,0) | 0x455e23 | dst −= v1 + v2 |
-| 210021 | 0x1200 (2,1) | 0x455e7c | dst −= v1 − v2 |
-| 210022 | 0x2200 (2,2) | 0x455ed5 | dst −= v1 × v2 (probable, verify) |
-| 210030 | 0x0300 (3,0) | 0x455f2f | (dump pending) |
-| 210031 | 0x1300 (3,1) | 0x455f87 | (dump pending) |
-| 210032 | 0x2300 (3,2) | 0x455fdf | (dump pending) |
-| 210040 | f00=4 · f000=0 | 0x456038 | (dump pending) |
-| 210041 | f00=4 · f000=1 | 0x456092 | (dump pending) |
+| 210000 | 0x0000 (0,0) | 0x455c3e | dst = v1 + v2 (v2 const 0 => v1-copy form) |
+| 210001 | 0x1000 (0,1) | 0x455c88 | dst = v1 - v2 (SUB, x1094 uses) |
+| 210002 | 0x2000 (0,2) | 0x455cd2 | dst = v1 * v2 |
+| 210010 | 0x0100 (1,0) | 0x455d1d | dst += v1 + v2 (x1741 uses) |
+| 210011 | 0x1100 (1,1) | 0x455d74 | dst += v1 - v2 (x145 uses) |
+| 210012 | 0x2100 (1,2) | 0x455dcb | dst += v1 * v2 (x162 uses) |
+| 210020 | 0x0200 (2,0) | 0x455e23 | dst -= v1 + v2 (x568 uses) |
+| 210021 | 0x1200 (2,1) | 0x455e7c | dst -= v1 - v2 (x61 uses) |
+| 210022 | 0x2200 (2,2) | 0x455ed5 | dst -= v1 * v2 (x19 uses) |
+| 210030 | 0x0300 (3,0) | 0x455f2f | dst *= v1 + v2 (x165 uses) |
+| 210031 | 0x1300 (3,1) | 0x455f87 | dst *= v1 - v2 (x15 uses) |
+| 210032 | 0x2300 (3,2) | 0x455fdf | dst *= v1 * v2 (x1 use) |
+| 210040 | 0x0400 (4,0) | 0x456038 | dst /= v1 + v2 (first-handler zero-cancel gated, x215) |
+| 210041 | 0x1400 (4,1) | 0x456092 | dst /= v1 - v2 (same gating, x17) |
 
-Working hypothesis (matches all decoded arms): *f000* digit selects the
-base op {0: +, 1: −, 2: ×} and *f00* digit the accumulate mode {0: dst =
-v1⊙v2, 1: dst += …, 2: dst −= …, 3: ?, 4: ?}. Conflicts with wolfvm's
-current model (0x7000-bit opcodes, 0x6000 = rand) — sweep will arbitrate
-before any rewrite. The ev457/ev510 increment-loop evidence now points
-at the 250 DB-read instead of a 121 op (row/field cursor advance inside
-the read?) — re-examine before encoding "+=" semantics anywhere.
+Matrix cross-checked 2026-10-22 against vm.cpp's signed-off comment
+(pseudo = 210000 + f00*10 + f000, f00 = (flags>>8)&0xF the accumulate
+digit {0:=, 1:+=, 2:-=, 3:*=, 4:/=}, f000 = (flags>>12)&0xF the base op
+{0:+, 1:-, 2:x}; an imul/lea crack confirms the *10 + digit packing).
+There are no arm rows for pseudo 210008/210009 (flags 0x8000/0x8100,
+f000 = 8/9) or 210003/013/023/033 (f000 = 3): the tick selector maps
+them to the 0x0b skip arm, and flags 0x8000 never occurs in census.
+LABEL PITFALL (cost this session twice): an earlier draft carried the
++= arms under labels 210008/210009/210010. Recompute pseudo <-> flags
+digit-wise before trusting any table cell edit.
 
 ### 10.5 cid-111 handler (0x43a87e) — real record layout decoded
 
@@ -393,9 +412,16 @@ sweep; keep, but track divergence risk on cond-heavy events.
 - 121 execute-skips exactly as §10.3 items 1/2/8 (biggest correctness
   win: target==1100000000 write-through bug + legacy-opcode true skips).
 - 250 field −3 row-name read (still pending from earlier plan).
-- Pending decodes: arms 210030-210042; where the 0x10000 family really
-  executes; cid-122 string executes; confirm ev457/ev510 loop-advance
-  mechanism.
+- DONE (earlier arms455 byte dumps, re-checked this checkpoint): arms
+  210030-210042 = the *= and /= accumulate families (§10.4 table) —
+  wolfvm's whole continue-band is arm-true.
+- DONE (2026-10-22): cid-124 true handler = 0x45de60, byte-decoded to
+  the writeback tail (§12.2) and re-modeled in vm.cpp; cid-122 executor
+  identified = 0x45b670, partially decoded (§12.3); 210-callee 600xxx
+  map-event band = noted headless no-op (ev581 now completes).
+- Pending: where the 0x10000 family really executes (§10.3 gate 3);
+  cid-122 op-2/bank arms (the ev212 + ev255/355 fails); ev457/ev510
+  loop-advance mechanism.
 
 ## 11. Session checkpoint (thumb-drive safe)
 
@@ -468,3 +494,195 @@ sweep; keep, but track divergence risk on cond-heavy events.
   other true skips, but re-verify arm/table bytes before trusting.
 - Next: finish f000=3 verdict; rerun focused batch; then ask user for
   full-601 sweep go-ahead.
+
+## 12. <=241 dispatch map + cid-122/123/124/125 decoders (byte-verified 2026-10-22)
+
+### 12.1 The corrected <=241 dispatch (second interpreter, tick chain) - trust this table
+
+Selector byte at `0x4573F0 + (cid+1)` (do the hex-add explicitly), JT
+`0x457334` (47 entries; idx46 = skip arm `0x45730b`):
+
+| cid | sel byte | arm | target / meaning |
+|-----|----------|-----|------------------|
+| 111 | 0x08 | 0x455973 | -> key-input-side sidestep (verified) |
+| 112 | 0x09 | 0x455980 | -> verified |
+| 113-120 | 0x2e | 0x45730b | skip |
+| 121 | 0x0a | 0x45598D | stub, tail jmp 0x457317 |
+| 122 | 0x0b | 0x45599A | call **0x45b670** (string/text executor, 12.3) |
+| 123 | 0x0c | 0x4559A7 | call **0x45dd40** (key-input executor, 12.4) |
+| 124 | 0x0d | 0x4559B4 | call **0x45de60** (SetVarEx query+writeback, 12.2) |
+| 125 | 0x0e | 0x4559C1 | call **0x45fb00** (key-flags-zone applicator, 12.4) |
+| 126 | 0x0f | 0x4559CE | -> 0x45fe40 |
+| 197 | 0x23 | 0x455AD2 | verified |
+| 198 | 0x24 | 0x455ADF | verified |
+| 201/202 | 0x2e | 0x45730B | skip |
+| 210 | 0x25 | JT1[37]=0x455AEC | call arm (known 210 -> 0x4631F0 path) |
+
+TWO SLIP TRAPS that cost real hours; both re-verified byte-exact:
+1. The old per-handler attributions were off by one cid for {123, 124,
+   125}: 0x45dd40 belongs to 123 (key-input), 0x45de60 to 124
+   (SetVariableEx), 0x45fb00 to 125 (key-flags zones). The 124 ceiling
+   "key-flags notes" wolfvm previously printed came from the 0x45fb00
+   read and were simply the wrong command's semantics.
+2. The selector add is 0x4573F0 + (cid+1) in HEX (0x3F0 + 0x7D = 0x46D,
+   not 0x469). Always hex-add before reading bytes.
+
+### 12.2 cid 124 = 0x45de60, fully decoded (query family + arithmetic writeback)
+
+`target(args[0]) <- old (args[0]'s cell value) q-op (query result)`,
+where args[1] is the mode word:
+- bit0 = variant type byte for 0x490fc0 (0 in ALL census records);
+- bit 0x10 = indirect target (cell value is itself a token; census: 0
+  uses - note-only in wolfvm);
+- (>>8)&0xF = writeback selector, 9-JT @0x45face, arms 0x45f599,
+  0x45f5e9, 0x45f650, 0x45f6b7 (x, int64 via 0x511420), 0x45f723 (div),
+  0x45f784 (mod), 0x45f7e5 (max), 0x45f854 (min), 0x45f8c0 (abs of
+  result, old unused); div/mod guard: result==0 -> 1;
+- (>>12)&0xF - 1 = query family, 4-JT @0x45f9da (guard (u32)sel > 3 ->
+  **0x45f548 = `mov al,1; ret`: no query, NO writeback at all**):
+  1 = 0x45df6c picture/object property query: obj = resolve(args[2])
+      via 0x4577e0; obj==0 => result -1; args[3] <= 0x11 -> 18-JT
+      @0x45f9ea (picture getters 0x480b10/0x480c60 on 0xaab044/45,
+      tile globals 0x897284, screen helpers 0x4831f0/0x483210 on
+      0xaa97b0, inner 4-JT 0x45fa32 on word[obj+0x50]+1, object
+      fields +0x24..+0x254, hit-test clause 0x45e414);
+  2 = 0x45e46f resolves args[2]/args[3] as two operands (coords) and
+      picks an 11-JT @0x45fa42 on (args[1]>>16)&0xF: map-chip /
+      position hit-tests (0x487ac0/0x483230 on 0xaa97b0,
+      0x44ebf0/0x447060 on 0xaa6ea8, chip-table walks 0x4db380 with
+      attribute byte reads);
+  3 = 0x45edb7: raw args[2] <= 23 -> 24-JT @0x45fa6e system globals
+      (key-state bits 0xaa705a..f -> 0/1/2, archive walkers
+      0xaab0f8/0xaab104 + 0x5890a0/0x585a80, running-common list
+      0xaa5eec with id+500000 addends, msg globals, Win32/net
+      introspection); >23 -> skip query (result stays 0);
+  4 = 0x45ed72: resolve(args[2]), resolve(args[3]) -> 0x491040
+      system-register lookup on container 0xaa96c0.
+Census (654 records, all targets cself refs): flags 0x4000 x531
+  (fam4 sysreg, assign), 0x1000 x53 (fam1 picture, assign),
+  0x3000 x32 (fam3 globals, assign), 0x82000 x15 (fam2 map, assign),
+  0x4100 x7 (fam4, add), 0x4600 x6 (fam4, max), 0x2000 x5 (fam2
+  map, assign), 0x42000 x4 (fam2 map, sub), 0x52000 x1 (fam2 map,
+  assign). NONE of the census hits the family-OOB no-op.
+Headless model in vm.cpp exec_setvarex: fam1 uses the engine's own
+obj-miss result (-1); fams 2/3/4 absent-subsystem -> result 0 with
+notes; writeback arithmetic engine-true (all 9 cases); indirect bit +
+variant-type bit note-only. Apples-to-apples sweep (12.5): this model
+changes ZERO per-id verdict classes vs the previous approximation -
+the 531 16384-records already wrote 0 (uninit cself[11] = 0 before).
+
+### 12.3 cid 122 = 0x45b670, FULL frame decode (string/text executor)
+
+Opening: two string accumulators constructed (0x4d5cb0 ctors, literals
+0x8154a6/0x8154a7). (flags&0xF00) bands {0x100,0x600,0x800,0x900,0xa00,
+0xb00} route to 0x45b7a6: bit 0x10 picks resolved-then-to-string
+(0x490b90 + 0x490c80) vs raw-args[0]-to-string (0x490c80 direct), both
+appended into accumulator 1 ([ebp-0x34]) via 0x4d5d40. 0x45ba9c = the
+message-window one-shot init (global 0xaa6df4 latch -> [0xaa6844]=1,
+clamped {2..500}, 0x590230/0x590410 calls, state+0x860/+0x884 set from
+(args[1]&0x1000) products).
+
+Then op = flags&0xF <= 3 -> 4-JT @0x45dd29, dwords
+[0x45b8c4, 0x45b955, 0x45b9b2, 0x45ac9b]:
+- op0 (0x45b8c4): plain, no extra text (x547 census uses);
+- op1 (0x45b955): appends text of args[2] (0x490c80 to-string) into
+  accumulator 2 ([ebp-0x58]) (x130);
+- op2 (0x45b9b2): kind-check 0x43c9b0(0xaa8ee8, args[2]); valid ->
+  resolve (0x490b90) then to-string, invalid -> to-string of the raw
+  token; BOTH flavors append into accumulator 2 - the kind-check only
+  changes the fetch mode (x14, incl. flags=2 DB-string ref 1017000035
+  = ev212#151, flags 0x302 = ev30#29);
+- op3 (JT entry 0x45ac9b): mid-instruction alias inside 0x490fc0's
+  call at 0x45ac9a (operand bytes 21 63 03 00) = engine dead path;
+  x0 census uses in all 584 events.
+
+All op arms jmp the common label into the SECOND band-dispatch on
+(args[1]&0xF00) at 0x45bf5a, 10 arms: 0x200/0x300 -> 0x45c050
+(bracket-template eval over accumulator 2 - find/replace loops with
+literal "[" 0x8154b0 and bracket-family texts 0x8154b2/b4/b6/b7; then
+(args[1]&0xF)==1 insert path, ==2 second kind-check + resolve
+0x490650/0x490b90), 0x400 -> 0x45c5bb, 0x500 -> 0x45c841, 0x600 ->
+0x45cc2c, 0x700 -> 0x45d29a, 0x800 -> 0x45d738, 0x900 -> 0x45d799,
+0xa00 -> 0x45d8b2, 0xb00 -> 0x45d9aa, default -> 0x45dab2.
+
+Default arm 0x45dab2 = the COMMIT (byte-read 2026-10-22):
+0x426500(5x0, state->+0x10/+0x18/+0x14, std::string(acc2), retptr);
+acc2 += result (0x4d5d40); acc1 := acc2 (0x4d5dd0); [ebp-0x440] =
+(flags&0x10) ? resolve(args[0]) : args[0]; kind-check
+0x43c9b0(0xaa8ee8, args[0]) -> valid: 0x490920(state, args[0],
+str(acc1)) = THE cid-124 cell-write API; invalid: 0x490650 direct
+string write; dtors + return 0x45dc1c+. 0x426500 = the mid-chain text
+transformer (5 zero params + state window cfg); its display side
+effects are headless no-ops. Net engine effect the VM must model: the
+final text lands in cell args[0]. This is the SINGLE commit point in
+the whole decoded executor (no other 0x490920/0x490650 in it).
+
+wolfvm model (exec_setstr): cell(args[0]) = eval_str(args[2]) for op0;
++= eval_str(args[2]) for op1/op2 (both append flavors); eval_str
+covers both op2 fetch modes (>=1e9 -> DB string, token bands -> cell
+text). 0x426500/window config = headless no-op. op >= 3 -> note+fail
+(dead path, x0 census). Closes the former ev212/ev255/ev355 fails.
+
+### 12.4 cid 123 = key-input (0x45dd40); cid 125 = key-flags zones (0x45fb00)
+
+123: `flags & 0x1000` -> numeric-input store to thread state+0x888;
+`flags & 0x80` -> wait modes on state+0x858/0x85c (0x42bab0/0x42bc90);
+default core = 0x454380 (129 census records).
+125: the 0xaa72fc-0xaa7303 / 0xaa7403-0xaa7410 key-flags zone
+applicator (2 census records; the earlier wolfvm "124 key-flags"
+model was this command's decode misattributed to 124). No 126/215
+records exist; wolfvm notes-and-continues on both.
+
+### 12.5 Fresh full sweep (0..583, fixed id range) - the class arbiter
+
+Method: new binary (this turn's edits) vs baseline binary (edits
+inverted, temp tree), SAME harness + classifier, loop 0..583.
+
+**Current sweep (v4, 2026-10-22): op-2 acceptance + 499-stray tolerance**
+- NEW:  OK=484/584 (82.9%), stepcap=87 (14.9%), reccap=13 (2.2%),
+  other=0 (!).
+- BASE: OK=480, stepcap=84, reccap=13, other=7.
+- Per-id class diff = EXACTLY the 7 predicted ids, zero regressions:
+  ev203/207/253/542 OTHER->OK (499 stray tolerance, 12.6);
+  ev212/255/355 OTHER->STEPCAP (op-2 unblocked -> deeper wait-loop
+  class, 12.3). Every id with a clean path now terminates in defined
+  state (OK / cap-abort); no unmodeled-failure class remains.
+- Standing estimates after this sweep: CommonEvent VM ~88-90%
+  (kernel decoded+validated for every executed band; reccap = deep
+  recursion needing stateful runtime; stepcap = waits/ticks needing
+  the map/tick runtime, Stage 3). Whole Android port ~35-45%:
+  MapEvent VM, tick/picture/NDK shells all 0%.
+
+Previous sweep (v3, same-session archive; superseded by v4):
+OK=480/584 (82.2%), stepcap=84, reccap=13, other=7; per-id diff vs
+its baseline = exactly ONE id (ev581 OTHER->OK - the 210-callee
+600xxx noted no-op). Reconciliation with the old 1..584-loop numbers
+(OK=478/step84/rec13/other9): baseline + ev0 (OK) + ev584 excluded
+(id-not-found harness artifact) = 479/84/13/8 exactly. Stable.
+
+### 12.6 ev86 "499 without cond" - root cause + engine-true tolerance (2026-10-22)
+
+The four OTHER fails (203/207/253/542) all inherit ONE common: ev86
+"the death" (285 cmds). Structure: #2 opens an ind-0 select
+([cself 1 == 1]); its case-1 body sets cself[54]=1 then does
+JumpLabel (213) to the label set at #15 - which sits INSIDE a later
+nested select's body (ind-2). The jump-crossing re-enters the body
+region with selects whose openers were skipped on that path; ev86's
+body end then carries trailing 499s (#280 ind-1, #282 ind-0 terminal)
+that on such paths have NO matching open cond. wolfvm's push/pop model
+had exactly matched this shape: normal path stack = [root, B8(ind0),
+C216(ind2)]; #278 pops C216, #280 (ind-1) has nothing left to match ->
+hard error "499 without cond (ev86 cmd 280)".
+
+Engine truth ( combining the §10.5 deferred-bind decode with the fact
+that this event ships and runs): EVERY 11 pre-binds its own 401/420
+set (same-indent scan bounded by 499/498) and terminates at its own
+499 - so a 499 reached without a matching open cond closes NOTHING.
+The engine tolerates those strays as no-ops; the erase-label jump
+path crosses #22/#169/#280-class strays routinely.
+
+wolfvm fix: 499 = exact-indent match pops with contents (unchanged);
+no match -> note("499 stray tolerated") + continue (was a hard error).
+"Pop the topmost Cond regardless of indent" was REJECTED: it would
+kill selects that still own active code (no-op is the honest empty
+close). 4 close-inherit fails -> OK.

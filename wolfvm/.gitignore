@@ -1,0 +1,8 @@
+build/
+# analysis artifacts (regenerable dumps/traces, not source)
+all_dump.txt
+ev*.txt
+full_stat.txt
+rz_game_text.txt
+trace*.txt
+sweep.ps1

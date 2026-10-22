@@ -358,22 +358,31 @@ bool Vm::exec_setvar(const Command& c) {
     const long long target = c.args[0];
     const long long op1raw = (c.args.size() > 1) ? c.args[1] : 0;
     const long long op2raw = (c.args.size() > 2) ? c.args[2] : 0;
-    // -- ENGINE-VERIFIED gates (ENGINE_ANALYSIS §10.3/§10.5, all from disasm):
-    // low byte set -> skip; reserved target 1100000000 -> skip; the 0x10000
-    // family is skipped by the immediate handler and runs at a still-unfound
-    // deferral site (wolfvm approximates by applying the same pseudo-matrix
-    // op as the least-wrong model). Nibble digits: tens f00 = (flags>>8)&0xF
-    // selects the accumulate mode {0:assign,1:+=,2:-=,3:*=,4:/=}; ones f000
-    // = (flags>>12)&0xF selects the base op {0:+,1:-,2:x}. The handler
-    // rewrites elem0 to pseudo = 210000 + f00*10 + f000 (vec1*0xa + vec2 +
-    // 0x33450, imul/lea verified) and the paired second interpreter
-    // dispatches 210000 directly (dst=v1+v2), then via byte selector map
-    // 0x4575f7 + jump table 0x4575c7: 210001=-, 210002=x, 210008=+=v1+v2,
-    // 210009=+=v1-v2, 210010=+=v1*x, 210020=-=v1+v2, 210021=-=v1-v2,
-    // 210022=-=v1*x, 210030=x=v1+v2, 210031=x=v1-v2, 210032=x=v1*x;
-    // 210003..7/210011..17/210023..29 map to selector 0x0b = skip arm
-    // (0x45730b); 210040=(dst/(v1+v2)) and 210041=(dst/(v1-v2)) dispatch
-    // directly; 210042+ is rejected in the handler before a pseudo exists.
+    // -- ENGINE-VERIFIED gates (ENGINE_ANALYSIS §10.3/§10.4, byte-read verified
+    // 2026-10-22): low byte set -> skip; reserved target 1100000000 -> skip; the
+    // 0x10000 family is skipped by the immediate handler and runs at a
+    // still-unfound deferral site (wolfvm approximates by applying the same
+    // pseudo-matrix op as the least-wrong model). Nibble digits: tens
+    // f00 = (flags>>8)&0xF selects the accumulate mode
+    // {0:assign,1:+=,2:-=,3:*=,4:/=}; ones f000 = (flags>>12)&0xF selects the
+    // base op {0:+,1:-,2:x}. The handler rewrites elem0 to pseudo =
+    // 210000 + f00*10 + f000 (vec1*0xa + vec2 + 0x33450, imul/lea verified).
+    // Second interpreter 0x455650 dispatch for 210001..210032: selector =
+    // BYTE[idx + 0x4575f7], jmp [selector*4 + 0x4575c7] (idx = cid-210001),
+    // byte-verified: 210001 -> 0x455c88 (dst = v1-v2), 210002 -> 0x455cd2
+    // (dst = v1*v2), 210010 -> 0x455d1d (dst += v1+v2), 210011 -> 0x455d74
+    // (dst += v1-v2), 210012 -> 0x455dcb (dst += v1*v2), 210020 -> 0x455e23
+    // (dst -= v1+v2), 210021 -> 0x455e7c (dst -= v1-v2), 210022 -> 0x455ed5
+    // (dst -= v1*v2), 210030 -> 0x455f2f (dst *= v1+v2), 210031 -> 0x455f87
+    // (dst *= v1-v2), 210032 -> 0x455fdf (dst *= v1*v2); every other member
+    // of the accepted bands (210003..009, 210013..019, 210023..029, 210033+)
+    // holds selector 0x0b -> skip arm 0x45730b. 210040 (dst = dst/(v1+v2))
+    // and 210041 (dst = dst/(v1-v2)) dispatch directly via the band chain
+    // (cmp 0x33478 je 0x456038 / next cmp -> 0x456092); 210042+ is rejected
+    // in the handler before a pseudo exists. 210000 dispatches directly on
+    // the cmp chain (je 0x455c3e). NOTE: the pre-2026-10-22 version of this
+    // comment misaligned the JT by 8 pseudo labels ("210008=+=v1+v2"); the
+    // digits themselves were right, census 0x1100 x145 + 0x2100 x162 execute.
     if (flags & 0xFF) {
         note("121 skip (engine gate: low byte) target " + std::to_string(target) +
              " flags " + std::to_string(flags));
@@ -387,16 +396,10 @@ bool Vm::exec_setvar(const Command& c) {
     const int f000 = (int)((flags >> 12) & 0xF); // ones: base op {0:+,1:-,2:x}
     const long long v1 = eval_int(op1raw);
     const long long v2 = eval_int(op2raw);
-    // Engine no-arm cases (byte selector 0x0b -> skip arm): pseudo 210011,
-    // 210012 (and the 210003..7 / 210023..29 bands that the handler never
-    // emits from cid-121). The deferred 0x10000 family reuses the same
-    // mapping as its approximation.
-    if (f00 == 1 && f000 >= 1) {
-        // pseudo 210011/210012: handler accepts, second interpreter skips.
-        note("121 skip (engine: pseudo " + std::to_string(210000LL + f00 * 10LL + f000) +
-             " no arm) flags " + std::to_string(flags));
-        return true;
-    }
+    // (210011/210012 are NOT skipped: the second interpreter's selector map
+    // hands them selectors 3/4 -> arms 0x455d74 / 0x455dcb. Census 0x1100
+    // x145 and 0x2100 x162 are engine-executed as dst += (v1-v2) and
+    // dst += (v1*v2); wolfvm previously skipped them - divergence removed.)
     Cell result;
     if (f00 == 4) {
         // Handler rejects raw >= 1e6 operands outright, cancels f000=0 when
@@ -446,7 +449,8 @@ bool Vm::exec_setvar(const Command& c) {
             case 210000: out = v1 + v2; break;                    // assign
             case 210001: out = v1 - v2; break;
             case 210002: out = v1 * v2; break;
-            case 210010: case 210020: case 210021: case 210022:
+            case 210010: case 210011: case 210012:
+            case 210020: case 210021: case 210022:
             case 210030: case 210031: case 210032: {
                 const long long box =
                     (f000 == 0) ? (v1 + v2) : (f000 == 1) ? (v1 - v2) : (v1 * v2);
@@ -493,24 +497,125 @@ bool Vm::exec_setvar(const Command& c) {
 }
 
 bool Vm::exec_setvarex(const Command& c) {
-    // 124 (SetVariableEx) — partial: masks 16384 / 12288 / 532480 observed.
-    // v1 copies the primary operand; deviations are loud.
-    const long long target = c.args[0];
-    const int32_t mask = (c.args.size() > 1) ? c.args[1] : 0;
-    long long value = 0;
-    if (c.args.size() >= 3) value = eval_int(c.args[2]);
-    if (c.args.size() >= 4)
-        note("124 extra operand " + std::to_string(c.args[3]) + " (mask " + std::to_string(mask) + ")");
-    if (mask != 16384 && mask != 12288 && mask != 532480)
-        note("124 mask " + std::to_string(mask) + " unknown");
-    cell_for(target).set_i(value);
+    // 124 "SetVariableEx" — byte-verified 2026-10-22 against the TRUE handler
+    // 0x45de60 (arm 0x4559B4 → call 0x45de60; the earlier wolfvm model was
+    // decoded from 0x45fb00, which the corrected ≤241 dispatch map assigns to
+    // cid 125). Shape: args[0] = target cell token (bit 0x10 of args[1] =
+    // indirect target); args[1] = mode word:
+    //   bit0        = variant type byte to 0x490fc0 (bit0==0 in all census)
+    //   (>>8)&0xF   = writeback selector, 9 arms @0x45face:
+    //     0 target←result; 1 ←old+result; 2 ←old−result; 3 ←old×result
+    //     (int64 via 0x511420); 4 ←old/result; 5 ←old%result; 6 ←max;
+    //     7 ←min; 8 ←|result| (old unused); div/mod guard result==0 → 1.
+    //   (>>12)&0xF  = query family, minus 1, 4 arms @0x45f9da:
+    //     1 → 0x45df6c: picture/sprite/object property query. obj =
+    //         resolve(args[2]) → 0x4577e0; obj==0 ⇒ result −1 (engine's own
+    //         miss branch); else 18-JT @0x45f9ea on args[3] ≤ 0x11 (picture
+    //         getters 0x480b10/0x480c60, tile-size globals 0x897284, screen
+    //         helpers on 0xaa97b0, object fields +0x24..+0x254).
+    //     2 → 0x45e46f: resolves args[2]/args[3] as two operands; 11-JT
+    //         @0x45fa42 on (args[1]>>16)&0xF — map-chip/position hit-tests
+    //         (map runtime = Stage 3).
+    //     3 → 0x45edb7: raw args[2] ≤ 23 → 24-JT @0x45fa6e system-globals
+    //         census (key-state bits 0xaa705a..0xaa705f → 0/1/2, archive
+    //         walkers 0xaab0f8/0xaab104 + 0x5890a0/0x585a80, running-common
+    //         list 0xaa5eec + id+500000 addends, misc globals, Win32/net
+    //         introspection arms); >23 → skip query, result stays 0.
+    //     4 → 0x45ed72: resolve(args[2]), resolve(args[3]) → 0x491040
+    //         register lookup on system container 0xaa96c0.
+    //   OOB digest (nibble12 == 0 → unsigned −1; census flags 0x100 / 0x400 /
+    //   0x700 bands): 0x45f548 = mov al,1; ret — NO query, NO writeback: the
+    //   whole command is a no-op (this killed the old "copy" model's writes).
+    // Headless model: family 0 uses the engine's own obj-miss result (−1);
+    // families 1/2/3 need a map/picture/global runtime that Stage 2 doesn't
+    // model, so they evaluate to the 0-initialized result with a note; the
+    // writeback arithmetic and target write are engine-true, and the
+    // indirect-target + variant-type control bits are note-only (bit0 and
+    // bit 0x10 are 0 across the census).
+    const long long flags = (c.args.size() > 1) ? c.args[1] : 0;
+    if (c.args.size() >= 4 && (c.args.size() >= 5 || (flags & 0x10)))
+        note("124 extra operands / indirect-target bit (census: absent) args " +
+             std::to_string(c.args.size()));
+    const int fam = (int)(((flags >> 12) & 0xF) - 1);
+    if (fam < 0 || fam > 3)
+        return true;  // engine 0x45f548: no-op
+    long long result = 0;
+    if (fam == 0) {
+        // headless: no picture/sprite runtime → obj lookup misses → −1
+        note("124 fam0 picture-prop query (no picture runtime) -> -1");
+        result = -1;
+    } else if (fam == 1) {
+        note("124 fam1 map/chip query nib " + std::to_string((flags >> 16) & 0xF) +
+             " (no map runtime) -> 0");
+    } else if (fam == 2) {
+        note("124 fam2 system-global idx " + std::to_string(c.args.size() > 2 ? c.args[2] : 0) +
+             " (headless globals) -> 0");
+    } else {
+        note("124 fam3 sysreg lookup via 0x491040 (0xaa96c0 absent) -> 0");
+    }
+    const long long target = c.args.empty() ? 0 : c.args[0];
+    const long long old = is_cself(target) ? cell_for(target).as_int() : eval_int(target);
+    const int wb = (int)((flags >> 8) & 0xF);
+    long long out = result;
+    switch (wb) {
+        case 1: out = old + result; break;
+        case 2: out = old - result; break;
+        case 3: out = old * result; break;
+        case 4: { const long long d = (result == 0) ? 1 : result; out = old / d; break; }
+        case 5: { const long long d = (result == 0) ? 1 : result; out = old % d; break; }
+        case 6: out = (old >= result) ? old : result; break;
+        case 7: out = (old <= result) ? old : result; break;
+        case 8: out = (result < 0) ? -result : result; break;
+        case 0: default: out = result; break;
+    }
+    if (flags & 0x10)
+        note("124 indirect target (bit 0x10) modeled as direct write to args[0]");
+    if (!is_cself(target)) {
+        // census: every 124 target is a cself ref — be loud otherwise.
+        note("124 non-cself target " + std::to_string(target));
+        return true;
+    }
+    cell_for(target).set_i(out);
     return true;
 }
 
 bool Vm::exec_setstr(const Command& c) {
-    // 122: [target, flags, var-addr?] with templates in string_args (data):
-    //   a3s0 → value = cell at args[2]; a2s1/s2 → literal templates.
-    //   flags&0xF: 0 assign, 1 append; higher bits reported.
+    // 122 — true executor 0x45b670 (arm 0x45599A; the earlier 0x45dd40
+    // "key-input" reading was a selector slip: 0x45dd40 is cid 123's handler).
+    // FRAME DECODE complete 2026-10-22 (bytes):
+    //   head: two string accumulator ctors (0x4d5cb0, lits 0x8154a6/0x8154a7);
+    //   (flags&0xF00) in {0x100,0x600,0x800,0x900,0xa00,0xb00} → 0x45b7a6:
+    //   bit 0x10 picks raw vs resolved args[0] interp into acc1 [ebp-0x34]
+    //   (0x490c80 to-string + 0x4d5d40 append). 0x45ba9c = message-window
+    //   one-shot init (global 0xaa6df4 latch, clamp {2..500}, 0x590230/0x590410,
+    //   state+0x860/0x884 ← (args[1]&0x1000) products).
+    //   op = flags&0xF ≤ 3 → JT @0x45dd29 (dwords 0x45b8c4/0x45b955/0x45b9b2/
+    //   0x45ac9b): op0 plain (no extra text); op1 0x45b955 append text of
+    //   args[2]; op2 0x45b9b2 kind-check 0x43c9b0(0xaa8ee8,args[2]) — valid →
+    //   resolve (0x490b90) then to-string (0x490c80); invalid → to-string of
+    //   the raw token — both flavors APPEND acc2 [ebp-0x58] (kind-check only
+    //   changes the fetch mode). op3's JT entry 0x45ac9b is a mid-instruction
+    //   alias (inside 0x490fc0's call at 0x45ac9a) = engine dead path; 0 uses
+    //   in all 584 events. Arms jmp the common label after the op bands.
+    //   tail: SECOND band-dispatch on (args[1]&0xF00) at 0x45bf5a, 10 arms:
+    //   0x200/0x300→0x45c050 (bracket-template eval over acc2), 0x400→0x45c5bb,
+    //   0x500→0x45c841, 0x600→0x45cc2c, 0x700→0x45d29a, 0x800→0x45d738,
+    //   0x900→0x45d799, 0xa00→0x45d8b2, 0xb00→0x45d9aa, default→0x45dab2.
+    //   default arm = the commit: 0x426500(5×0, state+0x10/+0x18/+0x14,
+    //   string(acc2), retptr) → acc2 += result (0x4d5d40); acc1 := acc2
+    //   (0x4d5dd0); [ebp-0x440] = flags&0x10 ? resolve(args[0]) : args[0];
+    //   kind-check 0x43c9b0(0xaa8ee8,args[0]): valid → 0x490920(state,
+    //   args[0], str(acc1)) = the cid-124 cell-write API; invalid → 0x490650
+    //   direct string write; dtors + return 0x45dc1c+. 0x426500 is the
+    //   mid-chain text transformer (5 zero params + state window cfg); its
+    //   display side effects are headless no-ops — the net engine effect
+    //   wolfvm models is the final string landing in cell args[0].
+    // Data: 691 records, 450 with templates — a3s0 → value = cell at args[2];
+    // a2s1/s2 → literal templates. op census (flags&0xF): op0 x547, op1
+    // (append) x130, op2 (kind-checked append) x14 (incl. flags=2 with
+    // DB-string ref 1017000035, ev212#151; flags 0x302, ev30#29), op3 x0.
+    // eval_str (≥1e9 → DB string; token bands → cell text) covers both
+    // op2 fetch flavors.
     const long long target = c.args[0];
     const int32_t flags = (c.args.size() > 1) ? c.args[1] : 0;
     const int32_t op = flags & 0x0F;
@@ -521,7 +626,9 @@ bool Vm::exec_setstr(const Command& c) {
     Cell& tc = cell_for(target);
     if (op == 0) {
         tc.set_s(value);
-    } else if (op == 1) {
+    } else if (op == 1 || op == 2) {
+        // op1/op2 append args[2]-text (engine 0x45b955/0x45b9b2: both flavors
+        // append into acc2 before the tail commit).
         tc.set_s(tc.as_str() + value);
     } else {
         note("122 op " + std::to_string(op) + " (flags " + std::to_string(flags) + ") undecoded");
@@ -559,9 +666,53 @@ bool Vm::run(int32_t common_id, RunResult& out) {
         if (!cur) { out.err = "lost event " + std::to_string(f.common_id); return false; }
         if (f.pc >= cur->commands.size()) {
             size_t id = f.common_id;
+            // Copy-back (engine frame-teardown 0x453B36): if the caller bound a
+            // return pair for this call (cid-210 bit24), the callee's return cell
+            // value is written into the caller's bound cell, then the pair is
+            // cleared. The callee cell must be read BEFORE popping (this frame
+            // dies); the caller operand is resolved AFTER popping (stack_.back()
+            // is then the caller, so cself-relative operands bind there — same
+            // as the engine, which holds the pair on the caller state 0x8A0/0x8A4).
+            long long ret_op = 0;
+            int32_t ret_slot = -1;
+            bool do_copy = false;
+            Cell ret_val;
+            if (stack_.size() >= 2 && stack_[stack_.size() - 2].ret.active) {
+                ret_op = stack_[stack_.size() - 2].ret.op;
+                ret_slot = stack_[stack_.size() - 2].ret.slot;
+                do_copy = true;
+            }
+            if (do_copy && ret_slot >= 0 && ret_slot < (int32_t)kCselfCap) {
+                // Read-side type rule (engine 0x453B36): slot%100 in [5,9] uses the
+                // string getter (0x490C80) -> string write; else int (0x490B90 -> int write).
+                const int32_t pct = ret_slot % 100;
+                if (pct >= 5 && pct <= 9) ret_val.set_s(f.cself[ret_slot].as_str());
+                else ret_val.set_i(f.cself[ret_slot].as_int());
+            }
             stack_.pop_back();
             labels_stack_.pop_back();
             if (stack_.empty()) break;
+            if (do_copy) {
+                stack_.back().ret.active = false;   // pair single-shot (engine clears after copy)
+                if (ret_slot >= 0 && ret_slot < (int32_t)kCselfCap) {
+                    if (ret_op >= 1000000000LL) {
+                        // packed DB ref binding — none in the census (554 ref-args, 0 packed);
+                        // routed through the DB writer defensively.
+                        DbOp d = eval_db(ret_op);
+                        d.write = true;
+                        if (!db_set(d, ret_val))
+                            note("ret bind: packed write failed (op " + std::to_string(ret_op) + ")");
+                        if (dbops_) { DbOp rec = d; rec.write = true; rec.written = ret_val.i; rec.written_s = ret_val.as_str(); dbops_->push_back(rec); }
+                    } else {
+                        Cell& tc = cell_for(ret_op);
+                        const int32_t pct = ret_slot % 100;
+                        if (pct >= 5 && pct <= 9) tc.set_s(ret_val.as_str());
+                        else tc.set_i(ret_val.as_int());
+                    }
+                    tlog("<= common " + std::to_string(id) + " ret-bind op " + std::to_string(ret_op) +
+                         " <- slot " + std::to_string(ret_slot) + " v=" + ret_val.as_str());
+                }
+            }
             // caller pc was advanced by the 210 pusher already — return must not bump again
             tlog("<= common " + std::to_string(id) + " returned");
             continue;
@@ -770,8 +921,18 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                         break;
                     }
                 }
-                if (!matched) { out.err = "499 without cond (ev" + std::to_string(f.common_id) +
-                                             " cmd " + std::to_string(f.pc) + ")"; return false; }
+                if (!matched) {
+                    // Engine (§10.5): every select pre-binds its own 401/420
+                    // set and terminates at its own 499, so a 499 reached
+                    // without a matching open cond closes NOTHING — e.g.
+                    // ev86's erase-label JumpLabel lands inside a later
+                    // select's body whose opener was skipped, and ev86's body
+                    // end carries trailing unmatched 499s (#280 ind1/#282
+                    // paths). Tolerate as a no-op; popping non-matching ctxs
+                    // would kill selects that still own active code.
+                    note("499 stray tolerated (ev" + std::to_string(f.common_id) +
+                         " cmd " + std::to_string(f.pc) + ")");
+                }
                 ++f.pc;
                 break;
             }
@@ -791,25 +952,76 @@ bool Vm::run(int32_t common_id, RunResult& out) {
                 break;
             }
 
-            case 210: { // CommonEvent call: [500000+id, opts, args...]
+            case 210: { // CommonEvent call: [500000+id, opts, valueArgs..., stringArgs..., refArg?]
+                // Engine handler 0x4631F0 (executor-2 stub 0x455AEC): callee element[1],
+                // opts element[2]. Binding (engine loops 0x46349E / 0x46352x / pair block
+                // 0x463777..0x4639ED; opts encoding = data census over all 2194 calls):
+                //   low nibble (opts & 0xF)      int  count -> callee cself[0..n-1]
+                //   nibble at 4   ((opts>>4)&0xF) str  count -> callee cself slots [5..4+n]
+                //   bit24         (opts & 0x1000000) ONE hidden ref-arg placed AFTER the
+                //                 visible value args: on completion the callee's slot
+                //                 cself[tail_int_92] is copied back into that cell
+                //                 (copy-back fn 0x453B36; pair lives on the caller state).
+                // tail_int_92 = record->0xBCC (-1 = no declared return -> engine skips the
+                // bind; census: commons with any bit24 callee always declare it).
+                // Literal (<1e6) ref-args leave the pair at 0 -> engine skips copy-back.
+                // Bits outside 0xFF|0x1000000 (e.g. 0x1000-band) observed, unmodeled.
+                uint32_t opts = (uint32_t)(c.args.size() > 1 ? c.args[1] : 0);
+                const uint32_t kDecodedM = 0xFF | 0x01000000;
+                if (opts & ~kDecodedM)
+                    note("210 opts 0x" + [](uint32_t v){ std::string s; const char* h = "0123456789ABCDEF"; for (int i = 0; i < 8; ++i) { s = h[v & 0xF] + s; v >>= 4; } return s; }(opts) +
+                         " bits unmodeled (arg binding unaffected — low/nib28 masks drive it)");
+                const uint32_t kMaskLow = 0xFu, kMaskNib28 = 0x00F0u, kRefBit = 0x01000000u;
                 long long raw = c.args.empty() ? 0 : c.args[0];
+                if (raw >= 600000 && raw <= 699999) {
+                    // 600xxx callee band (census: 4 uses, all 600101 in ev581,
+                    // opts=2 ints, no ret-bind). Not a common-event id — the
+                    // engine hands this family to the map/event runtime, which
+                    // a headless CommonEvent run cannot spin up. Note and
+                    // continue (aborting the run made ev581 fail wholesale).
+                    note("210 callee " + std::to_string(raw) +
+                         " = map-event call band 600xxx (headless no-op, opts " +
+                         std::to_string(opts) + ")");
+                    return true;
+                }
                 if (raw < 500000 || raw > 599999) {
                     out.err = "210 bad id encoding " + std::to_string(raw);
                     return false;
                 }
                 int32_t callee = (int32_t)(raw - 500000);
-                if (!ev(callee)) { out.err = "210 callee missing: " + std::to_string(callee); return false; }
-                uint32_t opts = (uint32_t)c.args[1];
-                if (opts != 0 && opts != 16)
-                    note("210 opts 0x" + [](uint32_t v){ std::string s; const char* h = "0123456789ABCDEF"; for (int i = 0; i < 8; ++i) { s = h[v & 0xF] + s; v >>= 4; } return s; }(opts));
+                const CommonEventRecord* cr = ev(callee);
+                if (!cr) { out.err = "210 callee missing: " + std::to_string(callee); return false; }
+                const size_t n_int = c.args.size() > 1 ? (size_t)(opts & kMaskLow) : 0;
+                const size_t n_str = c.args.size() > 1 ? (size_t)((opts & kMaskNib28) >> 4) : 0;
+                const bool has_ref = (opts & kRefBit) != 0;
+                const int32_t out_slot = cr ? cr->tail_int_92 : -1;   // record->0xBCC
                 if (stack_.size() >= kMaxDepth) { out.err = "210 recursion cap"; return false; }
                 Frame nf{};
                 nf.common_id = callee;
+                size_t elem = 2;
+                for (size_t i = 0; i < n_int && elem < c.args.size(); ++i, ++elem)
+                    nf.cself[i] = fetch_cell(c.args[elem]);
+                // Engine string band: cells 15000000 + calleeId*100 + 5 + i (handler 0x46359F/640).
+                for (size_t i = 0; i < n_str && elem < c.args.size(); ++i, ++elem)
+                    nf.cself[kCselfRetStrBase + i].set_s(fetch_cell(c.args[elem]).as_str());
+                if (has_ref) {
+                    if (elem < c.args.size()) {
+                        const long long ref_op = c.args[elem];
+                        if (out_slot < 0) {
+                            note("210 bit24 ref (op " + std::to_string(ref_op) + ") to callee " +
+                                 std::to_string(callee) + " without declared return — skipped (engine 0xBCC == -1)");
+                        } else if (ref_op < 1000000) {
+                            // Literal target: engine stores 0 into the pair slot -> no copy-back.
+                        } else {
+                            // Bind on the CALLER frame (pre-push top), resolved after the callee pops.
+                            stack_[stack_.size() - 1].ret = {ref_op, out_slot, true};
+                        }
+                    } else {
+                        note("210 bit24 with no ref operand (callee " + std::to_string(callee) + ")");
+                    }
+                }
                 stack_.push_back(nf);
                 labels_stack_.emplace_back();
-                for (size_t k = 2; k < c.args.size(); ++k) {
-                    stack_.back().cself[std::min(k - 2, (size_t)99)] = fetch_cell(c.args[k]);
-                }
                 // Caller pc advance AFTER the push (f reference died in realloc)
                 stack_[stack_.size() - 2].pc += 1;
                 tlog("=> common " + std::to_string(callee) + " called");

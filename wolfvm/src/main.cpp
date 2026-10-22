@@ -132,6 +132,20 @@ static int cmd_commondump(const char* path, int event_id, bool histogram) {
     std::printf("event %d  name \"%s\"  cmds=%zu  desc \"%s\"\n",
                 ev->id, escape_bytes(ev->name).c_str(), ev->commands.size(),
                 escape_bytes(ev->description).c_str());
+    if (event_id >= 0) {
+        std::printf("  tail: has92 %d  str92a \"%s\"  int92 %d\n",
+                    ev->has_92 ? 1 : 0,
+                    escape_bytes(ev->tail_string_92a).c_str(),
+                    ev->tail_int_92);
+        std::printf("  tail: bytes10 [");
+        for (size_t b = 0; b < ev->tail_bytes_10.size(); ++b)
+            std::printf("%s%02X", b ? " " : "", ev->tail_bytes_10[b]);
+        std::printf("]  str91 \"%s\"\n", escape_bytes(ev->tail_string_91).c_str());
+        std::printf("  tail: first_strs_10: ");
+        for (size_t s = 0; s < ev->tail_strings_10.size() && s < 3; ++s)
+            std::printf("[%zu]\"%s\" ", s, escape_bytes(ev->tail_strings_10[s]).c_str());
+        std::printf("\n");
+    }
     for (size_t i = 0; i < ev->commands.size(); ++i) {
         const wolf::Command& c = ev->commands[i];
         std::printf("    #%-5zu ind %u cid %5u (%s) args [", i, c.indent, c.cid,
@@ -343,7 +357,7 @@ static wolf::DatabasePair* load_db_pair(const char* projPath, const char* datPat
 }
 
 static int cmd_commonrun(const char* cepath, int32_t id, const char* dbProjPath, const char* dbDatPath,
-                         const char* cdbProjPath, const char* cdbDatPath, bool verbose) {
+                         const char* cdbProjPath, const char* cdbDatPath, bool verbose, size_t cap) {
     auto cedata = read_file(cepath);
     std::string err;
     if (!wolf::is_plain_or_decrypt(cedata, err)) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
@@ -373,6 +387,7 @@ static int cmd_commonrun(const char* cepath, int32_t id, const char* dbProjPath,
     wolf::TraceSink tr;
     tr.enabled = verbose;
     vm.set_trace(&tr);
+    if (cap) vm.set_step_cap(cap);
 
     wolf::RunResult res;
     if (!vm.run(id, res)) {
@@ -520,7 +535,8 @@ static int cmd_openstatus(const char* path) {
     return 0;
 }
 
-static int cmd_dbinfo(const char* project_path, const char* dat_path) {
+static int cmd_dbinfo(const char* project_path, const char* dat_path,
+                      int dump_type, int dump_row) {
     auto pdata = read_file(project_path);
     auto ddata = read_file(dat_path);
     wolf::DatabasePair db;
@@ -555,6 +571,26 @@ static int cmd_dbinfo(const char* project_path, const char* dat_path) {
         std::printf("    type %3u: len(name)=%2zu fields %3zu (int %3zu / str %3zu) rows %4zu\n",
                     i, t.name.size(), t.fields.size(), fi, fs, t.data.size());
         ++i;
+    }
+    if (dump_type >= 0) {
+        if (dump_type < 0 || (size_t)dump_type >= db.types.size()) {
+            std::fprintf(stderr, "type out of range\n");
+        } else {
+            const auto& t = db.types[(size_t)dump_type];
+            if (dump_row < 0 || (size_t)dump_row >= t.data.size()) {
+                std::fprintf(stderr, "row out of range (rows %zu)\n", t.data.size());
+            } else {
+                const auto& d = t.data[(size_t)dump_row];
+                std::printf("type %d row %d: %zu int cells / %zu string cells\n",
+                            dump_type, dump_row, d.int_values.size(), d.string_values.size());
+                for (size_t k = 0; k < d.int_values.size(); ++k)
+                    if (d.int_values[k] != 0)
+                        std::printf("  int[%zu] = %lld\n", k, (long long)d.int_values[k]);
+                for (size_t k = 0; k < d.string_values.size(); ++k)
+                    if (!d.string_values[k].empty())
+                        std::printf("  str[%zu] = \"%s\"\n", k, d.string_values[k].c_str());
+            }
+        }
     }
     return 0;
 }
@@ -663,10 +699,15 @@ int main(int argc, char** argv) {
         const char* cdbproj = nullptr;
         const char* cdbdat = nullptr;
         bool verbose = false, verbose_trace = false;
+        size_t cap = 0;
         for (int k = 4; k < argc; ++k) {
             if (!std::strcmp(argv[k], "-v")) verbose = true;
             else if (!std::strcmp(argv[k], "-t")) verbose_trace = true;
-            else if (!std::strcmp(argv[k], "--db")) {
+            else if (!std::strcmp(argv[k], "--cap")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--cap needs a number\n"); return 1; }
+                cap = (size_t)std::strtoull(argv[k + 1], nullptr, 10);
+                ++k;
+            } else if (!std::strcmp(argv[k], "--db")) {
                 if (k + 2 >= argc) { std::fprintf(stderr, "--db needs project dat\n"); return 1; }
                 dbproj = argv[k + 1];
                 dbdat = argv[k + 2];
@@ -681,7 +722,7 @@ int main(int argc, char** argv) {
                 return 1;
             }
         }
-        return cmd_commonrun(argv[2], id, dbproj, dbdat, cdbproj, cdbdat, verbose || verbose_trace);
+        return cmd_commonrun(argv[2], id, dbproj, dbdat, cdbproj, cdbdat, verbose || verbose_trace, cap);
     }
     if (argc >= 3 && std::strcmp(argv[1], "maptree") == 0) {
         const bool tree = (argc >= 4 && !std::strcmp(argv[3], "-t"));
@@ -690,7 +731,9 @@ int main(int argc, char** argv) {
     if (argc >= 3 && std::strcmp(argv[1], "openstatus") == 0)
         return cmd_openstatus(argv[2]);
     if (argc >= 4 && std::strcmp(argv[1], "dbinfo") == 0)
-        return cmd_dbinfo(argv[2], argv[3]);
+        return cmd_dbinfo(argv[2], argv[3],
+                          argc >= 5 ? std::atoi(argv[4]) : -1,
+                          argc >= 6 ? std::atoi(argv[5]) : 0);
     if (argc >= 3 && std::strcmp(argv[1], "sysbasic") == 0)
         return cmd_sysbasic(argv[2]);
     if (argc >= 3 && std::strcmp(argv[1], "tileset") == 0) {
@@ -702,7 +745,7 @@ int main(int argc, char** argv) {
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
                          "commonrun <CommonEvent.dat> <id> [-t] [--db <X.project> <X.dat>] [--cdb <P.project> <P.dat>] | "
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
-                         "dbinfo <X.project> <X.dat> | sysbasic <SysDataBaseBasic.dat> | "
+                         "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
                          "tileset <TileSetData.dat> [-v]\n");
     return 1;
 }

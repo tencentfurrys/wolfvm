@@ -36,6 +36,18 @@ struct Frame {
     size_t pc = 0;
     Cell cself[100];                            // 1600000+n (n < 100)
     std::vector<struct Ctx> branch;             // open condition/loop contexts
+
+    // Return-value pair (engine state fields +0x8A0/+0x8A4). Set by the cid-210
+    // bit24 call path (Game.exe 0x463777..0x4639ED) on the CALLER side; consumed
+    // once, at the callee's completion (0x453B36):
+    //   op   = raw caller-side operand (absolute cell key; 0 = no binding)
+    //   slot = callee's declared return cell (record 0xBCC; CommonEvent.dat 0x92 tail)
+    // Copy-back: slot%100 in [5,9] -> string write, else int write.
+    struct RetBind {
+        long long op = 0;
+        int32_t slot = -1;
+        bool active = false;
+    } ret;
 };
 
 enum class CtxKind { Cond, LoopTimes, LoopOpen };
@@ -101,8 +113,8 @@ public:
             index_by_id_[ce.events[k].id] = k;
     }
     void set_trace(TraceSink* tr) { tr_ = tr; }
+    void set_step_cap(size_t cap) { step_cap_ = cap; }   // harness knob (0 = default 2e6)
     void set_db_ops(std::vector<DbOp>* out) { dbops_ = out; }
-    void set_step_cap(size_t cap) { step_cap_ = cap; }
 
     bool run(int32_t common_id, RunResult& out);
 
@@ -123,6 +135,9 @@ private:
 
     // cself size observed as 100 empty strings in the event tail (data).
     static constexpr size_t kCselfCap = 100;
+    // string-arg slots land at cself[5+i] (engine band 15000000+id*100+5+i,
+    // cid-210 handler 0x46359F/0x463640).
+    static constexpr size_t kCselfRetStrBase = 5;
 
     const CommonEventRecord* ev(int32_t id) const;
     Frame& frame() { return stack_.back(); }
