@@ -850,6 +850,18 @@ flags, 16B unknown16, 10B block10. Aggregates:
   i0=999999 (a Wolf-typical max constant). Two distinct pages,
   both flagged for targeted Game.exe-loader review.
 
+### 14.0.1 First runtime object layer (MODEL — committed same day)
+
+`src/map_runtime.h` + CLI `mapobj <X.mps> [--ticks N]`: per-object
+`{rec, erased, active_page}`, pluggable predicate, tick / erase /
+pick page. selftest 24 → **28 checks** (4 new MODEL pins: top-down
+last pick, erase clears page, erase sticky across tick, cond!=(-1)
+inert under `CondDefaultPred`). All model semantics, marked (approx);
+they exist so verified engine facts can later replace `pick_page`
+and the predicate rather than be invented inline.
+`mapobj 1-1.mps` demo output shows the model activating the door
+record's page 1 — the documented §14.2 contradiction in plain sight.
+
 ### 14.2 Engine reading (OPEN — TODO verify)
 
 None of the above values has an engine interpretation yet:

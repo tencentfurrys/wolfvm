@@ -13,6 +13,7 @@
 #include "filecoder.h"
 #include "game_dat.h"
 #include "map_project.h"
+#include "map_runtime.h"
 #include "map_tree.h"
 #include "vm.h"
 #include "map_tree_open_status.h"
@@ -979,6 +980,37 @@ static int cmd_selftest() {
                   "stepcap: runaway 212/213 loop hits step cap");
     }
 
+    // --- map_runtime MODEL pins (Stage-3 skeleton; semantics are MODEL,
+    // NOT engine claims — real page selection is TODO verify Game.exe).
+    {
+        wolf::MapProjectDat mp;
+        wolf::MapEventRecord rec;
+        rec.id = 7; rec.page_count = 2;
+        wolf::MapEventPage p0; p0.condition = -1; rec.pages.push_back(p0);
+        wolf::MapEventPage p1; p1.condition = -1; rec.pages.push_back(p1);
+        mp.events.push_back(rec);
+        wolf::MapRuntime rt(mp);
+        wolf::CondDefaultPred pred;
+        rt.tick(0, pred);
+        st_expect(rt.objects()[0].active_page == 1,
+                  "model: all(-1) 2-page record picks top-down last page");
+        rt.erase(7);
+        st_expect(rt.objects()[0].erased && rt.objects()[0].active_page == -1,
+                  "model: 173-style erase clears active page");
+        rt.tick(0, pred);
+        st_expect(rt.objects()[0].erased && rt.objects()[0].active_page == -1,
+                  "model: erase is sticky across tick");
+        wolf::MapProjectDat mp2;
+        wolf::MapEventRecord rec2;
+        rec2.id = 1; rec2.page_count = 1;
+        wolf::MapEventPage q0; q0.condition = 0; rec2.pages.push_back(q0);
+        mp2.events.push_back(rec2);
+        wolf::MapRuntime rt2(mp2);
+        rt2.tick(0, pred);
+        st_expect(rt2.objects()[0].active_page == -1,
+                  "model: cond!=(-1) page inert under default pred (0 x12/52 x1 band open)");
+    }
+
     std::printf("selftest %s  (pass %u, fail %u)\n",
                 g_st_fail ? "FAILED" : "PASS", g_st_pass, g_st_fail);
     return g_st_fail ? 1 : 0;
@@ -1268,6 +1300,44 @@ static int cmd_mpspagewalk(const char* dirpath) {
     return 0;
 }
 
+// mapobj — Stage-3 headless map-object demo (MODEL, approx).
+// Loads one .mps, builds the MapRuntime object layer with the default
+// (cond==-1) predicate, ticks N times, prints per-object model state.
+// Purpose: exercise the object-layer API shape the verified engine work
+// will plug into; output is explicitly NOT engine truth (page selection
+// TODO verify — see ENGINE_ANALYSIS §14.2).
+static int cmd_mapobj(const char* path, uint64_t ticks) {
+    auto data = read_file(path);
+    wolf::Reader r(std::move(data));
+    wolf::MapProjectDat mp;
+    std::string err;
+    wolf::MapProjectDat::parse(r, mp, err);
+    if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
+
+    wolf::MapRuntime rt(mp);
+    wolf::CondDefaultPred pred;
+    for (uint64_t t = 0; t < ticks; ++t) rt.tick(t, pred);
+
+    std::printf("%s: %zu records, %zu pages\n", path, mp.events.size(), [&] {
+        size_t n = 0;
+        for (const auto& e : mp.events) n += e.pages.size();
+        return n;
+    }());
+    size_t act = 0, inactive = 0, erased = 0;
+    for (size_t i = 0; i < rt.objects().size(); ++i) {
+        const auto& o = rt.objects()[i];
+        const auto& e = mp.events[i];
+        if (o.erased) ++erased; else if (o.active_page >= 0) ++act; else ++inactive;
+        std::printf("obj %d \"%.32s\" @(%d,%d) pages %d active %d%s\n",
+                    e.id, escape_bytes(e.name).c_str(), e.x, e.y, e.page_count,
+                    o.active_page, o.erased ? " [erased]" : "");
+    }
+    std::printf("[mapobj] MODEL active=%zu inactive=%zu erased=%zu"
+                "  (approx: default cond==-1 pred + top-down pick;"
+                " engine semantics TODO verify)\n", act, inactive, erased);
+    return 0;
+}
+
 int main(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
@@ -1408,6 +1478,19 @@ int main(int argc, char** argv) {
     if (argc >= 3 && std::strcmp(argv[1], "mpspagewalk") == 0) {
         return cmd_mpspagewalk(argv[2]);
     }
+    if (argc >= 3 && std::strcmp(argv[1], "mapobj") == 0) {
+        uint64_t ticks = 1;
+        for (int k = 3; k < argc; ++k) {
+            if (!std::strcmp(argv[k], "--ticks")) {
+                if (k + 1 >= argc) { std::fprintf(stderr, "--ticks needs a number\n"); return 1; }
+                ticks = std::strtoull(argv[k + 1], nullptr, 10); ++k;
+            } else {
+                std::fprintf(stderr, "unknown option %s\n", argv[k]);
+                return 1;
+            }
+        }
+        return cmd_mapobj(argv[2], ticks);
+    }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
                          "[-h | <eventId>] | commonstat <CommonEvent.dat> | "
@@ -1418,6 +1501,7 @@ int main(int argc, char** argv) {
                          "maptree <MapTree.dat> [-t] | openstatus <MapTreeOpenStatus.dat> | "
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
                          "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v] [-c] | "
-                         "mpspagewalk <Data/MapData-dir>\n");
+                         "mpspagewalk <Data/MapData-dir> | "
+                         "mapobj <X.mps> [--ticks N]\n");
     return 1;
 }

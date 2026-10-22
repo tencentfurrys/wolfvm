@@ -105,6 +105,16 @@ other=0, gap=0** — per-id diff vs the archived v4 baseline is exactly one id
   all 105 files via a caller loop). Map-side total ≈ 7.2k commands; cids beyond
   the CE-decoded set that map pages use: 173 EraseEvent ×106, 126 BanInput ×2,
   125 AutoInput ×1 — the Stage-2 MapEvent-runner decode backlog.
+- tools: `mapobj <X.mps> [--ticks N]` + `src/map_runtime.h` — Stage-3 headless
+  map-object layer (MODEL, approx): per-object `{rec, erased, active_page}`,
+  pluggable page predicate (`CondDefaultPred`: cond==-1 satisfied, other
+  scalars inert), classic-Wolf top-down pick, sticky erase (`erase()` =
+  cid 173 hook), tick() re-evaluation. selftest grew 24→28 checks: 4 MODEL
+  pins (top-down pick, erase clears page, erase sticky, cond!=(-1) inert) —
+  explicitly model semantics, NOT engine claims; page selection is
+  TODO verify vs Game.exe and the model reproduces the known contradiction
+  (multi-page all-(-1) records activate their last page — e.g. the 1-1 door
+  picks page 1) that §14.2 documents until the loader is decoded.
 - tools: `mpspagewalk <Data/MapData-dir>` — Stage-3 page-field census over all
   `.mps` in a directory (native; one machine-clean line per page + aggregate
   histograms; a shell-side census of this kept corrupting rows). Result on the
