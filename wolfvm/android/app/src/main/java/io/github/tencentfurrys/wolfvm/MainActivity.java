@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -82,6 +83,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         setContentView(buildUi());
         loadRoot();
         log("== " + WolfVm.version() + "\n");
+        runCmd("selftest", "selftest");   // instant, visible VM check in the open console
         autoImportAssetPack();
     }
 
@@ -91,23 +93,26 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     // Reuses the SAF "import zip" pipeline incl. root auto-detect.
     private void autoImportAssetPack() {
         if (new File(gameDir(), "Data/BasicData/Game.dat").isFile()) return;
-        final File tmp = new File(getCacheDir(), "bundled_wolfvm_data.zip");
-        boolean have;
-        try (InputStream in = getAssets().open("wolfvm_data.zip");
-             OutputStream os = new FileOutputStream(tmp)) {
-            byte[] buf = new byte[1 << 16];
-            int n;
-            while ((n = in.read(buf)) > 0) os.write(buf, 0, n);
-            have = true;
-        } catch (IOException noPack) {
-            have = false;
-        }
-        if (have) {
-            log("[import] bundled data-pack found — auto-importing\n");
-            new Thread(() -> importZip(Uri.fromFile(tmp)), "import-asset-pack").start();
-        } else {
-            log("[data] no bundled pack — import via zip/dir or set a root\n");
-        }
+        new Thread(() -> {
+            final File tmp = new File(getCacheDir(), "bundled_wolfvm_data.zip");
+            boolean have;
+            try (InputStream in = getAssets().open("wolfvm_data.zip");
+                 OutputStream os = new FileOutputStream(tmp)) {
+                byte[] buf = new byte[1 << 16];
+                int rd, staged = 0;
+                while ((rd = in.read(buf)) > 0) { os.write(buf, 0, rd); staged += rd; }
+                have = true;
+                log("[pack] staged " + (staged >> 20) + " MB from the APK asset\n");
+            } catch (IOException noPack) {
+                have = false;
+            }
+            if (have) {
+                log("[import] bundled data-pack found — auto-importing\n");
+                importZip(Uri.fromFile(tmp));
+            } else {
+                log("[data] no bundled pack — import via zip/dir or set a root\n");
+            }
+        }, "import-asset-pack").start();
     }
 
     // ------------------------------------------------------------------ UI
@@ -123,6 +128,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
         mapLabel = new TextView(this);
         mapLabel.setTextColor(Color.argb(200, 124, 201, 124));
+        mapLabel.setText("no session — double-tap the map to toggle the console");
         mapLabel.setPadding(dp(8), dp(4), dp(8), dp(4));
         mapLabel.setTypeface(Typeface.MONOSPACE);
         root.addView(mapLabel, new FrameLayout.LayoutParams(
@@ -184,7 +190,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         root.addView(consoleWrap, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, dp(340),
                 Gravity.BOTTOM | Gravity.START));
-        console.setVisibility(View.GONE);
+        console.setVisibility(View.VISIBLE);       // console stays open until the user hides it
         return root;
     }
 
@@ -404,17 +410,21 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     // -------------------------------------------------- surface callbacks
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        log("[surface] created\n");
         new Thread(this::createSession, "wolfvm-start").start();
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         sfcW = w; sfcH = h;
+        log("[surface] changed " + w + "x" + h
+                + (session != 0 ? " (session resize)\n" : " (no session yet)\n"));
         if (session != 0) WolfVm.sessionResize(session, w, h);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        log("[surface] destroyed\n");
         stopSession();
         sfcW = 0; sfcH = 0;
     }
@@ -429,7 +439,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
     private void createSession() {
         if (sfcW == 0) {  // surfaceCreated can fire before surfaceChanged
-            log("(surface not sized yet; recreate session via surface change)\n");
+            log("[session] surface not sized yet — waiting for surfaceChanged\n");
             return;
         }
         stopSession();
@@ -444,6 +454,9 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
             }
             return;
         }
+        final String mps = maps.get(mapIdx);
+        log("[session] startSession(" + new File(mps).getParentFile().getName()
+                + "/" + new File(mps).getName() + ") …\n");
         final long h = WolfVm.startSession(rootEdit.getText().toString().trim(),
                 maps.get(mapIdx), 0, map.getHolder().getSurface());
         if (h <= 0) {
@@ -581,6 +594,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
     private void log(final String s) {
+        // every console line also lands in logcat ("adb logcat -s wolfvm")
+        Log.i(LOGTAG, s.replace('\n', ' ').trim());
         ui.post(() -> {
             logView.append(s);
             logScroll.post(() -> logScroll.smoothScrollTo(0, Integer.MAX_VALUE));
@@ -662,4 +677,5 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
     private static final int REQ_ZIP = 41, REQ_DIR = 42;
+    private static final String LOGTAG = "wolfvm";
 }
