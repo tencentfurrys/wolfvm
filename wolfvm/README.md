@@ -21,8 +21,16 @@ Eris Dysnomia on Android. Built from the engine analysis in `../ENGINE_ANALYSIS.
   - [x] `.mps` map format (`Data/MapData/*`, plain records, magic "WOLFM") — header + 3 stacked chip planes (3·W·H·u32, independent of the `layers` field) + event tail: `6F 39 30 00 00`-marked records → pages (`0x79` … `03 00×6`/`0x7A`) with the shared CE command grammar, file ends 0x66; **105/105 files byte-exact** (676 records / 1,028 pages / 8,931 commands), head page-count == parsed pages on every record; native `mpsinfo` CLI totals match the independent PowerShell sweep exactly. No separate per-map `.dat` event files exist — all per-map data lives in `.mps` (old "MapXXX.dat" idea is dead)
 - [ ] Stage 1 supplementary — `Reader::crypt_body` (LCG-XOR 3-stream, seeds read from raw header bytes; reference-exact) implemented for future encrypted records; game-dat entry decrypt now body-only per reference semantics
 - [ ] Stage 2 — event VM: variable banks, editor command dispatch (messages, picture ops, jump/call/condition), MapX object loop.
-- [ ] Stage 3 — host shell: SDL-family renderer surface, audio (XAudio2 semantics → Oboe), input mapping.
+- [x] Stage 3 — headless map-runtime object layer: ENGINE page-pred decoded
+      (`0x482240` evaluator + `0x44B530` top-down pick), `mapobj`/`mpspagewalk`/`mpssweep` census tools.
+  - [ ] Stage 3 remaining — renderer surface (SDL-family), audio (Oboe), input mapping.
 - [ ] Stage 4 — Android NDK packaging → signed debug APK.
+  - [x] `android/` shell project: Gradle 8.7 + AGP 8.6.1 + NDK r27, `libwolfvm.so`
+        from the same clean-room `src/` (arm64-v8a + x86_64), JNI bridge
+        (`WolfVm.cmd == run_cli` argv dispatch, pipe-captured), console Activity
+        (selftest / locate-data / game+CE info / sweep probe / mps+mapobj).
+  - [x] `assembleDebug` debug-signed APK (build instructions below).
+  - [ ] on-device validation pass.
 - [ ] Stage 5 — parity pass vs. Windows runtime (basic fixes; cg/voice/scene assets included as dumb loaders).
 
 Backup: private GitHub repo `tencentfurrys/wolfvm` — pushed at each verified parser milestone.
@@ -35,6 +43,25 @@ cmake --build build
 build\wolfvm.exe selftest
 build\wolfvm.exe datinfo "..\Eris Dysnomia\Data\BasicData\Game.dat"
 ```
+
+## Build (Android shell, Stage 4)
+
+Prereqs: JDK 17, Android SDK (platforms;android-34, build-tools 35.0.0, NDK
+27.3.13750724, cmake 3.31.5). `local.properties` with `sdk.dir=` stays local
+(gitignored).
+
+```powershell
+cd android
+.\gradlew assembleDebug        # → app\build\outputs\apk\debug\app-debug.apk
+.\gradlew assembleRelease      # same code, signed with the debug key
+```
+
+The shell runs the same clean-room core on-device: a console activity with
+buttons for `selftest`, data-locate, `gameinfo`/`commoninfo`, a `sweep` probe
+(ids 0..20), `mpsinfo -c` and `mapobj`; the game data tree lives under
+`/sdcard/WolfVM/Data/...` (path editable in the UI; All-files access requested on
+first launch). Missing files are pre-validated in the UI because the native
+reader aborts on open failure — copy `Data/` from the restored game root first.
 
 `selftest` runs the in-memory VM regression net (24 checks; no game data needed):
 121 gates, select/else/498/499 structure, loops + 171 break, 210 calls with

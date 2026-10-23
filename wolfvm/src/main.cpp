@@ -1243,7 +1243,7 @@ static int cmd_mpssweep(const char* mpspath, const char* cepath, const char* dbp
     wolf::CommonEventDat ce;
     std::vector<std::pair<int32_t, int32_t>> synth_meta;   // (rec id, page idx)
     if (cepath && *cepath) {
-        wolf::Reader rc(std::move(read_file(cepath)));
+        wolf::Reader rc(read_file(cepath));
         wolf::CommonEventDat::parse(rc, ce, err);
         if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
         std::fprintf(stderr, "[mpssweep] merged %zu common events\n", ce.events.size());
@@ -1325,7 +1325,7 @@ static int cmd_mpssweep(const char* mpspath, const char* cepath, const char* dbp
     for (const auto& p : total_cids) {
         wolf::Command probe;
         probe.cid = p.first;
-        std::printf("  cid %6u x %6u  (%s)\n", p.first, p.second,
+        std::printf("  cid %6u x %6zu  (%s)\n", p.first, p.second,
                     probe.name() ? probe.name() : "?");
     }
     return 0;
@@ -1479,7 +1479,9 @@ static int cmd_mapobj(const char* path, uint64_t ticks,
     return 0;
 }
 
-int main(int argc, char** argv) {
+// run_cli — the whole CLI dispatch, reusable as a library entry point (the
+// Android shell calls it via jni_bridge with an argv it builds itself).
+int run_cli(int argc, char** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);   // survive crashes: unbuffered output
     if (argc >= 3 && std::strcmp(argv[1], "datinfo") == 0)    return cmd_datinfo(argv[2]);
     if (argc >= 3 && std::strcmp(argv[1], "gameinfo") == 0)   return cmd_gameinfo(argv[2]);
@@ -1653,3 +1655,9 @@ int main(int argc, char** argv) {
                          "mapobj <X.mps> [--ticks N] [--set KEY=VALUE ...]\n");
     return 1;
 }
+
+#ifndef WOLFVM_AS_LIBRARY
+int main(int argc, char** argv) {
+    return run_cli(argc, argv);
+}
+#endif

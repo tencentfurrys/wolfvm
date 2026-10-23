@@ -1,0 +1,41 @@
+// wolfvm — headless VM shell on Android (Stage 4).
+// The native library links the same clean-room sources as the Windows CLI
+// (../src), compiled once more for the device. JNI surface: WolfVm.cmd()
+// dispatches straight into the CLI parser (run_cli), so every harness command
+// (selftest/datinfo/sweep/mpsinfo/mapobj/...) works identically on device.
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'io.github.tencentfurrys.wolfvm'
+    compileSdk 34
+    ndkVersion '27.3.13750724'
+
+    defaultConfig {
+        applicationId 'io.github.tencentfurrys.wolfvm'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '0.3'
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static', '-DCMAKE_BUILD_TYPE=Release'
+                abiFilters 'arm64-v8a', 'x86_64'   // arm64 = target of record
+            }
+        }
+    }
+    buildTypes {
+        // "release" is signed with the debug key too — sideload-friendly.
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+    externalNativeBuild {
+        cmake { path 'src/main/jni/CMakeLists.txt'; version '3.31.5' }
+    }
+    lint {
+        // The shell intentionally manipulates raw paths (game data lives in
+        // normal device storage); PATH traversal checks don't apply here.
+        disable 'PathTraversal'
+    }
+}
