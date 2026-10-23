@@ -96,7 +96,16 @@ SAF-picked folder tree the same way; **save root** persists a manual root
 (e.g. the legacy `/sdcard/WolfVM` layout, which still works with All-files
 access granted). Missing files are pre-validated in the UI because the native
 reader aborts on open failure. The app does **not** and will not bundle the
-commercial game's data — bring your own copy.
+commercial game's data - bring your own copy.
+
+**Personal test builds with a bundled pack (v0.6.1, this machine only):**
+`mkdatapack.ps1` zips a locally restored decrypted `Data` tree into
+`android/app/src/main/assets/wolfvm_data.zip` (gitignored), and building with
+that pack produces an APK whose first launch auto-imports the pack through the
+same import pipeline. The pack is third-party game content: it stays on the
+build machine, never enters git history, and the pack variant is **never
+uploaded to a release** - public builds stay data-less ("bring your own copy"
+stands).
 
 ### Renderer facts (data census 2026-10-23, all 105 maps — see analysis note)
 

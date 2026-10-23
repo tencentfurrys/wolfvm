@@ -3,6 +3,9 @@ Eris Dysnomia/
 *.wolf
 *.7z
 
+# Personal-test APK data-pack (game content; local device testing only)
+wolfvm/android/app/src/main/assets/wolfvm_data.zip
+
 # Build artifacts / local binaries
 build/
 *.o

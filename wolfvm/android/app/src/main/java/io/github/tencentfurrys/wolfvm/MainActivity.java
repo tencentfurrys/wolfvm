@@ -32,6 +32,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -81,6 +82,32 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         setContentView(buildUi());
         loadRoot();
         log("== " + WolfVm.version() + "\n");
+        autoImportAssetPack();
+    }
+
+    // ------------------------------------------------- bundled asset pack
+    // PERSONAL TEST builds only (tools/mkdatapack.ps1): the pack is the
+    // player's own game data, gitignored, never committed or uploaded.
+    // Reuses the SAF "import zip" pipeline incl. root auto-detect.
+    private void autoImportAssetPack() {
+        if (new File(gameDir(), "Data/BasicData/Game.dat").isFile()) return;
+        final File tmp = new File(getCacheDir(), "bundled_wolfvm_data.zip");
+        boolean have;
+        try (InputStream in = getAssets().open("wolfvm_data.zip");
+             OutputStream os = new FileOutputStream(tmp)) {
+            byte[] buf = new byte[1 << 16];
+            int n;
+            while ((n = in.read(buf)) > 0) os.write(buf, 0, n);
+            have = true;
+        } catch (IOException noPack) {
+            have = false;
+        }
+        if (have) {
+            log("[import] bundled data-pack found — auto-importing\n");
+            new Thread(() -> importZip(Uri.fromFile(tmp)), "import-asset-pack").start();
+        } else {
+            log("[data] no bundled pack — import via zip/dir or set a root\n");
+        }
     }
 
     // ------------------------------------------------------------------ UI
@@ -276,6 +303,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
                     while ((n = zis.read(buf)) > 0) os.write(buf, 0, n);
                 }
                 ++files;
+                if ((files % 250) == 0) log("[import] ... " + files + " files\n");
             }
         } catch (Exception ex) {
             log("[import] zip FAILED: " + ex + " (extracted " + files + " files before)\n");
