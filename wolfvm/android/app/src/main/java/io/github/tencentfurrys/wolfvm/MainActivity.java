@@ -242,6 +242,15 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         console.setVisibility(console.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 
+    /** status-line prefix: pins which debug build is on screen (no build ambiguity). */
+    private String appVer() {
+        try {
+            return "wolfvm-" + getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (Exception e) {
+            return "wolfvm";
+        }
+    }
+
     /** console ▸ export: write the console text into the device Downloads folder. */
     private void exportLog() {
         final String text = logView.getText().toString();
@@ -573,7 +582,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
             final long h = session;
             if (h != 0) {
                 final String st = WolfVm.sessionStatus(h);
-                ui.post(() -> mapLabel.setText(st));
+                ui.post(() -> mapLabel.setText(appVer() + " " + st));
             }
             ui.postDelayed(this, 2000);
         }

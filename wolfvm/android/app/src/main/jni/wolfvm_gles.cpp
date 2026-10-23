@@ -171,7 +171,10 @@ void Renderer::build_plane_meshes(const std::vector<std::vector<uint32_t>>& plan
                 // variants don't yet).
                 const uint32_t page = v / 100000u;
                 const uint32_t chip = v % 100000u;
-                if (chip == 0u) { ++missing_cells; continue; }   // empty cell
+                // v==0 (page0 chip0) = empty cell; but page>=1 chip0 is the AT
+                // sheet's base variant (1-1: 100000 x10339 = the ground fill),
+                // NOT empty — census 2026-10-23. Same for any AT chip.
+                if (page == 0u && chip == 0u) { ++missing_cells; continue; }
                 if (sheets.empty()) { ++missing_cells; continue; }
                 int si;
                 uint32_t local;
