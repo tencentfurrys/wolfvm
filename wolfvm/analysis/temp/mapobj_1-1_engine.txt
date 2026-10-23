@@ -1,0 +1,12 @@
+../../fb/game/Data/MapData/1-1.mps: 10 records, 16 pages
+obj 0 "MapChip/\x8C\xF5.png" @(29,21) pages 1 active 0  {trig=2 always}
+obj 1 "MapChip/\x89\xD4.png" @(42,21) pages 1 active 0  {trig=2 always}
+obj 2 "MapChip/\x8C\xF5.png" @(24,21) pages 1 active 0  {trig=2 always}
+obj 3 "MapChip/\x8C\xF5.png" @(50,21) pages 1 active 0  {trig=2 always}
+obj 4 "MapChip/\x8C\xF5.png" @(49,21) pages 1 active 0  {trig=2 always}
+obj 6 "MapChip/\x89\xD4.png" @(70,21) pages 1 active 0  {trig=2 always}
+obj 7 "BF\x90i\x8Ds" @(93,21) pages 6 active 5  {trig=2 if [2000035] <= 30}
+obj 8 "MapChip/\x8C\xF5.png" @(68,21) pages 1 active 0  {trig=2 always}
+obj 9 "\x83h\x83A" @(111,21) pages 2 active 0  {trig=2 if [1100002] == 0}
+obj 10 "MapChip/\x8C\xF5.png" @(71,21) pages 1 active 0  {trig=2 always}
+[mapobj] active=10 inactive=0 erased=0  (page pick ENGINE-TRUE 0x44B530/0x482240; vars default 0 unless --set; self key = record id)

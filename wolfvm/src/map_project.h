@@ -18,6 +18,22 @@
 //               16B | 10B | i32 n_cmds | commands | "03 00 .. 00" | 0x7A
 //     file ends with 0x66; a map without events goes straight from planes to 0x66
 //   strings are [u32 len (incl NUL)][len-1 bytes][NUL] — same as CommonEvent.
+//
+//   PAGE FIELD MEANINGS (engine-verified 2026-10-22, ENGINE_ANALYSIS §14.3):
+//   the raw byte groups above are kept for byte-exact round-trips, but the
+//   engine reads them as one 40-byte in-memory condition block (page+0x24,
+//   evaluator Game.exe 0x482240) that maps onto the file bytes like so:
+//     graphic_head[0..3] = graphic direction / anim frame / opacity / render mode
+//     graphic_head[4]    = condition-block byte 0 (start trigger)
+//     graphic_flags[0..3]= 4 condition op bytes: bit0 = term enabled,
+//                          (byte>>4) = comparator 0 '>' 1 '>=' 2 '==' 3 '<='
+//                          4 '<' 5 '!=' 6 '(L&R)==R'
+//     chips[0..3]        = 4 condition LHS variable keys
+//     unknown16          = 4 x LE i32 condition RHS values
+//     block10[0..3]      = movement bytes, block10[4] options (bit 0x40 read by
+//                          0x4824F0), block10[5] route flags, block10[6..9]
+//                          i32 page route count (0 on all 1028 pages here).
+//   Use page_conditions() rather than the raw names in new code.
 //   Command streams use the shared Command::read grammar (argc-prefixed cid
 //   streams with optional move/route tails).
 #pragma once
@@ -32,15 +48,51 @@
 namespace wolf {
 
 struct MapEventPage {
-    int32_t condition = 0;               // page condition: -1 observed x1015, 0 x12, 52 x1
+    int32_t condition = 0;               // NOT the start condition (that is page_conditions()); -1 x1015 / 0 x12 / 52 x1,
+                                         // all 13 non-(-1) pages have an empty graphic_file -> likely a tile-graphic number (inferred)
     std::string graphic_file;            // SJIS path, "" when the event has no graphic
-    std::vector<uint8_t> graphic_head;   // 5 bytes: 02/08, 00..02, FF, 00, 00..02
-    std::vector<uint8_t> graphic_flags;  // 4 bytes: 0x20 / 0x21 observed
-    std::array<int32_t, 4> chips{};      // chip codes; form: pngIndex*100000 + position
-    std::vector<uint8_t> unknown16;      // 16 raw bytes (page flags/scope, semantics open)
+    std::vector<uint8_t> graphic_head;   // 5 bytes: dir, frame, opacity, render mode, trigger
+    std::vector<uint8_t> graphic_flags;  // = 4 condition op bytes (bit0 enable, hi nibble comparator)
+    std::array<int32_t, 4> chips{};      // = condition LHS variable keys (see page_conditions)
+    std::vector<uint8_t> unknown16;      // = 4 x i32 condition RHS values (see page_conditions)
     std::vector<uint8_t> block10;        // 10 bytes, e.g. 03 03 03 00 23 02 00 00 00 00
     std::vector<Command> commands;
 };
+
+// Decoded page start condition (engine layout, Game.exe 0x482240).
+struct MapPageCond {
+    struct Term {
+        uint8_t op_byte = 0;
+        int32_t lhs = 0;     // variable key (self-var band rebased per event)
+        int32_t rhs = 0;     // literal or variable key, resolved by 0x43F0B0
+        bool enabled() const { return (op_byte & 0x01) != 0; }
+        int comparator() const { return (op_byte >> 4) & 0x0F; }
+    };
+    uint8_t trigger = 0;     // condition-block byte 0 (graphic_head[4])
+    std::array<Term, 4> terms{};
+};
+
+inline int32_t le_i32(const std::vector<uint8_t>& b, size_t off) {
+    if (b.size() < off + 4) return 0;
+    return (int32_t)((uint32_t)b[off] | ((uint32_t)b[off + 1] << 8) |
+                     ((uint32_t)b[off + 2] << 16) | ((uint32_t)b[off + 3] << 24));
+}
+
+inline MapPageCond page_conditions(const MapEventPage& p) {
+    MapPageCond c;
+    c.trigger = p.graphic_head.size() >= 5 ? p.graphic_head[4] : 0;
+    for (size_t i = 0; i < 4; ++i) {
+        c.terms[i].op_byte = p.graphic_flags.size() > i ? p.graphic_flags[i] : 0;
+        c.terms[i].lhs = p.chips[i];
+        c.terms[i].rhs = le_i32(p.unknown16, i * 4);
+    }
+    return c;
+}
+
+inline const char* comparator_name(int op) {
+    static const char* k[] = { ">", ">=", "==", "<=", "<", "!=", "&=" };
+    return (op >= 0 && op <= 6) ? k[op] : "?";
+}
 
 struct MapEventRecord {
     int32_t id = 0;

@@ -1,8 +1,9 @@
 // map_runtime.h — Stage-3 HEADLESS map-object model (skeleton).
 //
-// STATUS CAVEAT (read first): the real WOLF MapX object lifecycle — page
-// selection order, erase persistence window, event triggers — is NOT yet
-// engine-decoded. Everything here is a MODEL shaped to the verified data
+// STATUS: page selection is now ENGINE-TRUE (0x44B530 scan + 0x482240
+// condition evaluator, ENGINE_ANALYSIS §14.3). Still MODEL: erase
+// persistence window, trigger dispatch, and the self-key = record id
+// assumption (obj+0x24 is a constructor argument, loader not traced). Everything here is a MODEL shaped to the verified data
 // facts (ENGINE_ANALYSIS §14) so the verified engine work will plug into
 // it later. Model semantics are pinned by selftest as MODEL pins, never
 // as engine claims; anything used by the CLI prints an (approx) banner.
@@ -17,42 +18,114 @@
 
 #include <cstdint>
 #include <cstddef>
+#include <map>
 #include <vector>
 
 #include "map_project.h"
 
 namespace wolf {
 
-// Pluggable page-condition predicate. The engine's true condition inputs
-// (variable bank, flags, map state) are not wired yet (TODO verify), so
-// implementations must document which approximation they make.
-struct MapPagePred {
-    virtual ~MapPagePred() {}
-    // MODEL (approx, TODO verify Game.exe): whether page k of a n-page
-    // record should count as satisfied at evaluation time `now`.
-    virtual bool page_ok(const MapEventPage& p, size_t k, size_t n, uint64_t now) = 0;
+// Variable reader the page predicate pulls condition operands from. The
+// engine routes both operands through 0x43F0B0 (the generic value getter);
+// a reader implementation stands in for that getter.
+struct MapVarReader {
+    virtual ~MapVarReader() {}
+    virtual long long read(long long key) = 0;
 };
 
-// Default data-derived predicate: the scalar condition band is an open
-// question, so treat cond == -1 ("no explicit condition datum", 1015/1028
-// pages) as satisfied and cond != -1 (0 x12, 52 x1) as NOT satisfied —
-// conservative: the anomalous singletons stay inert until decoded.
+// Minimal standalone reader: keys < 1e6 are literals (0x43F0B0 range
+// ladder), every other key is a cell defaulting to 0. Map self vars live
+// at 1e6 + self_key*10 + n (n < 10) after rebasing.
+struct MapVarStore final : MapVarReader {
+    std::map<long long, long long> cells;
+    long long read(long long key) override {
+        if (key >= 0 && key < 1000000) return key;
+        auto it = cells.find(key);
+        return it == cells.end() ? 0 : it->second;
+    }
+    void set(long long key, long long v) { cells[key] = v; }
+    void set_self(int32_t self_key, int n, long long v) {
+        cells[1000000LL + (long long)self_key * 10 + n] = v;
+    }
+};
+
+// Pluggable page-condition predicate. `self_key` is the object's self-var
+// key (Game.exe obj+0x24, the value 0x482240 receives as its argument).
+struct MapPagePred {
+    virtual ~MapPagePred() {}
+    virtual bool page_ok(const MapEventPage& p, size_t k, size_t n,
+                         int32_t self_key, uint64_t now) = 0;
+};
+
+// Legacy MODEL predicate (pre-decode): cond == -1 satisfied. Kept only so
+// the old MODEL pins stay reproducible; superseded by EnginePagePred.
 struct CondDefaultPred final : MapPagePred {
-    bool page_ok(const MapEventPage& p, size_t, size_t, uint64_t) override {
+    bool page_ok(const MapEventPage& p, size_t, size_t, int32_t, uint64_t) override {
         return p.condition == -1;
     }
 };
 
-// Page pick: highest index whose predicate holds wins; -1 when none.
-// (approx) — classic Wolf/editor-documented top-down pick; Game.exe decode
-// pending. NOTE: under CondDefaultPred this activates the LAST page of
-// multi-page all-(-1) records (e.g. the 1-1 door would show its final
-// page), which contradicts observed play — exactly the contradiction
-// ENGINE_ANALYSIS §14.2 records; the model keeps it explicit.
+// ENGINE-TRUE page condition (Game.exe 0x482240, byte-read 2026-10-22):
+//   for i in 0..3:
+//     if !(op[i] & 1)            -> return true   (first disabled term ends
+//                                                   the list: prefix semantics)
+//     L = lhs[i]; if 1e6 <= L < 1.2e6:      L = 1e6 + slot*10 + L%10
+//                 if 9.19e6 <= L < 9.2e6:   L = 9.1e6 + slot*10 + L%10
+//     R = rhs[i]; same rebasing but only for 1.1e6 <= R < 1.2e6 (and 9.19e6 band)
+//     a = get(L); b = get(R)                (0x43F0B0 both)
+//     cmp (op>>4): 0 a>b 1 a>=b 2 a==b 3 a<=b 4 a<b 5 a!=b 6 (a&b)==rhs_raw
+//     comparator > 6 -> false; any failed term -> false
+//   all four enabled + passed -> true
+struct EnginePagePred final : MapPagePred {
+    explicit EnginePagePred(MapVarReader& rd) : rd_(rd) {}
+
+    static long long rebase_lhs(long long v, long long slot) {
+        if (v >= 1000000 && v < 1200000) return 1000000 + slot * 10 + v % 10;
+        if (v >= 9190000 && v < 9200000) return 9100000 + slot * 10 + v % 10;
+        return v;
+    }
+    static long long rebase_rhs(long long v, long long slot) {
+        if (v >= 1100000 && v < 1200000) return 1000000 + slot * 10 + v % 10;
+        if (v >= 9190000 && v < 9200000) return 9100000 + slot * 10 + v % 10;
+        return v;
+    }
+
+    bool eval(const MapPageCond& c, int32_t slot) {
+        for (const auto& t : c.terms) {
+            if (!t.enabled()) return true;
+            const long long a = rd_.read(rebase_lhs(t.lhs, slot));
+            const long long b = rd_.read(rebase_rhs(t.rhs, slot));
+            bool ok = false;
+            switch (t.comparator()) {
+                case 0: ok = a >  b; break;
+                case 1: ok = a >= b; break;
+                case 2: ok = a == b; break;
+                case 3: ok = a <= b; break;
+                case 4: ok = a <  b; break;
+                case 5: ok = a != b; break;
+                case 6: ok = (a & b) == (long long)t.rhs; break;   // raw rhs field
+                default: ok = false; break;
+            }
+            if (!ok) return false;
+        }
+        return true;
+    }
+
+    bool page_ok(const MapEventPage& p, size_t, size_t, int32_t self_key, uint64_t) override {
+        return eval(page_conditions(p), self_key);
+    }
+
+private:
+    MapVarReader& rd_;
+};
+
+// Page pick (ENGINE-TRUE, Game.exe 0x44B530): objects whose erase byte
+// (obj+0xBE) is set keep page -1; otherwise scan k = n-1 .. 0 and take the
+// first page whose condition holds; -1 when none (object has no page).
 inline int pick_page(const MapEventRecord& e, MapPagePred& pred, uint64_t now) {
     for (int k = static_cast<int>(e.pages.size()) - 1; k >= 0; --k)
         if (pred.page_ok(e.pages[static_cast<size_t>(k)], static_cast<size_t>(k),
-                         e.pages.size(), now))
+                         e.pages.size(), e.id, now))
             return k;
     return -1;
 }

@@ -125,6 +125,18 @@ other=0, gap=0** — per-id diff vs the archived v4 baseline is exactly one id
   these fields stays open (TODO verify vs Game.exe loader) — recorded in
   ENGINE_ANALYSIS §14; artifact `analysis/temp/mps_pagewalk_1.txt`.
 
+- engine: **map page selection decoded from Game.exe** (ENGINE_ANALYSIS §14.3).
+  The "unknown" page bytes are the 4-term start condition block
+  (op bytes = `graphic_flags`, LHS keys = `chips`, RHS = `unknown16`,
+  trigger = `graphic_head[4]`); evaluator 0x482240 (prefix list, comparator
+  table > >= == <= < != &=, self-var rebasing), pick 0x44B530 (top-down,
+  erased → -1). `EnginePagePred` replaces the MODEL predicate in `mapobj`;
+  the 1-1 door now shows page 0 until SelfVar2 = 1. selftest 28 → 36.
+- vm: **cid 111 comparator table fixed to engine truth** (0 > 1 >= 2 == 3 <= 4 < 5 != 6 &=,
+  JT 0x4586C8; old empirical table had 1/4 swapped). Sweep v8: **OK=512, stepcap=72,
+  reccap=0, other=0** (v7 485/86/13); maps OK=900/stepcap=128/reccap=0 (§14.5).
+  Linux build: `g++ -std=c++17 -O2 -o build/wolfvm src/*.cpp` (no cmake needed).
+
 ## Data layout expected by the VM
 
 ```

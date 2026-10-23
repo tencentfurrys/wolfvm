@@ -4,6 +4,7 @@
 #include <cstring>
 #include <filesystem>
 #include <map>
+#include <tuple>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -677,6 +678,21 @@ static int cmd_tileset(const char* path, bool verbose) {
     return 0;
 }
 
+// Engine reading of a page's start condition (0x482240 layout).
+static std::string fmt_page_cond(const wolf::MapEventPage& pg) {
+    const wolf::MapPageCond c = wolf::page_conditions(pg);
+    std::string s = "trig=" + std::to_string(c.trigger);
+    size_t n = 0;
+    for (const auto& t : c.terms) {
+        if (!t.enabled()) break;          // engine stops at the first disabled term
+        s += n++ ? " && " : " if ";
+        s += "[" + std::to_string(t.lhs) + "] " + wolf::comparator_name(t.comparator()) +
+             " " + std::to_string(t.rhs);
+    }
+    if (!n) s += " always";
+    return s;
+}
+
 static int cmd_mpsinfo(const char* path, bool verbose, bool census) {
     // .mps maps are plain records (10 zero bytes lead), so the game-dat crypt
     // probe is not applied — verified against all 105 map files of the target.
@@ -764,6 +780,7 @@ static int cmd_mpsinfo(const char* path, bool verbose, bool census) {
                 std::printf("      head %s | flags %s | v16 %s | b10 %s\n",
                             hexes(pg.graphic_head).c_str(), hexes(pg.graphic_flags).c_str(),
                             hexes(pg.unknown16).c_str(), hexes(pg.block10).c_str());
+                std::printf("      start %s\n", fmt_page_cond(pg).c_str());
             }
         }
     }
@@ -896,7 +913,7 @@ static int cmd_selftest() {
         adde(ce, 0, {
             mk(179, {10}),
             mk(121, {1600000, 0, 1, 0x100}, 1),       // cself[0] += 1
-            mk(111, {0x11, 1600000, 3, 4}, 1),        // cself[0] >= 3 -> case_target 1
+            mk(111, {0x11, 1600000, 3, 1}, 1),        // cself[0] >= 3 (engine op 1) -> case_target 1
             mk(401, {1}, 1),
             mk(171, {}, 2),                           // break
             mk(420, {0}, 1),
@@ -1035,6 +1052,69 @@ static int cmd_selftest() {
         rt2.tick(0, pred);
         st_expect(rt2.objects()[0].active_page == -1,
                   "model: cond!=(-1) page inert under default pred (0 x12/52 x1 band open)");
+    }
+
+    // --- ENGINE pins: page condition evaluator 0x482240 + pick 0x44B530
+    // (byte-read 2026-10-22, ENGINE_ANALYSIS §14.3).
+    {
+        auto mkpage = [](std::vector<std::tuple<uint8_t, int32_t, int32_t>> terms) {
+            wolf::MapEventPage p;
+            p.condition = -1;
+            p.graphic_head = {2, 0, 0xFF, 0, 0};
+            p.graphic_flags = {0x20, 0x20, 0x20, 0x20};
+            p.chips = {1000000, 1000000, 1000000, 1000000};
+            p.unknown16.assign(16, 0);
+            for (size_t i = 0; i < terms.size() && i < 4; ++i) {
+                p.graphic_flags[i] = std::get<0>(terms[i]);
+                p.chips[i] = std::get<1>(terms[i]);
+                const uint32_t v = (uint32_t)std::get<2>(terms[i]);
+                for (int b = 0; b < 4; ++b) p.unknown16[i * 4 + b] = (uint8_t)(v >> (8 * b));
+            }
+            return p;
+        };
+        wolf::MapVarStore vs;
+        wolf::EnginePagePred ep(vs);
+        // comparator table: (op<<4)|1 against V=5
+        vs.set(2000035, 5);
+        const int32_t want[7][3] = { // rhs 4,5,6 -> expected for each op
+            {1,0,0}, {1,1,0}, {0,1,0}, {0,1,1}, {0,0,1}, {1,0,1}, {1,1,0} };
+        bool tbl = true;
+        for (int op = 0; op < 7; ++op)
+            for (int r = 0; r < 3; ++r) {
+                auto pg = mkpage({{(uint8_t)((op << 4) | 1), 2000035, 4 + r}});
+                if ((int)ep.page_ok(pg, 0, 1, 0, 0) != want[op][r]) tbl = false;
+            }
+        st_expect(tbl, "engine: page comparator table 0..6 (> >= == <= < != &=)");
+        auto pgbad = mkpage({{0x71, 2000035, 5}});
+        st_expect(!ep.page_ok(pgbad, 0, 1, 0, 0), "engine: comparator >6 fails the page");
+        // prefix semantics: term0 disabled -> true even if term1 would fail
+        auto pgpre = mkpage({{0x20, 2000035, 0}, {0x21, 2000035, 999}});
+        st_expect(ep.page_ok(pgpre, 0, 1, 0, 0), "engine: first disabled term ends the list (true)");
+        // self-var rebasing: 1100002 -> 1e6 + id*10 + 2
+        wolf::MapProjectDat mp;
+        wolf::MapEventRecord door;
+        door.id = 9; door.page_count = 2;
+        door.pages.push_back(mkpage({{0x21, 1100002, 0}}));
+        door.pages.push_back(mkpage({{0x21, 1100002, 1}}));
+        mp.events.push_back(door);
+        wolf::MapRuntime rt(mp);
+        rt.tick(0, ep);
+        st_expect(rt.objects()[0].active_page == 0, "engine: door SelfVar2==0 -> page 0");
+        vs.set_self(9, 2, 1);
+        rt.tick(1, ep);
+        st_expect(rt.objects()[0].active_page == 1, "engine: door SelfVar2==1 -> page 1 (top-down)");
+        vs.set_self(9, 2, 7);
+        rt.tick(2, ep);
+        st_expect(rt.objects()[0].active_page == -1, "engine: no page holds -> -1");
+        // rhs band asymmetry: rhs 1000003 is NOT rebased (literal key read)
+        vs.set(1000003, 42);
+        auto pgr = mkpage({{0x21, 2000035, 1000003}});
+        vs.set(2000035, 42);
+        st_expect(ep.page_ok(pgr, 0, 1, 9, 0), "engine: rhs 1.0e6 band read unrebased");
+        // op 6 compares (a&b) with the RAW rhs field
+        vs.set(2000035, 0x0F);
+        auto pg6 = mkpage({{0x61, 2000035, 6}});
+        st_expect(ep.page_ok(pg6, 0, 1, 0, 0), "engine: op6 (a&b)==rhs");
     }
 
     std::printf("selftest %s  (pass %u, fail %u)\n",
@@ -1268,6 +1348,9 @@ static int cmd_mpspagewalk(const char* dirpath) {
     size_t n_rec = 0, n_pg = 0, n_idx_match = 0, n_idx_mismatch = 0;
     std::map<int32_t, size_t> h_cond, h_v0, h_b4, h_f0, h_h0, h_h1, h_pgc;
     std::map<std::string, size_t> h_combo;                    // b4:idx:i0 triple
+    std::map<int32_t, size_t> h_trig, h_cmp, h_nterms;        // engine-read condition block
+    std::map<std::string, size_t> h_lhsband;
+    size_t n_tail_enabled = 0, n_disabled_nondefault = 0;
 
     for (const auto& f : files) {
         auto data = read_file(f.string().c_str());
@@ -1295,6 +1378,25 @@ static int cmd_mpspagewalk(const char* dirpath) {
                             base.c_str(), e.id, e.x, e.y, e.page_count, k,
                             pg.condition, i0, b4 & 0xFF, f0 & 0xFF, h0 & 0xFF, h1 & 0xFF);
                 ++h_cond[pg.condition]; ++h_v0[i0]; ++h_b4[b4]; ++h_f0[f0]; ++h_h0[h0]; ++h_h1[h1];
+                {
+                    const wolf::MapPageCond c = wolf::page_conditions(pg);
+                    ++h_trig[c.trigger];
+                    size_t nt = 0; bool tail_enabled = false, stopped = false;
+                    for (const auto& t : c.terms) {
+                        if (!t.enabled()) { stopped = true; continue; }
+                        if (stopped) tail_enabled = true;      // enabled after a disabled term
+                        else { ++nt; ++h_cmp[t.comparator()];
+                               const long long L = t.lhs;
+                               const char* band = L < 1000000 ? "<1e6" : L < 1100000 ? "1.0e6(map self)" :
+                                   L < 1200000 ? "1.1e6(this self)" : L < 2000000 ? "1.2e6..2e6" :
+                                   L < 3000000 ? "2e6" : L < 4000000 ? "3e6" : L < 1000000000 ? "4e6..1e9" : ">=1e9(db)";
+                               ++h_lhsband[band]; }
+                    }
+                    ++h_nterms[(int32_t)nt];
+                    if (tail_enabled) ++n_tail_enabled;
+                    for (const auto& t : c.terms)
+                        if (!t.enabled() && t.lhs != 1000000) ++n_disabled_nondefault;
+                }
                 if (i0 == (int32_t)k) ++n_idx_match; else ++n_idx_mismatch;
                 char b4hex[8]; std::snprintf(b4hex, sizeof(b4hex), "%02X", (unsigned)(b4 & 0xFF));
                 char i0hex[16]; std::snprintf(i0hex, sizeof(i0hex), "%08X", (unsigned)i0);
@@ -1317,6 +1419,13 @@ static int cmd_mpspagewalk(const char* dirpath) {
     dump("h1", h_h1);
     dump("pagesPerRecord", h_pgc);
     std::printf("  i0==idx: %zu   i0!=idx: %zu\n", n_idx_match, n_idx_mismatch);
+    dump("trigger(head4)", h_trig);
+    dump("enabledTermsPerPage", h_nterms);
+    dump("comparator", h_cmp);
+    std::printf("  lhsBand:");
+    for (const auto& p : h_lhsband) std::printf(" %s/%zu", p.first.c_str(), p.second);
+    std::printf("\n  enabled-after-disabled terms: %zu   disabled terms with lhs!=1000000: %zu\n",
+                n_tail_enabled, n_disabled_nondefault);
     std::printf("  (b4, idx, i0) top combos:\n");
     size_t shown = 0;
     for (const auto& p : h_combo) {
@@ -1332,7 +1441,8 @@ static int cmd_mpspagewalk(const char* dirpath) {
 // Purpose: exercise the object-layer API shape the verified engine work
 // will plug into; output is explicitly NOT engine truth (page selection
 // TODO verify — see ENGINE_ANALYSIS §14.2).
-static int cmd_mapobj(const char* path, uint64_t ticks) {
+static int cmd_mapobj(const char* path, uint64_t ticks,
+                      const std::vector<std::pair<long long, long long>>& sets) {
     auto data = read_file(path);
     wolf::Reader r(std::move(data));
     wolf::MapProjectDat mp;
@@ -1340,8 +1450,10 @@ static int cmd_mapobj(const char* path, uint64_t ticks) {
     wolf::MapProjectDat::parse(r, mp, err);
     if (!err.empty()) { std::fprintf(stderr, "ERROR: %s\n", err.c_str()); return 1; }
 
+    wolf::MapVarStore vs;
+    for (const auto& kv : sets) vs.set(kv.first, kv.second);
+    wolf::EnginePagePred pred(vs);
     wolf::MapRuntime rt(mp);
-    wolf::CondDefaultPred pred;
     for (uint64_t t = 0; t < ticks; ++t) rt.tick(t, pred);
 
     std::printf("%s: %zu records, %zu pages\n", path, mp.events.size(), [&] {
@@ -1354,13 +1466,16 @@ static int cmd_mapobj(const char* path, uint64_t ticks) {
         const auto& o = rt.objects()[i];
         const auto& e = mp.events[i];
         if (o.erased) ++erased; else if (o.active_page >= 0) ++act; else ++inactive;
-        std::printf("obj %d \"%.32s\" @(%d,%d) pages %d active %d%s\n",
+        std::printf("obj %d \"%.32s\" @(%d,%d) pages %d active %d%s",
                     e.id, escape_bytes(e.name).c_str(), e.x, e.y, e.page_count,
                     o.active_page, o.erased ? " [erased]" : "");
+        if (o.active_page >= 0)
+            std::printf("  {%s}", fmt_page_cond(e.pages[(size_t)o.active_page]).c_str());
+        std::printf("\n");
     }
-    std::printf("[mapobj] MODEL active=%zu inactive=%zu erased=%zu"
-                "  (approx: default cond==-1 pred + top-down pick;"
-                " engine semantics TODO verify)\n", act, inactive, erased);
+    std::printf("[mapobj] active=%zu inactive=%zu erased=%zu  (page pick ENGINE-TRUE"
+                " 0x44B530/0x482240; vars default 0 unless --set; self key = record id)\n",
+                act, inactive, erased);
     return 0;
 }
 
@@ -1506,16 +1621,23 @@ int main(int argc, char** argv) {
     }
     if (argc >= 3 && std::strcmp(argv[1], "mapobj") == 0) {
         uint64_t ticks = 1;
+        std::vector<std::pair<long long, long long>> sets;
         for (int k = 3; k < argc; ++k) {
             if (!std::strcmp(argv[k], "--ticks")) {
                 if (k + 1 >= argc) { std::fprintf(stderr, "--ticks needs a number\n"); return 1; }
                 ticks = std::strtoull(argv[k + 1], nullptr, 10); ++k;
+            } else if (!std::strcmp(argv[k], "--set")) {
+                if (k + 1 >= argc || !std::strchr(argv[k + 1], '=')) {
+                    std::fprintf(stderr, "--set needs KEY=VALUE\n"); return 1; }
+                sets.emplace_back(std::strtoll(argv[k + 1], nullptr, 10),
+                                  std::strtoll(std::strchr(argv[k + 1], '=') + 1, nullptr, 10));
+                ++k;
             } else {
                 std::fprintf(stderr, "unknown option %s\n", argv[k]);
                 return 1;
             }
         }
-        return cmd_mapobj(argv[2], ticks);
+        return cmd_mapobj(argv[2], ticks, sets);
     }
     std::fprintf(stderr, "usage: wolfvm datinfo <file.dat> | gameinfo <Game.dat> | "
                          "commoninfo <CommonEvent.dat> [-n N] | commondump <CommonEvent.dat> "
@@ -1528,6 +1650,6 @@ int main(int argc, char** argv) {
                          "dbinfo <X.project> <X.dat> [type [row]] | sysbasic <SysDataBaseBasic.dat> | "
                          "tileset <TileSetData.dat> [-v] | mpsinfo <Data/MapData/X.mps> [-v] [-c] | "
                          "mpspagewalk <Data/MapData-dir> | "
-                         "mapobj <X.mps> [--ticks N]\n");
+                         "mapobj <X.mps> [--ticks N] [--set KEY=VALUE ...]\n");
     return 1;
 }

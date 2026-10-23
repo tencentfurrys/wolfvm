@@ -1,0 +1,589 @@
+[sweep] ../../fb/game/Data/BasicData/CommonEvent.dat ids [0..583] db=1 cdb=1 cap=2000000
+    0 OK      exec=3      warns=0   
+    1 OK      exec=261    warns=54  
+    2 OK      exec=55     warns=0   
+    3 OK      exec=16     warns=1   
+    4 OK      exec=22     warns=1   
+    5 OK      exec=5      warns=0   
+    6 OK      exec=26     warns=2   
+    7 OK      exec=153    warns=14  
+    8 OK      exec=15071  warns=512 
+    9 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+   10 OK      exec=3      warns=0   
+   11 OK      exec=196    warns=5   
+   12 OK      exec=9      warns=0   
+   13 OK      exec=11     warns=3   
+   14 OK      exec=47     warns=0   
+   15 OK      exec=179    warns=4   
+   16 OK      exec=57     warns=2   
+   17 OK      exec=11     warns=1   
+   18 OK      exec=24     warns=2   
+   19 OK      exec=34     warns=1   
+   20 OK      exec=53     warns=0   
+   21 OK      exec=83     warns=0   
+   22 OK      exec=70     warns=0   
+   23 OK      exec=15     warns=0   
+   24 OK      exec=5      warns=0   
+   25 OK      exec=147    warns=5   
+   26 OK      exec=14     warns=0   
+   27 OK      exec=2      warns=0   
+   28 OK      exec=54     warns=2   
+   29 OK      exec=457    warns=15  
+   30 OK      exec=24     warns=2   
+   31 OK      exec=319    warns=3   
+   32 OK      exec=43     warns=0   
+   33 OK      exec=22     warns=0   
+   34 OK      exec=19     warns=0   
+   35 OK      exec=13     warns=0   
+   36 OK      exec=18     warns=0   
+   37 OK      exec=11     warns=0   
+   38 OK      exec=41     warns=1   
+   39 OK      exec=6      warns=0   
+   40 OK      exec=21     warns=1   
+   41 OK      exec=311    warns=3   
+   42 OK      exec=9      warns=0   
+   43 OK      exec=86     warns=5   
+   44 OK      exec=167    warns=0   
+   45 OK      exec=35     warns=1   
+   46 OK      exec=163    warns=9   
+   47 OK      exec=26     warns=0   
+   48 OK      exec=18     warns=1   
+   49 OK      exec=39     warns=1   
+   50 OK      exec=124    warns=1   
+   51 OK      exec=79     warns=2   
+   52 OK      exec=15     warns=0   
+   53 OK      exec=1217   warns=8   
+   54 OK      exec=41     warns=2   
+   55 OK      exec=93     warns=3   
+   56 OK      exec=22     warns=0   
+   57 OK      exec=26     warns=0   
+   58 OK      exec=96     warns=3   
+   59 OK      exec=49     warns=1   
+   60 OK      exec=11     warns=0   
+   61 OK      exec=700    warns=72  
+   62 OK      exec=330    warns=18  
+   63 OK      exec=192    warns=17  
+   64 STEPCAP exec=1959392 warns=512 step cap exceeded (2000000) — runaway loop
+   65 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   66 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   67 OK      exec=207    warns=7   
+   68 STEPCAP exec=1999995 warns=512 step cap exceeded (2000000) — runaway loop
+   69 OK      exec=1153   warns=50  
+   70 OK      exec=168    warns=5   
+   71 OK      exec=17     warns=6   
+   72 OK      exec=129    warns=1   
+   73 OK      exec=80     warns=1   
+   74 OK      exec=6      warns=2   
+   75 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   76 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   77 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   78 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   79 OK      exec=13     warns=0   
+   80 OK      exec=11     warns=0   
+   81 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   82 OK      exec=327    warns=19  
+   83 OK      exec=8      warns=1   
+   84 STEPCAP exec=1951663 warns=512 step cap exceeded (2000000) — runaway loop
+   85 OK      exec=36     warns=5   
+   86 OK      exec=162    warns=0   
+   87 OK      exec=117    warns=6   
+   88 OK      exec=4      warns=0   
+   89 OK      exec=50     warns=1   
+   90 OK      exec=22     warns=0   
+   91 OK      exec=453    warns=20  
+   92 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+   93 OK      exec=4      warns=0   
+   94 OK      exec=79     warns=7   
+   95 OK      exec=7      warns=0   
+   96 OK      exec=82     warns=5   
+   97 OK      exec=8      warns=0   
+   98 OK      exec=7660   warns=176 
+   99 OK      exec=212    warns=11  
+  100 OK      exec=38     warns=4   
+  101 OK      exec=55     warns=0   
+  102 OK      exec=71     warns=1   
+  103 OK      exec=199    warns=2   
+  104 OK      exec=130    warns=4   
+  105 OK      exec=2223   warns=85  
+  106 OK      exec=4      warns=0   
+  107 OK      exec=68     warns=0   
+  108 OK      exec=86     warns=1   
+  109 OK      exec=701    warns=21  
+  110 OK      exec=5      warns=0   
+  111 OK      exec=78     warns=2   
+  112 OK      exec=4      warns=0   
+  113 OK      exec=48     warns=0   
+  114 OK      exec=19     warns=4   
+  115 OK      exec=25     warns=1   
+  116 OK      exec=7      warns=0   
+  117 OK      exec=10     warns=0   
+  118 OK      exec=20     warns=0   
+  119 OK      exec=155    warns=3   
+  120 OK      exec=1199   warns=44  
+  121 OK      exec=38     warns=0   
+  122 OK      exec=1237   warns=44  
+  123 STEPCAP exec=1999985 warns=512 step cap exceeded (2000000) — runaway loop
+  124 OK      exec=2      warns=0   
+  125 OK      exec=271    warns=54  
+  126 OK      exec=12     warns=0   
+  127 OK      exec=1129   warns=42  
+  128 OK      exec=4      warns=0   
+  129 OK      exec=4      warns=0   
+  130 OK      exec=69     warns=3   
+  131 OK      exec=12     warns=3   
+  132 OK      exec=1      warns=0   
+  133 OK      exec=118    warns=0   
+  134 OK      exec=203    warns=0   
+  135 OK      exec=8      warns=1   
+  136 OK      exec=16     warns=0   
+  137 OK      exec=8      warns=0   
+  138 OK      exec=21     warns=1   
+  139 OK      exec=95     warns=7   
+  140 OK      exec=76     warns=3   
+  141 OK      exec=11     warns=0   
+  142 OK      exec=8      warns=1   
+  143 OK      exec=39     warns=3   
+  144 OK      exec=70     warns=1   
+  145 OK      exec=4      warns=0   
+  146 OK      exec=83     warns=5   
+  147 OK      exec=5      warns=0   
+  148 OK      exec=4      warns=0   
+  149 OK      exec=4      warns=0   
+  150 OK      exec=148    warns=14  
+  151 OK      exec=708    warns=46  
+  152 OK      exec=162    warns=4   
+  153 OK      exec=122    warns=0   
+  154 OK      exec=149    warns=4   
+  155 OK      exec=12     warns=0   
+  156 OK      exec=80     warns=1   
+  157 OK      exec=31     warns=0   
+  158 OK      exec=11     warns=0   
+  159 OK      exec=25     warns=2   
+  160 OK      exec=2      warns=0   
+  161 OK      exec=36     warns=0   
+  162 OK      exec=248    warns=12  
+  163 OK      exec=2      warns=0   
+  164 OK      exec=17     warns=1   
+  165 OK      exec=1      warns=0   
+  166 OK      exec=86     warns=2   
+  167 OK      exec=83     warns=2   
+  168 OK      exec=74902  warns=512 
+  169 OK      exec=4      warns=0   
+  170 OK      exec=5      warns=0   
+  171 OK      exec=13     warns=0   
+  172 OK      exec=18     warns=0   
+  173 OK      exec=120    warns=1   
+  174 OK      exec=74     warns=1   
+  175 OK      exec=76     warns=2   
+  176 OK      exec=1      warns=0   
+  177 OK      exec=83     warns=2   
+  178 OK      exec=166    warns=20  
+  179 OK      exec=59     warns=1   
+  180 OK      exec=38     warns=0   
+  181 OK      exec=72     warns=2   
+  182 OK      exec=87     warns=1   
+  183 OK      exec=67     warns=2   
+  184 OK      exec=83     warns=2   
+  185 OK      exec=78     warns=2   
+  186 OK      exec=94     warns=3   
+  187 OK      exec=85     warns=2   
+  188 OK      exec=69     warns=1   
+  189 OK      exec=13     warns=0   
+  190 OK      exec=1      warns=0   
+  191 OK      exec=87     warns=5   
+  192 OK      exec=7544   warns=90  
+  193 STEPCAP exec=1954285 warns=512 step cap exceeded (2000000) — runaway loop
+  194 OK      exec=11     warns=0   
+  195 OK      exec=137    warns=8   
+  196 OK      exec=67     warns=14  
+  197 OK      exec=64     warns=14  
+  198 OK      exec=152    warns=0   
+  199 OK      exec=348    warns=14  
+  200 OK      exec=4      warns=1   
+  201 OK      exec=33     warns=12  
+  202 OK      exec=35     warns=11  
+  203 OK      exec=3052   warns=84  
+  204 OK      exec=315    warns=4   
+  205 OK      exec=10     warns=0   
+  206 OK      exec=3      warns=0   
+  207 OK      exec=2968   warns=84  
+  208 STEPCAP exec=1976127 warns=512 step cap exceeded (2000000) — runaway loop
+  209 OK      exec=20     warns=1   
+  210 STEPCAP exec=1999991 warns=22  step cap exceeded (2000000) — runaway loop
+  211 OK      exec=15     warns=0   
+  212 STEPCAP exec=1968257 warns=512 step cap exceeded (2000000) — runaway loop
+  213 STEPCAP exec=1955413 warns=512 step cap exceeded (2000000) — runaway loop
+  214 OK      exec=74     warns=1   
+  215 OK      exec=26     warns=0   
+  216 OK      exec=23     warns=0   
+  217 OK      exec=292    warns=4   
+  218 OK      exec=31     warns=0   
+  219 OK      exec=358    warns=15  
+  220 OK      exec=135    warns=8   
+  221 OK      exec=4      warns=0   
+  222 OK      exec=13     warns=0   
+  223 OK      exec=41     warns=3   
+  224 OK      exec=4      warns=0   
+  225 OK      exec=4      warns=0   
+  226 OK      exec=8      warns=0   
+  227 OK      exec=704    warns=50  
+  228 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+  229 OK      exec=284    warns=56  
+  230 OK      exec=453    warns=61  
+  231 OK      exec=12     warns=0   
+  232 OK      exec=123    warns=22  
+  233 OK      exec=7      warns=0   
+  234 STEPCAP exec=1968442 warns=512 step cap exceeded (2000000) — runaway loop
+  235 STEPCAP exec=1999988 warns=512 step cap exceeded (2000000) — runaway loop
+  236 OK      exec=73     warns=0   
+  237 OK      exec=4      warns=0   
+  238 OK      exec=5      warns=1   
+  239 OK      exec=299    warns=34  
+  240 OK      exec=152    warns=14  
+  241 OK      exec=232    warns=16  
+  242 STEPCAP exec=1999996 warns=512 step cap exceeded (2000000) — runaway loop
+  243 OK      exec=13     warns=2   
+  244 OK      exec=14     warns=0   
+  245 OK      exec=25     warns=2   
+  246 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  247 OK      exec=1      warns=0   
+  248 OK      exec=35     warns=0   
+  249 OK      exec=7      warns=2   
+  250 OK      exec=290    warns=20  
+  251 OK      exec=2      warns=0   
+  252 OK      exec=16     warns=0   
+  253 OK      exec=90272  warns=512 
+  254 OK      exec=1      warns=0   
+  255 STEPCAP exec=1999990 warns=512 step cap exceeded (2000000) — runaway loop
+  256 OK      exec=9      warns=0   
+  257 OK      exec=1      warns=0   
+  258 OK      exec=287    warns=54  
+  259 OK      exec=6      warns=0   
+  260 OK      exec=99     warns=4   
+  261 OK      exec=22     warns=1   
+  262 OK      exec=668    warns=16  
+  263 OK      exec=9      warns=0   
+  264 OK      exec=865    warns=20  
+  265 OK      exec=296    warns=22  
+  266 OK      exec=280    warns=3   
+  267 OK      exec=143    warns=5   
+  268 OK      exec=27     warns=2   
+  269 OK      exec=136    warns=0   
+  270 OK      exec=8      warns=0   
+  271 OK      exec=17     warns=0   
+  272 OK      exec=9      warns=0   
+  273 OK      exec=440    warns=50  
+  274 OK      exec=110    warns=8   
+  275 OK      exec=44     warns=20  
+  276 OK      exec=42     warns=1   
+  277 OK      exec=6      warns=2   
+  278 OK      exec=9      warns=0   
+  279 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  280 STEPCAP exec=1973330 warns=512 step cap exceeded (2000000) — runaway loop
+  281 OK      exec=16     warns=0   
+  282 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  283 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  284 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  285 OK      exec=10     warns=0   
+  286 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  287 OK      exec=222    warns=17  
+  288 OK      exec=722    warns=96  
+  289 OK      exec=11     warns=0   
+  290 OK      exec=240    warns=16  
+  291 STEPCAP exec=1962963 warns=512 step cap exceeded (2000000) — runaway loop
+  292 OK      exec=4      warns=0   
+  293 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+  294 OK      exec=56     warns=8   
+  295 OK      exec=45     warns=2   
+  296 OK      exec=369    warns=70  
+  297 OK      exec=7      warns=0   
+  298 OK      exec=8      warns=2   
+  299 OK      exec=2      warns=0   
+  300 OK      exec=8      warns=0   
+  301 OK      exec=136    warns=8   
+  302 OK      exec=45     warns=2   
+  303 OK      exec=204    warns=7   
+  304 OK      exec=205    warns=22  
+  305 OK      exec=19     warns=0   
+  306 OK      exec=290    warns=55  
+  307 OK      exec=1      warns=0   
+  308 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  309 OK      exec=33     warns=0   
+  310 OK      exec=20     warns=0   
+  311 OK      exec=1      warns=0   
+  312 OK      exec=41     warns=7   
+  313 OK      exec=9      warns=0   
+  314 OK      exec=24     warns=0   
+  315 OK      exec=9      warns=0   
+  316 OK      exec=1244   warns=44  
+  317 OK      exec=81     warns=4   
+  318 OK      exec=1      warns=0   
+  319 OK      exec=102    warns=6   
+  320 OK      exec=15     warns=0   
+  321 OK      exec=1      warns=0   
+  322 OK      exec=14     warns=1   
+  323 OK      exec=7      warns=0   
+  324 OK      exec=94     warns=0   
+  325 OK      exec=8      warns=0   
+  326 OK      exec=8      warns=1   
+  327 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  328 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  329 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  330 OK      exec=5      warns=0   
+  331 OK      exec=1      warns=0   
+  332 OK      exec=1      warns=0   
+  333 OK      exec=4      warns=0   
+  334 OK      exec=3      warns=0   
+  335 OK      exec=1      warns=0   
+  336 OK      exec=8      warns=0   
+  337 OK      exec=59     warns=3   
+  338 OK      exec=8      warns=0   
+  339 OK      exec=6      warns=0   
+  340 OK      exec=2      warns=0   
+  341 OK      exec=4      warns=0   
+  342 OK      exec=5      warns=0   
+  343 OK      exec=5      warns=0   
+  344 OK      exec=5      warns=0   
+  345 OK      exec=83     warns=4   
+  346 OK      exec=4      warns=0   
+  347 OK      exec=36     warns=0   
+  348 OK      exec=53     warns=4   
+  349 OK      exec=16     warns=0   
+  350 OK      exec=4      warns=0   
+  351 OK      exec=7      warns=0   
+  352 OK      exec=286    warns=0   
+  353 OK      exec=486    warns=0   
+  354 OK      exec=365    warns=26  
+  355 STEPCAP exec=1999976 warns=512 step cap exceeded (2000000) — runaway loop
+  356 OK      exec=72     warns=2   
+  357 OK      exec=413    warns=30  
+  358 OK      exec=18     warns=1   
+  359 OK      exec=6      warns=2   
+  360 OK      exec=176    warns=10  
+  361 OK      exec=138    warns=3   
+  362 OK      exec=2      warns=0   
+  363 OK      exec=47     warns=6   
+  364 OK      exec=783    warns=0   
+  365 OK      exec=21     warns=1   
+  366 OK      exec=957    warns=61  
+  367 OK      exec=2      warns=0   
+  368 OK      exec=1      warns=0   
+  369 OK      exec=5      warns=0   
+  370 OK      exec=288    warns=24  
+  371 OK      exec=21     warns=0   
+  372 OK      exec=12     warns=0   
+  373 OK      exec=10     warns=0   
+  374 OK      exec=4      warns=0   
+  375 OK      exec=34     warns=3   
+  376 OK      exec=177    warns=14  
+  377 OK      exec=37     warns=2   
+  378 OK      exec=141    warns=60  
+  379 OK      exec=532    warns=38  
+  380 OK      exec=4      warns=0   
+  381 OK      exec=113    warns=0   
+  382 OK      exec=295    warns=9   
+  383 OK      exec=1      warns=0   
+  384 OK      exec=151    warns=12  
+  385 OK      exec=62     warns=4   
+  386 OK      exec=32     warns=1   
+  387 OK      exec=47     warns=1   
+  388 OK      exec=826    warns=47  
+  389 OK      exec=16     warns=0   
+  390 OK      exec=42     warns=5   
+  391 OK      exec=54     warns=3   
+  392 OK      exec=335    warns=14  
+  393 OK      exec=34     warns=3   
+  394 OK      exec=22     warns=0   
+  395 OK      exec=1      warns=0   
+  396 OK      exec=8      warns=0   
+  397 OK      exec=1      warns=0   
+  398 OK      exec=1      warns=0   
+  399 OK      exec=4      warns=0   
+  400 OK      exec=1      warns=0   
+  401 OK      exec=1      warns=0   
+  402 OK      exec=5      warns=0   
+  403 OK      exec=48     warns=7   
+  404 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  405 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  406 OK      exec=185    warns=7   
+  407 OK      exec=43     warns=3   
+  408 OK      exec=21     warns=1   
+  409 OK      exec=6      warns=0   
+  410 OK      exec=17     warns=2   
+  411 OK      exec=1      warns=0   
+  412 OK      exec=6      warns=0   
+  413 OK      exec=60     warns=2   
+  414 OK      exec=1      warns=0   
+  415 OK      exec=140    warns=6   
+  416 OK      exec=14     warns=2   
+  417 OK      exec=32     warns=1   
+  418 OK      exec=16     warns=7   
+  419 OK      exec=1      warns=0   
+  420 OK      exec=68     warns=2   
+  421 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  422 OK      exec=345    warns=18  
+  423 OK      exec=23     warns=0   
+  424 OK      exec=9      warns=0   
+  425 OK      exec=53     warns=1   
+  426 OK      exec=87     warns=4   
+  427 OK      exec=2      warns=0   
+  428 OK      exec=272    warns=10  
+  429 OK      exec=7      warns=0   
+  430 OK      exec=17     warns=6   
+  431 OK      exec=4      warns=0   
+  432 OK      exec=27     warns=1   
+  433 OK      exec=2      warns=0   
+  434 OK      exec=8      warns=5   
+  435 OK      exec=7      warns=0   
+  436 OK      exec=23     warns=0   
+  437 OK      exec=17     warns=0   
+  438 OK      exec=169    warns=1   
+  439 OK      exec=17     warns=0   
+  440 OK      exec=370    warns=13  
+  441 OK      exec=4      warns=0   
+  442 OK      exec=4      warns=0   
+  443 OK      exec=28     warns=1   
+  444 OK      exec=5      warns=0   
+  445 OK      exec=4      warns=0   
+  446 OK      exec=1      warns=0   
+  447 OK      exec=22     warns=1   
+  448 OK      exec=1      warns=0   
+  449 OK      exec=1      warns=0   
+  450 OK      exec=13     warns=0   
+  451 OK      exec=1      warns=0   
+  452 OK      exec=90     warns=4   
+  453 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  454 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  455 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  456 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  457 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  458 OK      exec=1      warns=0   
+  459 STEPCAP exec=1990699 warns=512 step cap exceeded (2000000) — runaway loop
+  460 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  461 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  462 STEPCAP exec=1999936 warns=512 step cap exceeded (2000000) — runaway loop
+  463 OK      exec=14     warns=2   
+  464 OK      exec=1      warns=0   
+  465 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  466 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  467 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  468 OK      exec=1      warns=0   
+  469 OK      exec=118    warns=1   
+  470 OK      exec=1      warns=0   
+  471 STEPCAP exec=1999995 warns=512 step cap exceeded (2000000) — runaway loop
+  472 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  473 OK      exec=4      warns=0   
+  474 OK      exec=163    warns=6   
+  475 OK      exec=9      warns=2   
+  476 OK      exec=156    warns=6   
+  477 OK      exec=3      warns=1   
+  478 OK      exec=22     warns=0   
+  479 STEPCAP exec=1999999 warns=512 step cap exceeded (2000000) — runaway loop
+  480 OK      exec=5      warns=0   
+  481 OK      exec=80     warns=3   
+  482 OK      exec=14     warns=0   
+  483 OK      exec=12     warns=0   
+  484 OK      exec=1      warns=0   
+  485 OK      exec=73     warns=5   
+  486 OK      exec=11     warns=1   
+  487 OK      exec=213    warns=17  
+  488 OK      exec=19     warns=2   
+  489 OK      exec=426    warns=180 
+  490 OK      exec=218    warns=15  
+  491 OK      exec=4      warns=0   
+  492 OK      exec=66     warns=5   
+  493 OK      exec=4      warns=0   
+  494 OK      exec=22     warns=2   
+  495 OK      exec=64     warns=3   
+  496 OK      exec=33     warns=0   
+  497 OK      exec=23     warns=3   
+  498 OK      exec=1      warns=0   
+  499 OK      exec=140    warns=0   
+  500 OK      exec=1      warns=0   
+  501 OK      exec=15     warns=2   
+  502 OK      exec=120    warns=2   
+  503 STEPCAP exec=1999988 warns=512 step cap exceeded (2000000) — runaway loop
+  504 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  505 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  506 OK      exec=1153   warns=50  
+  507 OK      exec=5      warns=1   
+  508 OK      exec=418    warns=11  
+  509 OK      exec=6      warns=0   
+  510 OK      exec=35     warns=1   
+  511 OK      exec=9      warns=0   
+  512 OK      exec=50     warns=0   
+  513 OK      exec=216    warns=0   
+  514 OK      exec=298    warns=27  
+  515 OK      exec=90     warns=0   
+  516 OK      exec=15     warns=1   
+  517 OK      exec=15     warns=1   
+  518 OK      exec=38     warns=0   
+  519 OK      exec=74     warns=9   
+  520 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  521 OK      exec=375    warns=18  
+  522 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  523 OK      exec=260    warns=14  
+  524 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  525 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  526 OK      exec=109    warns=20  
+  527 OK      exec=12     warns=0   
+  528 OK      exec=7      warns=0   
+  529 STEPCAP exec=1999991 warns=512 step cap exceeded (2000000) — runaway loop
+  530 STEPCAP exec=1999976 warns=512 step cap exceeded (2000000) — runaway loop
+  531 STEPCAP exec=1941177 warns=512 step cap exceeded (2000000) — runaway loop
+  532 STEPCAP exec=1999936 warns=512 step cap exceeded (2000000) — runaway loop
+  533 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  534 OK      exec=102    warns=0   
+  535 STEPCAP exec=1974683 warns=512 step cap exceeded (2000000) — runaway loop
+  536 STEPCAP exec=1971428 warns=512 step cap exceeded (2000000) — runaway loop
+  537 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  538 OK      exec=10     warns=0   
+  539 OK      exec=9      warns=0   
+  540 OK      exec=15     warns=1   
+  541 OK      exec=34     warns=2   
+  542 OK      exec=446    warns=5   
+  543 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+  544 STEPCAP exec=1999995 warns=512 step cap exceeded (2000000) — runaway loop
+  545 OK      exec=7      warns=1   
+  546 OK      exec=4      warns=0   
+  547 OK      exec=16     warns=2   
+  548 OK      exec=5      warns=0   
+  549 OK      exec=1      warns=0   
+  550 OK      exec=1      warns=0   
+  551 OK      exec=4      warns=0   
+  552 OK      exec=401    warns=34  
+  553 OK      exec=103    warns=6   
+  554 OK      exec=1      warns=0   
+  555 OK      exec=1829   warns=289 
+  556 OK      exec=5      warns=1   
+  557 OK      exec=65     warns=1   
+  558 OK      exec=22     warns=1   
+  559 OK      exec=163    warns=7   
+  560 OK      exec=4      warns=0   
+  561 OK      exec=507    warns=22  
+  562 OK      exec=4      warns=0   
+  563 OK      exec=15     warns=0   
+  564 OK      exec=6      warns=0   
+  565 OK      exec=4      warns=0   
+  566 OK      exec=8      warns=1   
+  567 OK      exec=4      warns=0   
+  568 OK      exec=1      warns=0   
+  569 OK      exec=216    warns=7   
+  570 OK      exec=1      warns=0   
+  571 OK      exec=488    warns=20  
+  572 OK      exec=14     warns=0   
+  573 OK      exec=3      warns=1   
+  574 OK      exec=4      warns=0   
+  575 OK      exec=1      warns=0   
+  576 OK      exec=1      warns=0   
+  577 OK      exec=1      warns=0   
+  578 OK      exec=1      warns=0   
+  579 OK      exec=1      warns=0   
+  580 OK      exec=1      warns=0   
+  581 OK      exec=12     warns=3   
+  582 OK      exec=8      warns=0   
+  583 OK      exec=1      warns=0   
+[sweep] ids 0..583  OK=512  stepcap=72  reccap=0  other=0  gap=0
+[sweep] other   : 
+[sweep] stepcap : 9 64 65 66 68 75 76 77 78 81 84 92 123 193 208 210 212 213 228 234 235 242 246 255 279 280 282 283 284 286 291 293 308 327 328 329 355 404 405 421 453 454 455 456 457 459 460 461 462 465 466 467 471 472 479 503 504 505 520 522 524 525 529 530 531 532 533 535 536 537 543 544 
+[sweep] reccap  : 

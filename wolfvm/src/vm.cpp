@@ -234,24 +234,24 @@ std::string Vm::eval_str(long long addr) {
 }
 
 // ---------------------------------------------------------------------------
-// Comparisons (Wolf ops: empirically verified 1 = '<', 2 = '==', 5 = '!=';
-// others best-effort, loudly noted when hit)
+// Comparisons — ENGINE-TRUE table (Game.exe second interpreter cid-111 arms,
+// JT 0x4586C8, byte-read 2026-10-22; identical to the map-page evaluator
+// 0x482240 and the CE autorun predicate 0x490780):
+//   0 a>b  1 a>=b  2 a==b  3 a<=b  4 a<b  5 a!=b  6 (a&b)==b ; >6 -> no match
+// (previous empirical table had 1='<' and 4='>=': both wrong.)
 // ---------------------------------------------------------------------------
 int Vm::eval_cmp(long long lhs, long long rhs, int32_t op) {
     switch (op & 0x0F) {
-        case 0: return lhs > rhs ? 1 : 0;             // 等しい/より大きい? — 200?? rare
-        case 1: return lhs < rhs ? 1 : 0;             // (data: loop bounds)
-        case 2: return lhs == rhs ? 1 : 0;            // (data: candidate matchers)
+        case 0: return lhs >  rhs ? 1 : 0;
+        case 1: return lhs >= rhs ? 1 : 0;
+        case 2: return lhs == rhs ? 1 : 0;
         case 3: return lhs <= rhs ? 1 : 0;
-        case 4: return lhs >= rhs ? 1 : 0;
-        case 5: return lhs != rhs ? 1 : 0;            // (data: chain tail)
-        case 6: return (lhs & rhs) != 0 ? 1 : 0;      // bit AND non-zero
-        case 7: return (lhs & rhs) == rhs ? 1 : 0;    // bit superset
-        case 8: return (lhs % rhs) == 0 ? 1 : 0;
-        case 9: return (lhs % rhs) != 0 ? 1 : 0;
+        case 4: return lhs <  rhs ? 1 : 0;
+        case 5: return lhs != rhs ? 1 : 0;
+        case 6: return (lhs & rhs) == rhs ? 1 : 0;   // 0x4584A3: (a&b) cmp b
         default:
-            note("111 unknown op " + std::to_string(op));
-            return -1;
+            note("111 op > 6 (engine: no match) " + std::to_string(op));
+            return 0;
     }
 }
 

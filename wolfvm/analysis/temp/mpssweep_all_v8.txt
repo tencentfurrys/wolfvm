@@ -1,0 +1,4216 @@
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-1.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=35     warns=12  
+id=1000002 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=403    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=403    warns=14  
+id=1000005 rec=  6 p 0 OK      exec=35     warns=12  
+id=1000006 rec=  7 p 0 OK      exec=42     warns=15  
+id=1000007 rec=  7 p 1 OK      exec=1507   warns=20  
+id=1000008 rec=  7 p 2 OK      exec=1507   warns=20  
+id=1000009 rec=  7 p 3 OK      exec=12     warns=4   
+id=1000010 rec=  7 p 4 OK      exec=5      warns=4   
+id=1000011 rec=  7 p 5 OK      exec=2      warns=0   
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=38     warns=0   
+id=1000014 rec=  9 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000015 rec= 10 p 0 OK      exec=403    warns=14  
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338630  (Blank)
+  cid     99 x     14  (Checkpoint)
+  cid    103 x 282419  (Comment)
+  cid    106 x     37  (DebugMessage)
+  cid    111 x    767  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338680  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     39  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     11  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28176  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      2  (Move)
+  cid    210 x     92  (CommonEvent)
+  cid    212 x     36  (SetLabel)
+  cid    213 x     13  (JumpLabel)
+  cid    250 x 592247  (Database)
+  cid    290 x     15  (Effect)
+  cid    401 x  29007  (ChoiceCase)
+  cid    420 x  28251  (ElseCase)
+  cid    498 x 309941  (LoopEnd)
+  cid    499 x  28888  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-1_1.mps IDs 1000000..1000027 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000005 rec=  5 p 0 OK      exec=43     warns=17  
+id=1000006 rec=  5 p 1 OK      exec=1809   warns=22  
+id=1000007 rec=  5 p 2 OK      exec=13     warns=2   
+id=1000008 rec=  5 p 3 OK      exec=5      warns=4   
+id=1000009 rec=  5 p 4 OK      exec=2      warns=0   
+id=1000010 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=42     warns=15  
+id=1000012 rec=  7 p 1 OK      exec=1409   warns=20  
+id=1000013 rec=  7 p 2 OK      exec=12     warns=4   
+id=1000014 rec=  7 p 3 OK      exec=5      warns=4   
+id=1000015 rec=  7 p 4 OK      exec=2      warns=0   
+id=1000016 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000017 rec=  9 p 0 OK      exec=38     warns=0   
+id=1000018 rec=  9 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000019 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000020 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000021 rec= 12 p 0 OK      exec=354    warns=14  
+id=1000022 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000023 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 15 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 16 p 0 OK      exec=354    warns=14  
+id=1000026 rec= 17 p 0 OK      exec=66     warns=14  
+id=1000027 rec= 18 p 0 OK      exec=66     warns=14  
+[mpssweep] IDs 1000000..1000027  OK=27  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338971  (Blank)
+  cid    103 x 282943  (Comment)
+  cid    106 x     33  (DebugMessage)
+  cid    111 x   1140  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339008  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     78  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     11  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28185  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    116  (CommonEvent)
+  cid    212 x     56  (SetLabel)
+  cid    213 x     17  (JumpLabel)
+  cid    250 x 592706  (Database)
+  cid    290 x     24  (Effect)
+  cid    401 x  29407  (ChoiceCase)
+  cid    420 x  28282  (ElseCase)
+  cid    498 x 310049  (LoopEnd)
+  cid    499 x  29249  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-2.mps IDs 1000000..1000024 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  2 p 0 OK      exec=403    warns=14  
+id=1000002 rec=  3 p 0 OK      exec=403    warns=14  
+id=1000003 rec=  4 p 0 OK      exec=35     warns=12  
+id=1000004 rec=  5 p 0 OK      exec=43     warns=17  
+id=1000005 rec=  5 p 1 OK      exec=2425   warns=26  
+id=1000006 rec=  5 p 2 OK      exec=1507   warns=18  
+id=1000007 rec=  5 p 3 OK      exec=13     warns=2   
+id=1000008 rec=  5 p 4 OK      exec=5      warns=4   
+id=1000009 rec=  5 p 5 OK      exec=2      warns=0   
+id=1000010 rec=  6 p 0 OK      exec=42     warns=15  
+id=1000011 rec=  6 p 1 OK      exec=1507   warns=18  
+id=1000012 rec=  6 p 2 OK      exec=12     warns=2   
+id=1000013 rec=  6 p 3 OK      exec=5      warns=4   
+id=1000014 rec=  6 p 4 OK      exec=2      warns=0   
+id=1000015 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000016 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000017 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000018 rec= 10 p 0 OK      exec=35     warns=12  
+id=1000019 rec= 11 p 0 OK      exec=35     warns=12  
+id=1000020 rec= 12 p 0 OK      exec=35     warns=12  
+id=1000021 rec= 13 p 0 OK      exec=38     warns=0   
+id=1000022 rec= 13 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000023 rec= 14 p 0 OK      exec=403    warns=14  
+id=1000024 rec= 15 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000024  OK=24  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339012  (Blank)
+  cid     99 x     24  (Checkpoint)
+  cid    103 x 282905  (Comment)
+  cid    106 x     57  (DebugMessage)
+  cid    111 x   1195  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339089  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     59  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     13  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28184  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    138  (CommonEvent)
+  cid    212 x     52  (SetLabel)
+  cid    213 x     28  (JumpLabel)
+  cid    250 x 592722  (Database)
+  cid    290 x     23  (Effect)
+  cid    401 x  29465  (ChoiceCase)
+  cid    420 x  28301  (ElseCase)
+  cid    498 x 310038  (LoopEnd)
+  cid    499 x  29271  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=405    warns=14  
+id=1000001 rec=  2 p 0 OK      exec=332    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  3 p 1 OK      exec=73     warns=3   
+id=1000004 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=112    warns=8   
+[mpssweep] IDs 1000000..1000005  OK=6  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    116  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x    122  (Comment)
+  cid    106 x     14  (DebugMessage)
+  cid    111 x     75  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    186  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      4  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     18  (CommonEvent)
+  cid    212 x      6  (SetLabel)
+  cid    250 x    107  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x    114  (ChoiceCase)
+  cid    420 x     22  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x     86  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_1.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=361    warns=14  
+id=1000001 rec=  2 p 0 OK      exec=352    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  3 p 1 OK      exec=72     warns=2   
+id=1000004 rec=  3 p 2 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000004  OK=5  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    103  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    112  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x     62  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    144  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      4  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     12  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     16  (CommonEvent)
+  cid    212 x      6  (SetLabel)
+  cid    250 x     91  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x    101  (ChoiceCase)
+  cid    420 x     16  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x     73  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_2.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=361    warns=14  
+id=1000001 rec=  2 p 0 OK      exec=325    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 2 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000004  OK=4  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338064  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 281737  (Comment)
+  cid    106 x     13  (DebugMessage)
+  cid    111 x    134  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338150  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      6  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     21  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x     16  (Wait)
+  cid    210 x     25  (CommonEvent)
+  cid    212 x     13  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591535  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28355  (ChoiceCase)
+  cid    420 x  28180  (ElseCase)
+  cid    498 x 309807  (LoopEnd)
+  cid    499 x  28299  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_3.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=112    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=359    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=359    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 OK      exec=73     warns=3   
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+[mpssweep] IDs 1000000..1000005  OK=6  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    113  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    126  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x     74  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    177  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      4  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     17  (CommonEvent)
+  cid    212 x      7  (SetLabel)
+  cid    250 x    102  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x    116  (ChoiceCase)
+  cid    420 x     20  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x     85  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_4.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=112    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=6      warns=4   
+id=1000002 rec=  2 p 0 OK      exec=356    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=9      warns=0   
+id=1000004 rec=  5 p 0 OK      exec=138    warns=8   
+id=1000005 rec=  6 p 0 OK      exec=410    warns=14  
+id=1000006 rec=  8 p 0 OK      exec=47     warns=2   
+id=1000007 rec=  9 p 0 OK      exec=38     warns=0   
+id=1000008 rec=  9 p 1 OK      exec=73     warns=3   
+id=1000009 rec=  9 p 2 OK      exec=9      warns=0   
+[mpssweep] IDs 1000000..1000009  OK=10  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    140  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x    127  (Comment)
+  cid    106 x     17  (DebugMessage)
+  cid    111 x    100  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    248  (SetVariable)
+  cid    122 x      9  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      6  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     17  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      5  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     26  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x    127  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x    152  (ChoiceCase)
+  cid    420 x     27  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x    111  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=1      warns=0   
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=371    warns=56  
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 OK      exec=73     warns=3   
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=112    warns=8   
+[mpssweep] IDs 1000000..1000006  OK=7  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    116  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    125  (Comment)
+  cid    106 x     12  (DebugMessage)
+  cid    111 x     74  (VariableCondition)
+  cid    112 x     11  (StringCondition)
+  cid    121 x    177  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      4  (SetVariableEx)
+  cid    140 x      3  (Sound)
+  cid    150 x     16  (Picture)
+  cid    173 x      2  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     15  (Wait)
+  cid    210 x     18  (CommonEvent)
+  cid    212 x      7  (SetLabel)
+  cid    250 x    104  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x    116  (ChoiceCase)
+  cid    420 x     21  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x     85  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/1-9_6.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=6      warns=1   
+id=1000003 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000005 rec=  5 p 0 OK      exec=453    warns=22  
+id=1000006 rec=  5 p 1 STEPCAP exec=1999935 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 STEPCAP exec=1999935 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676096  (Blank)
+  cid    103 x 563350  (Comment)
+  cid    106 x     28  (DebugMessage)
+  cid    111 x    653  (VariableCondition)
+  cid    112 x  56310  (StringCondition)
+  cid    121 x 676127  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     28  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x     19  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56303  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x    158  (CommonEvent)
+  cid    212 x     50  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182807  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  57156  (ChoiceCase)
+  cid    420 x  56350  (ElseCase)
+  cid    498 x 619324  (LoopEnd)
+  cid    499 x  56952  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map000.mps IDs 1000000..1000017 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=114    warns=9   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=1   
+id=1000002 rec=  2 p 0 OK      exec=110    warns=9   
+id=1000003 rec=  3 p 0 OK      exec=18     warns=0   
+id=1000004 rec=  4 p 0 OK      exec=382    warns=62  
+id=1000005 rec=  5 p 0 OK      exec=3      warns=2   
+id=1000006 rec=  6 p 0 OK      exec=3      warns=2   
+id=1000007 rec=  7 p 0 OK      exec=104    warns=7   
+id=1000008 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000009 rec=  9 p 0 OK      exec=7      warns=1   
+id=1000010 rec= 10 p 0 OK      exec=292    warns=55  
+id=1000011 rec= 11 p 0 OK      exec=387    warns=62  
+id=1000012 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000013 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000014 rec= 13 p 0 STEPCAP exec=1999936 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000015 rec= 15 p 0 OK      exec=7      warns=1   
+id=1000016 rec= 23 p 0 OK      exec=107    warns=10  
+id=1000017 rec= 23 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000017  OK=15  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014075  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 844894  (Comment)
+  cid    106 x     45  (DebugMessage)
+  cid    111 x    560  (VariableCondition)
+  cid    112 x  84509  (StringCondition)
+  cid    121 x 1014303  (SetVariable)
+  cid    122 x     15  (SetString)
+  cid    123 x      8  (InputKey)
+  cid    124 x     38  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     49  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      3  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84477  (LoopTimes)
+  cid    180 x     37  (Wait)
+  cid    210 x    125  (CommonEvent)
+  cid    212 x     58  (SetLabel)
+  cid    213 x      5  (JumpLabel)
+  cid    250 x 1774250  (Database)
+  cid    290 x     10  (Effect)
+  cid    401 x  85323  (ChoiceCase)
+  cid    420 x  84534  (ElseCase)
+  cid    498 x 929189  (LoopEnd)
+  cid    499 x  85049  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map000_2.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  7 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  7 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec= 14 p 0 OK      exec=415    warns=30  
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338018  (Blank)
+  cid    103 x 281699  (Comment)
+  cid    106 x      9  (DebugMessage)
+  cid    111 x    127  (VariableCondition)
+  cid    112 x  28164  (StringCondition)
+  cid    121 x 338090  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      2  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28162  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     27  (CommonEvent)
+  cid    212 x      9  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 591550  (Database)
+  cid    290 x      2  (Effect)
+  cid    401 x  28327  (ChoiceCase)
+  cid    420 x  28172  (ElseCase)
+  cid    498 x 309774  (LoopEnd)
+  cid    499 x  28283  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map001.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=419    warns=69  
+id=1000001 rec=  1 p 0 OK      exec=6      warns=2   
+id=1000002 rec=  1 p 1 OK      exec=266    warns=55  
+id=1000003 rec=  2 p 0 OK      exec=6      warns=2   
+id=1000004 rec=  2 p 1 OK      exec=268    warns=55  
+id=1000005 rec=  3 p 0 OK      exec=9      warns=2   
+id=1000006 rec=  3 p 1 OK      exec=287    warns=58  
+id=1000007 rec=  4 p 0 OK      exec=7      warns=0   
+id=1000008 rec=  4 p 1 OK      exec=1061   warns=217 
+id=1000009 rec=  5 p 0 OK      exec=17     warns=5   
+id=1000010 rec=  5 p 1 STEPCAP exec=1999985 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000011 rec=  6 p 0 OK      exec=8      warns=0   
+[mpssweep] IDs 1000000..1000011  OK=11  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338242  (Blank)
+  cid     99 x      9  (Checkpoint)
+  cid    103 x 281974  (Comment)
+  cid    106 x     34  (DebugMessage)
+  cid    111 x     96  (VariableCondition)
+  cid    112 x  28245  (StringCondition)
+  cid    121 x 338663  (SetVariable)
+  cid    122 x     21  (SetString)
+  cid    124 x      3  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     45  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      5  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28186  (LoopTimes)
+  cid    180 x    100  (Wait)
+  cid    210 x     37  (CommonEvent)
+  cid    212 x     31  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    221 x      1  (LoadGame)
+  cid    222 x      9  (SaveGame)
+  cid    242 x      2  (ChipOverwrite)
+  cid    250 x 591594  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28528  (ChoiceCase)
+  cid    420 x  28237  (ElseCase)
+  cid    498 x 309930  (LoopEnd)
+  cid    499 x  28335  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map002.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=267    warns=55  
+id=1000001 rec=  1 p 0 OK      exec=6      warns=4   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338013  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 281667  (Comment)
+  cid    106 x      8  (DebugMessage)
+  cid    111 x     79  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338096  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    124 x      4  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     13  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28165  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x     18  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591475  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28297  (ChoiceCase)
+  cid    420 x  28174  (ElseCase)
+  cid    498 x 309795  (LoopEnd)
+  cid    499 x  28245  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map003.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map003_A.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=467    warns=22  
+id=1000001 rec=  1 p 0 OK      exec=467    warns=22  
+id=1000002 rec=  2 p 0 OK      exec=362    warns=25  
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  4 p 0 OK      exec=207    warns=22  
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338165  (Blank)
+  cid    103 x 281816  (Comment)
+  cid    106 x     15  (DebugMessage)
+  cid    111 x    274  (VariableCondition)
+  cid    112 x  28165  (StringCondition)
+  cid    121 x 338221  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      3  (InputKey)
+  cid    124 x     25  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     18  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28165  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     38  (CommonEvent)
+  cid    212 x     16  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591649  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28492  (ChoiceCase)
+  cid    420 x  28194  (ElseCase)
+  cid    498 x 309810  (LoopEnd)
+  cid    499 x  28433  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map004.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=1858   warns=21  
+id=1000001 rec=  1 p 0 OK      exec=7      warns=0   
+id=1000002 rec=  1 p 1 OK      exec=1800   warns=21  
+id=1000003 rec=  2 p 0 OK      exec=7      warns=0   
+id=1000004 rec=  2 p 1 OK      exec=1800   warns=21  
+id=1000005 rec=  3 p 0 OK      exec=7      warns=0   
+id=1000006 rec=  3 p 1 OK      exec=1800   warns=21  
+id=1000007 rec=  4 p 0 OK      exec=7      warns=0   
+id=1000008 rec=  4 p 1 OK      exec=1800   warns=21  
+id=1000009 rec=  5 p 0 OK      exec=7      warns=0   
+id=1000010 rec=  5 p 1 STEPCAP exec=1999983 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000010  OK=10  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338961  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 283074  (Comment)
+  cid    106 x     53  (DebugMessage)
+  cid    111 x   1295  (VariableCondition)
+  cid    112 x  28165  (StringCondition)
+  cid    121 x 339132  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x     16  (Sound)
+  cid    150 x     52  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      5  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28191  (LoopTimes)
+  cid    180 x     19  (Wait)
+  cid    210 x    101  (CommonEvent)
+  cid    212 x     61  (SetLabel)
+  cid    213 x     51  (JumpLabel)
+  cid    250 x 592613  (Database)
+  cid    290 x     30  (Effect)
+  cid    401 x  29587  (ChoiceCase)
+  cid    420 x  28294  (ElseCase)
+  cid    498 x 310051  (LoopEnd)
+  cid    499 x  29304  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map004_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map004_A_1.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map005.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=4      warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=102    warns=8   
+id=1000003 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000004 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 0 OK      exec=1      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=1      warns=0   
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 675987  (Blank)
+  cid    103 x 563265  (Comment)
+  cid    106 x     14  (DebugMessage)
+  cid    111 x    189  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676063  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x     20  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56324  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     36  (CommonEvent)
+  cid    212 x     16  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182931  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56581  (ChoiceCase)
+  cid    420 x  56335  (ElseCase)
+  cid    498 x 619548  (LoopEnd)
+  cid    499 x  56503  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map005_A.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=292    warns=55  
+id=1000005 rec=  5 p 0 OK      exec=4      warns=0   
+id=1000006 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000009 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000010 rec= 10 p 0 OK      exec=104    warns=8   
+[mpssweep] IDs 1000000..1000010  OK=11  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    359  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x    438  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x    337  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x    393  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     36  (SetVariableEx)
+  cid    150 x      6  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x     10  (LoopTimes)
+  cid    180 x     11  (Wait)
+  cid    210 x     34  (CommonEvent)
+  cid    212 x     16  (SetLabel)
+  cid    250 x    413  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x    395  (ChoiceCase)
+  cid    420 x     46  (ElseCase)
+  cid    498 x    106  (LoopEnd)
+  cid    499 x    346  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map006.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=5      warns=1   
+id=1000001 rec=  1 p 0 OK      exec=1      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=9      warns=0   
+id=1000003 rec=  3 p 0 OK      exec=1      warns=0   
+id=1000004 rec=  4 p 0 OK      exec=277    warns=54  
+id=1000005 rec=  5 p 0 OK      exec=4      warns=0   
+id=1000006 rec=  6 p 0 OK      exec=13     warns=1   
+id=1000007 rec=  7 p 0 OK      exec=1      warns=0   
+id=1000008 rec=  8 p 0 OK      exec=12     warns=2   
+id=1000009 rec=  9 p 0 OK      exec=12     warns=2   
+id=1000010 rec= 11 p 0 OK      exec=4      warns=0   
+id=1000011 rec= 12 p 0 OK      exec=4      warns=0   
+id=1000012 rec= 13 p 0 OK      exec=4      warns=0   
+id=1000013 rec= 14 p 0 OK      exec=408    warns=14  
+id=1000014 rec= 15 p 0 OK      exec=19     warns=2   
+[mpssweep] IDs 1000000..1000014  OK=15  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    103  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x    104  (Comment)
+  cid    106 x      9  (DebugMessage)
+  cid    111 x     67  (VariableCondition)
+  cid    112 x      9  (StringCondition)
+  cid    121 x    130  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    124 x      4  (SetVariableEx)
+  cid    125 x      1  (AutoInput)
+  cid    150 x      4  (Picture)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x      4  (LoopTimes)
+  cid    180 x     11  (Wait)
+  cid    210 x      8  (CommonEvent)
+  cid    212 x      4  (SetLabel)
+  cid    250 x     83  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x    100  (ChoiceCase)
+  cid    420 x     16  (ElseCase)
+  cid    498 x     34  (LoopEnd)
+  cid    499 x     76  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map007.mps IDs 1000000..1000003 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=1      warns=0   
+id=1000001 rec=  0 p 1 OK      exec=1      warns=0   
+id=1000002 rec=  1 p 0 OK      exec=39     warns=2   
+id=1000003 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000003  OK=3  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 337988  (Blank)
+  cid    103 x 281627  (Comment)
+  cid    106 x      6  (DebugMessage)
+  cid    111 x     87  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338023  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      3  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28162  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     18  (CommonEvent)
+  cid    212 x      8  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591457  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28279  (ChoiceCase)
+  cid    420 x  28167  (ElseCase)
+  cid    498 x 309773  (LoopEnd)
+  cid    499 x  28243  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map008.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=6      warns=4   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999985 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 337965  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 281630  (Comment)
+  cid    106 x      8  (DebugMessage)
+  cid    111 x     79  (VariableCondition)
+  cid    112 x  28169  (StringCondition)
+  cid    121 x 338049  (SetVariable)
+  cid    122 x      3  (SetString)
+  cid    124 x      4  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     13  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28162  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x     18  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591396  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28294  (ChoiceCase)
+  cid    420 x  28171  (ElseCase)
+  cid    498 x 309754  (LoopEnd)
+  cid    499 x  28242  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009.mps IDs 1000000..1000016 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=480    warns=24  
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=56     warns=6   
+id=1000003 rec=  2 p 0 OK      exec=6      warns=0   
+id=1000004 rec=  3 p 0 OK      exec=104    warns=7   
+id=1000005 rec=  4 p 0 OK      exec=105    warns=10  
+id=1000006 rec=  5 p 0 STEPCAP exec=1999936 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 OK      exec=16     warns=2   
+id=1000008 rec=  7 p 0 OK      exec=14     warns=0   
+id=1000009 rec=  8 p 0 OK      exec=7547   warns=90  
+id=1000010 rec=  9 p 0 OK      exec=284    warns=55  
+id=1000011 rec= 10 p 0 OK      exec=385    warns=62  
+id=1000012 rec= 10 p 1 OK      exec=7      warns=0   
+id=1000013 rec= 11 p 0 OK      exec=9      warns=5   
+id=1000014 rec= 12 p 0 OK      exec=165    warns=7   
+id=1000015 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000016 rec= 13 p 0 OK      exec=110    warns=8   
+[mpssweep] IDs 1000000..1000016  OK=14  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014767  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 845920  (Comment)
+  cid    106 x     42  (DebugMessage)
+  cid    111 x   1266  (VariableCondition)
+  cid    112 x  84500  (StringCondition)
+  cid    121 x 1015932  (SetVariable)
+  cid    122 x     11  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     44  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     49  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      2  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84568  (LoopTimes)
+  cid    180 x     26  (Wait)
+  cid    210 x    308  (CommonEvent)
+  cid    212 x     57  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    242 x      1  (ChipOverwrite)
+  cid    250 x 1775716  (Database)
+  cid    290 x     10  (Effect)
+  cid    401 x  86004  (ChoiceCase)
+  cid    420 x  84535  (ElseCase)
+  cid    498 x 929651  (LoopEnd)
+  cid    499 x  85746  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_1.mps IDs 1000000..1000013 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1029   warns=16  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000010 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000013 rec= 12 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000013  OK=13  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338449  (Blank)
+  cid    103 x 282191  (Comment)
+  cid    106 x     21  (DebugMessage)
+  cid    111 x    567  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338512  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     43  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28174  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     64  (CommonEvent)
+  cid    212 x     31  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    250 x 592010  (Database)
+  cid    290 x     11  (Effect)
+  cid    401 x  28795  (ChoiceCase)
+  cid    420 x  28228  (ElseCase)
+  cid    498 x 309900  (LoopEnd)
+  cid    499 x  28715  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_2.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=465    warns=24  
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  0 p 2 OK      exec=99     warns=10  
+id=1000003 rec=  1 p 0 OK      exec=52     warns=6   
+id=1000004 rec=  2 p 0 OK      exec=460    warns=24  
+id=1000005 rec=  3 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 0 OK      exec=38     warns=0   
+id=1000007 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000008 rec=  7 p 0 OK      exec=14     warns=0   
+id=1000009 rec=  9 p 0 OK      exec=4      warns=0   
+[mpssweep] IDs 1000000..1000009  OK=8  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676113  (Blank)
+  cid    103 x 563390  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    324  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676182  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     34  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     26  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56326  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     52  (CommonEvent)
+  cid    212 x     20  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183066  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  56734  (ChoiceCase)
+  cid    420 x  56349  (ElseCase)
+  cid    498 x 619571  (LoopEnd)
+  cid    499 x  56637  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=472    warns=26  
+id=1000003 rec=  2 p 0 OK      exec=457    warns=22  
+id=1000004 rec=  3 p 0 OK      exec=385    warns=62  
+id=1000005 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000006 rec=  6 p 0 OK      exec=462    warns=22  
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676180  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 563484  (Comment)
+  cid    106 x     21  (DebugMessage)
+  cid    111 x    363  (VariableCondition)
+  cid    112 x  56335  (StringCondition)
+  cid    121 x 676291  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     33  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x     26  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56330  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x     57  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183136  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  56800  (ChoiceCase)
+  cid    420 x  56360  (ElseCase)
+  cid    498 x 619606  (LoopEnd)
+  cid    499 x  56686  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_4.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=1409   warns=18  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=347    warns=18  
+id=1000013 rec=  8 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000014 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 12 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338574  (Blank)
+  cid    103 x 282363  (Comment)
+  cid    106 x     24  (DebugMessage)
+  cid    111 x    705  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338642  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     51  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28177  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     76  (CommonEvent)
+  cid    212 x     37  (SetLabel)
+  cid    213 x      7  (JumpLabel)
+  cid    250 x 592170  (Database)
+  cid    290 x     14  (Effect)
+  cid    401 x  28942  (ChoiceCase)
+  cid    420 x  28243  (ElseCase)
+  cid    498 x 309936  (LoopEnd)
+  cid    499 x  28844  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_5.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1409   warns=18  
+id=1000002 rec=  1 p 2 OK      exec=1409   warns=18  
+id=1000003 rec=  1 p 3 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 4 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 5 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338356  (Blank)
+  cid    103 x 282092  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    503  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338424  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28172  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     56  (CommonEvent)
+  cid    212 x     27  (SetLabel)
+  cid    213 x     13  (JumpLabel)
+  cid    250 x 591897  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28725  (ChoiceCase)
+  cid    420 x  28218  (ElseCase)
+  cid    498 x 309876  (LoopEnd)
+  cid    499 x  28624  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_6.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=1176   warns=14  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338218  (Blank)
+  cid     99 x      6  (Checkpoint)
+  cid    103 x 281861  (Comment)
+  cid    106 x     21  (DebugMessage)
+  cid    111 x    327  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338290  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     19  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28168  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     46  (CommonEvent)
+  cid    212 x     19  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    250 x 591712  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  28537  (ChoiceCase)
+  cid    420 x  28204  (ElseCase)
+  cid    498 x 309828  (LoopEnd)
+  cid    499 x  28475  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_7.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1409   warns=18  
+id=1000002 rec=  1 p 2 OK      exec=1409   warns=18  
+id=1000003 rec=  1 p 3 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 4 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 5 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338356  (Blank)
+  cid    103 x 282092  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    503  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338424  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28172  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     56  (CommonEvent)
+  cid    212 x     27  (SetLabel)
+  cid    213 x     13  (JumpLabel)
+  cid    250 x 591897  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28725  (ChoiceCase)
+  cid    420 x  28218  (ElseCase)
+  cid    498 x 309876  (LoopEnd)
+  cid    499 x  28624  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_8.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000001 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338026  (Blank)
+  cid    103 x 281637  (Comment)
+  cid    106 x      9  (DebugMessage)
+  cid    111 x    128  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338097  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x      7  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28164  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     22  (CommonEvent)
+  cid    212 x     11  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591475  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28326  (ChoiceCase)
+  cid    420 x  28178  (ElseCase)
+  cid    498 x 309780  (LoopEnd)
+  cid    499 x  28285  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_9.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=14     warns=0   
+id=1000001 rec=  1 p 0 OK      exec=359    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=360    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=109    warns=8   
+id=1000004 rec=  4 p 0 OK      exec=359    warns=14  
+id=1000005 rec=  5 p 0 OK      exec=109    warns=8   
+id=1000006 rec=  6 p 0 OK      exec=179    warns=1   
+id=1000007 rec=  7 p 0 OK      exec=38     warns=0   
+id=1000008 rec=  7 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000009 rec=  8 p 0 OK      exec=104    warns=8   
+id=1000010 rec=  9 p 0 OK      exec=359    warns=14  
+id=1000011 rec= 10 p 0 OK      exec=14     warns=0   
+[mpssweep] IDs 1000000..1000011  OK=11  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338228  (Blank)
+  cid    103 x 281885  (Comment)
+  cid    106 x     17  (DebugMessage)
+  cid    111 x    340  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338257  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      4  (InputKey)
+  cid    124 x     31  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     16  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     45  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591728  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28560  (ChoiceCase)
+  cid    420 x  28191  (ElseCase)
+  cid    498 x 309821  (LoopEnd)
+  cid    499 x  28497  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_1.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=2005   warns=22  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338308  (Blank)
+  cid     99 x      8  (Checkpoint)
+  cid    103 x 281989  (Comment)
+  cid    106 x     25  (DebugMessage)
+  cid    111 x    441  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338396  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     19  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28170  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     56  (CommonEvent)
+  cid    212 x     23  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 591823  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x  28657  (ChoiceCase)
+  cid    420 x  28216  (ElseCase)
+  cid    498 x 309852  (LoopEnd)
+  cid    499 x  28568  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_2.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1078   warns=16  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000010 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec= 11 p 0 OK      exec=337    warns=14  
+id=1000014 rec= 12 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000014  OK=14  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338495  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 282246  (Comment)
+  cid    106 x     24  (DebugMessage)
+  cid    111 x    614  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338559  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     47  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28175  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     69  (CommonEvent)
+  cid    212 x     33  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    250 x 592068  (Database)
+  cid    290 x     12  (Effect)
+  cid    401 x  28845  (ChoiceCase)
+  cid    420 x  28234  (ElseCase)
+  cid    498 x 309912  (LoopEnd)
+  cid    499 x  28762  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_3.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=2669   warns=32  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 11 p 0 OK      exec=337    warns=14  
+id=1000015 rec= 12 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338700  (Blank)
+  cid    103 x 282573  (Comment)
+  cid    106 x     27  (DebugMessage)
+  cid    111 x    883  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338799  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     51  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28180  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     87  (CommonEvent)
+  cid    212 x     43  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 592329  (Database)
+  cid    290 x     17  (Effect)
+  cid    401 x  29129  (ChoiceCase)
+  cid    420 x  28257  (ElseCase)
+  cid    498 x 309972  (LoopEnd)
+  cid    499 x  28977  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_4.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1458   warns=18  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338203  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 281868  (Comment)
+  cid    106 x     17  (DebugMessage)
+  cid    111 x    324  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338274  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28168  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     42  (CommonEvent)
+  cid    212 x     19  (SetLabel)
+  cid    213 x      7  (JumpLabel)
+  cid    250 x 591699  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  28534  (ChoiceCase)
+  cid    420 x  28200  (ElseCase)
+  cid    498 x 309828  (LoopEnd)
+  cid    499 x  28463  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=2669   warns=30  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338325  (Blank)
+  cid    103 x 282078  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    498  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338426  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28171  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     52  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 591855  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28717  (ChoiceCase)
+  cid    420 x  28213  (ElseCase)
+  cid    498 x 309864  (LoopEnd)
+  cid    499 x  28592  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_6.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=55     warns=1   
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 2 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 3 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338042  (Blank)
+  cid    103 x 281647  (Comment)
+  cid    106 x     11  (DebugMessage)
+  cid    111 x    137  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338116  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28164  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     27  (CommonEvent)
+  cid    212 x     12  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591495  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28335  (ChoiceCase)
+  cid    420 x  28178  (ElseCase)
+  cid    498 x 309780  (LoopEnd)
+  cid    499 x  28294  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_7.mps IDs 1000000..1000011 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000003 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  2 p 0 OK      exec=457    warns=22  
+id=1000005 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000006 rec=  3 p 0 OK      exec=457    warns=22  
+id=1000007 rec=  4 p 0 OK      exec=457    warns=22  
+id=1000008 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000009 rec=  4 p 2 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000010 rec=  5 p 0 OK      exec=532    warns=65  
+id=1000011 rec=  6 p 0 OK      exec=5      warns=2   
+[mpssweep] IDs 1000000..1000011  OK=7  stepcap=5  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1690146  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 1408387  (Comment)
+  cid    106 x     42  (DebugMessage)
+  cid    111 x    631  (VariableCondition)
+  cid    112 x 140826  (StringCondition)
+  cid    121 x 1690394  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     44  (SetVariableEx)
+  cid    130 x      5  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     58  (Picture)
+  cid    151 x      5  (ChangeColor)
+  cid    160 x     10  (SetTransition)
+  cid    161 x     10  (PrepareTransition)
+  cid    162 x      5  (ExecuteTransition)
+  cid    170 x      6  (StartLoop)
+  cid    171 x      1  (BreakLoop)
+  cid    177 x      5  (StopNonPic)
+  cid    179 x 140816  (LoopTimes)
+  cid    180 x     16  (Wait)
+  cid    210 x    121  (CommonEvent)
+  cid    212 x     50  (SetLabel)
+  cid    213 x      5  (JumpLabel)
+  cid    250 x 2957548  (Database)
+  cid    290 x     14  (Effect)
+  cid    401 x 141661  (ChoiceCase)
+  cid    420 x 140863  (ElseCase)
+  cid    498 x 1548928  (LoopEnd)
+  cid    499 x 141426  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_8.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=462    warns=22  
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000002  OK=2  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338047  (Blank)
+  cid    103 x 281692  (Comment)
+  cid    106 x      9  (DebugMessage)
+  cid    111 x    154  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338088  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     11  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28163  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     24  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591528  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  28357  (ChoiceCase)
+  cid    420 x  28173  (ElseCase)
+  cid    498 x 309786  (LoopEnd)
+  cid    499 x  28311  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_9.mps IDs 1000000..1000003 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=462    warns=22  
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=110    warns=8   
+[mpssweep] IDs 1000000..1000003  OK=3  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338062  (Blank)
+  cid    103 x 281697  (Comment)
+  cid    106 x     10  (DebugMessage)
+  cid    111 x    171  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338100  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      3  (InputKey)
+  cid    124 x     18  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28163  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     26  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591539  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  28378  (ChoiceCase)
+  cid    420 x  28175  (ElseCase)
+  cid    498 x 309786  (LoopEnd)
+  cid    499 x  28328  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=561    warns=108 
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338046  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 281713  (Comment)
+  cid    106 x     10  (DebugMessage)
+  cid    111 x     81  (VariableCondition)
+  cid    112 x  28181  (StringCondition)
+  cid    121 x 338170  (SetVariable)
+  cid    122 x      7  (SetString)
+  cid    124 x      2  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     17  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28168  (LoopTimes)
+  cid    180 x     23  (Wait)
+  cid    210 x     21  (CommonEvent)
+  cid    212 x     12  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591497  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28329  (ChoiceCase)
+  cid    420 x  28183  (ElseCase)
+  cid    498 x 309818  (LoopEnd)
+  cid    499 x  28256  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_1.mps IDs 1000000..1000001 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=280    warns=54  
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000001  OK=1  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338012  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 281670  (Comment)
+  cid    106 x      8  (DebugMessage)
+  cid    111 x     79  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338097  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    124 x      2  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     13  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28165  (LoopTimes)
+  cid    180 x     12  (Wait)
+  cid    210 x     19  (CommonEvent)
+  cid    212 x     10  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591477  (Database)
+  cid    290 x      1  (Effect)
+  cid    401 x  28299  (ChoiceCase)
+  cid    420 x  28174  (ElseCase)
+  cid    498 x 309796  (LoopEnd)
+  cid    499 x  28245  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_2.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=359    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=1028   warns=171 
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000004 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000004  OK=3  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676136  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 563449  (Comment)
+  cid    106 x     22  (DebugMessage)
+  cid    111 x    248  (VariableCondition)
+  cid    112 x  56355  (StringCondition)
+  cid    121 x 676339  (SetVariable)
+  cid    122 x     11  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x     32  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56334  (LoopTimes)
+  cid    180 x     35  (Wait)
+  cid    210 x     54  (CommonEvent)
+  cid    212 x     28  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183052  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56741  (ChoiceCase)
+  cid    420 x  56366  (ElseCase)
+  cid    498 x 619625  (LoopEnd)
+  cid    499 x  56591  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_3.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=767    warns=12  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338504  (Blank)
+  cid     99 x      4  (Checkpoint)
+  cid    103 x 282243  (Comment)
+  cid    106 x     26  (DebugMessage)
+  cid    111 x    615  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338569  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     51  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28175  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     71  (CommonEvent)
+  cid    212 x     33  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 592076  (Database)
+  cid    290 x     12  (Effect)
+  cid    401 x  28846  (ChoiceCase)
+  cid    420 x  28236  (ElseCase)
+  cid    498 x 309912  (LoopEnd)
+  cid    499 x  28769  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_4.mps IDs 1000000..1000015 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1176   warns=16  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=403    warns=14  
+id=1000007 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000008 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000010 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=403    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 11 p 0 OK      exec=403    warns=14  
+[mpssweep] IDs 1000000..1000015  OK=15  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338572  (Blank)
+  cid     99 x     12  (Checkpoint)
+  cid    103 x 282301  (Comment)
+  cid    106 x     35  (DebugMessage)
+  cid    111 x    687  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338651  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     51  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28176  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     83  (CommonEvent)
+  cid    212 x     35  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    250 x 592151  (Database)
+  cid    290 x     13  (Effect)
+  cid    401 x  28921  (ChoiceCase)
+  cid    420 x  28249  (ElseCase)
+  cid    498 x 309924  (LoopEnd)
+  cid    499 x  28835  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1858   warns=22  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338245  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 281934  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    380  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338324  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28169  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     46  (CommonEvent)
+  cid    212 x     21  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 591752  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28593  (ChoiceCase)
+  cid    420 x  28205  (ElseCase)
+  cid    498 x 309840  (LoopEnd)
+  cid    499 x  28507  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_6.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1956   warns=22  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338259  (Blank)
+  cid     99 x      6  (Checkpoint)
+  cid    103 x 281934  (Comment)
+  cid    106 x     22  (DebugMessage)
+  cid    111 x    392  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338344  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28169  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     50  (CommonEvent)
+  cid    212 x     21  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 591764  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28605  (ChoiceCase)
+  cid    420 x  28209  (ElseCase)
+  cid    498 x 309840  (LoopEnd)
+  cid    499 x  28519  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_7.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=2669   warns=30  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338325  (Blank)
+  cid    103 x 282078  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    498  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338426  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28171  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     52  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 591855  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28717  (ChoiceCase)
+  cid    420 x  28213  (ElseCase)
+  cid    498 x 309864  (LoopEnd)
+  cid    499 x  28592  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_8.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=3012   warns=30  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338416  (Blank)
+  cid     99 x     14  (Checkpoint)
+  cid    103 x 282133  (Comment)
+  cid    106 x     33  (DebugMessage)
+  cid    111 x    583  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338538  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     19  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28172  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     70  (CommonEvent)
+  cid    212 x     27  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 591950  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28805  (ChoiceCase)
+  cid    420 x  28232  (ElseCase)
+  cid    498 x 309876  (LoopEnd)
+  cid    499 x  28677  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_9.mps IDs 1000000..1000020 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1409   warns=20  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000016 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000017 rec= 12 p 0 OK      exec=354    warns=14  
+id=1000018 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000019 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000020 rec= 15 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000020  OK=20  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338781  (Blank)
+  cid    103 x 282638  (Comment)
+  cid    106 x     29  (DebugMessage)
+  cid    111 x    918  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338847  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     71  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28182  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     95  (CommonEvent)
+  cid    212 x     47  (SetLabel)
+  cid    213 x      7  (JumpLabel)
+  cid    250 x 592432  (Database)
+  cid    290 x     19  (Effect)
+  cid    401 x  29170  (ChoiceCase)
+  cid    420 x  28267  (ElseCase)
+  cid    498 x 309996  (LoopEnd)
+  cid    499 x  29057  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A.mps IDs 1000000..1000019 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1809   warns=24  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000016 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000017 rec= 12 p 0 OK      exec=354    warns=14  
+id=1000018 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000019 rec= 14 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000019  OK=19  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338781  (Blank)
+  cid    103 x 282649  (Comment)
+  cid    106 x     29  (DebugMessage)
+  cid    111 x    931  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338855  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     67  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28182  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     95  (CommonEvent)
+  cid    212 x     47  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 592432  (Database)
+  cid    290 x     19  (Effect)
+  cid    401 x  29183  (ChoiceCase)
+  cid    420 x  28267  (ElseCase)
+  cid    498 x 309996  (LoopEnd)
+  cid    499 x  29058  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1858   warns=22  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338245  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 281934  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    380  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338324  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28169  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     46  (CommonEvent)
+  cid    212 x     21  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 591752  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28593  (ChoiceCase)
+  cid    420 x  28205  (ElseCase)
+  cid    498 x 309840  (LoopEnd)
+  cid    499 x  28507  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1809   warns=22  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338238  (Blank)
+  cid    103 x 281934  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    374  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338314  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28169  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     44  (CommonEvent)
+  cid    212 x     21  (SetLabel)
+  cid    213 x     11  (JumpLabel)
+  cid    250 x 591746  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28587  (ChoiceCase)
+  cid    420 x  28203  (ElseCase)
+  cid    498 x 309840  (LoopEnd)
+  cid    499 x  28501  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=2669   warns=30  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338325  (Blank)
+  cid    103 x 282078  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    498  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338426  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28171  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     52  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 591855  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28717  (ChoiceCase)
+  cid    420 x  28213  (ElseCase)
+  cid    498 x 309864  (LoopEnd)
+  cid    499 x  28592  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_4.mps IDs 1000000..1000016 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=1078   warns=16  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=403    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000016 rec= 11 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000016  OK=16  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338586  (Blank)
+  cid     99 x      4  (Checkpoint)
+  cid    103 x 282356  (Comment)
+  cid    106 x     28  (DebugMessage)
+  cid    111 x    706  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338653  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     55  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28177  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     79  (CommonEvent)
+  cid    212 x     37  (SetLabel)
+  cid    213 x      4  (JumpLabel)
+  cid    250 x 592180  (Database)
+  cid    290 x     14  (Effect)
+  cid    401 x  28943  (ChoiceCase)
+  cid    420 x  28246  (ElseCase)
+  cid    498 x 309936  (LoopEnd)
+  cid    499 x  28854  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_5.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=2229   warns=26  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338323  (Blank)
+  cid    103 x 282059  (Comment)
+  cid    106 x     18  (DebugMessage)
+  cid    111 x    477  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338410  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     19  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28171  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     52  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x     16  (JumpLabel)
+  cid    250 x 591853  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28696  (ChoiceCase)
+  cid    420 x  28213  (ElseCase)
+  cid    498 x 309864  (LoopEnd)
+  cid    499 x  28589  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_6.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=377    warns=18  
+id=1000001 rec=  1 p 0 OK      exec=377    warns=18  
+id=1000002 rec=  2 p 0 STEPCAP exec=2000000 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  3 p 0 OK      exec=112    warns=8   
+id=1000004 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000005 rec=  5 p 0 OK      exec=18     warns=2   
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338125  (Blank)
+  cid    103 x 281810  (Comment)
+  cid    106 x      3  (DebugMessage)
+  cid    111 x    112  (VariableCondition)
+  cid    112 x  28168  (StringCondition)
+  cid    121 x 338150  (SetVariable)
+  cid    124 x     10  (SetVariableEx)
+  cid    150 x      4  (Picture)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    179 x  28171  (LoopTimes)
+  cid    210 x     16  (CommonEvent)
+  cid    212 x      5  (SetLabel)
+  cid    250 x 591682  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x  28295  (ChoiceCase)
+  cid    420 x  28183  (ElseCase)
+  cid    498 x 309876  (LoopEnd)
+  cid    499 x  28275  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_7.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 STEPCAP exec=1999936 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000001 rec=  1 p 0 OK      exec=38     warns=0   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=509    warns=22  
+id=1000004 rec=  3 p 0 OK      exec=12     warns=2   
+id=1000005 rec=  4 p 0 OK      exec=465    warns=24  
+id=1000006 rec=  5 p 0 OK      exec=284    warns=55  
+id=1000007 rec=  6 p 0 OK      exec=9      warns=2   
+id=1000008 rec=  7 p 0 OK      exec=14     warns=0   
+id=1000009 rec=  8 p 0 OK      exec=457    warns=22  
+[mpssweep] IDs 1000000..1000009  OK=8  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676102  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 563328  (Comment)
+  cid    106 x     35  (DebugMessage)
+  cid    111 x    547  (VariableCondition)
+  cid    112 x  56328  (StringCondition)
+  cid    121 x 676217  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      4  (InputKey)
+  cid    124 x     31  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      2  (Sound)
+  cid    150 x     29  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56312  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    201 x      1  (Move)
+  cid    210 x    110  (CommonEvent)
+  cid    212 x     52  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1182875  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  57053  (ChoiceCase)
+  cid    420 x  56363  (ElseCase)
+  cid    498 x 619407  (LoopEnd)
+  cid    499 x  56862  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_8.mps IDs 1000000..1000019 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=42     warns=15  
+id=1000002 rec=  1 p 1 OK      exec=767    warns=12  
+id=1000003 rec=  1 p 2 OK      exec=12     warns=4   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=337    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=347    warns=18  
+id=1000011 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000012 rec=  7 p 0 OK      exec=403    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=403    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000016 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000017 rec= 12 p 0 OK      exec=354    warns=14  
+id=1000018 rec= 13 p 0 OK      exec=403    warns=14  
+id=1000019 rec= 14 p 0 OK      exec=403    warns=14  
+[mpssweep] IDs 1000000..1000019  OK=19  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338707  (Blank)
+  cid     99 x     14  (Checkpoint)
+  cid    103 x 282463  (Comment)
+  cid    106 x     40  (DebugMessage)
+  cid    111 x    817  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338787  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     67  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28179  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     97  (CommonEvent)
+  cid    212 x     41  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 592318  (Database)
+  cid    290 x     16  (Effect)
+  cid    401 x  29060  (ChoiceCase)
+  cid    420 x  28266  (ElseCase)
+  cid    498 x 309960  (LoopEnd)
+  cid    499 x  28971  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_9.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=1409   warns=18  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338196  (Blank)
+  cid    103 x 281868  (Comment)
+  cid    106 x     15  (DebugMessage)
+  cid    111 x    318  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338264  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28168  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     40  (CommonEvent)
+  cid    212 x     19  (SetLabel)
+  cid    213 x      7  (JumpLabel)
+  cid    250 x 591693  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  28528  (ChoiceCase)
+  cid    420 x  28198  (ElseCase)
+  cid    498 x 309828  (LoopEnd)
+  cid    499 x  28457  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_A.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000001 rec=  1 p 1 OK      exec=2718   warns=30  
+id=1000002 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000003 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000004 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000005 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000006 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338332  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 282078  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    504  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338436  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28171  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     54  (CommonEvent)
+  cid    212 x     25  (SetLabel)
+  cid    213 x     22  (JumpLabel)
+  cid    250 x 591861  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28723  (ChoiceCase)
+  cid    420 x  28215  (ElseCase)
+  cid    498 x 309864  (LoopEnd)
+  cid    499 x  28598  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map009_A_A_A_A_1.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=337    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=43     warns=17  
+id=1000002 rec=  1 p 1 OK      exec=2425   warns=26  
+id=1000003 rec=  1 p 2 OK      exec=13     warns=2   
+id=1000004 rec=  1 p 3 OK      exec=5      warns=4   
+id=1000005 rec=  1 p 4 OK      exec=2      warns=0   
+id=1000006 rec=  2 p 0 OK      exec=347    warns=18  
+id=1000007 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000008 rec=  3 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000008  OK=8  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338390  (Blank)
+  cid     99 x      8  (Checkpoint)
+  cid    103 x 282114  (Comment)
+  cid    106 x     27  (DebugMessage)
+  cid    111 x    542  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338487  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    124 x     23  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28172  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     63  (CommonEvent)
+  cid    212 x     27  (SetLabel)
+  cid    213 x     16  (JumpLabel)
+  cid    250 x 591929  (Database)
+  cid    290 x      9  (Effect)
+  cid    401 x  28764  (ChoiceCase)
+  cid    420 x  28225  (ElseCase)
+  cid    498 x 309876  (LoopEnd)
+  cid    499 x  28654  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map010.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=511    warns=22  
+id=1000001 rec=  1 p 0 OK      exec=506    warns=22  
+id=1000002 rec=  2 p 0 OK      exec=104    warns=8   
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  4 p 0 OK      exec=11     warns=0   
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338127  (Blank)
+  cid     99 x      4  (Checkpoint)
+  cid    103 x 281752  (Comment)
+  cid    106 x     15  (DebugMessage)
+  cid    111 x    236  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338163  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      4  (InputKey)
+  cid    124 x     22  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     12  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28164  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     36  (CommonEvent)
+  cid    212 x     12  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591607  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  28446  (ChoiceCase)
+  cid    420 x  28184  (ElseCase)
+  cid    498 x 309798  (LoopEnd)
+  cid    499 x  28393  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=363    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=44     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=403    warns=14  
+id=1000007 rec=  5 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338138  (Blank)
+  cid     99 x      5  (Checkpoint)
+  cid    103 x 281807  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    203  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338249  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     25  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28167  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     36  (CommonEvent)
+  cid    212 x     15  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591619  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28436  (ChoiceCase)
+  cid    420 x  28194  (ElseCase)
+  cid    498 x 309820  (LoopEnd)
+  cid    499 x  28369  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_1.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=335    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=347    warns=18  
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  4 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000005  OK=5  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338161  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 281816  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    232  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338310  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     28  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28169  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     36  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591625  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28467  (ChoiceCase)
+  cid    420 x  28202  (ElseCase)
+  cid    498 x 309826  (LoopEnd)
+  cid    499 x  28398  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=363    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=44     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338089  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 281751  (Comment)
+  cid    106 x     17  (DebugMessage)
+  cid    111 x    154  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338197  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      6  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     25  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     30  (CommonEvent)
+  cid    212 x     13  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591560  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x  28384  (ChoiceCase)
+  cid    420 x  28187  (ElseCase)
+  cid    498 x 309808  (LoopEnd)
+  cid    499 x  28320  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_3.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=408    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=378    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=44     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000007 rec=  5 p 0 OK      exec=408    warns=14  
+[mpssweep] IDs 1000000..1000007  OK=7  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338142  (Blank)
+  cid     99 x      5  (Checkpoint)
+  cid    103 x 281808  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    208  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338253  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     25  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28167  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     36  (CommonEvent)
+  cid    212 x     15  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591619  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28442  (ChoiceCase)
+  cid    420 x  28195  (ElseCase)
+  cid    498 x 309820  (LoopEnd)
+  cid    499 x  28374  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_4.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=359    warns=14  
+id=1000001 rec=  1 p 0 STEPCAP exec=1999982 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  2 p 0 OK      exec=359    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=4      warns=0   
+id=1000004 rec=  5 p 0 OK      exec=359    warns=14  
+[mpssweep] IDs 1000000..1000004  OK=4  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338080  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 281799  (Comment)
+  cid    106 x     13  (DebugMessage)
+  cid    111 x    213  (VariableCondition)
+  cid    112 x  28173  (StringCondition)
+  cid    121 x 338203  (SetVariable)
+  cid    122 x      7  (SetString)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     17  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28163  (LoopTimes)
+  cid    180 x     24  (Wait)
+  cid    210 x     33  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591492  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  28462  (ChoiceCase)
+  cid    420 x  28189  (ElseCase)
+  cid    498 x 309767  (LoopEnd)
+  cid    499 x  28380  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_5.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=362    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=42     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000006 rec=  4 p 0 OK      exec=27     warns=1   
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338089  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 281753  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    156  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338199  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      6  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     26  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     30  (CommonEvent)
+  cid    212 x     13  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591565  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x  28388  (ChoiceCase)
+  cid    420 x  28187  (ElseCase)
+  cid    498 x 309807  (LoopEnd)
+  cid    499 x  28322  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_6.mps IDs 1000000..1000010 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=409    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=357    warns=55  
+id=1000003 rec=  3 p 0 OK      exec=44     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  3 p 2 OK      exec=9      warns=0   
+id=1000006 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000007 rec=  5 p 0 OK      exec=4      warns=0   
+id=1000008 rec=  6 p 0 OK      exec=4      warns=0   
+id=1000009 rec=  7 p 0 OK      exec=409    warns=14  
+id=1000010 rec=  8 p 0 OK      exec=6      warns=0   
+[mpssweep] IDs 1000000..1000010  OK=10  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338143  (Blank)
+  cid     99 x      5  (Checkpoint)
+  cid    103 x 281807  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    207  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338251  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     10  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     25  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28167  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     37  (CommonEvent)
+  cid    212 x     15  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591620  (Database)
+  cid    290 x      8  (Effect)
+  cid    401 x  28439  (ChoiceCase)
+  cid    420 x  28194  (ElseCase)
+  cid    498 x 309820  (LoopEnd)
+  cid    499 x  28373  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map011_7.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=112    warns=8   
+id=1000001 rec=  2 p 0 OK      exec=344    warns=55  
+id=1000002 rec=  3 p 0 OK      exec=44     warns=0   
+id=1000003 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 2 OK      exec=10     warns=0   
+id=1000005 rec=  4 p 0 OK      exec=6      warns=0   
+id=1000006 rec=  5 p 0 OK      exec=408    warns=14  
+[mpssweep] IDs 1000000..1000006  OK=6  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338087  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 281751  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    153  (VariableCondition)
+  cid    112 x  28172  (StringCondition)
+  cid    121 x 338197  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x      6  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     25  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x     14  (Wait)
+  cid    210 x     29  (CommonEvent)
+  cid    212 x     13  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591558  (Database)
+  cid    290 x      7  (Effect)
+  cid    401 x  28380  (ChoiceCase)
+  cid    420 x  28187  (ElseCase)
+  cid    498 x 309808  (LoopEnd)
+  cid    499 x  28319  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map013.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020.mps IDs 1000000..1000026 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1409   warns=20  
+id=1000004 rec=  2 p 2 OK      exec=1409   warns=20  
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000016 rec= 11 p 1 OK      exec=1809   warns=22  
+id=1000017 rec= 11 p 2 OK      exec=2229   warns=26  
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000022 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000023 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 15 p 0 OK      exec=354    warns=14  
+id=1000026 rec= 16 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000026  OK=26  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339320  (Blank)
+  cid    103 x 283454  (Comment)
+  cid    106 x     44  (DebugMessage)
+  cid    111 x   1567  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339377  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     72  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28194  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    150  (CommonEvent)
+  cid    212 x     72  (SetLabel)
+  cid    213 x     38  (JumpLabel)
+  cid    250 x 593148  (Database)
+  cid    290 x     33  (Effect)
+  cid    401 x  29855  (ChoiceCase)
+  cid    420 x  28327  (ElseCase)
+  cid    498 x 310158  (LoopEnd)
+  cid    499 x  29613  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020_1.mps IDs 1000000..1000025 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1409   warns=20  
+id=1000004 rec=  2 p 2 OK      exec=1409   warns=20  
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000014 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000016 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000017 rec= 11 p 1 OK      exec=1809   warns=22  
+id=1000018 rec= 11 p 2 OK      exec=2229   warns=26  
+id=1000019 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000020 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000021 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000022 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000023 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000024 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 14 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000025  OK=25  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339280  (Blank)
+  cid    103 x 283398  (Comment)
+  cid    106 x     43  (DebugMessage)
+  cid    111 x   1524  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339337  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     68  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28193  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    146  (CommonEvent)
+  cid    212 x     70  (SetLabel)
+  cid    213 x     38  (JumpLabel)
+  cid    250 x 593093  (Database)
+  cid    290 x     32  (Effect)
+  cid    401 x  29809  (ChoiceCase)
+  cid    420 x  28322  (ElseCase)
+  cid    498 x 310145  (LoopEnd)
+  cid    499 x  29570  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020_2.mps IDs 1000000..1000026 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1078   warns=16  
+id=1000004 rec=  2 p 2 OK      exec=1507   warns=20  
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000016 rec= 11 p 1 OK      exec=1809   warns=22  
+id=1000017 rec= 11 p 2 OK      exec=2327   warns=26  
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000022 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000023 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 15 p 0 OK      exec=71     warns=16  
+id=1000026 rec= 16 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000026  OK=26  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339281  (Blank)
+  cid     99 x     10  (Checkpoint)
+  cid    103 x 283345  (Comment)
+  cid    106 x     52  (DebugMessage)
+  cid    111 x   1511  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339346  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     71  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     10  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28192  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      2  (Move)
+  cid    210 x    153  (CommonEvent)
+  cid    212 x     69  (SetLabel)
+  cid    213 x     35  (JumpLabel)
+  cid    250 x 593083  (Database)
+  cid    290 x     31  (Effect)
+  cid    401 x  29796  (ChoiceCase)
+  cid    420 x  28327  (ElseCase)
+  cid    498 x 310133  (LoopEnd)
+  cid    499 x  29566  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020_3.mps IDs 1000000..1000027 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=403    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=403    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1507   warns=20  
+id=1000004 rec=  2 p 2 OK      exec=1858   warns=24  
+id=1000005 rec=  2 p 3 OK      exec=12     warns=4   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 10 p 0 OK      exec=403    warns=14  
+id=1000015 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000016 rec= 11 p 1 OK      exec=2229   warns=26  
+id=1000017 rec= 11 p 2 OK      exec=2425   warns=26  
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000022 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000023 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 15 p 0 OK      exec=71     warns=16  
+id=1000026 rec= 16 p 0 OK      exec=354    warns=14  
+id=1000027 rec= 17 p 0 OK      exec=71     warns=16  
+[mpssweep] IDs 1000000..1000027  OK=27  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339449  (Blank)
+  cid     99 x     20  (Checkpoint)
+  cid    103 x 283552  (Comment)
+  cid    106 x     65  (DebugMessage)
+  cid    111 x   1718  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339551  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     74  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x     11  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28195  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    201 x      4  (Move)
+  cid    210 x    176  (CommonEvent)
+  cid    212 x     76  (SetLabel)
+  cid    213 x     47  (JumpLabel)
+  cid    250 x 593284  (Database)
+  cid    290 x     34  (Effect)
+  cid    401 x  30015  (ChoiceCase)
+  cid    420 x  28352  (ElseCase)
+  cid    498 x 310169  (LoopEnd)
+  cid    499 x  29737  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020_4.mps IDs 1000000..1000032 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1809   warns=24  
+id=1000004 rec=  2 p 2 OK      exec=12     warns=4   
+id=1000005 rec=  2 p 3 OK      exec=5      warns=4   
+id=1000006 rec=  2 p 4 OK      exec=2      warns=0   
+id=1000007 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000012 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000013 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000014 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000015 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000016 rec= 11 p 1 OK      exec=1809   warns=22  
+id=1000017 rec= 11 p 2 OK      exec=2229   warns=26  
+id=1000018 rec= 11 p 3 OK      exec=13     warns=2   
+id=1000019 rec= 11 p 4 OK      exec=5      warns=4   
+id=1000020 rec= 11 p 5 OK      exec=2      warns=0   
+id=1000021 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000022 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000023 rec= 13 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 15 p 0 OK      exec=354    warns=14  
+id=1000026 rec= 16 p 0 OK      exec=354    warns=14  
+id=1000027 rec= 17 p 0 OK      exec=354    warns=14  
+id=1000028 rec= 18 p 0 OK      exec=354    warns=14  
+id=1000029 rec= 19 p 0 OK      exec=354    warns=14  
+id=1000030 rec= 20 p 0 OK      exec=354    warns=14  
+id=1000031 rec= 21 p 0 OK      exec=354    warns=14  
+id=1000032 rec= 22 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000032  OK=32  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339496  (Blank)
+  cid    103 x 283681  (Comment)
+  cid    106 x     47  (DebugMessage)
+  cid    111 x   1739  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339561  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     99  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28198  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    166  (CommonEvent)
+  cid    212 x     80  (SetLabel)
+  cid    213 x     36  (JumpLabel)
+  cid    250 x 593368  (Database)
+  cid    290 x     37  (Effect)
+  cid    401 x  30039  (ChoiceCase)
+  cid    420 x  28347  (ElseCase)
+  cid    498 x 310206  (LoopEnd)
+  cid    499 x  29791  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map020_5.mps IDs 1000000..1000034 db=1 cdb=1 cap=2000000
+id=1000000 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000003 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000005 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000006 rec=  7 p 0 OK      exec=354    warns=14  
+id=1000007 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000009 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000010 rec= 11 p 0 OK      exec=43     warns=17  
+id=1000011 rec= 11 p 1 OK      exec=2229   warns=26  
+id=1000012 rec= 11 p 2 OK      exec=13     warns=2   
+id=1000013 rec= 11 p 3 OK      exec=5      warns=4   
+id=1000014 rec= 11 p 4 OK      exec=2      warns=0   
+id=1000015 rec= 12 p 0 OK      exec=38     warns=0   
+id=1000016 rec= 12 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000017 rec= 13 p 0 OK      exec=43     warns=17  
+id=1000018 rec= 13 p 1 OK      exec=3129   warns=34  
+id=1000019 rec= 13 p 2 OK      exec=13     warns=2   
+id=1000020 rec= 13 p 3 OK      exec=5      warns=4   
+id=1000021 rec= 13 p 4 OK      exec=2      warns=0   
+id=1000022 rec= 14 p 0 OK      exec=354    warns=14  
+id=1000023 rec= 15 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 16 p 0 OK      exec=354    warns=14  
+id=1000025 rec= 17 p 0 OK      exec=354    warns=14  
+id=1000026 rec= 18 p 0 OK      exec=354    warns=14  
+id=1000027 rec= 19 p 0 OK      exec=354    warns=14  
+id=1000028 rec= 20 p 0 OK      exec=43     warns=17  
+id=1000029 rec= 20 p 1 OK      exec=13     warns=2   
+id=1000030 rec= 20 p 2 OK      exec=5      warns=4   
+id=1000031 rec= 20 p 3 OK      exec=2      warns=0   
+id=1000032 rec= 22 p 0 OK      exec=354    warns=14  
+id=1000033 rec= 23 p 0 OK      exec=354    warns=14  
+id=1000034 rec= 24 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000034  OK=34  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339394  (Blank)
+  cid    103 x 283565  (Comment)
+  cid    106 x     44  (DebugMessage)
+  cid    111 x   1652  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339490  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x    101  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28195  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    156  (CommonEvent)
+  cid    212 x     74  (SetLabel)
+  cid    213 x     44  (JumpLabel)
+  cid    250 x 593239  (Database)
+  cid    290 x     34  (Effect)
+  cid    401 x  29943  (ChoiceCase)
+  cid    420 x  28332  (ElseCase)
+  cid    498 x 310170  (LoopEnd)
+  cid    499 x  29680  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map021.mps IDs 1000000..1000024 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=354    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=42     warns=15  
+id=1000003 rec=  2 p 1 OK      exec=1409   warns=18  
+id=1000004 rec=  2 p 2 OK      exec=1409   warns=18  
+id=1000005 rec=  2 p 3 OK      exec=12     warns=2   
+id=1000006 rec=  2 p 4 OK      exec=5      warns=4   
+id=1000007 rec=  2 p 5 OK      exec=2      warns=0   
+id=1000008 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000009 rec=  4 p 0 OK      exec=354    warns=14  
+id=1000010 rec=  5 p 0 OK      exec=354    warns=14  
+id=1000011 rec=  6 p 0 OK      exec=43     warns=17  
+id=1000012 rec=  6 p 1 OK      exec=2229   warns=26  
+id=1000013 rec=  6 p 2 OK      exec=1409   warns=18  
+id=1000014 rec=  6 p 3 OK      exec=13     warns=2   
+id=1000015 rec=  6 p 4 OK      exec=5      warns=4   
+id=1000016 rec=  6 p 5 OK      exec=2      warns=0   
+id=1000017 rec=  7 p 0 OK      exec=38     warns=0   
+id=1000018 rec=  7 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000019 rec=  8 p 0 OK      exec=354    warns=14  
+id=1000020 rec=  9 p 0 OK      exec=354    warns=14  
+id=1000021 rec= 10 p 0 OK      exec=354    warns=14  
+id=1000022 rec= 11 p 0 OK      exec=354    warns=14  
+id=1000023 rec= 12 p 0 OK      exec=354    warns=14  
+id=1000024 rec= 13 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000024  OK=24  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 339194  (Blank)
+  cid    103 x 283278  (Comment)
+  cid    106 x     41  (DebugMessage)
+  cid    111 x   1425  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 339243  (SetVariable)
+  cid    122 x      1  (SetString)
+  cid    123 x      1  (InputKey)
+  cid    124 x     64  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    150 x      9  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28191  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x    138  (CommonEvent)
+  cid    212 x     66  (SetLabel)
+  cid    213 x     34  (JumpLabel)
+  cid    250 x 592989  (Database)
+  cid    290 x     30  (Effect)
+  cid    401 x  29704  (ChoiceCase)
+  cid    420 x  28312  (ElseCase)
+  cid    498 x 310122  (LoopEnd)
+  cid    499 x  29483  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map023.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  2 p 0 OK      exec=506    warns=22  
+id=1000003 rec=  3 p 0 OK      exec=11     warns=0   
+id=1000004 rec=  4 p 0 OK      exec=38     warns=0   
+id=1000005 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676037  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 563314  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    240  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676110  (SetVariable)
+  cid    122 x      2  (SetString)
+  cid    123 x      3  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    150 x     19  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56325  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     44  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182984  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56631  (ChoiceCase)
+  cid    420 x  56342  (ElseCase)
+  cid    498 x 619560  (LoopEnd)
+  cid    499 x  56554  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map024.mps IDs 1000000..1000009 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=4      warns=0   
+id=1000001 rec=  1 p 0 OK      exec=104    warns=8   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=464    warns=24  
+id=1000004 rec=  3 p 0 OK      exec=464    warns=24  
+id=1000005 rec=  4 p 0 OK      exec=464    warns=24  
+id=1000006 rec=  5 p 0 OK      exec=464    warns=24  
+id=1000007 rec=  6 p 0 OK      exec=53     warns=3   
+id=1000008 rec=  7 p 0 OK      exec=4      warns=0   
+id=1000009 rec=  8 p 0 OK      exec=4      warns=0   
+[mpssweep] IDs 1000000..1000009  OK=9  stepcap=1  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 338226  (Blank)
+  cid    103 x 281874  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    341  (VariableCondition)
+  cid    112 x  28163  (StringCondition)
+  cid    121 x 338261  (SetVariable)
+  cid    122 x      4  (SetString)
+  cid    123 x      5  (InputKey)
+  cid    124 x     44  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     17  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x      1  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  28166  (LoopTimes)
+  cid    180 x      1  (Wait)
+  cid    210 x     45  (CommonEvent)
+  cid    212 x     16  (SetLabel)
+  cid    213 x      1  (JumpLabel)
+  cid    250 x 591727  (Database)
+  cid    290 x     10  (Effect)
+  cid    401 x  28567  (ChoiceCase)
+  cid    420 x  28193  (ElseCase)
+  cid    498 x 309822  (LoopEnd)
+  cid    499 x  28498  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map025.mps IDs 1000000..1000002 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=100    warns=8   
+id=1000002 rec=  2 p 0 OK      exec=100    warns=8   
+[mpssweep] IDs 1000000..1000002  OK=3  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x     39  (Blank)
+  cid    103 x     15  (Comment)
+  cid    106 x      3  (DebugMessage)
+  cid    111 x     48  (VariableCondition)
+  cid    121 x     36  (SetVariable)
+  cid    123 x      3  (InputKey)
+  cid    124 x     12  (SetVariableEx)
+  cid    150 x      3  (Picture)
+  cid    210 x      3  (CommonEvent)
+  cid    250 x     24  (Database)
+  cid    290 x      3  (Effect)
+  cid    401 x     60  (ChoiceCase)
+  cid    420 x      3  (ElseCase)
+  cid    499 x     48  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map025_1.mps IDs 1000000..1000004 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=100    warns=8   
+id=1000001 rec=  1 p 0 OK      exec=464    warns=22  
+id=1000002 rec=  2 p 0 OK      exec=100    warns=8   
+id=1000003 rec=  3 p 0 OK      exec=86     warns=4   
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+[mpssweep] IDs 1000000..1000004  OK=5  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x    107  (Blank)
+  cid    103 x     78  (Comment)
+  cid    106 x      6  (DebugMessage)
+  cid    111 x    121  (VariableCondition)
+  cid    112 x      1  (StringCondition)
+  cid    121 x    100  (SetVariable)
+  cid    123 x      4  (InputKey)
+  cid    124 x     20  (SetVariableEx)
+  cid    150 x      4  (Picture)
+  cid    179 x      1  (LoopTimes)
+  cid    210 x     14  (CommonEvent)
+  cid    212 x      4  (SetLabel)
+  cid    250 x     98  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x    147  (ChoiceCase)
+  cid    420 x     10  (ElseCase)
+  cid    498 x     12  (LoopEnd)
+  cid    499 x    122  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map037.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/Map037_A.mps IDs 1000000..999999 db=1 cdb=1 cap=2000000
+[mpssweep] IDs 1000000..999999  OK=0  stepcap=0  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/title.mps IDs 1000000..1000014 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 STEPCAP exec=1999976 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000001 rec=  1 p 0 OK      exec=357    warns=14  
+id=1000002 rec=  2 p 0 OK      exec=357    warns=14  
+id=1000003 rec=  3 p 0 STEPCAP exec=1999991 warns=23  step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  4 p 0 STEPCAP exec=1968257 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000006 rec=  5 p 0 OK      exec=7      warns=0   
+id=1000007 rec=  6 p 0 OK      exec=3      warns=0   
+id=1000008 rec=  7 p 0 OK      exec=2      warns=1   
+id=1000009 rec=  8 p 0 OK      exec=7      warns=0   
+id=1000010 rec=  9 p 0 OK      exec=12     warns=2   
+id=1000011 rec= 10 p 0 OK      exec=12     warns=2   
+id=1000012 rec= 11 p 0 OK      exec=110    warns=9   
+id=1000013 rec= 12 p 0 OK      exec=1      warns=0   
+id=1000014 rec= 13 p 0 OK      exec=1      warns=0   
+[mpssweep] IDs 1000000..1000014  OK=11  stepcap=4  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 882447  (Blank)
+  cid    103 x 615372  (Comment)
+  cid    106 x  36318  (DebugMessage)
+  cid    111 x 610170  (VariableCondition)
+  cid    112 x  41461  (StringCondition)
+  cid    121 x 1611255  (SetVariable)
+  cid    122 x  83441  (SetString)
+  cid    123 x 115036  (InputKey)
+  cid    124 x  63510  (SetVariableEx)
+  cid    130 x      1  (Teleport)
+  cid    140 x 115035  (Sound)
+  cid    150 x 110459  (Picture)
+  cid    151 x      1  (ChangeColor)
+  cid    160 x      2  (SetTransition)
+  cid    161 x      2  (PrepareTransition)
+  cid    162 x      1  (ExecuteTransition)
+  cid    170 x    102  (StartLoop)
+  cid    171 x     99  (BreakLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      1  (StopNonPic)
+  cid    179 x  35250  (LoopTimes)
+  cid    180 x      4  (Wait)
+  cid    210 x  31808  (CommonEvent)
+  cid    212 x     21  (SetLabel)
+  cid    213 x 115035  (JumpLabel)
+  cid    221 x     19  (LoadGame)
+  cid    250 x 1212325  (Database)
+  cid    290 x 230076  (Effect)
+  cid    401 x 1042269  (ChoiceCase)
+  cid    420 x  80147  (ElseCase)
+  cid    498 x 400927  (LoopEnd)
+  cid    499 x 536484  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=5      warns=0   
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000005 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676020  (Blank)
+  cid     99 x      1  (Checkpoint)
+  cid    103 x 563307  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    187  (VariableCondition)
+  cid    112 x  56335  (StringCondition)
+  cid    121 x 676152  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     11  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     30  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56327  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x     42  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182952  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56605  (ChoiceCase)
+  cid    420 x  56346  (ElseCase)
+  cid    498 x 619568  (LoopEnd)
+  cid    499 x  56510  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=5      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014004  (Blank)
+  cid    103 x 844946  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    306  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014139  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     31  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     60  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774440  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84891  (ChoiceCase)
+  cid    420 x  84507  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84777  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto2_1.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=354    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=5      warns=0   
+id=1000005 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 OK      exec=354    warns=14  
+id=1000008 rec=  7 p 0 OK      exec=354    warns=14  
+[mpssweep] IDs 1000000..1000008  OK=7  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676111  (Blank)
+  cid    103 x 563426  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    313  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676199  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     22  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56327  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     51  (CommonEvent)
+  cid    212 x     22  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183086  (Database)
+  cid    290 x      6  (Effect)
+  cid    401 x  56712  (ChoiceCase)
+  cid    420 x  56351  (ElseCase)
+  cid    498 x 619582  (LoopEnd)
+  cid    499 x  56627  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto2_2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=408    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=5      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014012  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 844946  (Comment)
+  cid    106 x     22  (DebugMessage)
+  cid    111 x    313  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014149  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     31  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     62  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774446  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84898  (ChoiceCase)
+  cid    420 x  84510  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84784  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto2_3.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=361    warns=14  
+id=1000001 rec=  1 p 0 OK      exec=49     warns=3   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=5      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  6 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  6 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014005  (Blank)
+  cid    103 x 844946  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    307  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014139  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     32  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     60  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774441  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84892  (ChoiceCase)
+  cid    420 x  84508  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84778  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto3.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=38     warns=0   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  3 p 0 OK      exec=8      warns=2   
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014004  (Blank)
+  cid    103 x 844946  (Comment)
+  cid    106 x     21  (DebugMessage)
+  cid    111 x    306  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014139  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     31  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     60  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774442  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84891  (ChoiceCase)
+  cid    420 x  84507  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84777  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto3_1.mps IDs 1000000..1000007 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=38     warns=0   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=354    warns=14  
+id=1000004 rec=  3 p 0 OK      exec=3      warns=0   
+id=1000005 rec=  4 p 0 OK      exec=9      warns=2   
+id=1000006 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000007 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000007  OK=6  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676028  (Blank)
+  cid    103 x 563319  (Comment)
+  cid    106 x     15  (DebugMessage)
+  cid    111 x    227  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676115  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56325  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     43  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182982  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56620  (ChoiceCase)
+  cid    420 x  56341  (ElseCase)
+  cid    498 x 619558  (LoopEnd)
+  cid    499 x  56541  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto3_2.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=38     warns=0   
+id=1000002 rec=  1 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000003 rec=  2 p 0 OK      exec=361    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000005 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000006 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000007 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000008 rec=  6 p 0 OK      exec=5      warns=0   
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014005  (Blank)
+  cid    103 x 844946  (Comment)
+  cid    106 x     20  (DebugMessage)
+  cid    111 x    307  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014139  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     32  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     60  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774441  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84892  (ChoiceCase)
+  cid    420 x  84508  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84778  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto4.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676026  (Blank)
+  cid    103 x 563316  (Comment)
+  cid    106 x     14  (DebugMessage)
+  cid    111 x    227  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676115  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56325  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     43  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182981  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56620  (ChoiceCase)
+  cid    420 x  56341  (ElseCase)
+  cid    498 x 619558  (LoopEnd)
+  cid    499 x  56541  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto4_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=38     warns=0   
+id=1000003 rec=  2 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000004 rec=  3 p 0 OK      exec=354    warns=14  
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676026  (Blank)
+  cid    103 x 563316  (Comment)
+  cid    106 x     14  (DebugMessage)
+  cid    111 x    227  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676115  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56325  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     43  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182981  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56620  (ChoiceCase)
+  cid    420 x  56341  (ElseCase)
+  cid    498 x 619558  (LoopEnd)
+  cid    499 x  56541  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto5.mps IDs 1000000..1000008 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=403    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  4 p 0 OK      exec=10     warns=4   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000007 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000008 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000008  OK=6  stepcap=3  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 1014011  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 844946  (Comment)
+  cid    106 x     22  (DebugMessage)
+  cid    111 x    312  (VariableCondition)
+  cid    112 x  84489  (StringCondition)
+  cid    121 x 1014149  (SetVariable)
+  cid    122 x      6  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     16  (SetVariableEx)
+  cid    130 x      3  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     31  (Picture)
+  cid    151 x      3  (ChangeColor)
+  cid    160 x      6  (SetTransition)
+  cid    161 x      6  (PrepareTransition)
+  cid    162 x      3  (ExecuteTransition)
+  cid    170 x      3  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      3  (StopNonPic)
+  cid    179 x  84487  (LoopTimes)
+  cid    180 x      3  (Wait)
+  cid    210 x     62  (CommonEvent)
+  cid    212 x     26  (SetLabel)
+  cid    213 x      3  (JumpLabel)
+  cid    250 x 1774446  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  84897  (ChoiceCase)
+  cid    420 x  84509  (ElseCase)
+  cid    498 x 929331  (LoopEnd)
+  cid    499 x  84783  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto5_1.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=49     warns=3   
+id=1000001 rec=  1 p 0 OK      exec=5      warns=0   
+id=1000002 rec=  2 p 0 OK      exec=403    warns=14  
+id=1000003 rec=  3 p 0 OK      exec=38     warns=0   
+id=1000004 rec=  3 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000005 rec=  5 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  5 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676033  (Blank)
+  cid     99 x      2  (Checkpoint)
+  cid    103 x 563315  (Comment)
+  cid    106 x     16  (DebugMessage)
+  cid    111 x    234  (VariableCondition)
+  cid    112 x  56326  (StringCondition)
+  cid    121 x 676126  (SetVariable)
+  cid    122 x      5  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     14  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      1  (Sound)
+  cid    150 x     22  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56325  (LoopTimes)
+  cid    180 x      2  (Wait)
+  cid    210 x     45  (CommonEvent)
+  cid    212 x     18  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1182985  (Database)
+  cid    290 x      4  (Effect)
+  cid    401 x  56627  (ChoiceCase)
+  cid    420 x  56343  (ElseCase)
+  cid    498 x 619557  (LoopEnd)
+  cid    499 x  56548  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto_1.mps IDs 1000000..1000005 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=403    warns=14  
+id=1000004 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000005 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000005  OK=4  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676069  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 563361  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    235  (VariableCondition)
+  cid    112 x  56335  (StringCondition)
+  cid    121 x 676203  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      4  (Sound)
+  cid    150 x     30  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56328  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x     48  (CommonEvent)
+  cid    212 x     20  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183010  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  56656  (ChoiceCase)
+  cid    420 x  56353  (ElseCase)
+  cid    498 x 619580  (LoopEnd)
+  cid    499 x  56558  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto_2.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=359    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=5      warns=0   
+id=1000004 rec=  3 p 0 OK      exec=362    warns=14  
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676062  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 563362  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    232  (VariableCondition)
+  cid    112 x  56335  (StringCondition)
+  cid    121 x 676191  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     30  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56328  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x     45  (CommonEvent)
+  cid    212 x     20  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183008  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  56653  (ChoiceCase)
+  cid    420 x  56350  (ElseCase)
+  cid    498 x 619580  (LoopEnd)
+  cid    499 x  56555  (BranchEnd)
+[mpssweep] merged 584 common events
+[mpssweep] ../../fb/game/Data/MapData/tuto_3.mps IDs 1000000..1000006 db=1 cdb=1 cap=2000000
+id=1000000 rec=  0 p 0 OK      exec=38     warns=0   
+id=1000001 rec=  0 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+id=1000002 rec=  1 p 0 OK      exec=358    warns=61  
+id=1000003 rec=  2 p 0 OK      exec=5      warns=0   
+id=1000004 rec=  3 p 0 OK      exec=362    warns=14  
+id=1000005 rec=  4 p 0 OK      exec=104    warns=8   
+id=1000006 rec=  4 p 1 STEPCAP exec=1999986 warns=512 step cap exceeded (2000000) — runaway loop
+[mpssweep] IDs 1000000..1000006  OK=5  stepcap=2  reccap=0  other=0  gap=0
+[mpssweep] pages census (cid x count):
+  cid      0 x 676062  (Blank)
+  cid     99 x      3  (Checkpoint)
+  cid    103 x 563362  (Comment)
+  cid    106 x     19  (DebugMessage)
+  cid    111 x    232  (VariableCondition)
+  cid    112 x  56335  (StringCondition)
+  cid    121 x 676190  (SetVariable)
+  cid    122 x      8  (SetString)
+  cid    123 x      2  (InputKey)
+  cid    124 x     15  (SetVariableEx)
+  cid    130 x      2  (Teleport)
+  cid    140 x      3  (Sound)
+  cid    150 x     30  (Picture)
+  cid    151 x      2  (ChangeColor)
+  cid    160 x      4  (SetTransition)
+  cid    161 x      4  (PrepareTransition)
+  cid    162 x      2  (ExecuteTransition)
+  cid    170 x      2  (StartLoop)
+  cid    173 x      1  (EraseEvent)
+  cid    177 x      2  (StopNonPic)
+  cid    179 x  56328  (LoopTimes)
+  cid    180 x     13  (Wait)
+  cid    210 x     45  (CommonEvent)
+  cid    212 x     20  (SetLabel)
+  cid    213 x      2  (JumpLabel)
+  cid    250 x 1183008  (Database)
+  cid    290 x      5  (Effect)
+  cid    401 x  56653  (ChoiceCase)
+  cid    420 x  56350  (ElseCase)
+  cid    498 x 619580  (LoopEnd)
+  cid    499 x  56555  (BranchEnd)

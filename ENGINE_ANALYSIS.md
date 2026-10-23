@@ -956,7 +956,7 @@ and the predicate rather than be invented inline.
 `mapobj 1-1.mps` demo output shows the model activating the door
 record's page 1 — the documented §14.2 contradiction in plain sight.
 
-### 14.2 Engine reading (OPEN — TODO verify)
+### 14.2 Engine reading (SUPERSEDED by 14.3 for page selection — kept for history)
 
 None of the above values has an engine interpretation yet:
 
@@ -972,3 +972,121 @@ None of the above values has an engine interpretation yet:
   the v16/b10 fields above.
 - Until verified, any page-choice model in wolfvm must be marked
   (approx) and MUST NOT be pinned by selftest as engine truth.
+
+### 14.3 Page start conditions + page pick — RESOLVED from Game.exe (2026-10-22)
+
+The §14.2 contradiction is gone: the "unknown" page bytes ARE the start
+conditions. Byte-read from the shipped Game.exe (capstone linear disasm of
+.text; image base 0x400000):
+
+**Page pick = 0x44B530** (map-object refresh, `this` = object):
+- if erase byte obj+0xBE != 0 → page stays -1 (no selection at all);
+- else `for k = n-1 .. 0: if 0x482240(page[k]+0x24, obj+0x24) → pick k, break`;
+- no hit → -1 (object has no active page: no graphic, no trigger);
+- unchanged vs obj+0x15C → no-op; changed → page copied into obj+0x160
+  (0x4826B0: 40-byte condition block at +0x24 via `rep movsd` x10, then
+  +0x4C movement/options, +0x64, +0x68 command vector, +0x78 route).
+  Classic Wolf "highest page whose conditions hold" is engine-true.
+
+**Condition evaluator = 0x482240** (thiscall, `this` = 40-byte block,
+arg = object self key obj+0x24, `ret 4`):
+```
+block: +0 u8 trigger | +1..+4 u8 op[4] | +8 i32 lhs[4] | +0x18 i32 rhs[4]
+for i in 0..3:
+  if (op[i] & 1) == 0: return TRUE          # first disabled term ends the list
+  L = lhs[i]
+  if 1000000 <= L < 1200000: L = 1000000 + key*10 + L%10
+  if 9190000 <= L < 9200000: L = 9100000 + key*10 + L%10
+  R = rhs[i]
+  if 1100000 <= R < 1200000: R = 1000000 + key*10 + R%10     # NOTE: R band starts at 1.1e6
+  if 9190000 <= R < 9200000: R = 9100000 + key*10 + R%10
+  a = 0x43F0B0(L,0,0); b = 0x43F0B0(R,0,0)
+  switch ((int8)op[i] & 0xF0) >> 4:
+    0 a>b | 1 a>=b | 2 a==b | 3 a<=b | 4 a<b | 5 a!=b | 6 (a&b)==rhs[i] (raw field)
+    other -> FALSE
+  term false -> return FALSE
+return TRUE
+```
+Same comparator table as the common-event autorun predicate 0x490780
+(byte +0x20 hi nibble, var +0x24, value +0x28; JT 0x49085E) and its
+twin 0x482EE0 — three independent copies agree. (The CE-side table in
+vm.cpp `eval_cmp` uses a different, empirically chosen order for cid 111
+— 1='<', 3='<=', 4='>=' — which DISAGREES with this autorun table on ops
+1/3/4; whether cid 111 really uses another encoding is OPEN, see 14.4.)
+
+**File ↔ memory mapping** (all 105 files, parser byte-exact unchanged):
+`graphic_head[4]` = block+0 trigger; `graphic_flags[0..3]` = op[4];
+`chips[0..3]` = lhs[4]; `unknown16` = rhs[4] (LE i32);
+`graphic_head[0..3]` = dir / frame / opacity / render mode;
+`block10[0..3]` movement, `[4]` options (bit 0x40 read by 0x4824F0),
+`[5]` route flags, `[6..9]` page route count (0 everywhere here).
+The page's leading i32 (`condition` in the struct: -1/0/52) is NOT a
+condition; its 13 non-(-1) pages all have an empty graphic file → most
+likely a tile-graphic number (inferred, loader not traced).
+
+**Census on the target (mpspagewalk, 1028 pages):** enabled terms per page
+0/455 1/513 2/56 3/4; comparators == x530, <= x48, != x34, >= x25;
+LHS bands 1.1e6 (this-event self) x301, 1.0e6 x200, 2e6 x136; **zero
+enabled terms after a disabled one** (data honors the prefix rule);
+48 disabled terms carry leftover non-default LHS keys (ignored by engine).
+The "i0 == page index" pattern of §14.1 is simply rhs[0] of the common
+`SelfVar0 == k` page ladder; the "last-page tuple {i0=30, b4=0x23,
+f0=0x31}" is `Var 2000035 <= 30` (story-flag override page).
+Worked example 1-1 door (rec 9): page0 `[1100002] == 0`, page1
+`[1100002] == 1` → with SelfVar2 = 0 the engine shows page 0 (closed
+door), after SelfVar2 := 1 page 1. LHS 1.0e6-band keys are rebased onto
+the evaluating object's own self vars (x%10) — a 1000013 key reads THIS
+event's self var 3, never event 1's.
+
+**Trigger byte → obj+0x1E8** (0x44B8B3). Engine-read: 2 = parallel (page
+activation immediately starts the object's own thread obj+0x14C via
+0x4533F0, 0x44B92D); 1 = auto-run (main-queue picker 0x453700 skips the
+face-player prep 0x482690/0x490880 only for trigger 1). 0 (x9) = key/touch
+family, TODO verify. Target counts: 0/9, 1/181, 2/838.
+
+wolfvm: `MapPageCond page_conditions()` + `comparator_name()`
+(map_project.h), `EnginePagePred` / `MapVarStore` / engine `pick_page`
+(map_runtime.h), `mpsinfo -v` prints `start trig=.. if [L] op R && ..`,
+`mpspagewalk` prints the condition census, `mapobj` uses the engine
+predicate (`--set KEY=VALUE` seeds variables). selftest 28 → 36 (8 ENGINE
+pins: comparator table, op>6, prefix stop, door ladder 0/1/-1, rhs
+1.0e6 non-rebase, op6 raw rhs).
+
+### 14.4 Open after 14.3
+- (TODO verify) obj+0x24 self key = record id (constructor arg; Wolf
+  convention). `mapobj` assumes it.
+- (TODO verify) 0x43F0B0 for 1.0e6-band keys (map self-var cells) and the
+  2e6 band — wolfvm `Vm::eval_int` still has no map-self bank; wiring the
+  MapRuntime self-var store into the VM is the next Stage-3 step so map
+  pages' cid 121 writes to 1100000+n can flip page ladders.
+- RESOLVED same session (§14.5): cid 111 uses the same table.
+- (TODO verify) trigger 0 and touch triggers; options byte bits.
+
+
+### 14.5 cid 111 comparator table — engine-true, sweep v8 (2026-10-22)
+
+Second-interpreter cid-111 term loop (0x4581BD..0x4584EB): op =
++0x34[2+i], `cmp op,6; ja no-match; jmp [op*4+0x4586C8]`; operands are
+the +0x44 work-vector cells 2i (A) and 2i+1 (B). Arms: 0x45820C `A>B`
+(jle fail), 0x458272 `A>=B` (jl fail), 0x4582D8 `A==B`, 0x45833E `A<=B`
+(jg fail), 0x4583A4 `A<B` (jge fail), 0x45840A `A!=B` (je fail),
+0x45846D `(A&B)==B`. First matching term writes the case value
++0x34[5+i] into state+8 and returns 1. => identical to 0x482240/0x490780.
+vm.cpp `eval_cmp` had 1='<' and 4='>=' (empirical) — both wrong; fixed,
+ops >6 now "no match" (engine) instead of a fault. selftest fixture for
+the 171 break used op 4 for '>=' → now op 1.
+
+Sweep v8 (Linux g++ build; v7 reproduced byte-identically first,
+OK=485/86/13 in 22 s): **OK=512, stepcap=72, reccap=0, other=0, gap=0**.
+Per-id vs v7: STEPCAP→OK x22 (8 11 98 103 109 144 151 214 319 337 422
+425 429 440 441 452 469 481 508 510 557 571), RECCAP→OK x7 (89 91 120
+122 264 316 442), RECCAP→STEPCAP x6 (9 123 228 235 462 532), OK→STEPCAP
+x2 (234 522 — inspect next: likely input/wait loops that the wrong
+table used to exit early). All 13 recursion-cap ids are gone: the old
+table was steering 210 recursions down the wrong branch.
+All-maps mpssweep v8: **OK=900, stepcap=128, reccap=0, other=0, gap=0**
+(v7: 868/35/125) — former reccaps now run into long loops headless.
+Artifacts: `analysis/temp/full_sweep_v8.txt`, `mpssweep_all_v8.txt`.
+NOTE (open, structural): engine cid 111 is "first matching term selects
+case value", wolfvm still ORs terms into register 1/2. Same results when
+cases are the default 1/2 shape; revisit for multi-case conditions.
