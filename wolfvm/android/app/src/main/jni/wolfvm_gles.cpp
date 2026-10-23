@@ -156,23 +156,37 @@ void Renderer::build_plane_meshes(const std::vector<std::vector<uint32_t>>& plan
         for (int ty = 0; ty < h; ++ty)
             for (int tx = 0; tx < w; ++tx) {
                 const uint32_t v = cells[(size_t)ty * (size_t)w + (size_t)tx];
-                // Pinned (data census 2026-10, all 105 maps of the target game):
-                // the chip cell is a 24-bit field, NOT a flat index —
-                //   bits 24..31 always 0; bits 16..23 hold one of 16 band codes;
-                //   band 0 = first tileset sheet, ids 1..(cols*rows) dense
-                //   (target: moriV13.png 320x2200 = 8x55 grid at 40px chip).
-                // decode of bands != 0 is RE-open (map-draw path of Game.exe).
-                const uint32_t band = (v >> 16) & 0xFFu;
-                const uint32_t lo = v & 0xFFFFu;
-                if (band != 0u) { ++band_cells; continue; }   // drawn once bands decode
-                if (lo == 0u) { ++missing_cells; continue; }
+                // Engine-true decode (data census 2026-10-23, all 105 maps):
+                // the chip cell value is DECIMAL-composed, not a hex bitfield:
+                //   v = page*100000 + chip
+                //   page 0 = base sheet (moriV13.png), chip = 1-based grid id
+                //            (observed ids 1..426 vs cap 440, dense, oob 0)
+                //   pages 1..16 = the AT/autotile sheets that follow moriV13 in
+                //            the tileset record; chip = 4-digit edge code
+                //            (digits 0..4, fill code 4444; max chip 4444 on every
+                //            page, never a raw grid id).
+                // code->variant pick inside an AT sheet is the Game.exe map-draw
+                // rule — RE-open. Until it decodes, every AT cell draws grid 0
+                // (MODEL approximation: sheets/regions/colors show, edge
+                // variants don't yet).
+                const uint32_t page = v / 100000u;
+                const uint32_t chip = v % 100000u;
+                if (chip == 0u) { ++missing_cells; continue; }   // empty cell
                 if (sheets.empty()) { ++missing_cells; continue; }
-                const ChipSheet& sh = sheets[0];              // band 0 == sheet 1
+                int si;
+                uint32_t local;
+                if (page == 0u) {
+                    si = 0;                            // base sheet, 1-based id
+                    local = chip - 1u;
+                } else {
+                    si = page <= 15u ? (int)page : 15; // page->sheet exact table RE-open (page 16 clamps)
+                    local = 0u;                        // MODEL: AT variant rule pending
+                }
+                if (si >= (int)sheets.size()) { ++band_cells; continue; }
+                const ChipSheet& sh = sheets[(size_t)si];
                 if (!sh.ready || sh.cols <= 0 || sh.rows <= 0) { ++missing_cells; continue; }
-                const uint32_t local = lo - 1u;
                 const uint32_t cap = (uint32_t)sh.cols * (uint32_t)sh.rows;
                 if (local >= cap) { ++oob_cells; continue; }  // id beyond the sheet grid
-                const int si = 0;
                 if (si >= (int)mesh.size()) { ++missing_cells; continue; }
                 const int col = (int)(local % (uint32_t)sh.cols);
                 const int row = (int)(local / (uint32_t)sh.cols);

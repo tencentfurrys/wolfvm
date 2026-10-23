@@ -1,6 +1,7 @@
 package io.github.tencentfurrys.wolfvm;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
@@ -171,6 +173,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         rows3.addButton("import zip", v -> pickZip());
         rows3.addButton("import dir", v -> pickDir());
         rows3.addButton("save root", v -> saveRoot());
+        rows3.addButton("export", v -> exportLog());
         rows3.addButton("clear", v -> logView.setText(""));
         console.addView(rows3.view);
 
@@ -180,6 +183,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         logView.setTextSize(10f);
         logView.setTextColor(Color.rgb(224, 224, 224));
         logView.setPadding(dp(6), dp(6), dp(6), dp(6));
+        logView.setTextIsSelectable(true);   // long-press → select/copy console text
         logScroll.addView(logView, new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         console.addView(logScroll, new LinearLayout.LayoutParams(
@@ -236,6 +240,44 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
     private void toggleConsole() {
         console.setVisibility(console.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+    }
+
+    /** console ▸ export: write the console text into the device Downloads folder. */
+    private void exportLog() {
+        final String text = logView.getText().toString();
+        if (text.isEmpty()) {
+            Toast.makeText(this, "console is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String name = "wolfvm-console-" + System.currentTimeMillis() + ".log";
+        try (OutputStream os = openLogOut(name)) {
+            os.write(text.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            os.flush();
+            Toast.makeText(this, "saved: Downloads/" + name, Toast.LENGTH_LONG).show();
+            log("[console] exported → Downloads/" + name + "\n");
+        } catch (Exception ex) {
+            Toast.makeText(this, "export failed: " + ex, Toast.LENGTH_LONG).show();
+            Log.w(LOGTAG, "export failed", ex);
+        }
+    }
+
+    /** output stream on the public Downloads folder (MediaStore on Android 10+,
+     *  legacy public dir below; no runtime permission needed on 10+). */
+    private OutputStream openLogOut(final String name) throws IOException {
+        if (Build.VERSION.SDK_INT >= 29) {
+            final ContentValues cv = new ContentValues();
+            cv.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+            cv.put(MediaStore.MediaColumns.MIME_TYPE, "text/plain");
+            cv.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+            final Uri uri = getContentResolver().insert(
+                    MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
+            final OutputStream os = getContentResolver().openOutputStream(uri);
+            if (os == null) throw new IOException("resolver returned null for " + name);
+            return os;
+        }
+        final File f = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS), name);
+        return new FileOutputStream(f);
     }
 
     // ------------------------------------------------------------ root/prefs

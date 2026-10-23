@@ -6,6 +6,12 @@ Eris Dysnomia/
 # Personal-test APK data-pack (game content; local device testing only)
 wolfvm/android/app/src/main/assets/wolfvm_data.zip
 
+# Local build artifacts (APKs etc.) — device-test outputs, never published
+dist/
+
+# Throwaway local analysis tools (band census etc.) — research, not product
+analysis/temp/
+
 # Build artifacts / local binaries
 build/
 *.o

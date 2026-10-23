@@ -144,10 +144,12 @@ bool GameSession::renderer_upload_sheet(int idx, const void* rgba, int w, int h)
 }
 
 void GameSession::renderer_upload_done() {
-    // Pinned (Eris data census 2026-10): chip cell is a 24-bit bitfield;
-    // band 0 maps onto the FIRST tileset sheet with dense 1-based grid ids
-    // (moriV13.png 8x55 @40px). Sheets beyond band 0 decode after the
-    // Game.exe map-draw path RE lands — until then those cells skip.
+    // Engine-true (data census 2026-10-23, all 105 maps): chip cell value =
+    // page*100000 + chip (decimal composition). Page 0 = base sheet with
+    // 1-based grid ids (1..426 vs cap 440); pages 1..16 = AT sheets listed
+    // after moriV13 in the tileset record, chip = 4-digit autotile edge code
+    // (fill = 4444). code->variant rule inside an AT sheet = Game.exe
+    // map-draw path, RE-open; the renderer draws AT grid 0 meanwhile (MODEL).
     std::vector<std::vector<uint32_t>> planes32;
     planes32.reserve(map_.planes.size());
     for (const auto& bytes : map_.planes) {
