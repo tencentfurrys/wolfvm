@@ -98,13 +98,20 @@ access granted). Missing files are pre-validated in the UI because the native
 reader aborts on open failure. The app does **not** and will not bundle the
 commercial game's data — bring your own copy.
 
-### Renderer approximations (MODEL; engine decode pending — see jni notes)
+### Renderer facts (data census 2026-10-23, all 105 maps — see analysis note)
 
-- chip cell semantics: low 16 bits in use, 0 = skip, 1-based `chip-1`
-- chip size: per-sheet largest 16..64px side dividing the PNG (global chip size
-  is engine-known; decode pending)
-- flat chip → sheet binding: sheets in TileSetData string order, capacities =
-  detected grids; per-map tileset link = record 0
+- **chip cell is a 24-bit bitfield, not a flat index** (refuted the earlier
+  low-16 MODEL): bits 24..31 always 0; bits 16..23 carry one of 16 band codes;
+  band 0 reads as the *first tileset sheet* with dense 1-based grid ids —
+  `moriV13.png` 320x2200 = 8x55 grid at 40px, ids 1..440 used densely within.
+  Bands != 0 remain RE-open (map-draw path of Game.exe) — v0.6 renders band-0
+  cells and skips the rest (shown live as `band=` in the status line).
+- **chip size 40 confirmed by the data**: every TileSet sheet dimension is a
+  multiple of 40 (320x2200, 40x200, 80x200).
+- **tileset selection**: TileSetData holds placeholder records (blank image /
+  empty strings) beside the populated group; the `.mps` header fields
+  (`layer_count`, `extra`) do **not** correlate with a per-map tileset across
+  all 105 maps. Renderer v0.6 uses the first record with resolvable sheets.
 - draw order: plane 0 → 1 → 2 (z stacking of events / upper plane is
   engine-open); event sprites not drawn yet
 - sessions read the game data already decrypted in place (Stage-0 restore flow)

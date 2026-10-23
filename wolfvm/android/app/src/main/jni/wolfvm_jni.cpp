@@ -279,10 +279,10 @@ Java_io_github_tencentfurrys_wolfvm_WolfVm_sessionStatus(JNIEnv* env, jclass /*c
     const auto d = g->diag();
     char buf[512];
     std::snprintf(buf, sizeof buf,
-                  "map %dx%d chip=%d sheets=%zu/%zu cells(miss/oob)=%zu/%zu "
+                  "map %dx%d chip=%d sheets=%zu/%zu cells(miss/oob/band)=%zu/%zu/%zu "
                   "events=%zu active=%zu cam=(%.0f,%.0f) tileset=%d/%d%s",
                   d.map_w, d.map_h, d.chip, d.sheets_ready, d.sheets,
-                  d.missing_cells, d.oob_cells, d.events, d.active_objects,
+                  d.missing_cells, d.oob_cells, d.band_cells, d.events, d.active_objects,
                   d.cam_x, d.cam_y, d.tileset, d.rows_tileset,
                   d.atlas_ready ? "" : " [atlas not ready]");
     return env->NewStringUTF(buf);

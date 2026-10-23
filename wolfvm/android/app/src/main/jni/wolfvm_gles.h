@@ -32,16 +32,16 @@ struct Renderer {
     bool upload_sheet(int idx, const void* rgba_bytes, int w, int h);
 
     // Mesh: per-(plane, sheet) static buffers; planes drawn in z order.
-    // sheet_start[s] = first flat chip id of sheet s (MODEL: sheet order).
-    void build_plane_meshes(const std::vector<std::vector<uint32_t>>& planes,
-                            int w, int h, const std::vector<int>& sheet_start);
+    // Chip cell decode (pinned by data census): band 0 (the first tileset
+    // sheet) only until the Game.exe map-draw path decodes the other bands.
+    void build_plane_meshes(const std::vector<std::vector<uint32_t>>& planes, int w, int h);
     void draw(float cam_x, float cam_y, bool* first_frame_flag);
     size_t vert_total() const;
 
     std::vector<ChipSheet> sheets;
     int32_t vpw = 0, vph = 0;
-    int chip_size = 40;   // MODEL heuristic until the engine value decodes
-    size_t missing_cells = 0, oob_cells = 0;
+    int chip_size = 40;   // pinned 40 for the target data (sheet dims all x40)
+    size_t missing_cells = 0, oob_cells = 0, band_cells = 0;
 
 private:
     std::vector<Batch> batches_;

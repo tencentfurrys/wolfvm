@@ -145,10 +145,9 @@ bool Renderer::upload_sheet(int idx, const void* rgba, int w, int h) {
 }
 
 void Renderer::build_plane_meshes(const std::vector<std::vector<uint32_t>>& planes,
-                                  int w, int h,
-                                  const std::vector<int>& sheet_start) {
+                                  int w, int h) {
     batches_.clear();
-    missing_cells = oob_cells = 0;
+    missing_cells = oob_cells = band_cells = 0;
     for (size_t z = 0; z < planes.size(); ++z) {
         const auto& cells = planes[z];
         if (cells.size() != (size_t)w * (size_t)h) { missing_cells += cells.size(); continue; }
@@ -157,25 +156,26 @@ void Renderer::build_plane_meshes(const std::vector<std::vector<uint32_t>>& plan
         for (int ty = 0; ty < h; ++ty)
             for (int tx = 0; tx < w; ++tx) {
                 const uint32_t v = cells[(size_t)ty * (size_t)w + (size_t)tx];
-                const uint32_t chip_ix = v & 0xFFFFu;      // MODEL: low 16 bits in use
-                if (chip_ix == 0u) { ++missing_cells; continue; }
-                const uint32_t flat = chip_ix - 1u;        // MODEL: 1-based
-                if ((v >> 16) != 0u) ++oob_cells;          // MODEL: reserved high bits
-                int si = 0;
-                while ((size_t)(si + 1) < sheet_start.size() &&
-                       flat >= (uint32_t)sheet_start[(size_t)si + 1]) ++si;
-                if (si < 0 || (size_t)si >= sheets.size()) { ++oob_cells; continue; }
+                // Pinned (data census 2026-10, all 105 maps of the target game):
+                // the chip cell is a 24-bit field, NOT a flat index —
+                //   bits 24..31 always 0; bits 16..23 hold one of 16 band codes;
+                //   band 0 = first tileset sheet, ids 1..(cols*rows) dense
+                //   (target: moriV13.png 320x2200 = 8x55 grid at 40px chip).
+                // decode of bands != 0 is RE-open (map-draw path of Game.exe).
+                const uint32_t band = (v >> 16) & 0xFFu;
+                const uint32_t lo = v & 0xFFFFu;
+                if (band != 0u) { ++band_cells; continue; }   // drawn once bands decode
+                if (lo == 0u) { ++missing_cells; continue; }
+                if (sheets.empty()) { ++missing_cells; continue; }
+                const ChipSheet& sh = sheets[0];              // band 0 == sheet 1
+                if (!sh.ready || sh.cols <= 0 || sh.rows <= 0) { ++missing_cells; continue; }
+                const uint32_t local = lo - 1u;
+                const uint32_t cap = (uint32_t)sh.cols * (uint32_t)sh.rows;
+                if (local >= cap) { ++oob_cells; continue; }  // id beyond the sheet grid
+                const int si = 0;
                 if (si >= (int)mesh.size()) { ++missing_cells; continue; }
-                if (!sheets[(size_t)si].ready || sheets[(size_t)si].cols <= 0) {
-                    ++missing_cells; continue;
-                }
-                const ChipSheet& sh = sheets[(size_t)si];
-                const uint32_t local = flat - (uint32_t)sheet_start[(size_t)si];
                 const int col = (int)(local % (uint32_t)sh.cols);
                 const int row = (int)(local / (uint32_t)sh.cols);
-                if (col >= sh.cols || row >= sh.rows) {
-                    ++oob_cells; continue;
-                }
                 const int csx = sh.w / sh.cols, csy = sh.h / sh.rows;
                 const float x0 = (float)tx * (float)chip_size;
                 const float y0 = (float)ty * (float)chip_size;

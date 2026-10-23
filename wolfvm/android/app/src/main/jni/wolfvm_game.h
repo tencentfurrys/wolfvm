@@ -49,7 +49,7 @@ public:
         int map_w = 0, map_h = 0;
         int chip = 40;
         size_t events = 0, active_objects = 0, erased_objects = 0;
-        size_t missing_cells = 0, oob_cells = 0;
+        size_t missing_cells = 0, oob_cells = 0, band_cells = 0;
         size_t sheets = 0, sheets_ready = 0;
         int tileset = 0, rows_tileset = 0;
         bool map_loaded = false, atlas_ready = false;
@@ -74,7 +74,6 @@ private:
     std::unique_ptr<MapRuntime> rt_;          // built in load() (needs the map)
     TileSetDataDat tilesets_;
     std::vector<std::string> chip_paths_;     // resolved sheet files of the selected set
-    std::vector<int> sheet_start_;            // MODEL flat-chip base per sheet
     Renderer renderer_;
     std::vector<DatabasePair*> dbs_;          // non-owning handles into owneds_
     std::vector<std::unique_ptr<DatabasePair>> owneds_;

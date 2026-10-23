@@ -1,0 +1,332 @@
+records=6 mode=3 term=0xCF
+rec 0 name="\x8B\xF3"
+  strings(16): [MapChip/Image2.png] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+  flags: bytes=272 ints=272  fb[0,1,2,3,4,5,6,7,0,0,0,0, ]
+  ints: max=0 distinct=1 top: 0x272, 
+rec 1 name=""
+  strings(16): [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+  flags: bytes=24 ints=24  fb[0,1,2,3,4,5,6,7,8,9,10,11, ]
+  ints: max=0 distinct=1 top: 0x24, 
+rec 2 name=""
+  strings(16): [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+  flags: bytes=24 ints=24  fb[0,1,2,3,4,5,6,7,8,9,10,11, ]
+  ints: max=0 distinct=1 top: 0x24, 
+rec 3 name="\x83f\x83t\x83H"
+  strings(16): [MapChip/moriV13.png] [MapChip/ATsougen.png] [MapChip/tutiAT2.png] [MapChip/wateri.png] [MapChip/lovel.png] [MapChip/ATisidatami.png] [MapChip/ATisidatami4.png] [MapChip/waterig.png] [MapChip/ATpura.png] [MapChip/ATisiyuka.png] [MapChip/ATisidatami2.png] [MapChip/ATisidatami4.png] [MapChip/ATtile.png] [MapChip/ATbeberu.png] [MapChip/ex.png] [MapChip/ATpura2.png]
+  flags: bytes=456 ints=456  fb[0,1,1,3,3,1,1,3,0,1,1,0, ]
+  ints: max=16 distinct=3 top: 0x419, 15x16, 16x21, 
+rec 4 name=""
+  strings(16): [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+  flags: bytes=24 ints=24  fb[0,1,2,3,4,5,6,7,8,9,10,11, ]
+  ints: max=0 distinct=1 top: 0x24, 
+rec 5 name=""
+  strings(16): [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+  flags: bytes=24 ints=24  fb[0,1,2,3,4,5,6,7,8,9,10,11, ]
+  ints: max=0 distinct=1 top: 0x24, 
+1-1.mps       200x25   L3 X 10 e= 10 nz= 14999 max= 38908 min0=     1 nz16=14888
+1-1_1.mps     200x25   L3 X 19 e= 19 nz= 15000 max= 38908 min0=   208 nz16=14712
+1-2.mps       150x25   L3 X 15 e= 15 nz= 11247 max= 38907 min0=     1 nz16=11108
+1-9.mps        30x25   L3 X  4 e=  4 nz=  2250 max= 45692 min0=  4806 nz16=2250
+1-9_1.mps      60x25   L3 X  3 e=  3 nz=  4500 max= 45670 min0=    82 nz16=4496
+1-9_2.mps      50x25   L3 X  3 e=  3 nz=  3750 max= 52476 min0= 14982 nz16=3750
+1-9_3.mps      30x25   L3 X  4 e=  4 nz=  2250 max= 52476 min0= 14982 nz16=2250
+1-9_4.mps      30x25   L3 X  8 e=  8 nz=  2250 max= 38908 min0= 11590 nz16=2250
+1-9_5.mps      30x25   L3 X  5 e=  5 nz=  2250 max= 38908 min0=   152 nz16=2136
+1-9_6.mps      30x25   L3 X  7 e=  7 nz=  2250 max= 38908 min0=   152 nz16=2136
+Map000.mps    150x35   L3 X 16 e= 16 nz= 15750 max= 42300 min0=  7512 nz16=15750
+Map000_2.mps   60x35   L4 X  2 e=  2 nz=  6299 max= 62652 min0=     1 nz16=6256
+Map001.mps    100x25   L2 X  7 e=  7 nz=  7500 max= 49084 min0= 17688 nz16=7500
+Map002.mps    150x25   L2 X  2 e=  2 nz= 11221 max= 49084 min0= 17688 nz16=11221
+Map003.mps     20x25   L2 X  0 e=  0 nz=  1500 max= 49084 min0= 17688 nz16=1500
+Map003_A.mps   40x25   L3 X  5 e=  5 nz=  3000 max= 59260 min0=    68 nz16=2944
+Map004.mps     20x25   L2 X  6 e=  6 nz=  1488 max= 49084 min0= 17688 nz16=1488
+Map004_A.mps   30x25   L3 X  0 e=  0 nz=  2250 max= 38908 min0=   243 nz16=2166
+Map004_A_1.mps   30x25   L3 X  0 e=  0 nz=  2250 max= 45692 min0=   288 nz16=2208
+Map005.mps     30x25   L2 X  5 e=  5 nz=  2250 max= 52476 min0=     8 nz16=2232
+Map005_A.mps   80x25   L3 X 11 e= 11 nz=  6000 max= 45670 min0=    72 nz16=5996
+Map006.mps     37x35   L3 X 15 e= 15 nz=  3885 max= 42300 min0= 34464 nz16=3885
+Map007.mps    100x25   L2 X  2 e=  2 nz=  7500 max= 34464 min0= 34464 nz16=7500
+Map008.mps     70x25   L2 X  1 e=  1 nz=  5250 max= 49084 min0= 17688 nz16=5250
+Map009.mps     70x35   L3 X 14 e= 14 nz=  7350 max= 38908 min0=    96 nz16=7305
+Map009_1.mps  440x35   L3 X  9 e=  9 nz= 46196 max= 42300 min0=     1 nz16=45919
+Map009_2.mps   65x35   L3 X  7 e=  7 nz=  6825 max= 38908 min0=  7512 nz16=6825
+Map009_3.mps   77x35   L3 X  5 e=  5 nz=  8085 max= 38908 min0=  7512 nz16=8085
+Map009_4.mps  440x35   L3 X 11 e= 11 nz= 46197 max= 45692 min0=     1 nz16=45752
+Map009_5.mps  120x35   L3 X  2 e=  2 nz= 12599 max= 38908 min0=     1 nz16=12551
+Map009_6.mps  130x35   L3 X  3 e=  3 nz= 13649 max= 38908 min0=     1 nz16=13456
+Map009_7.mps  120x35   L3 X  2 e=  2 nz= 12599 max= 38908 min0=     1 nz16=12551
+Map009_8.mps  120x35   L3 X  1 e=  1 nz= 12600 max= 42300 min0= 13782 nz16=12600
+Map009_9.mps  100x35   L3 X 11 e= 11 nz= 10500 max= 52476 min0=   184 nz16=10472
+Map009_A.mps   20x35   L3 X  0 e=  0 nz=  2100 max= 38908 min0= 34464 nz16=2100
+Map009_A_1.mps  150x35   L3 X  3 e=  3 nz= 15750 max= 42300 min0=     5 nz16=15605
+Map009_A_2.mps  440x35   L3 X 10 e= 10 nz= 46200 max= 42300 min0=   178 nz16=45840
+Map009_A_3.mps  360x35   L3 X 11 e= 11 nz= 37800 max= 45692 min0=   178 nz16=37584
+Map009_A_4.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 42300 min0=     5 nz16=14555
+Map009_A_5.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 45692 min0=     5 nz16=14530
+Map009_A_6.mps  140x35   L3 X  3 e=  3 nz= 14700 max= 45692 min0= 10378 nz16=14700
+Map009_A_7.mps   90x35   L3 X  7 e=  7 nz=  9450 max= 62652 min0=   408 nz16=9360
+Map009_A_8.mps   70x35   L3 X  2 e=  2 nz=  7350 max= 59260 min0=   408 nz16=7305
+Map009_A_9.mps   60x35   L3 X  3 e=  3 nz=  6300 max= 59260 min0=   360 nz16=6161
+Map009_A_A.mps   50x35   L3 X  1 e=  1 nz=  5250 max= 38908 min0=  7512 nz16=5250
+Map009_A_A_1.mps   50x35   L3 X  1 e=  1 nz=  5250 max= 38908 min0=  7512 nz16=5250
+Map009_A_A_2.mps   70x35   L3 X  3 e=  3 nz=  7350 max= 59260 min0=   408 nz16=7305
+Map009_A_A_3.mps  440x35   L3 X 11 e= 11 nz= 46200 max= 42300 min0=   170 nz16=45777
+Map009_A_A_4.mps  440x35   L3 X 11 e= 11 nz= 46200 max= 45670 min0=   170 nz16=45939
+Map009_A_A_5.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 42300 min0=     5 nz16=14591
+Map009_A_A_6.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 45670 min0=     5 nz16=14699
+Map009_A_A_7.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 45692 min0=     5 nz16=14530
+Map009_A_A_8.mps  140x35   L3 X  3 e=  3 nz= 14700 max= 45670 min0=     5 nz16=14609
+Map009_A_A_9.mps  440x35   L3 X 16 e= 16 nz= 46200 max= 49084 min0= 11590 nz16=46200
+Map009_A_A_A.mps  440x35   L3 X 15 e= 15 nz= 46197 max= 49062 min0=     1 nz16=45930
+Map009_A_A_A_1.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 42300 min0=     5 nz16=14591
+Map009_A_A_A_2.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 49062 min0=     5 nz16=14699
+Map009_A_A_A_3.mps  140x35   L3 X  2 e=  2 nz= 14699 max= 38908 min0=     1 nz16=14670
+Map009_A_A_A_4.mps  440x35   L3 X 12 e= 12 nz= 46200 max= 52476 min0=   280 nz16=45726
+Map009_A_A_A_5.mps  150x35   L3 X  3 e=  3 nz= 15749 max= 38908 min0=     1 nz16=15726
+Map009_A_A_A_6.mps   64x35   L3 X  6 e=  6 nz=  6720 max= 38908 min0=   342 nz16=6718
+Map009_A_A_A_7.mps   61x35   L3 X  9 e=  9 nz=  6405 max= 38908 min0= 25158 nz16=6405
+Map009_A_A_A_8.mps  440x35   L3 X 15 e= 15 nz= 46200 max= 38908 min0= 10390 nz16=46200
+Map009_A_A_A_9.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 52476 min0=   280 nz16=14652
+Map009_A_A_A_A.mps  140x35   L3 X  2 e=  2 nz= 14700 max= 52476 min0= 23958 nz16=14700
+Map009_A_A_A_A_1.mps  155x35   L3 X  4 e=  4 nz= 16275 max= 38908 min0= 10390 nz16=16275
+Map010.mps     25x25   L3 X  5 e=  5 nz=  1875 max= 38908 min0=  5636 nz16=1875
+Map011.mps     90x35   L3 X  6 e=  6 nz=  9450 max= 38908 min0=  3606 nz16=9450
+Map011_1.mps   90x35   L3 X  5 e=  5 nz=  9450 max= 38908 min0=  3606 nz16=9450
+Map011_2.mps   90x35   L3 X  5 e=  5 nz=  9450 max= 38908 min0=  3606 nz16=9450
+Map011_3.mps  120x35   L3 X  6 e=  6 nz= 12600 max= 38908 min0= 17174 nz16=12600
+Map011_4.mps   90x35   L3 X  5 e=  5 nz=  9450 max= 38908 min0= 17174 nz16=9450
+Map011_5.mps   90x35   L3 X  5 e=  5 nz=  9450 max= 38908 min0= 10390 nz16=9450
+Map011_6.mps  100x35   L3 X  9 e=  9 nz= 10500 max= 38908 min0= 10390 nz16=10500
+Map011_7.mps  120x35   L3 X  5 e=  5 nz= 12600 max= 38908 min0= 17174 nz16=12600
+Map013.mps     40x25   L3 X  0 e=  0 nz=  3000 max= 34464 min0= 34464 nz16=3000
+Map020.mps    200x25   L3 X 16 e= 16 nz= 15000 max= 45670 min0=    72 nz16=14894
+Map020_1.mps  200x25   L3 X 15 e= 15 nz= 15000 max= 45670 min0=    72 nz16=14894
+Map020_2.mps  200x25   L3 X 16 e= 16 nz= 15000 max= 52476 min0=     5 nz16=14680
+Map020_3.mps  200x25   L3 X 17 e= 17 nz= 15000 max= 52476 min0=     5 nz16=14702
+Map020_4.mps  220x25   L3 X 23 e= 23 nz= 16500 max= 49084 min0=   211 nz16=16388
+Map020_5.mps  300x25   L3 X 23 e= 23 nz= 22500 max= 49084 min0=    72 nz16=22249
+Map021.mps    200x25   L3 X 14 e= 14 nz= 15000 max= 45670 min0=    72 nz16=14881
+Map023.mps     30x25   L3 X  4 e=  4 nz=  2250 max= 38908 min0= 11590 nz16=2250
+Map024.mps     25x25   L3 X  9 e=  9 nz=  1875 max= 49084 min0= 34464 nz16=1875
+Map025.mps     20x25   L3 X  3 e=  3 nz=  1500 max= 38908 min0= 11590 nz16=1500
+Map025_1.mps   20x25   L3 X  5 e=  5 nz=  1500 max= 52476 min0=     5 nz16=1467
+Map037.mps     25x14   L0 X  0 e=  0 nz=  1050 max= 34464 min0= 34464 nz16=1050
+Map037_A.mps   25x14   L0 X  0 e=  0 nz=  1050 max= 34464 min0= 34464 nz16=1050
+title.mps      35x35   L3 X 14 e= 14 nz=  3675 max= 49084 min0= 34464 nz16=3675
+tuto.mps       90x35   L3 X  4 e=  4 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto2.mps      90x35   L3 X  6 e=  6 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto2_1.mps    40x25   L4 X  7 e=  7 nz=  3000 max= 38908 min0=  3606 nz16=3000
+tuto2_2.mps    90x35   L3 X  6 e=  6 nz=  9450 max= 49084 min0= 13782 nz16=9450
+tuto2_3.mps    78x35   L3 X  6 e=  6 nz=  8190 max= 49084 min0= 34464 nz16=8190
+tuto3.mps      90x35   L3 X  6 e=  6 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto3_1.mps    30x25   L4 X  6 e=  6 nz=  2250 max= 38908 min0=  3606 nz16=2250
+tuto3_2.mps    90x35   L3 X  6 e=  6 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto4.mps      90x35   L3 X  5 e=  5 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto4_1.mps    90x35   L3 X  5 e=  5 nz=  9450 max= 49084 min0= 34464 nz16=9450
+tuto5.mps      30x25   L4 X  6 e=  6 nz=  2250 max= 38908 min0=  3606 nz16=2250
+tuto5_1.mps    30x25   L4 X  5 e=  5 nz=  2250 max= 38908 min0=  3606 nz16=2250
+tuto_1.mps     50x25   L4 X  4 e=  4 nz=  3750 max= 38908 min0=  3606 nz16=3750
+tuto_2.mps     90x35   L3 X  5 e=  5 nz=  9450 max= 49084 min0= 13782 nz16=9450
+tuto_3.mps     90x35   L3 X  5 e=  5 nz=  9450 max= 49084 min0= 13782 nz16=9450
+
+== aggregate ==
+maps=105 errs=0 cells(4608427934312962992x? planes)=0.0M nonzero=2950642532357
+(layer_count,extra) histogram:
+  L0 X0 x2
+  L2 X0 x1
+  L2 X1 x1
+  L2 X2 x2
+  L2 X5 x1
+  L2 X6 x1
+  L2 X7 x1
+  L3 X0 x4
+  L3 X1 x3
+  L3 X2 x13
+  L3 X3 x10
+  L3 X4 x5
+  L3 X5 x14
+  L3 X6 x8
+  L3 X7 x3
+  L3 X8 x1
+  L3 X9 x4
+  L3 X10 x2
+  L3 X11 x6
+  L3 X12 x1
+  L3 X14 x3
+  L3 X15 x5
+  L3 X16 x4
+  L3 X17 x1
+  L3 X19 x1
+  L3 X23 x2
+  L4 X2 x1
+  L4 X4 x1
+  L4 X5 x1
+  L4 X6 x2
+  L4 X7 x1
+global chip (low16) range: [1, 62652]
+cells with high16 set: 1276499 of 1276560
+
+bits 16..23 distinct=16: 0 x6809, 1 x1096258, 3 x20957, 4 x42455, 6 x175, 7 x1016, 9 x23784, 10 x15560, 12 x3813, 13 x27586, 15 x22102, 18 x3126, 19 x2529, 21 x8336, 22 x668, 24 x1325,bits 24..31 distinct=1: 0 x1276499, 
+(low16,high16) co-occurrence (1:many test) distinct=0
+  low16 values seen with >1 high16: 0 of 0
+  FULL: distinct lo=510  lo with >1 hi=0  bands monotone-in-lo=NO
+    hi= 0 : lo [     1,    426]
+    hi= 1 : lo [ 34464,  38908]
+    hi= 3 : lo [  3594,   7836]
+    hi= 4 : lo [ 37867,  42300]
+    hi= 6 : lo [  6998,  11228]
+    hi= 7 : lo [ 41450,  45692]
+    hi= 9 : lo [ 10378,  14620]
+    hi=10 : lo [ 44640,  49084]
+    hi=12 : lo [ 13568,  18012]
+    hi=13 : lo [ 49434,  52476]
+    hi=15 : lo [ 17162,  21404]
+    hi=18 : lo [ 20363,  24796]
+    hi=19 : lo [ 55030,  59260]
+    hi=21 : lo [ 23958,  28188]
+    hi=22 : lo [ 58422,  62652]
+    hi=24 : lo [ 28538,  31580]
+
+  per-band distinct-lo list (first 14 each):
+    hi= 0 n=273: 1 2 3 4 5 8 9 10 11 12 13 15 16 17
+    hi= 1 n=33: 34464 34666 34677 34678 35564 35575 35766 35778 35866 35877 35878 36484 36505 36686
+    hi= 3 n=20: 3594 3606 4794 4806 5412 5433 5614 5626 5636 6814 6826 6836 7512 7533
+    hi= 4 n=12: 37867 38070 39270 39897 40100 41200 41300 41976 41997 42200 42299 42300
+    hi= 6 n=9: 6998 8186 8198 8825 9028 10904 10925 11206 11228
+    hi= 7 n=16: 41450 41462 42650 42662 43268 43289 43470 43491 43492 44692 45368 45389 45592 45670
+    hi= 9 n=14: 10378 10390 11590 12217 12398 12420 13598 13620 14296 14317 14498 14520 14598 14620
+    hi=10 n=20: 44640 44854 45751 46042 46054 46660 46681 46862 46874 46883 46884 47781 48084 48760
+    hi=12 n=12: 13568 13782 14970 14982 15609 15812 17012 17688 17709 17912 17990 18012
+    hi=13 n=11: 49434 49446 50276 51476 52152 52173 52376 52454 52466 52475 52476
+    hi=15 n=19: 17162 17174 18071 18374 18980 19001 19194 19203 19204 20101 20394 20404 21080 21101
+    hi=18 n=31: 20363 20554 20566 21463 21654 21754 21765 21766 22372 22393 22574 22586 22595 22596
+    hi=19 n=11: 55030 56218 56230 56857 57060 58936 58957 59238 59250 59259 59260
+    hi=21 n=10: 23958 25158 25785 25988 27188 27864 27885 28088 28166 28188
+    hi=22 n=9: 58422 59610 59622 60249 60452 62328 62349 62630 62652
+    hi=24 n=10: 28538 28550 29177 29380 30580 31277 31480 31558 31570 31580
+
+  sorted walk (lo, hi, count, delta):
+        65 -> h 0 x     3  d=10064
+        66 -> h 0 x     3  d=1
+        67 -> h 0 x     3  d=1
+        68 -> h 0 x     7  d=1
+        69 -> h 0 x     5  d=1
+        70 -> h 0 x     2  d=1
+        71 -> h 0 x     2  d=1
+        72 -> h 0 x    30  d=1
+        73 -> h 0 x    31  d=1
+        74 -> h 0 x    31  d=1
+        75 -> h 0 x    32  d=1
+        76 -> h 0 x     7  d=1
+        77 -> h 0 x     5  d=1
+        78 -> h 0 x     2  d=1
+        79 -> h 0 x     2  d=1
+        80 -> h 0 x    24  d=1
+        81 -> h 0 x    50  d=1
+        82 -> h 0 x    55  d=1
+        83 -> h 0 x    24  d=1
+        84 -> h 0 x     7  d=1
+        85 -> h 0 x     5  d=1
+        86 -> h 0 x     2  d=1
+        87 -> h 0 x     2  d=1
+        88 -> h 0 x    19  d=1
+        89 -> h 0 x    28  d=1
+        90 -> h 0 x    28  d=1
+        91 -> h 0 x    19  d=1
+        92 -> h 0 x     5  d=1
+        93 -> h 0 x     5  d=1
+        94 -> h 0 x     2  d=1
+        95 -> h 0 x     2  d=1
+        96 -> h 0 x     9  d=1
+        97 -> h 0 x     5  d=1
+        98 -> h 0 x     7  d=1
+        99 -> h 0 x     8  d=1
+       100 -> h 0 x     6  d=1
+       101 -> h 0 x     6  d=1
+       104 -> h 0 x     9  d=3
+       105 -> h 0 x     5  d=1
+       106 -> h 0 x     7  d=1
+       107 -> h 0 x     8  d=1
+       108 -> h 0 x     7  d=1
+       109 -> h 0 x     6  d=1
+       112 -> h 0 x    10  d=3
+       113 -> h 0 x     5  d=1
+       114 -> h 0 x     6  d=1
+       115 -> h 0 x     8  d=1
+       116 -> h 0 x     7  d=1
+       117 -> h 0 x     6  d=1
+       120 -> h 0 x     9  d=3
+       121 -> h 0 x     9  d=1
+       122 -> h 0 x     8  d=1
+       123 -> h 0 x     4  d=1
+       124 -> h 0 x    10  d=1
+       128 -> h 0 x     8  d=4
+       129 -> h 0 x     9  d=1
+       130 -> h 0 x     8  d=1
+       131 -> h 0 x     4  d=1
+       132 -> h 0 x    10  d=1
+       136 -> h 0 x     8  d=4
+       137 -> h 0 x     9  d=1
+       138 -> h 0 x     7  d=1
+       139 -> h 0 x     5  d=1
+       140 -> h 0 x    10  d=1
+       144 -> h 0 x     1  d=4
+       145 -> h 0 x     1  d=1
+       146 -> h 0 x     1  d=1
+       147 -> h 0 x     1  d=1
+       148 -> h 0 x     1  d=1
+       152 -> h 0 x     3  d=4
+       153 -> h 0 x    35  d=1
+       154 -> h 0 x     3  d=1
+       155 -> h 0 x     1  d=1
+       156 -> h 0 x     1  d=1
+       160 -> h 0 x     3  d=4
+       161 -> h 0 x    35  d=1
+       162 -> h 0 x     3  d=1
+       163 -> h 0 x     1  d=1
+       164 -> h 0 x     1  d=1
+       168 -> h 0 x     2  d=4
+       169 -> h 0 x    34  d=1
+       170 -> h 0 x     4  d=1
+       171 -> h 0 x    73  d=1
+       172 -> h 0 x     1  d=1
+       176 -> h 0 x     2  d=4
+       177 -> h 0 x    34  d=1
+       178 -> h 0 x    60  d=1
+       179 -> h 0 x  1431  d=1
+       180 -> h 0 x    58  d=1
+       184 -> h 0 x     3  d=4
+       185 -> h 0 x    34  d=1
+       186 -> h 0 x    12  d=1
+       187 -> h 0 x   193  d=1
+       188 -> h 0 x     9  d=1
+       192 -> h 0 x    29  d=4
+       193 -> h 0 x    17  d=1
+       194 -> h 0 x    17  d=1
+       195 -> h 0 x   326  d=1
+       196 -> h 0 x    16  d=1
+       197 -> h 0 x    17  d=1
+       208 -> h 0 x    36  d=11
+       209 -> h 0 x    36  d=1
+       211 -> h 0 x     9  d=2
+       212 -> h 0 x    10  d=1
+       213 -> h 0 x     9  d=1
+       216 -> h 0 x    32  d=3
+       217 -> h 0 x    32  d=1
+       219 -> h 0 x     9  d=2
+       220 -> h 0 x    10  d=1
+       221 -> h 0 x     9  d=1
+       224 -> h 0 x    40  d=3
+       225 -> h 0 x    40  d=1
+       227 -> h 0 x    92  d=2
+       228 -> h 0 x    93  d=1
+       229 -> h 0 x    92  d=1
+       232 -> h 0 x    36  d=3
+       233 -> h 0 x    36  d=1
+       235 -> h 0 x     7  d=2
+       236 -> h 0 x     4  d=1
+       237 -> h 0 x     7  d=1
+       238 -> h 0 x     4  d=1
+       243 -> h 0 x     5  d=5
+high16 values top: 0x1 x1096258, 0x3 x20957, 0x4 x42455, 0x6 x175, 0x7 x1016, 0x9 x23784, 0xA x15560, 0xC x3813,
+chip low16 top values: 62652 x542, 62630 x16, 62349 x19, 62328 x1, 60452 x66, 60249 x2, 59622 x19, 59610 x1, 59260 x1958, 59259 x5, 59250 x5, 59238 x166, 58957 x107, 58936 x10, 58422 x2,

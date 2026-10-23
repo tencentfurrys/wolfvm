@@ -89,18 +89,24 @@ std::string GameSession::load() {
         }
     }
     if (tilesets_.records.empty()) return "no TileSetData: " + (err.empty() ? "file missing" : err);
-    const int tsi = std::min(deps_.tileset_index, (int)tilesets_.records.size() - 1);
-    deps_.tileset_index = tsi < 0 ? 0 : tsi;
 
-    // 3) chip sheets of the selected set: each string is one image path.
-    std::vector<uint32_t> capacity;                    // MODEL flat-chip capacity
-    for (const std::string& rel : tilesets_.records[(size_t)deps_.tileset_index].strings) {
-        const std::string abs = resolve(deps_.root, rel);
-        if (abs.empty()) { ALOGW("chip sheet missing: %s", rel.c_str()); continue; }
-        chip_paths_.push_back(abs);
-        capacity.push_back(0);                          // filled after upload (cols*rows)
+    // Pinned (Eris data census 2026-10): TileSetDat carries placeholder records
+    // (empty strings, or a single blank-image path) plus the populated group —
+    // the .mps header fields (layer_count/extra) do NOT link per-map tilesets
+    // (checked across all 105 maps). The engine's link stays RE-open; until
+    // then use the first record with resolvable sheets (target: record 3,
+    // named デフォ, 16 sheets; system default 1-based strings m1..m16 order).
+    std::vector<uint32_t> capacity;                    // per-sheet px capacity placeholder
+    for (size_t i = 0; i < tilesets_.records.size() && chip_paths_.empty(); ++i) {
+        deps_.tileset_index = (int)i;
+        for (const std::string& rel : tilesets_.records[i].strings) {
+            const std::string abs = resolve(deps_.root, rel);
+            if (abs.empty()) { ALOGW("chip sheet missing: %s", rel.c_str()); continue; }
+            chip_paths_.push_back(abs);
+            capacity.push_back(0);
+        }
     }
-    if (chip_paths_.empty()) return "selected tileset has no resolvable sheet files";
+    if (chip_paths_.empty()) return "no tileset record has resolvable sheet files";
 
     // 4) database pairs (optional but cheap: same verified decoders).
     for (const char* stem : { "Data/BasicData/DataBase", "Data/BasicData/CDataBase",
@@ -138,15 +144,10 @@ bool GameSession::renderer_upload_sheet(int idx, const void* rgba, int w, int h)
 }
 
 void GameSession::renderer_upload_done() {
-    // MODEL: flat chip ids map onto sheets in TileSet-string order, each
-    // covering its detected grid (cols*rows). TODO verify the real mapping.
-    sheet_start_.clear();
-    int acc = 0;
-    for (const ChipSheet& s : renderer_.sheets) {
-        sheet_start_.push_back(acc);
-        acc += s.ready ? s.cols * s.rows : 0;
-    }
-    // Planes as u32 view of the verified byte layout.
+    // Pinned (Eris data census 2026-10): chip cell is a 24-bit bitfield;
+    // band 0 maps onto the FIRST tileset sheet with dense 1-based grid ids
+    // (moriV13.png 8x55 @40px). Sheets beyond band 0 decode after the
+    // Game.exe map-draw path RE lands — until then those cells skip.
     std::vector<std::vector<uint32_t>> planes32;
     planes32.reserve(map_.planes.size());
     for (const auto& bytes : map_.planes) {
@@ -158,7 +159,7 @@ void GameSession::renderer_upload_done() {
         }
         planes32.push_back(std::move(p32));
     }
-    renderer_.build_plane_meshes(planes32, map_.width, map_.height, sheet_start_);
+    renderer_.build_plane_meshes(planes32, map_.width, map_.height);
     atlas_ready_ = true;
 }
 
@@ -202,6 +203,7 @@ GameSession::Diag GameSession::diag() const {
     d.erased_objects = erased;
     d.missing_cells = renderer_.missing_cells;
     d.oob_cells = renderer_.oob_cells;
+    d.band_cells = renderer_.band_cells;
     d.sheets = renderer_.sheets.size();
     for (const auto& s : renderer_.sheets) if (s.ready) ++d.sheets_ready;
     d.tileset = deps_.tileset_index;

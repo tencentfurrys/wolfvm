@@ -14,8 +14,8 @@ android {
         applicationId 'io.github.tencentfurrys.wolfvm'
         minSdk 26
         targetSdk 34
-        versionCode 5
-        versionName '0.5'
+        versionCode 6
+        versionName '0.6'
         externalNativeBuild {
             cmake {
                 arguments '-DANDROID_STL=c++_static', '-DCMAKE_BUILD_TYPE=Release'
