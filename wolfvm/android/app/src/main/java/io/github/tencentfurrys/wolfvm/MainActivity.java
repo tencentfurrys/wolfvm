@@ -2,15 +2,18 @@ package io.github.tencentfurrys.wolfvm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.DocumentsContract;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -28,20 +31,26 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
  * WolfVM Shell (Stage 4): fullscreen map viewer + gesture floor, with the
  * harness console available in a slide-down overlay (toggle: double-tap).
  *
- * Game data layout (README): <root>/Data/BasicData/* + <root>/Data/MapData/*.mps.
- * Default root /storage/emulated/0/WolfVM — copy the decrypted game data there
- * (restore-data.ps1 flow) or edit the path in the console overlay.
+ * Game data: bundled data is the player's own copy, imported in-app
+ * (console ▸ "import zip" / "import dir" — zip the decrypted Data tree first;
+ * .wolf archives stay PC-side via UberWolf). Legacy path: /sdcard/WolfVM with
+ * All-files access. Root auto-detects a Data/BasicData/Game.dat subtree.
  */
 public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
@@ -69,8 +78,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ensureStorageAccess();
         setContentView(buildUi());
+        loadRoot();
         log("== " + WolfVm.version() + "\n");
     }
 
@@ -106,7 +115,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         console.setBackgroundColor(Color.argb(216, 10, 10, 10));
 
         rootEdit = new EditText(this);
-        rootEdit.setText(defaultRoot());
+        rootEdit.setSingleLine(true);
         rootEdit.setHint("game data root dir");
         rootEdit.setTextSize(11);
         console.addView(rootEdit, row());
@@ -123,6 +132,12 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         rows2.addButton("map ➤", v -> switchMap(1));
         rows2.addButton("status", v -> status());
         console.addView(rows2.view);
+        HorizontalRow rows3 = new HorizontalRow();
+        rows3.addButton("import zip", v -> pickZip());
+        rows3.addButton("import dir", v -> pickDir());
+        rows3.addButton("save root", v -> saveRoot());
+        rows3.addButton("clear", v -> logView.setText(""));
+        console.addView(rows3.view);
 
         logScroll = new ScrollView(this);
         logView = new TextView(this);
@@ -140,7 +155,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         consoleWrap.addView(console, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
         root.addView(consoleWrap, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(300),
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(340),
                 Gravity.BOTTOM | Gravity.START));
         console.setVisibility(View.GONE);
         return root;
@@ -176,9 +191,26 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         console.setVisibility(console.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 
-    // ------------------------------------------------------------ lifecycle
+    // ------------------------------------------------------------ root/prefs
+    private File gameDir() {   // app-owned import target (no permissions needed)
+        return new File(getExternalFilesDir(null), "game");
+    }
+
     private String defaultRoot() {
         return new File(Environment.getExternalStorageDirectory(), "WolfVM").getAbsolutePath();
+    }
+
+    private void loadRoot() {
+        String saved = getSharedPreferences("wolfvm", MODE_PRIVATE).getString("root", null);
+        File g = gameDir();
+        if (new File(g, "Data/BasicData/Game.dat").isFile()) rootEdit.setText(g.getAbsolutePath());
+        else rootEdit.setText(saved != null ? saved : defaultRoot());
+    }
+
+    private void saveRoot() {
+        getSharedPreferences("wolfvm", MODE_PRIVATE).edit()
+                .putString("root", rootEdit.getText().toString().trim()).apply();
+        Toast.makeText(this, "root saved", Toast.LENGTH_SHORT).show();
     }
 
     private String p(String rel) {
@@ -201,6 +233,144 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         }
         maps = found;
         if (mapIdx >= maps.size()) mapIdx = 0;
+    }
+
+    // -------------------------------------------------- data import (SAF)
+    /** Zip the DECRYPTED data tree (UberWolf output; .wolf stays PC-side). */
+    private void pickZip() {
+        Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        i.addCategory(Intent.CATEGORY_OPENABLE);
+        i.setType("*/*");
+        startActivityForResult(i, REQ_ZIP);
+    }
+
+    private void pickDir() {
+        Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        startActivityForResult(i, REQ_DIR);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK || data == null || data.getData() == null) return;
+        if (requestCode == REQ_ZIP) new Thread(() -> importZip(data.getData()), "import-zip").start();
+        if (requestCode == REQ_DIR) new Thread(() -> importDir(data.getData()), "import-dir").start();
+    }
+
+    private void importZip(Uri uri) {
+        File dest = gameDir();
+        dest.mkdirs();
+        int files = 0, skip = 0;
+        try (ZipInputStream zis = new ZipInputStream(getContentResolver().openInputStream(uri))) {
+            byte[] buf = new byte[1 << 16];
+            ZipEntry e;
+            while ((e = zis.getNextEntry()) != null) {
+                String name = e.getName().replace('\\', '/');
+                if (name.contains("..")) { ++skip; continue; }
+                File out = new File(dest, name);
+                if (e.isDirectory()) { out.mkdirs(); continue; }
+                File parent = out.getParentFile();
+                if (parent != null) parent.mkdirs();
+                try (OutputStream os = new FileOutputStream(out)) {
+                    int n;
+                    while ((n = zis.read(buf)) > 0) os.write(buf, 0, n);
+                }
+                ++files;
+            }
+        } catch (Exception ex) {
+            log("[import] zip FAILED: " + ex + " (extracted " + files + " files before)\n");
+            return;
+        }
+        log("[import] zip ok: " + files + " files" + (skip > 0 ? " (" + skip + " skipped)" : "")
+                + " → " + dest + "\n");
+        adoptImport(dest);
+    }
+
+    /** Recursively copy a SAF-picked tree (Data/ or the whole game root). */
+    private void importDir(Uri tree) {
+        try {
+            getContentResolver().takePersistableUriPermission(tree,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } catch (SecurityException ignored) { }
+        File dest = gameDir();
+        dest.mkdirs();
+        final int[] n = { 0 };
+        boolean ok;
+        try {
+            copyTree(tree, tree, dest, n);
+            ok = true;
+        } catch (Exception ex) {
+            log("[import] dir FAILED: " + ex + "\n");
+            ok = false;
+        }
+        if (ok) {
+            log("[import] dir ok: " + n[0] + " files → " + dest + "\n");
+            adoptImport(dest);
+        }
+    }
+
+    private void copyTree(Uri tree, Uri dir, File outDir, int[] n) throws Exception {
+        outDir.mkdirs();
+        Uri children = DocumentsContract.buildChildDocumentsUriUsingTree(
+                tree, DocumentsContract.getDocumentId(dir));
+        String[] cols = { DocumentsContract.Document.COLUMN_DISPLAY_NAME,
+                          DocumentsContract.Document.COLUMN_DOCUMENT_ID,
+                          DocumentsContract.Document.COLUMN_MIME_TYPE };
+        try (Cursor c = getContentResolver().query(children, cols, null, null, null)) {
+            if (c == null) return;
+            while (c.moveToNext()) {
+                final String name = c.getString(0);
+                final String docId = c.getString(1);
+                final String mime = c.getString(2);
+                if (name.contains("/")) continue;
+                if (DocumentsContract.Document.MIME_TYPE_DIR.equals(mime)) {
+                    copyTree(tree, DocumentsContract.buildChildDocumentsUriUsingTree(tree, docId),
+                            new File(outDir, name), n);
+                } else {
+                    final File of = new File(outDir, name);
+                    try (InputStream in = getContentResolver().openInputStream(
+                            DocumentsContract.buildDocumentUriUsingTree(tree, docId));
+                         OutputStream os = new FileOutputStream(of)) {
+                        byte[] buf = new byte[1 << 16];
+                        int rd;
+                        while ((rd = in.read(buf)) > 0) os.write(buf, 0, rd);
+                    }
+                    ++n[0];
+                }
+            }
+        }
+        // auto-detect the root: walk up by rewriting text only — caller handles
+    }
+
+    /** Find the extracted subtree owning Data/BasicData/Game.dat, adopt it. */
+    private void adoptImport(File dest) {
+        String root = null;
+        File game = findGameRoot(dest, 0);
+        if (game != null) root = game.getAbsolutePath();
+        if (root != null) {
+            rootEdit.setText(root);
+            log("[import] root detected: " + root + "\n");
+        } else {
+            log("[import] no Data/BasicData/Game.dat under the import — check the zip\n");
+        }
+        if (root != null) ui.post(() -> {
+            scanMaps();
+            if (!maps.isEmpty() && sfcW > 0) createSession();
+            else log("[import] no .mps found — map data missing from the zip\n");
+        });
+    }
+
+    private File findGameRoot(File dir, int depth) {
+        if (depth > 4) return null;
+        if (new File(dir, "Data/BasicData/Game.dat").isFile()) return dir;
+        File[] subs = dir.listFiles();
+        if (subs != null)
+            for (File f : subs)
+                if (f.isDirectory()) {
+                    File hit = findGameRoot(f, depth + 1);
+                    if (hit != null) return hit;
+                }
+        return null;
     }
 
     // -------------------------------------------------- surface callbacks
@@ -230,10 +400,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
     private void createSession() {
-        if (!Environment.isExternalStorageManager()) {
-            log("(grant All files access first — session blocked)\n");
-            return;
-        }
         if (sfcW == 0) {  // surfaceCreated can fire before surfaceChanged
             log("(surface not sized yet; recreate session via surface change)\n");
             return;
@@ -241,7 +407,13 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         stopSession();
         scanMaps();
         if (maps.isEmpty()) {
-            log("[session] no .mps under " + p("Data/MapData") + " — copy game data first\n");
+            log("[session] no .mps under " + p("Data/MapData") + "\n");
+            log("  → import your game data: console ▸ import zip / import dir\n"
+                + "    (zip the DECRYPTED Data tree — UberWolf decrypt, then zip)\n"
+                + "  → or type a root and use locate\n");
+            if (Build.VERSION.SDK_INT >= 30 && !Environment.isExternalStorageManager()) {
+                ui.post(this::ensureStorageAccess);
+            }
             return;
         }
         final long h = WolfVm.startSession(rootEdit.getText().toString().trim(),
@@ -256,7 +428,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
                 + new File(maps.get(mapIdx)).getName() + "\n");
         uploaderLive = true;
         new Thread(this::uploadSheets, "chip-uploader").start();
-        ui.postDelayed(this::statusLine, 1500);
+        statusLine();
     }
 
     private void uploadSheets() {
@@ -313,7 +485,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
     private void switchMap(int dir) {
         stopSession();
-        mapIdx = (mapIdx + dir + maps.size()) % Math.max(1, maps.size());
+        mapIdx = (mapIdx + dir + Math.max(1, maps.size())) % Math.max(1, maps.size());
         log("[maps] switch to " + (mapIdx + 1) + "/" + maps.size() + "\n");
         if (sfcW > 0) createSession();
     }
@@ -334,20 +506,18 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
     private void sweepProbe() {
+        String ce = p("Data/BasicData/CommonEvent.dat");
+        if (!exists(ce)) { log("ERROR: missing " + ce + " (import the data first)\n"); return; }
         List<String> a = new ArrayList<>();
         a.add("sweep");
-        a.add(p("Data/BasicData/CommonEvent.dat"));
+        a.add(ce);
         a.add("--from"); a.add("0");
         a.add("--to");   a.add("20");
         String dbp = p("Data/BasicData/DataBase.project"), dbd = p("Data/BasicData/DataBase.dat");
         String cbp = p("Data/BasicData/CDataBase.project"), cbd = p("Data/BasicData/CDataBase.dat");
         if (exists(dbp) && exists(dbd)) { a.add("--db"); a.add(dbp); a.add(dbd); }
         if (exists(cbp) && exists(cbd)) { a.add("--cdb"); a.add(cbp); a.add(cbd); }
-        runCmdList("sweep 0..20", a);
-    }
-
-    private void runCmdList(String title, List<String> a) {
-        runCmd(title, a.toArray(new String[0]));
+        runCmd("sweep 0..20", a.toArray(new String[0]));
     }
 
     private void locate() {
@@ -448,7 +618,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     }
 
     // --------------------------------------------------------- permissions
-    private void ensureStorageAccess() {
+    private void ensureStorageAccess() {   // only for the legacy /sdcard path
+        if (Build.VERSION.SDK_INT < 30) return;   // legacy devices: use import
         if (Environment.isExternalStorageManager()) return;
         try {
             Intent i = new Intent(
@@ -461,4 +632,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
             Toast.makeText(this, "storage grant failed: " + ex, Toast.LENGTH_LONG).show();
         }
     }
+
+    private static final int REQ_ZIP = 41, REQ_DIR = 42;
 }

@@ -82,11 +82,21 @@ whole object layer live every frame. Controls are the **gesture floor**
 The console keeps the verify loop on-device: `selftest`, data-locate,
 `gameinfo`/`commoninfo`, a `sweep` probe (ids 0..20), `mpsinfo -c` and `mapobj`;
 map switching via ◀/map➤; a live status line shows map size, chip size, sheet
-readiness, sheet-bounds stats and active objects. The game data tree lives under
-`/sdcard/WolfVM/Data/...` (path editable in the console; All-files access
-requested on first launch). Missing files are pre-validated in the UI because
-the native reader aborts on open failure — copy `Data/` from the restored game
-root first.
+readiness, sheet-bounds stats and active objects.
+
+**Getting your game data in (v0.5, the primary path):** on the device, open the
+console (double-tap), tap **import zip** and pick a zip that contains the
+*decrypted* `Data/` tree (i.e. the output of the Stage-0 restore flow:
+UberWolf-cli decrypt, then zip the `Data` folder — `.wolf` archives themselves
+are not zip). The shell unpacks it into its **app-private storage**
+(`Android/data/io.github.tencentfurrys.wolfvm/files/game`), auto-detects the
+subtree owning `Data/BasicData/Game.dat`, and starts the session — no
+All-files permission needed for this path. **import dir** copies a
+SAF-picked folder tree the same way; **save root** persists a manual root
+(e.g. the legacy `/sdcard/WolfVM` layout, which still works with All-files
+access granted). Missing files are pre-validated in the UI because the native
+reader aborts on open failure. The app does **not** and will not bundle the
+commercial game's data — bring your own copy.
 
 ### Renderer approximations (MODEL; engine decode pending — see jni notes)
 
