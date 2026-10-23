@@ -1,6 +1,8 @@
 # wolfvm Android shell — links the clean-room core (../src) as libwolfvm.so.
 # main.cpp ships the CLI dispatch (run_cli) with #ifndef WOLFVM_AS_LIBRARY
 # around int main; the JNI bridge calls run_cli directly.
+# Session surface (stage 4 round 2): wolfvm_game (dat layer + live object
+# layer + gesture camera) + wolfvm_gles (EGL/GLES3 map renderer).
 cmake_minimum_required(VERSION 3.22)
 project(wolfvm_jni CXX)
 
@@ -23,9 +25,11 @@ add_library(wolfvm SHARED
     ${SRC_ROOT}/map_project.cpp
     ${SRC_ROOT}/vm.cpp
     ${SRC_ROOT}/main.cpp
+    wolfvm_game.cpp
+    wolfvm_gles.cpp
     wolfvm_jni.cpp)
 
-target_include_directories(wolfvm PRIVATE ${SRC_ROOT})
+target_include_directories(wolfvm PRIVATE ${SRC_ROOT} ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(wolfvm PRIVATE WOLFVM_AS_LIBRARY)
 target_compile_options(wolfvm PRIVATE -Wall -Wextra)
-target_link_libraries(wolfvm PRIVATE log)
+target_link_libraries(wolfvm PRIVATE log android EGL GLESv3)

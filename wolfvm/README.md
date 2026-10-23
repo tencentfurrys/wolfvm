@@ -23,13 +23,22 @@ Eris Dysnomia on Android. Built from the engine analysis in `../ENGINE_ANALYSIS.
 - [ ] Stage 2 — event VM: variable banks, editor command dispatch (messages, picture ops, jump/call/condition), MapX object loop.
 - [x] Stage 3 — headless map-runtime object layer: ENGINE page-pred decoded
       (`0x482240` evaluator + `0x44B530` top-down pick), `mapobj`/`mpspagewalk`/`mpssweep` census tools.
-  - [ ] Stage 3 remaining — renderer surface (SDL-family), audio (Oboe), input mapping.
+  - [x] Stage 3 round 2 — first map-session slice on device: GLES renderer draws
+        the 3 verified `.mps` planes from TileSet-sheet textures, live
+        EnginePagePred object tick, gesture camera (MODEL notes below).
+  - [ ] Stage 3 remaining — event sprite graphics (page graphic draw), message
+        /picture command backends (needs those cid decodes), Oboe audio.
 - [ ] Stage 4 — Android NDK packaging → signed debug APK.
   - [x] `android/` shell project: Gradle 8.7 + AGP 8.6.1 + NDK r27, `libwolfvm.so`
-        from the same clean-room `src/` (arm64-v8a + x86_64), JNI bridge
-        (`WolfVm.cmd == run_cli` argv dispatch, pipe-captured), console Activity
-        (selftest / locate-data / game+CE info / sweep probe / mps+mapobj).
-  - [x] `assembleDebug` debug-signed APK (build instructions below).
+        from the same clean-room `src/`, JNI bridge (`WolfVm.cmd == run_cli`
+        argv dispatch, pipe-captured), console Activity.
+  - [x] Round 2: **armeabi-v7a + arm64-v8a** release ABIs (x86_64 dropped),
+        fullscreen **MapViewer** (SurfaceView) with the **gesture control floor**
+        (tap = confirm, drag = camera pan, long-press = cancel/open, double-tap =
+        console), native EGL/GLES3 map render loop, chip-sheet upload via
+        Java `BitmapFactory`, live session status line; console harness overlay
+        retained (selftest/locate/gameinfo/commoninfo/sweep probe/mpsinfo/mapobj).
+  - [x] `assembleDebug` + `assembleRelease` debug-signed APKs (v0.3 tag on GitHub).
   - [ ] on-device validation pass.
 - [ ] Stage 5 — parity pass vs. Windows runtime (basic fixes; cg/voice/scene assets included as dumb loaders).
 
@@ -56,12 +65,39 @@ cd android
 .\gradlew assembleRelease      # same code, signed with the debug key
 ```
 
-The shell runs the same clean-room core on-device: a console activity with
-buttons for `selftest`, data-locate, `gameinfo`/`commoninfo`, a `sweep` probe
-(ids 0..20), `mpsinfo -c` and `mapobj`; the game data tree lives under
-`/sdcard/WolfVM/Data/...` (path editable in the UI; All-files access requested on
-first launch). Missing files are pre-validated in the UI because the native
-reader aborts on open failure — copy `Data/` from the restored game root first.
+The shell runs the same clean-room core on-device. Since v0.4 it opens into the
+**MapViewer** (fullscreen SurfaceView): the selected `.mps` loads and renders
+(chip sheets decoded by `BitmapFactory`, texture-uploaded into the native GLES
+session; camera pans with drag), while the engine-true page predicate ticks the
+whole object layer live every frame. Controls are the **gesture floor**
+(approx, engine input namespace decode pending):
+
+| gesture | action |
+|---|---|
+| single tap | confirm / advance (engine A-slot) |
+| drag | camera pan |
+| long-press | cancel / open (engine B-slot) |
+| double-tap | toggle the console overlay (shell UI, not game input) |
+
+The console keeps the verify loop on-device: `selftest`, data-locate,
+`gameinfo`/`commoninfo`, a `sweep` probe (ids 0..20), `mpsinfo -c` and `mapobj`;
+map switching via ◀/map➤; a live status line shows map size, chip size, sheet
+readiness, sheet-bounds stats and active objects. The game data tree lives under
+`/sdcard/WolfVM/Data/...` (path editable in the console; All-files access
+requested on first launch). Missing files are pre-validated in the UI because
+the native reader aborts on open failure — copy `Data/` from the restored game
+root first.
+
+### Renderer approximations (MODEL; engine decode pending — see jni notes)
+
+- chip cell semantics: low 16 bits in use, 0 = skip, 1-based `chip-1`
+- chip size: per-sheet largest 16..64px side dividing the PNG (global chip size
+  is engine-known; decode pending)
+- flat chip → sheet binding: sheets in TileSetData string order, capacities =
+  detected grids; per-map tileset link = record 0
+- draw order: plane 0 → 1 → 2 (z stacking of events / upper plane is
+  engine-open); event sprites not drawn yet
+- sessions read the game data already decrypted in place (Stage-0 restore flow)
 
 `selftest` runs the in-memory VM regression net (24 checks; no game data needed):
 121 gates, select/else/498/499 structure, loops + 171 break, 210 calls with
