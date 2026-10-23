@@ -65,6 +65,9 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
     private LinearLayout console;
     private TextView logView;
     private TextView mapLabel;
+    private TextView bootView;
+    private volatile boolean bootedShow = false;
+    private final StringBuilder bootRing = new StringBuilder();
     private ScrollView logScroll;
     private EditText rootEdit;
     private List<String> maps = Collections.emptyList();
@@ -83,7 +86,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         setContentView(buildUi());
         loadRoot();
         log("== " + WolfVm.version() + "\n");
-        runCmd("selftest", "selftest");   // instant, visible VM check in the open console
         autoImportAssetPack();
     }
 
@@ -187,10 +189,22 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         consoleWrap.setOrientation(LinearLayout.VERTICAL);
         consoleWrap.addView(console, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        // boot canvas — opaque until the map session starts, mirrors the last
+        // log lines; a double-tap still opens the console above it on failure.
+        bootView = new TextView(this);
+        bootView.setBackgroundColor(Color.BLACK);
+        bootView.setTextColor(Color.rgb(124, 201, 124));
+        bootView.setTypeface(Typeface.MONOSPACE);
+        bootView.setTextSize(12);
+        bootView.setPadding(dp(14), dp(14), dp(14), dp(14));
+        bootView.setText("WOLFVM\nbooting…\n");
+        bootView.setOnClickListener(v -> toggleConsole());   // boot/failed canvas: tap = console
+        root.addView(bootView, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         root.addView(consoleWrap, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, dp(340),
                 Gravity.BOTTOM | Gravity.START));
-        console.setVisibility(View.VISIBLE);       // console stays open until the user hides it
+        console.setVisibility(View.GONE);   // hidden at game boot; double-tap toggles
         return root;
     }
 
@@ -235,6 +249,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 
     private void loadRoot() {
         String saved = getSharedPreferences("wolfvm", MODE_PRIVATE).getString("root", null);
+        mapIdx = getSharedPreferences("wolfvm", MODE_PRIVATE).getInt("mapIdx", 0);
         File g = gameDir();
         if (new File(g, "Data/BasicData/Game.dat").isFile()) rootEdit.setText(g.getAbsolutePath());
         else rootEdit.setText(saved != null ? saved : defaultRoot());
@@ -464,6 +479,8 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
             return;
         }
         session = h;
+        getSharedPreferences("wolfvm", MODE_PRIVATE).edit().putInt("mapIdx", mapIdx).apply();
+        booted(true);
         WolfVm.sessionResize(h, sfcW, sfcH);
         log("[session] started map " + (mapIdx + 1) + "/" + maps.size() + ": "
                 + new File(maps.get(mapIdx)).getName() + "\n");
@@ -599,7 +616,33 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
         ui.post(() -> {
             logView.append(s);
             logScroll.post(() -> logScroll.smoothScrollTo(0, Integer.MAX_VALUE));
+            bootFeed(s);
         });
+    }
+
+    /** hide the boot canvas once a session runs; keep it for failure diagnosis. */
+    private void booted(final boolean up) {
+        bootedShow = up;
+        ui.post(() -> {
+            if (bootView != null) bootView.setVisibility(up ? View.GONE : View.VISIBLE);
+        });
+    }
+
+    /** boot-canvas feed: keep roughly the last 15 lines while it covers the map. */
+    private void bootFeed(final String s) {
+        if (bootView == null || bootView.getVisibility() != View.VISIBLE) return;
+        if (bootRing.length() > 8192) {
+            final String keep = bootRing.substring(bootRing.length() - 2048);
+            bootRing.setLength(0);
+            bootRing.append(keep);
+        }
+        bootRing.append(s);
+        final String txt = bootRing.toString();
+        final String[] lines = txt.split("\n", -1);
+        final StringBuilder sb = new StringBuilder();
+        for (int i = Math.max(0, lines.length - 15); i < lines.length; ++i)
+            sb.append(lines[i]).append('\n');
+        bootView.setText(sb.toString());
     }
 
     // -------------------------------------------------------------- gestures
